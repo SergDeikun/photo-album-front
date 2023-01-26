@@ -1,91 +1,77 @@
-// import Container from 'components/Container/Container';
+import { useState } from 'react';
 
 import {
   WrapperAuth,
-  BoxOptionsContainer,
-  BoxOptionsText,
-  BoxOptionsUnregister,
+  BoxQuestion,
+  BoxOptions,
   Title,
-  //   Text,
   Button,
-  BoxForm,
-  // UserFormsLogin,
+  BoxFormLogin,
+  Form,
   FormsTitle,
-  FormsField,
   Input,
   WrapperFormButtons,
   ButtonForgot,
   ButtonFormSubmit,
+  BoxFormSignin,
+  ButtonSignup,
 } from './AuthMenu.styled';
 
 const AuthMenu = () => {
+  const [showLogin, setShowLogin] = useState(true);
+  const [showSignup, setShowSignup] = useState(false);
+
+  const handleClickSignup = () => {
+    setShowSignup(true);
+    setShowLogin(false);
+  };
+
+  const handleClickLogin = () => {
+    setShowLogin(true);
+    setShowSignup(false);
+  };
+
   return (
-    <>
-      {/* <Container> */}
-      <WrapperAuth>
-        <BoxOptionsContainer>
-          <BoxOptionsText>
-            <BoxOptionsUnregister>
-              <Title>Don't have an account?</Title>
-              {/* <Text>Pleace, register</Text> */}
-              <Button id="signup-button">Sign up</Button>
-            </BoxOptionsUnregister>
+    <WrapperAuth>
+      <BoxQuestion>
+        <BoxOptions>
+          <Title>Don't have an account?</Title>
+          <Button onClick={handleClickSignup}>Sign up</Button>
+        </BoxOptions>
 
-            <BoxOptionsUnregister>
-              <Title>Have an account?</Title>
-              {/* <Text>Pleace, login</Text> */}
-              <Button id="login-button">Login</Button>
-            </BoxOptionsUnregister>
-          </BoxOptionsText>
+        <BoxOptions>
+          <Title>Have an account?</Title>
+          <Button onClick={handleClickLogin}>Login</Button>
+        </BoxOptions>
+      </BoxQuestion>
 
-          <BoxForm id="user_options-forms">
-            {/* Log in */}
+      {/* Form */}
+      {showLogin && (
+        <BoxFormLogin id="user_options-forms">
+          <Form>
+            <FormsTitle>Login</FormsTitle>
+            <Input type="email" placeholder="Email" required />
+            <Input type="password" placeholder="Password" required />
+            <WrapperFormButtons>
+              <ButtonForgot type="button">Forgot password?</ButtonForgot>
+              <ButtonFormSubmit type="submit">Log In</ButtonFormSubmit>
+            </WrapperFormButtons>
+          </Form>
+        </BoxFormLogin>
+      )}
 
-            {/* <UserFormsLogin> */}
-            <form>
-              <FormsTitle>Login</FormsTitle>
-
-              {/* <fieldset> */}
-              <FormsField>
-                <Input type="email" placeholder="Email" required />
-              </FormsField>
-              <FormsField>
-                <Input type="password" placeholder="Password" required />
-              </FormsField>
-              {/* </fieldset> */}
-              <WrapperFormButtons>
-                <ButtonForgot type="button">Forgot password?</ButtonForgot>
-                <ButtonFormSubmit type="submit">Log In</ButtonFormSubmit>
-              </WrapperFormButtons>
-            </form>
-            {/* </UserFormsLogin> */}
-
-            {/* SignUp */}
-
-            {/* <UserFormsLogin>
-              <FormsTitle>Sign Up</FormsTitle>
-              <form class="forms_form">
-                <fieldset class="forms_fieldset">
-                  <FormsField>
-                    <Input type="text" placeholder="Full Name" required />
-                  </FormsField>
-                  <FormsField>
-                    <Input type="email" placeholder="Email" required />
-                  </FormsField>
-                  <FormsField>
-                    <Input type="password" placeholder="Password" required />
-                  </FormsField>
-                </fieldset>
-                <WrapperFormButtons>
-                  <ButtonFormSubmit type="submit">Sign up</ButtonFormSubmit>
-                </WrapperFormButtons>
-              </form>
-            </UserFormsLogin> */}
-          </BoxForm>
-        </BoxOptionsContainer>
-      </WrapperAuth>
-      {/* </Container> */}
-    </>
+      {showSignup && (
+        <BoxFormSignin id="user_options-forms">
+          <Form>
+            <FormsTitle>Sign Up</FormsTitle>
+            <Input type="text" placeholder="Full Name" required />
+            <Input type="email" placeholder="Email" required />
+            <Input type="password" placeholder="Password" required />
+            <ButtonSignup type="submit">Sign up</ButtonSignup>
+          </Form>
+        </BoxFormSignin>
+      )}
+    </WrapperAuth>
   );
 };
 
