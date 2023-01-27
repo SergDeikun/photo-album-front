@@ -1,9 +1,9 @@
 import Container from 'components/Container/Container';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
 
-import { Section } from './HomePage.styled';
+import { Section } from './AuthPage.styled';
 
-const HomePage = () => {
+const AuthPage = () => {
   return (
     <Section>
       <Container>
@@ -13,4 +13,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default AuthPage;

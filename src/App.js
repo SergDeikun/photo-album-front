@@ -1,13 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
-import HomePage from 'pages/HomePage/HomePage';
+import AuthPage from 'pages/AuthPage/AuthPage';
+import Signup from 'components/Signup/Signup';
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<AuthPage />}>
+            <Route path="/api/auth/register" element={<Signup />} />
+          </Route>
         </Route>
       </Routes>
     </>

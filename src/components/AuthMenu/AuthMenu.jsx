@@ -1,20 +1,14 @@
 import { useState } from 'react';
 
+import Login from 'components/Login/Login';
+import Signup from 'components/Signup/Signup';
+
 import {
   WrapperAuth,
   BoxQuestion,
   BoxOptions,
   Title,
-  Button,
-  BoxFormLogin,
-  Form,
-  FormsTitle,
-  Input,
-  WrapperFormButtons,
-  ButtonForgot,
-  ButtonFormSubmit,
-  BoxFormSignin,
-  ButtonSignup,
+  AuthLink,
 } from './AuthMenu.styled';
 
 const AuthMenu = () => {
@@ -35,42 +29,21 @@ const AuthMenu = () => {
     <WrapperAuth>
       <BoxQuestion>
         <BoxOptions>
-          <Title>Don't have an account?</Title>
-          <Button onClick={handleClickSignup}>Sign up</Button>
+          <Title>Don't have an account ?</Title>
+          <AuthLink to={'/api/auth/register'} onClick={handleClickSignup}>
+            Sign up
+          </AuthLink>
         </BoxOptions>
 
         <BoxOptions>
-          <Title>Have an account?</Title>
-          <Button onClick={handleClickLogin}>Login</Button>
+          <Title>Have an account ?</Title>
+          <AuthLink onClick={handleClickLogin}>Login</AuthLink>
         </BoxOptions>
       </BoxQuestion>
 
       {/* Form */}
-      {showLogin && (
-        <BoxFormLogin id="user_options-forms">
-          <Form>
-            <FormsTitle>Login</FormsTitle>
-            <Input type="email" placeholder="Email" required />
-            <Input type="password" placeholder="Password" required />
-            <WrapperFormButtons>
-              <ButtonForgot type="button">Forgot password?</ButtonForgot>
-              <ButtonFormSubmit type="submit">Log In</ButtonFormSubmit>
-            </WrapperFormButtons>
-          </Form>
-        </BoxFormLogin>
-      )}
-
-      {showSignup && (
-        <BoxFormSignin id="user_options-forms">
-          <Form>
-            <FormsTitle>Sign Up</FormsTitle>
-            <Input type="text" placeholder="Full Name" required />
-            <Input type="email" placeholder="Email" required />
-            <Input type="password" placeholder="Password" required />
-            <ButtonSignup type="submit">Sign up</ButtonSignup>
-          </Form>
-        </BoxFormSignin>
-      )}
+      {showLogin && <Login />}
+      {showSignup && <Signup />}
     </WrapperAuth>
   );
 };
