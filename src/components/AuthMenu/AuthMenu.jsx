@@ -30,9 +30,10 @@ const AuthMenu = () => {
       <BoxQuestion>
         <BoxOptions>
           <Title>Don't have an account ?</Title>
-          <AuthLink to={'/api/auth/register'} onClick={handleClickSignup}>
+          <button onClick={handleClickSignup}>Signin</button>
+          {/* <AuthLink to={'/api/auth/register'} onClick={handleClickSignup}>
             Sign up
-          </AuthLink>
+          </AuthLink> */}
         </BoxOptions>
 
         <BoxOptions>

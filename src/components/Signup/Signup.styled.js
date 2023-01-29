@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { AuthButtons } from 'components/Buttons/AuthButtons';
+import TextField from '@mui/material/TextField';
 
 export const BoxFormSignup = styled.div`
   position: absolute;
@@ -25,7 +26,7 @@ export const Form = styled.form`
 
 export const FormsTitle = styled.h2`
   margin-top: 60px;
-  margin-bottom: 45px;
+  margin-bottom: 25px;
   font-size: 24px;
   font-weight: 500;
   line-height: 16px;
@@ -34,12 +35,12 @@ export const FormsTitle = styled.h2`
   letter-spacing: 0.1rem;
 `;
 
-export const Input = styled.input`
+export const Input = styled(TextField)`
   background-color: transparent;
   padding: 0;
   border: 0;
   outline: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px inherit;
   width: 100%;
   border-bottom: 1px solid #ccc;
   padding: 6px;
@@ -52,16 +53,23 @@ export const Input = styled.input`
 
   transition: border-color 0.2s ease-in-out;
 
-  &:focus {
-    border-color: grey;
+  div:hover ~ label {
+    color: tomato;
   }
 
-  &::placeholder {
+  label {
+    color: #ccc;
     font-size: 14px;
-    /* font-family: $ff; */
     font-weight: 300;
     letter-spacing: 0.1rem;
-    color: #ccc;
+  }
+
+  div:hover {
+    border-bottom-color: tomato;
+  }
+
+  div::after {
+    border-bottom: 1px solid #ccc;
   }
 `;
 

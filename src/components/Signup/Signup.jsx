@@ -1,6 +1,7 @@
 import { useState } from 'react';
-// import useCreateUser from 'react-query/useCreateUser';
-import CreateNewUser from 'api/api-fetch';
+import useSignupUser from 'react-query/useSignupUser';
+import TextField from '@mui/material/TextField';
+
 import {
   BoxFormSignup,
   Form,
@@ -13,7 +14,7 @@ const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const createUser = useCreateUser();
+  const signupUser = useSignupUser();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -36,56 +37,53 @@ const Signup = () => {
     }
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     try {
-      await CreateNewUser(name, email, password);
-      console.log('ok');
+      signupUser.mutate({ name, email, password });
     } catch (error) {
       console.log(error);
     }
 
-    setName('');
-    setEmail('');
-    setPassword('');
+    // setName('');
+    // setEmail('');
+    // setPassword('');
   };
-
   return (
     <BoxFormSignup id="user_options-forms">
       <Form onSubmit={handleSubmit}>
         <FormsTitle>Sign Up</FormsTitle>
-        <label htmlFor="">
-          <Input
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            placeholder="Name"
-            required
-          />
-        </label>
-        <label htmlFor="">
-          <Input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Email"
-            required
-          />
-        </label>
-        <label htmlFor="">
-          <Input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-        </label>
-
+        <Input
+          margin="dense"
+          required
+          // id="standard-password-input"
+          label="Name"
+          name="name"
+          type="text"
+          value={name}
+          onChange={handleChange}
+          variant="standard"
+        />
+        <Input
+          margin="dense"
+          required
+          // id="standard-password-input"
+          label="Email"
+          name="email"
+          type="email"
+          variant="standard"
+        />
+        <Input
+          margin="dense"
+          required
+          id="standard-password-input"
+          label="Password"
+          name="password"
+          type="password"
+          // autoComplete="current-password"
+          variant="standard"
+        />
         <ButtonSignup type="submit">Sign up</ButtonSignup>
       </Form>
     </BoxFormSignup>
