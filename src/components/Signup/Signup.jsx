@@ -1,12 +1,12 @@
 import { useState } from 'react';
+import { isError } from 'react-query';
 import useSignupUser from 'react-query/useSignupUser';
-import TextField from '@mui/material/TextField';
 
 import {
   BoxFormSignup,
   Form,
   FormsTitle,
-  Input,
+  Field,
   ButtonSignup,
 } from './Signup.styled';
 
@@ -50,40 +50,44 @@ const Signup = () => {
     // setEmail('');
     // setPassword('');
   };
+
   return (
-    <BoxFormSignup id="user_options-forms">
+    <BoxFormSignup>
+      {signupUser.isError ? <div>Email in used</div> : null}
       <Form onSubmit={handleSubmit}>
         <FormsTitle>Sign Up</FormsTitle>
-        <Input
-          margin="dense"
+        <Field
           required
-          // id="standard-password-input"
           label="Name"
           name="name"
           type="text"
           value={name}
           onChange={handleChange}
+          helperText="(Required)"
           variant="standard"
         />
-        <Input
-          margin="dense"
+        <Field
           required
-          // id="standard-password-input"
           label="Email"
           name="email"
           type="email"
+          value={email}
+          onChange={handleChange}
+          helperText="(example@mail.com)"
           variant="standard"
         />
-        <Input
-          margin="dense"
+        <Field
           required
-          id="standard-password-input"
           label="Password"
           name="password"
           type="password"
-          // autoComplete="current-password"
+          value={password}
+          onChange={handleChange}
+          helperText="
+          (Passwords must be at least 6 characters)"
           variant="standard"
         />
+
         <ButtonSignup type="submit">Sign up</ButtonSignup>
       </Form>
     </BoxFormSignup>

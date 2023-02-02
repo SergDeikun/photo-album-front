@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { AuthButtons } from 'components/Buttons/AuthButtons';
+import TextField from '@mui/material/TextField';
 
 export const BoxFormLogin = styled.div`
   position: absolute;
@@ -9,8 +10,8 @@ export const BoxFormLogin = styled.div`
   /* width: calc(50% - 30px); */
   width: 445px;
   min-height: 420px;
-  background-color: white;
-  border-radius: 3px;
+  background-color: ${p => p.theme.colors.white};
+  border-radius: ${p => p.theme.borderRadius.small};
   padding: 0 20px 0 20px;
   box-shadow: 2px 0 15px rgb(0 0 0 / 25%);
   overflow: hidden;
@@ -25,43 +26,60 @@ export const Form = styled.form`
 
 export const FormsTitle = styled.h2`
   margin-top: 60px;
-  margin-bottom: 45px;
-  font-size: 24px;
-  font-weight: 500;
+  margin-bottom: 25px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSize[2]}px;
   line-height: 16px;
-  text-transform: uppercase;
-  color: #e8716d;
   letter-spacing: 0.1rem;
+  color: ${p => p.theme.colors.main};
+  text-transform: uppercase;
 `;
 
-export const Input = styled.input`
+export const Input = styled(TextField)`
   background-color: transparent;
   padding: 0;
   border: 0;
   outline: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px inherit;
   width: 100%;
   border-bottom: 1px solid #ccc;
   padding: 6px;
 
-  /* font-family: $ff; */
-  font-size: 16px;
-  font-weight: 300;
-  color: gray;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSize[1]}px;
+  line-height: 22px;
   letter-spacing: 0.1rem;
+  color: ${p => p.theme.colors.grey};
 
   transition: border-color 0.2s ease-in-out;
 
-  &:focus {
-    border-color: grey;
+  label {
+    font-family: ${p => p.theme.fonts.body};
+    font-weight: ${p => p.theme.fontWeights.regular};
+    font-size: ${p => p.theme.fontSize[0]}px;
+    color: ${p => p.theme.colors.grey};
+    letter-spacing: 0.1rem;
+
+    span {
+      color: ${p => p.theme.colors.main};
+    }
+
+    &.Mui-focused {
+      color: ${p => p.theme.colors.darkGrey};
+    }
   }
 
-  &::placeholder {
-    font-size: 14px;
-    /* font-family: $ff; */
-    font-weight: 300;
-    letter-spacing: 0.1rem;
-    color: #ccc;
+  .css-v4u5dn-MuiInputBase-root-MuiInput-root:hover:not(
+      .Mui-disabled,
+      .Mui-error
+    ):before {
+    border-bottom: 2px solid grey;
+  }
+
+  .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+    border-bottom: 1px solid #ccc;
   }
 `;
 
@@ -73,17 +91,18 @@ export const WrapperFormButtons = styled.div`
 `;
 
 export const ButtonForgot = styled.button`
-  /* font-family: $ff; */
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSize[0]}px;
   background-color: transparent;
   border: none;
   letter-spacing: 0.1rem;
-  color: #ccc;
+  color: ${p => p.theme.colors.grey};
   text-decoration: underline;
-
   transition: color 0.2s ease-in-out;
 
   &:hover {
-    color: grey;
+    color: ${p => p.theme.colors.darkGrey};
   }
 `;
 

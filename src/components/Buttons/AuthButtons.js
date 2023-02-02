@@ -3,12 +3,14 @@ import styled from 'styled-components';
 export const AuthButtons = styled.button`
   display: block;
   background-color: #e8716d;
+  /* background-color: #009e79; */
+
   border-radius: 3px;
   border: none;
   padding: 10px 35px;
   font-size: 16px;
-  /* font-family: $ff; */
-  font-weight: 300;
+  font-family: 'Roboto';
+  font-weight: 400;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.1rem;

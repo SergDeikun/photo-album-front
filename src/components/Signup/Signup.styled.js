@@ -10,8 +10,8 @@ export const BoxFormSignup = styled.div`
   /* width: calc(50% - 30px); */
   width: 445px;
   min-height: 420px;
-  background-color: white;
-  border-radius: 3px;
+  background-color: ${p => p.theme.colors.white};
+  border-radius: ${p => p.theme.borderRadius.small};
   padding: 0 20px 0 20px;
   box-shadow: 2px 0 15px rgb(0 0 0 / 25%);
   overflow: hidden;
@@ -27,15 +27,16 @@ export const Form = styled.form`
 export const FormsTitle = styled.h2`
   margin-top: 60px;
   margin-bottom: 25px;
-  font-size: 24px;
-  font-weight: 500;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSize[2]}px;
   line-height: 16px;
-  text-transform: uppercase;
-  color: #e8716d;
   letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: ${p => p.theme.colors.main};
 `;
 
-export const Input = styled(TextField)`
+export const Field = styled(TextField)`
   background-color: transparent;
   padding: 0;
   border: 0;
@@ -45,30 +46,43 @@ export const Input = styled(TextField)`
   border-bottom: 1px solid #ccc;
   padding: 6px;
 
-  /* font-family: $ff; */
-  font-size: 16px;
-  font-weight: 300;
-  color: gray;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSize[1]}px;
+  line-height: 22px;
   letter-spacing: 0.1rem;
+  color: ${p => p.theme.colors.grey};
 
   transition: border-color 0.2s ease-in-out;
 
-  div:hover ~ label {
-    color: tomato;
-  }
-
   label {
-    color: #ccc;
-    font-size: 14px;
-    font-weight: 300;
+    font-family: ${p => p.theme.fonts.body};
+    font-weight: ${p => p.theme.fontWeights.regular};
+    font-size: ${p => p.theme.fontSize[0]}px;
+    color: ${p => p.theme.colors.grey};
     letter-spacing: 0.1rem;
+
+    span {
+      color: ${p => p.theme.colors.main};
+    }
+
+    &.Mui-focused {
+      color: ${p => p.theme.colors.darkGrey};
+    }
   }
 
-  div:hover {
-    border-bottom-color: tomato;
+  p {
+    color: ${p => p.theme.colors.grey};
   }
 
-  div::after {
+  .css-v4u5dn-MuiInputBase-root-MuiInput-root:hover:not(
+      .Mui-disabled,
+      .Mui-error
+    ):before {
+    border-bottom: 2px solid grey;
+  }
+
+  .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
     border-bottom: 1px solid #ccc;
   }
 `;

@@ -16,29 +16,23 @@ export const BoxQuestion = styled.div`
   display: flex;
   justify-content: space-between;
   /* width: 100%; */
-  background-color: rgba(34, 34, 34, 0.85);
+  background-color: ${p => p.theme.colors.darkGrey};
+
   border-radius: 3px;
 `;
-
-// export const BoxOptionsText = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   width: 100%;
-//   background-color: rgba(34, 34, 34, 0.85);
-//   border-radius: 3px;
-// `;
 
 export const BoxOptions = styled.div`
   width: 50%;
   padding: 75px 45px;
-  color: white;
-  font-weight: 300;
 `;
 
 export const Title = styled.h2`
   margin-bottom: 15px;
-  font-size: 27px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSize[3]}px;
   line-height: 22px;
+  color: ${p => p.theme.colors.white};
 `;
 
 // export const Text = styled.div`
@@ -48,20 +42,23 @@ export const Title = styled.h2`
 
 export const AuthLink = styled(Link)`
   display: block;
-  width: 75px;
+  width: 76px;
   text-align: center;
   margin-top: 30px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: ${p => p.theme.borderRadius.small};
   padding: 10px 30px;
   background-color: transparent;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSize[1]}px;
   line-height: 16px;
   letter-spacing: 0.2rem;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  color: white;
+  color: ${p => p.theme.colors.white};
 
   &:hover {
-    color: rgba(34, 34, 34, 0.85);
-    background-color: #ccc;
+    color: ${p => p.theme.colors.darkGrey};
+    background-color: ${p => p.theme.colors.grey};
   }
 `;

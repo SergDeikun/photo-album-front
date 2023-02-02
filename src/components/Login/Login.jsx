@@ -30,30 +30,45 @@ const Login = () => {
     }
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    // try {
+    //   signupUser.mutate({ name, email, password });
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    // setName('');
+    // setEmail('');
+    // setPassword('');
+  };
+
   return (
-    <BoxFormLogin id="user_options-forms">
-      <Form>
+    <BoxFormLogin>
+      <Form onSubmit={handleSubmit}>
         <FormsTitle>Login</FormsTitle>
-        <label htmlFor="">
-          <Input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Email"
-            required
-          />
-        </label>
-        <label htmlFor="">
-          <Input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-        </label>
+        <Input
+          required
+          label="Email"
+          name="email"
+          type="email"
+          value={email}
+          onChange={handleChange}
+          helperText="(example@mail.com)"
+          variant="standard"
+        />
+        <Input
+          required
+          label="Password"
+          name="password"
+          type="password"
+          value={password}
+          onChange={handleChange}
+          helperText="
+          (Passwords must be at least 6 characters)"
+          variant="standard"
+        />
 
         <WrapperFormButtons>
           {/* TODO кнопка чи посилання??? */}

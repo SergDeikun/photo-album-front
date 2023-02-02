@@ -30,10 +30,7 @@ const AuthMenu = () => {
       <BoxQuestion>
         <BoxOptions>
           <Title>Don't have an account ?</Title>
-          <button onClick={handleClickSignup}>Signin</button>
-          {/* <AuthLink to={'/api/auth/register'} onClick={handleClickSignup}>
-            Sign up
-          </AuthLink> */}
+          <AuthLink onClick={handleClickSignup}>Sign up</AuthLink>
         </BoxOptions>
 
         <BoxOptions>
@@ -41,7 +38,6 @@ const AuthMenu = () => {
           <AuthLink onClick={handleClickLogin}>Login</AuthLink>
         </BoxOptions>
       </BoxQuestion>
-
       {/* Form */}
       {showLogin && <Login />}
       {showSignup && <Signup />}

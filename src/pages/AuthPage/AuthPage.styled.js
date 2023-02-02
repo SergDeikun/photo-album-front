@@ -6,8 +6,8 @@ export const Section = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-image: url(${bgHhp});
+  /* background-image: url(${bgHhp});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
 `;
