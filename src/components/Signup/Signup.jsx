@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { isError } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+
 import useSignupUser from 'react-query/useSignupUser';
 
 import {
@@ -14,6 +15,7 @@ const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
   const signupUser = useSignupUser();
 
   const handleChange = e => {
@@ -42,18 +44,19 @@ const Signup = () => {
 
     try {
       signupUser.mutate({ name, email, password });
-    } catch (error) {
-      console.log(error);
-    }
 
-    // setName('');
-    // setEmail('');
-    // setPassword('');
+      setName('');
+      setEmail('');
+      setPassword('');
+
+      navigate('/api/auth/login');
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
     <BoxFormSignup>
-      {signupUser.isError ? <div>Email in used</div> : null}
       <Form onSubmit={handleSubmit}>
         <FormsTitle>Sign Up</FormsTitle>
         <Field

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import useLoginUser from 'react-query/useLoginUser';
+
 import {
   BoxFormLogin,
   Form,
@@ -13,6 +15,7 @@ import {
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const loginUser = useLoginUser();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -33,13 +36,12 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // try {
-    //   signupUser.mutate({ name, email, password });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      loginUser.mutate({ email, password });
+    } catch (error) {
+      console.log(error);
+    }
 
-    // setName('');
     // setEmail('');
     // setPassword('');
   };
