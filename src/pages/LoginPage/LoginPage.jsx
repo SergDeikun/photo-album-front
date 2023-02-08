@@ -1,11 +1,11 @@
 import Container from 'components/Container/Container';
-import Login from 'components/Login/Login';
+import LoginForm from 'components/Forms/AuthForms/LoginForm';
 
 const LoginPage = () => {
   return (
     <>
       <Container>
-        <Login />
+        <LoginForm />
       </Container>
     </>
   );

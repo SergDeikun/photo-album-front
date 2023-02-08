@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import useLoginUser from 'react-query/useLoginUser';
+import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
   BoxFormLogin,
@@ -10,12 +12,13 @@ import {
   WrapperFormButtons,
   ButtonForgot,
   ButtonLogin,
-} from './Login.styled';
+} from './AuthForm.styled';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const loginUser = useLoginUser();
+const LoginForm = () => {
+  const [email, setEmail] = useState('qwerty@mail.com');
+  const [password, setPassword] = useState('qwerty');
+  const navigate = useNavigate();
+  const { mutate: loginUser } = useLoginUser();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -37,13 +40,24 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      loginUser.mutate({ email, password });
+      loginUser(
+        { email, password },
+        {
+          onSuccess: () => {
+            notifySuccess('Successful login');
+            navigate('/user');
+          },
+          onError: error => {
+            notifyError(error.response.data.message);
+          },
+        }
+      );
+
+      // setEmail('');
+      // setPassword('');
     } catch (error) {
       console.log(error);
     }
-
-    // setEmail('');
-    // setPassword('');
   };
 
   return (
@@ -82,4 +96,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;

@@ -1,11 +1,11 @@
 import Container from 'components/Container/Container';
-import Signup from 'components/Signup/Signup';
+import SignupForm from 'components/Forms/AuthForms/SignupForm';
 
 const SignupPage = () => {
   return (
     <>
       <Container>
-        <Signup />
+        <SignupForm />
       </Container>
     </>
   );

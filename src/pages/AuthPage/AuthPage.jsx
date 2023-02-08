@@ -2,8 +2,10 @@ import { useState } from 'react';
 
 import Container from 'components/Container/Container';
 // import AuthMenu from 'components/AuthMenu/AuthMenu';
-import Login from 'components/Login/Login';
-import Signup from 'components/Signup/Signup';
+import SignupForm from 'components/Forms/AuthForms/SignupForm';
+import LoginForm from 'components/Forms/AuthForms/LoginForm';
+// import Login from 'components/Login/Login';
+// import Signup from 'components/Signup/Signup';
 
 import { Section } from './AuthPage.styled';
 
@@ -31,26 +33,25 @@ const AuthPage = () => {
   return (
     <Section>
       <Container>
-        {/* <AuthMenu /> */}
         <WrapperAuth>
           <BoxQuestion>
             <BoxOptions>
               <Title>Don't have an account ?</Title>
-              <AuthLink to={'/api/auth/register'} onClick={handleClickSignup}>
+              <AuthLink to={'/register'} onClick={handleClickSignup}>
                 Sign up
               </AuthLink>
             </BoxOptions>
 
             <BoxOptions>
               <Title>Have an account ?</Title>
-              <AuthLink to={'/api/auth/login'} onClick={handleClickLogin}>
+              <AuthLink to={'/login'} onClick={handleClickLogin}>
                 Login
               </AuthLink>
             </BoxOptions>
           </BoxQuestion>
-          {/* Form */}
-          {showLogin && <Login />}
-          {showSignup && <Signup />}
+
+          {showLogin && <LoginForm />}
+          {showSignup && <SignupForm />}
         </WrapperAuth>
       </Container>
     </Section>

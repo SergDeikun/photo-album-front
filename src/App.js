@@ -8,6 +8,7 @@ import SharedLayout from './components/SharedLayout/SharedLayout';
 import AuthPage from 'pages/AuthPage/AuthPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import SignupPage from 'pages/SignupPage/SignupPage';
+import UserPage from 'pages/UserPage/UserPage';
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="/" element={<AuthPage />}>
-            <Route path="/api/auth/register" element={<SignupPage />} />
-            <Route path="/api/auth/login" element={<LoginPage />} />
+            <Route path="/register" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Route>
+          <Route path="/user" element={<UserPage />} />
         </Route>
       </Routes>
       <ToastContainer {...toastOptions} />

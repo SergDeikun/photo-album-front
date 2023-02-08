@@ -1,52 +1,52 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
-import Login from 'components/Login/Login';
-import Signup from 'components/Signup/Signup';
+// import Login from 'components/Login/Login';
+// import Signup from 'components/Signup/Signup';
 
-import {
-  WrapperAuth,
-  BoxQuestion,
-  BoxOptions,
-  Title,
-  AuthLink,
-} from './AuthMenu.styled';
+// import {
+//   WrapperAuth,
+//   BoxQuestion,
+//   BoxOptions,
+//   Title,
+//   AuthLink,
+// } from './AuthMenu.styled';
 
-const AuthMenu = () => {
-  const [showLogin, setShowLogin] = useState(true);
-  const [showSignup, setShowSignup] = useState(false);
+// const AuthMenu = () => {
+//   const [showLogin, setShowLogin] = useState(true);
+//   const [showSignup, setShowSignup] = useState(false);
 
-  const handleClickSignup = () => {
-    setShowSignup(true);
-    setShowLogin(false);
-  };
+//   const handleClickSignup = () => {
+//     setShowSignup(true);
+//     setShowLogin(false);
+//   };
 
-  const handleClickLogin = () => {
-    setShowLogin(true);
-    setShowSignup(false);
-  };
+//   const handleClickLogin = () => {
+//     setShowLogin(true);
+//     setShowSignup(false);
+//   };
 
-  return (
-    <WrapperAuth>
-      <BoxQuestion>
-        <BoxOptions>
-          <Title>Don't have an account ?</Title>
-          <AuthLink to={'/api/auth/register'} onClick={handleClickSignup}>
-            Sign up
-          </AuthLink>
-        </BoxOptions>
+//   return (
+//     <WrapperAuth>
+//       <BoxQuestion>
+//         <BoxOptions>
+//           <Title>Don't have an account ?</Title>
+//           <AuthLink to={'/register'} onClick={handleClickSignup}>
+//             Sign up
+//           </AuthLink>
+//         </BoxOptions>
 
-        <BoxOptions>
-          <Title>Have an account ?</Title>
-          <AuthLink to={'/api/auth/login'} onClick={handleClickLogin}>
-            Login
-          </AuthLink>
-        </BoxOptions>
-      </BoxQuestion>
-      {/* Form */}
-      {showLogin && <Login />}
-      {showSignup && <Signup />}
-    </WrapperAuth>
-  );
-};
+//         <BoxOptions>
+//           <Title>Have an account ?</Title>
+//           <AuthLink to={'/login'} onClick={handleClickLogin}>
+//             Login
+//           </AuthLink>
+//         </BoxOptions>
+//       </BoxQuestion>
+//       {/* Form */}
+//       {showLogin && <Login />}
+//       {showSignup && <Signup />}
+//     </WrapperAuth>
+//   );
+// };
 
-export default AuthMenu;
+// export default AuthMenu;

@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-import { AuthButtons } from 'components/Buttons/AuthButtons';
 import TextField from '@mui/material/TextField';
 
-export const BoxFormLogin = styled.div`
+export const BoxFormSignup = styled.div`
   position: absolute;
-  top: 50%;
-  left: 150px;
+  /* top: 50%; */
+  left: 155px;
   /* width: calc(50% - 30px); */
   width: 445px;
   min-height: 420px;
@@ -15,6 +14,13 @@ export const BoxFormLogin = styled.div`
   padding: 0 20px 0 20px;
   box-shadow: 2px 0 15px rgb(0 0 0 / 25%);
   overflow: hidden;
+`;
+
+export const BoxFormLogin = styled(BoxFormSignup)`
+  position: absolute;
+  top: 50%;
+  left: 150px;
+  /* width: calc(50% - 30px); */
 
   transform: translate3d(100%, -50%, 0);
   transition: transform 0.4s ease-in-out;
@@ -32,8 +38,8 @@ export const FormsTitle = styled.h2`
   font-size: ${p => p.theme.fontSize[2]}px;
   line-height: 16px;
   letter-spacing: 0.1rem;
-  color: ${p => p.theme.colors.main};
   text-transform: uppercase;
+  color: ${p => p.theme.colors.main};
 `;
 
 export const Input = styled(TextField)`
@@ -71,6 +77,10 @@ export const Input = styled(TextField)`
     }
   }
 
+  p {
+    color: ${p => p.theme.colors.grey};
+  }
+
   .css-v4u5dn-MuiInputBase-root-MuiInput-root:hover:not(
       .Mui-disabled,
       .Mui-error
@@ -83,6 +93,29 @@ export const Input = styled(TextField)`
   }
 `;
 
+export const ButtonLogin = styled.button`
+  display: block;
+  background-color: #e8716d;
+  border-radius: 3px;
+  border: none;
+  padding: 10px 35px;
+  font-size: 16px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #e14641;
+  }
+`;
+
+export const ButtonSignup = styled(ButtonLogin)`
+  margin-top: 35px;
+  margin-left: auto;
+`;
 export const WrapperFormButtons = styled.div`
   display: flex;
   justify-content: space-between;
@@ -105,5 +138,3 @@ export const ButtonForgot = styled.button`
     color: ${p => p.theme.colors.darkGrey};
   }
 `;
-
-export const ButtonLogin = styled(AuthButtons)``;

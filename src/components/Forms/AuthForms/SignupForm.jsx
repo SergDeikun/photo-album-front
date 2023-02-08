@@ -2,21 +2,22 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useSignupUser from 'react-query/useSignupUser';
+import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
   BoxFormSignup,
   Form,
   FormsTitle,
-  Field,
+  Input,
   ButtonSignup,
-} from './Signup.styled';
+} from './AuthForm.styled';
 
-const Signup = () => {
+const SignupForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const signupUser = useSignupUser();
+  const { mutate: signupUser } = useSignupUser();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -43,13 +44,24 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      signupUser.mutate({ name, email, password });
+      signupUser(
+        { name, email, password },
+        {
+          onSuccess: () => {
+            notifySuccess('User register');
+            navigate('/login');
+          },
+          onError: error => {
+            notifyError(error.response.data.message);
+          },
+        }
+      );
 
       setName('');
       setEmail('');
       setPassword('');
 
-      navigate('/api/auth/login');
+      // navigate('/api/auth/login');
     } catch (error) {
       console.log(error.message);
     }
@@ -59,7 +71,7 @@ const Signup = () => {
     <BoxFormSignup>
       <Form onSubmit={handleSubmit}>
         <FormsTitle>Sign Up</FormsTitle>
-        <Field
+        <Input
           required
           label="Name"
           name="name"
@@ -69,7 +81,7 @@ const Signup = () => {
           helperText="(Required)"
           variant="standard"
         />
-        <Field
+        <Input
           required
           label="Email"
           name="email"
@@ -79,7 +91,7 @@ const Signup = () => {
           helperText="(example@mail.com)"
           variant="standard"
         />
-        <Field
+        <Input
           required
           label="Password"
           name="password"
@@ -97,4 +109,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupForm;
