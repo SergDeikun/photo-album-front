@@ -62,9 +62,8 @@ const LoginForm = () => {
   };
 
   return (
-    <BoxFormLogin>
+    <>
       <Form onSubmit={handleSubmit}>
-        <FormsTitle>Login</FormsTitle>
         <Input
           required
           label="Email"
@@ -87,13 +86,12 @@ const LoginForm = () => {
           variant="standard"
         />
 
-        <WrapperFormButtons>
-          {/* TODO кнопка чи посилання??? */}
-          <ButtonForgot type="button">Forgot password?</ButtonForgot>
-          <ButtonLogin type="submit">Log In</ButtonLogin>
-        </WrapperFormButtons>
+        <ButtonLogin type="submit">Log In</ButtonLogin>
+        {/* TODO кнопка чи посилання??? */}
+
+        <ButtonForgot type="button">Forgot password?</ButtonForgot>
       </Form>
-    </BoxFormLogin>
+    </>
   );
 };
 

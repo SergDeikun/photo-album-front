@@ -3,7 +3,7 @@ import { LogoLink } from './Logo.styled';
 const Logo = () => {
   return (
     <>
-      <LogoLink>LOGO</LogoLink>
+      <LogoLink to={'/'}>LOGO</LogoLink>
     </>
   );
 };

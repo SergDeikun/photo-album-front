@@ -2,44 +2,11 @@ import styled from 'styled-components';
 
 import TextField from '@mui/material/TextField';
 
-export const BoxFormSignup = styled.div`
-  position: absolute;
-  /* top: 50%; */
-  left: 155px;
-  /* width: calc(50% - 30px); */
-  width: 445px;
-  min-height: 420px;
-  background-color: ${p => p.theme.colors.white};
-  border-radius: ${p => p.theme.borderRadius.small};
-  padding: 0 20px 0 20px;
-  box-shadow: 2px 0 15px rgb(0 0 0 / 25%);
-  overflow: hidden;
-`;
-
-export const BoxFormLogin = styled(BoxFormSignup)`
-  position: absolute;
-  top: 50%;
-  left: 150px;
-  /* width: calc(50% - 30px); */
-
-  transform: translate3d(100%, -50%, 0);
-  transition: transform 0.4s ease-in-out;
-`;
-
 export const Form = styled.form`
-  width: 100%;
-`;
-
-export const FormsTitle = styled.h2`
-  margin-top: 60px;
-  margin-bottom: 25px;
-  font-family: ${p => p.theme.fonts.body};
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSize[2]}px;
-  line-height: 16px;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-  color: ${p => p.theme.colors.main};
+  margin-top: 100px;
+  width: 445px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const Input = styled(TextField)`
@@ -95,6 +62,9 @@ export const Input = styled(TextField)`
 
 export const ButtonLogin = styled.button`
   display: block;
+  margin-top: 35px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #e8716d;
   border-radius: 3px;
   border: none;
@@ -115,15 +85,14 @@ export const ButtonLogin = styled.button`
 export const ButtonSignup = styled(ButtonLogin)`
   margin-top: 35px;
   margin-left: auto;
-`;
-export const WrapperFormButtons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 35px;
+  margin-right: auto;
 `;
 
 export const ButtonForgot = styled.button`
+  display: block;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.regular};
   font-size: ${p => p.theme.fontSize[0]}px;

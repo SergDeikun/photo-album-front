@@ -66,9 +66,8 @@ const RegisterForm = () => {
   };
 
   return (
-    <BoxFormSignup>
+    <>
       <Form onSubmit={handleSubmit}>
-        <FormsTitle>Sign Up</FormsTitle>
         <Input
           required
           label="Name"
@@ -101,9 +100,9 @@ const RegisterForm = () => {
           variant="standard"
         />
 
-        <ButtonSignup type="submit">Sign up</ButtonSignup>
+        <ButtonSignup type="submit">Register</ButtonSignup>
       </Form>
-    </BoxFormSignup>
+    </>
   );
 };
 

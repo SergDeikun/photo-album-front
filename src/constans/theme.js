@@ -1,7 +1,7 @@
 export const theme = {
   fonts: { body: 'Roboto, sans-serif' },
 
-  fontSize: [16, 24, 27],
+  fontSize: [16, 50],
 
   fontWeights: {
     regular: 400,

@@ -4,14 +4,15 @@ import { Outlet } from 'react-router-dom';
 import Container from 'components/Container/Container';
 import AppBar from 'components/AppBar/AppBar';
 
+import { Header } from './SharedLayout.styled';
 const SharedLayout = () => {
   return (
     <>
-      <header>
+      <Header>
         <Container>
           <AppBar />
         </Container>
-      </header>
+      </Header>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
