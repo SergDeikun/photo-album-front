@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import useLoginUser from 'react-query/useLoginUser';
@@ -15,8 +16,8 @@ import {
 } from './AuthForm.styled';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('qwerty@mail.com');
-  const [password, setPassword] = useState('qwerty');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { mutate: loginUser } = useLoginUser();
 

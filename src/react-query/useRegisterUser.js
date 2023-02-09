@@ -3,7 +3,7 @@ import { useMutation } from 'react-query';
 import { createNewUser } from 'api/api-fetch';
 // import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-const useSignupUser = () => {
+const useRegisterUser = () => {
   const mutation = useMutation({
     mutationFn: newUser => createNewUser(newUser),
     // onSuccess: data => {
@@ -17,4 +17,4 @@ const useSignupUser = () => {
   return mutation;
 };
 
-export default useSignupUser;
+export default useRegisterUser;

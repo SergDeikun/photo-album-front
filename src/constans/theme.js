@@ -1,7 +1,7 @@
 export const theme = {
   fonts: { body: 'Roboto, sans-serif' },
 
-  fontSize: [14, 16, 24, 27],
+  fontSize: [16, 24, 27],
 
   fontWeights: {
     regular: 400,
@@ -12,7 +12,7 @@ export const theme = {
   colors: {
     main: '#e8716d',
     black: '#000000',
-    white: '#ffffff',
+    white: '#fff',
     grey: '#ccc',
     darkGrey: 'rgba(34, 34, 34, 0.85)',
     hover: '#e14641',

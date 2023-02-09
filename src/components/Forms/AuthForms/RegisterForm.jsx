@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useSignupUser from 'react-query/useSignupUser';
+import useRegisterUser from 'react-query/useRegisterUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
@@ -12,12 +12,12 @@ import {
   ButtonSignup,
 } from './AuthForm.styled';
 
-const SignupForm = () => {
+const RegisterForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { mutate: signupUser } = useSignupUser();
+  const { mutate: registerUser } = useRegisterUser();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -44,7 +44,7 @@ const SignupForm = () => {
     e.preventDefault();
 
     try {
-      signupUser(
+      registerUser(
         { name, email, password },
         {
           onSuccess: () => {
@@ -60,8 +60,6 @@ const SignupForm = () => {
       setName('');
       setEmail('');
       setPassword('');
-
-      // navigate('/api/auth/login');
     } catch (error) {
       console.log(error.message);
     }
@@ -109,4 +107,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default RegisterForm;
