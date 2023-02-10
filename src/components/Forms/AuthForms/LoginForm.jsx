@@ -5,15 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import useLoginUser from 'react-query/useLoginUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-import {
-  BoxFormLogin,
-  Form,
-  FormsTitle,
-  Input,
-  WrapperFormButtons,
-  ButtonForgot,
-  ButtonLogin,
-} from './AuthForm.styled';
+import { Form, Input, ButtonForgot, ButtonLogin } from './AuthForm.styled';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');

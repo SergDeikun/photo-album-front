@@ -4,13 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useRegisterUser from 'react-query/useRegisterUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-import {
-  BoxFormSignup,
-  Form,
-  FormsTitle,
-  Input,
-  ButtonSignup,
-} from './AuthForm.styled';
+import { Form, Input, ButtonSignup } from './AuthForm.styled';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
