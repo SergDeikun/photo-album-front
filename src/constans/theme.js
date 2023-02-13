@@ -1,12 +1,11 @@
 export const theme = {
-  fonts: { body: 'Roboto, sans-serif' },
+  fonts: { body: 'Montserrat, sans-serif' },
 
-  fontSize: [16, 50],
+  fontSize: [16, 24, 50],
 
   fontWeights: {
     regular: 400,
     medium: 500,
-    bold: 700,
   },
 
   colors: {

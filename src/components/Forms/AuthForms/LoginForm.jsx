@@ -8,10 +8,10 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import { Form, Input, ButtonForgot, ButtonLogin } from './AuthForm.styled';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('qwerty@mail.com');
+  const [password, setPassword] = useState('qwerty');
   const navigate = useNavigate();
-  const { mutate: loginUser } = useLoginUser();
+  const { mutate: loginUser, isSuccess } = useLoginUser();
 
   const handleChange = e => {
     const { name, value } = e.target;

@@ -5,5 +5,6 @@ export const Header = styled.header`
   align-items: center;
   justify-content: center; */
   /* position: fixed; */
-  /* width: 100%; */
+  top: 0px;
+  width: 100%;
 `;
