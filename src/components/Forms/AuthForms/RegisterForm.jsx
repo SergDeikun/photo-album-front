@@ -11,7 +11,7 @@ const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { mutate: registerUser } = useRegisterUser();
+  const { mutateAsync: registerUser, isLoading } = useRegisterUser();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -34,11 +34,11 @@ const RegisterForm = () => {
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     try {
-      registerUser(
+      await registerUser(
         { name, email, password },
         {
           onSuccess: () => {
@@ -94,7 +94,9 @@ const RegisterForm = () => {
           variant="standard"
         />
 
-        <ButtonSignup type="submit">Register</ButtonSignup>
+        <ButtonSignup type="submit" disabled={isLoading}>
+          Register
+        </ButtonSignup>
       </Form>
     </>
   );

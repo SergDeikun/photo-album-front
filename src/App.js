@@ -10,8 +10,7 @@ import SharedLayout from './components/SharedLayout/SharedLayout';
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage.jsx'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage.jsx'));
-
-const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
+const AlbumPage = lazy(() => import('./pages/AlbumPage/AlbumPage'));
 
 function App() {
   return (
@@ -22,7 +21,7 @@ function App() {
 
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/user" element={<UserPage />} />
+          <Route path="/albums" element={<AlbumPage />} />
         </Route>
       </Routes>
       <ToastContainer {...toastOptions} />

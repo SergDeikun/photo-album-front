@@ -21,7 +21,6 @@ export const loginUser = async ({ email, password }) => {
   });
 
   token = response.data.token;
-  // console.log(token);
 
   return response.data;
 };

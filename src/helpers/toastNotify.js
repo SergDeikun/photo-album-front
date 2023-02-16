@@ -8,7 +8,7 @@ const toastConfig = {
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
-  theme: 'colored',
+  theme: 'light',
 };
 
 export const notifySuccess = message =>

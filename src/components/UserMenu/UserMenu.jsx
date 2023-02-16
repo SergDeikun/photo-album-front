@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Backdrop from 'components/Backdrop/Backdrop';
+import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 
 import {
   ButtonMenu,
   CloseBatton,
   WrapperLink,
-  AlbumLink,
+  MenuLink,
+  LogoutButton,
 } from './UserMenu.styled';
 
 const UserMenu = () => {
@@ -27,15 +29,16 @@ const UserMenu = () => {
 
       {isOpen && (
         <Backdrop>
-          <CloseBatton type="button" onClick={handleCloseMenu}>
-            X
-          </CloseBatton>
+          <CloseButton onClick={handleCloseMenu} />
 
           <WrapperLink>
-            <AlbumLink>Profile</AlbumLink>
-            <AlbumLink>Albums</AlbumLink>
+            <MenuLink>Profile</MenuLink>
+            {/* TODO Можна onClik на Link */}
+            <MenuLink to={'/albums'} onClick={handleCloseMenu}>
+              Albums
+            </MenuLink>
 
-            <button>Log out</button>
+            <LogoutButton>Log out</LogoutButton>
           </WrapperLink>
         </Backdrop>
       )}

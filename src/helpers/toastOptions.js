@@ -8,7 +8,7 @@ const toastOptions = {
   pauseOnFocusLoss: true,
   draggable: true,
   pauseOnHover: true,
-  theme: 'colored',
+  theme: 'light',
 };
 
 export default toastOptions;

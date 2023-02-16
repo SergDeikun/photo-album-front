@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const LogoLink = styled(Link)`
-  padding-top: 38px;
-  padding-bottom: 38px;
+  /* padding-top: 30px;
+  padding-bottom: 30px; */
+  padding-top: 30px;
+  padding-bottom: 30px;
 `;

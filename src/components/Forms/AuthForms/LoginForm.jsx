@@ -11,7 +11,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('qwerty@mail.com');
   const [password, setPassword] = useState('qwerty');
   const navigate = useNavigate();
-  const { mutate: loginUser, isSuccess } = useLoginUser();
+  const { mutateAsync: loginUser, isLoading } = useLoginUser();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -29,16 +29,18 @@ const LoginForm = () => {
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     try {
-      loginUser(
+      await loginUser(
         { email, password },
         {
-          onSuccess: () => {
+          onSuccess: response => {
             notifySuccess('Successful login');
-            navigate('/user');
+            navigate('/albums');
+            // console.log(response);
+            return response;
           },
           onError: error => {
             notifyError(error.response.data.message);
@@ -78,10 +80,14 @@ const LoginForm = () => {
           variant="standard"
         />
 
-        <ButtonLogin type="submit">Log In</ButtonLogin>
+        <ButtonLogin type="submit" disabled={isLoading}>
+          Log In
+        </ButtonLogin>
         {/* TODO кнопка чи посилання??? */}
 
-        <ButtonForgot type="button">Forgot password?</ButtonForgot>
+        <ButtonForgot disabled="isLoading" type="button">
+          Forgot password?
+        </ButtonForgot>
       </Form>
     </>
   );

@@ -20,8 +20,10 @@ export const AuthLink = styled(NavLink)`
   line-height: 30px;
   color: ${p => p.theme.colors.black};
 
-  padding-top: 38px;
-  padding-bottom: 38px;
+  /* padding-top: 30px;
+  padding-bottom: 30px; */
+  padding-top: 30px;
+  padding-bottom: 30px;
   transition-property: transform;
 
   &:after {
