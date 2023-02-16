@@ -1,23 +1,23 @@
 import Container from 'components/Container/Container';
 import {
-  BoxImage,
+  // BoxImage,
   Title,
-  Img1,
-  Img2,
-  Img3,
+  // Img1,
+  // Img2,
+  // Img3,
   // Img4,
   // Img5,
-  Img6,
-  Img8,
+  // Img6,
+  // Img8,
 } from './HomePaje.styled';
-import photo1 from '../../images/foto1.jpg';
-import photo2 from '../../images/foto2.jpg';
-import photo3 from '../../images/foto3.jpg';
-import photo4 from '../../images/foto4.jpg';
+// import photo1 from '../../images/foto1.jpg';
+// import photo2 from '../../images/foto2.jpg';
+// import photo3 from '../../images/foto3.jpg';
+// import photo4 from '../../images/foto4.jpg';
 // import photo5 from '../../images/foto5.jpg';
 // import photo6 from '../../images/foto6.jpg';
 // import photo7 from '../../images/foto7.jpg';
-import photo8 from '../../images/foto8.jpg';
+// import photo8 from '../../images/foto8.jpg';
 
 const HomePage = () => {
   return (

@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import useRegisterUser from 'react-query/useRegisterUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
+import Button from 'components/Buttons/Button';
 
-import { Form, Input, ButtonSignup } from './AuthForm.styled';
+import { Form, Input } from './AuthForm.styled';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -94,9 +95,11 @@ const RegisterForm = () => {
           variant="standard"
         />
 
-        <ButtonSignup type="submit" disabled={isLoading}>
+        <Button type="submit" title={'Register'} disabled={isLoading} />
+
+        {/* <ButtonSignup type="submit" disabled={isLoading}>
           Register
-        </ButtonSignup>
+        </ButtonSignup> */}
       </Form>
     </>
   );

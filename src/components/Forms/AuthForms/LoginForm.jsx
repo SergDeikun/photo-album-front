@@ -1,11 +1,11 @@
 import { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 import useLoginUser from 'react-query/useLoginUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
+import Button from 'components/Buttons/Button';
 
-import { Form, Input, ButtonForgot, ButtonLogin } from './AuthForm.styled';
+import { Form, Input, ButtonForgot } from './AuthForm.styled';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('qwerty@mail.com');
@@ -79,15 +79,10 @@ const LoginForm = () => {
           (Passwords must be at least 6 characters)"
           variant="standard"
         />
-
-        <ButtonLogin type="submit" disabled={isLoading}>
-          Log In
-        </ButtonLogin>
+        <Button type="submit" title={'Log In'} disabled={isLoading} />
         {/* TODO кнопка чи посилання??? */}
 
-        <ButtonForgot disabled="isLoading" type="button">
-          Forgot password?
-        </ButtonForgot>
+        <ButtonForgot type="button">Forgot password?</ButtonForgot>
       </Form>
     </>
   );

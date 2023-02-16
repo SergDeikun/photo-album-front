@@ -1,7 +1,7 @@
 export const theme = {
   fonts: { body: 'Montserrat, sans-serif' },
 
-  fontSize: [16, 24, 50],
+  fontSize: [16, 24, 34, 50],
 
   fontWeights: {
     regular: 400,
@@ -22,10 +22,3 @@ export const theme = {
     round: '50px',
   },
 };
-
-// Title
-//   font-family: ${p => p.theme.fonts.body};
-//   font-weight: ${p => p.theme.fontWeights.regular};
-//   font-size: ${p => p.theme.fontSize[3]}px;
-//   line-height: 22px;
-//   color: ${p => p.theme.colors.white};

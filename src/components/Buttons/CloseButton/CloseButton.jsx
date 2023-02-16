@@ -1,11 +1,11 @@
-import { CloseBatton } from './CloseButton.styled';
+import { CloseBtn } from './CloseButton.styled';
 
 const CloseButton = ({ onClick }) => {
   return (
     <>
-      <CloseBatton type="button" onClick={onClick}>
+      <CloseBtn type="button" onClick={onClick}>
         X
-      </CloseBatton>
+      </CloseBtn>
     </>
   );
 };

@@ -1,14 +1,9 @@
 import { useState } from 'react';
-import Backdrop from 'components/Backdrop/Backdrop';
+import Modal from 'components/Modal/Modal';
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
+import Button from 'components/Buttons/Button';
 
-import {
-  ButtonMenu,
-  CloseBatton,
-  WrapperLink,
-  MenuLink,
-  LogoutButton,
-} from './UserMenu.styled';
+import { ButtonMenu, MenuLink, LogoutButton } from './UserMenu.styled';
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,19 +23,15 @@ const UserMenu = () => {
       </ButtonMenu>
 
       {isOpen && (
-        <Backdrop>
-          <CloseButton onClick={handleCloseMenu} />
+        <Modal onClick={handleCloseMenu}>
+          <MenuLink>Profile</MenuLink>
+          {/* TODO Можна onClik на Link */}
+          <MenuLink to={'/albums'} onClick={handleCloseMenu}>
+            Albums
+          </MenuLink>
 
-          <WrapperLink>
-            <MenuLink>Profile</MenuLink>
-            {/* TODO Можна onClik на Link */}
-            <MenuLink to={'/albums'} onClick={handleCloseMenu}>
-              Albums
-            </MenuLink>
-
-            <LogoutButton>Log out</LogoutButton>
-          </WrapperLink>
-        </Backdrop>
+          <Button type="batton" title={'Log out'} />
+        </Modal>
       )}
     </>
   );

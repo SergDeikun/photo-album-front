@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const CloseBatton = styled.button`
+export const CloseBtn = styled.button`
   position: absolute;
-  top: 30px;
-  right: 120px;
+  top: 25px;
+  right: 90px;
   color: ${p => p.theme.colors.white};
   background-color: transparent;
   border: none;

@@ -34,3 +34,21 @@ export const getCurrentUser = async () => {
 
   return response.data;
 };
+console.log(token);
+
+export const addAlbum = async ({ name, image }) => {
+  const response = await axios.post(
+    `${API_URL}/api/album`,
+    {
+      name,
+      image,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+};

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import photo1 from '../../images/foto1.jpg';
 
 export const Box = styled.div`
   width: 100%;
@@ -21,9 +20,10 @@ export const Title = styled.h1`
   margin-right: auto;
   /* font-family: 'Babylonica', cursive; */
   font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSize[2]}px;
+  font-size: ${p => p.theme.fontSize[3]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
+  line-height: 1.2;
 `;
 
 export const BoxImage = styled.div`

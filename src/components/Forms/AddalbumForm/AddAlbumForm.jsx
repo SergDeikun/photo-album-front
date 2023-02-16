@@ -1,37 +1,69 @@
 import { useState } from 'react';
 
-import Backdrop from 'components/Backdrop/Backdrop';
-import AddButton from 'components/Buttons/AddButton/AddButton';
-import CloseButton from 'components/Buttons/CloseButton/CloseButton';
+import useAddAlbum from 'react-query/useAddAlbum';
 
-import { Form } from './AddAlbumForm.styled';
+import Modal from 'components/Modal/Modal';
+import AddButton from 'components/Buttons/AddButton/AddButton';
+import Button from 'components/Buttons/Button';
+
+import { Title, Form, Input } from './AddAlbumForm.styled';
 
 const AddAlbumForm = () => {
+  const [name, setName] = useState('');
+  const [backgroundURL, setBackgroundURL] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
 
-  const handleOpenMenu = () => {
+  const handleOpenForm = () => {
     setIsOpen(true);
   };
 
-  const handleCloseMenu = () => {
+  const handleCloseForm = () => {
     setIsOpen(false);
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    try {
+      await addAlbum({ name, backgroundURL });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
-      <AddButton onClick={handleOpenMenu} />
+      <AddButton onClick={handleOpenForm} />
       {isOpen && (
-        <Backdrop>
-          <CloseButton onClick={handleCloseMenu} />
-          {/* <button onClick={handleCloseMenu}>X</button> */}
+        <Modal onClick={handleCloseForm}>
+          <Title>Add album</Title>
 
-          <Form action="">
-            <h1>Add album</h1>
-            <input type="text" name="" id="" />
-            <input type="file" name="" id="" />
-            <button type="submit">add</button>
+          <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+            <label htmlFor="email">
+              Name
+              <Input
+                id="email"
+                type="text"
+                name="name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+            </label>
+            <label htmlFor="img">
+              Background
+              <Input
+                id="img"
+                type="file"
+                name="img"
+                value={backgroundURL}
+                accept=".jpg,.jpeg,.png,"
+                onChange={e => setBackgroundURL(e.target.value)}
+              />
+            </label>
+            <Button type="submit" disabled={isLoading} title={'add'} />
           </Form>
-        </Backdrop>
+        </Modal>
       )}
     </>
   );
