@@ -11,6 +11,7 @@ import { Title, Form, Input } from './AddAlbumForm.styled';
 const AddAlbumForm = () => {
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
+  console.log(backgroundURL);
   const [isOpen, setIsOpen] = useState(false);
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
 
@@ -22,7 +23,14 @@ const AddAlbumForm = () => {
     setIsOpen(false);
   };
 
+  const handleUpload = e => {
+    // const { files } = e.currentTarget;
+    setBackgroundURL(e.target.files[0]);
+    // console.log(files);
+  };
+
   const handleSubmit = async e => {
+    console.log(e);
     e.preventDefault();
 
     try {
@@ -58,7 +66,7 @@ const AddAlbumForm = () => {
                 name="img"
                 value={backgroundURL}
                 accept=".jpg,.jpeg,.png,"
-                onChange={e => setBackgroundURL(e.target.value)}
+                onChange={handleUpload}
               />
             </label>
             <Button type="submit" disabled={isLoading} title={'add'} />

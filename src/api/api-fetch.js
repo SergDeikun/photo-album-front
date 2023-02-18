@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://photo-album-back.vercel.app';
+const API_URL = 'https://photo-album-0ycb.onrender.com';
 
 let token = '';
 

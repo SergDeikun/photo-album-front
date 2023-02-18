@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const AlbumList = styled.ul`
   /* margin-top: 80px; */
@@ -29,4 +30,12 @@ export const AlbumName = styled.h1`
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
+`;
+
+export const LinkItem = styled(Link)`
+  width: 100%;
+`;
+
+export const Image = styled.img`
+  width: 100%;
 `;
