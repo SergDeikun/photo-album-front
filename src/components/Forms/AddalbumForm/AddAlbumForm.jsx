@@ -11,27 +11,28 @@ import { Title, Form, Input } from './AddAlbumForm.styled';
 const AddAlbumForm = () => {
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
-  console.log(backgroundURL);
   const [isOpen, setIsOpen] = useState(false);
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
 
-  const handleOpenForm = () => {
-    setIsOpen(true);
+  const handleToggleForm = () => {
+    setIsOpen(!isOpen);
   };
 
-  const handleCloseForm = () => {
-    setIsOpen(false);
-  };
-
-  const handleUpload = e => {
-    // const { files } = e.currentTarget;
-    setBackgroundURL(e.target.files[0]);
-    // console.log(files);
+  const uploadImage = e => {
+    setBackgroundURL(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleSubmit = async e => {
-    console.log(e);
     e.preventDefault();
+
+    // const data = new FormData();
+
+    // data.append('name', name);
+    // data.append('backgroundURL', backgroundURL);
+
+    // setName('');
+    // setBackgroundURL('');
+    // setIsOpen(false);
 
     try {
       await addAlbum({ name, backgroundURL });
@@ -42,9 +43,9 @@ const AddAlbumForm = () => {
 
   return (
     <>
-      <AddButton onClick={handleOpenForm} />
+      <AddButton onClick={handleToggleForm} />
       {isOpen && (
-        <Modal onClick={handleCloseForm}>
+        <Modal onClick={handleToggleForm}>
           <Title>Add album</Title>
 
           <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
@@ -63,10 +64,9 @@ const AddAlbumForm = () => {
               <Input
                 id="img"
                 type="file"
-                name="img"
-                value={backgroundURL}
-                accept=".jpg,.jpeg,.png,"
-                onChange={handleUpload}
+                name="backgroundURL"
+                accept=".jpg, .jpeg, .png"
+                onChange={uploadImage}
               />
             </label>
             <Button type="submit" disabled={isLoading} title={'add'} />

@@ -29,7 +29,9 @@ export const AuthLink = styled(NavLink)`
   &:after {
     content: '';
     position: absolute;
-    bottom: 40px;
+    /* bottom: 40px; */
+    bottom: 35px;
+
     left: 0;
     width: 100%;
     height: 1px;

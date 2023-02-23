@@ -27,13 +27,3 @@ export const MenuLink = styled(Link)`
   color: ${p => p.theme.colors.white};
   line-height: 1.66;
 `;
-
-export const LogoutButton = styled.button`
-  font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSize[1]}px;
-  font-weight: ${p => p.theme.fontWeights.regular};
-  color: ${p => p.theme.colors.white};
-  background-color: transparent;
-  border: none;
-  margin-top: 50px;
-`;
