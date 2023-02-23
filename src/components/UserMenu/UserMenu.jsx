@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
+import AddAlbumForm from 'components/Forms/AddalbumForm/AddAlbumForm';
 
 import { ButtonMenu, MenuLink } from './UserMenu.styled';
 
@@ -14,6 +15,8 @@ const UserMenu = () => {
 
   return (
     <>
+      {/* TODO: форму рендерити інакше  */}
+      <AddAlbumForm />
       <ButtonMenu type="button" onClick={handleToggleMenu}>
         Menu
       </ButtonMenu>

@@ -8,9 +8,9 @@ import Button from 'components/Buttons/Button';
 import { Form, Input, ButtonForgot } from './AuthForm.styled';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('qwerty@mail.com');
+  const [email, setEmail] = useState('');
 
-  const [password, setPassword] = useState('qwerty');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { mutateAsync: loginUser, isLoading } = useLoginUser();
 
