@@ -35,19 +35,12 @@ export const getCurrentUser = async () => {
   return response.data;
 };
 
-export const addAlbum = async ({ name, backgroundURL }) => {
-  const response = await axios.post(
-    `${API_URL}/api/album`,
-    {
-      name,
-      backgroundURL,
+export const addAlbum = async newAlbum => {
+  const response = await axios.post(`${API_URL}/api/album`, newAlbum, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
     },
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  });
   return response.data;
 };
