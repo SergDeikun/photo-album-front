@@ -62,8 +62,7 @@ const AddPhotoForm = () => {
           <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
             {/* PLACE */}
             <TextField
-              required
-              label="Name"
+              label="Place"
               name="place"
               type="text"
               value={place}
@@ -81,22 +80,24 @@ const AddPhotoForm = () => {
               />
             </LocalizationProvider>
             {/* UPLOAD FILE */}
-            <input
-              id="img"
-              type="file"
-              name="photoURL"
-              accept=".jpg, .jpeg, .png"
-              onChange={uploadImage}
-            />
-            <Fab
-              color="white"
-              size="large"
-              component="span"
-              aria-label="add"
-              variant="extended"
-            >
-              Background upload
-            </Fab>
+            <label htmlFor="img">
+              <input
+                id="img"
+                type="file"
+                name="photoURL"
+                accept=".jpg, .jpeg, .png"
+                onChange={uploadImage}
+              />
+              <Fab
+                color="white"
+                size="large"
+                component="span"
+                aria-label="add"
+                variant="extended"
+              >
+                Background upload
+              </Fab>
+            </label>
             {/* COMMENTS */}
             <TextareaAutosize
               aria-label="empty textarea"
