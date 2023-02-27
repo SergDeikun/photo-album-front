@@ -4,7 +4,7 @@ import { loginUser } from 'api/api-fetch';
 // import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 const useLoginUser = () => {
-  const mutation = useMutation('loginUser', {
+  const mutation = useMutation({
     mutationFn: user => loginUser(user),
 
     // onSuccess: response => {

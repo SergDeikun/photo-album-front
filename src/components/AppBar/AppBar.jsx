@@ -1,8 +1,9 @@
+import useGetCurrentUser from 'react-query/useGetCurrentUser';
+
 import Logo from 'components/Logo/Logo';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
 import UserMenu from 'components/UserMenu/UserMenu';
-
-import useGetCurrentUser from 'react-query/useGetCurrentUser';
+import AddAlbumForm from 'components/Forms/AddAlbumForm/AddAlbumForm';
 
 // import useGetQuery from 'react-query/useGetQuery';
 
@@ -16,7 +17,14 @@ const AppBar = () => {
   return (
     <Wrapper>
       <Logo />
-      {data ? <UserMenu /> : <AuthMenu />}
+      {data ? (
+        <>
+          <AddAlbumForm />
+          <UserMenu />
+        </>
+      ) : (
+        <AuthMenu />
+      )}
     </Wrapper>
   );
 };

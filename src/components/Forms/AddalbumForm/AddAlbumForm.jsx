@@ -47,7 +47,7 @@ const AddAlbumForm = () => {
 
   return (
     <>
-      <AddButton onClick={handleToggleForm} />
+      <AddButton onClick={handleToggleForm} title="Add album" />
       {isOpen && (
         <Modal onClick={handleToggleForm}>
           <Title>Add album</Title>

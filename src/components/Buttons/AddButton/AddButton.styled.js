@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AddAlbumButton = styled.button`
+export const AddBtn = styled.button`
   margin-left: auto;
 
   font-family: ${p => p.theme.fonts.body};

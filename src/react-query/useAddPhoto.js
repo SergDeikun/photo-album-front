@@ -1,11 +1,11 @@
 import { useMutation } from 'react-query';
 import queryClient from './queryClient';
 
-import { addAlbum } from 'api/api-fetch';
+import { addPhoto } from 'api/api-fetch';
 
-const useAddAlbum = () => {
+const useAddPhoto = () => {
   const mutation = useMutation({
-    mutationFn: (album, id) => addAlbum(album, id),
+    mutationFn: (id, newPhoto) => addPhoto(id, newPhoto),
 
     onSuccess: () => {
       queryClient.invalidateQueries('user');
@@ -15,4 +15,4 @@ const useAddAlbum = () => {
   return mutation;
 };
 
-export default useAddAlbum;
+export default useAddPhoto;

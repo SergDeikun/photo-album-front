@@ -39,7 +39,7 @@ const LoginForm = () => {
         {
           onSuccess: response => {
             notifySuccess('Successful login');
-            navigate('/albums');
+            navigate('/album-list');
             // console.log(response);
             return response;
           },

@@ -44,3 +44,24 @@ export const addAlbum = async newAlbum => {
   });
   return response.data;
 };
+
+export const getAlbumById = async id => {
+  const response = await axios.get(`${API_URL}/api/album/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+export const addPhoto = async (id, newPhoto) => {
+  const response = await axios.post(`${API_URL}/api/photo/${id}`, newPhoto, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};

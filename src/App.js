@@ -11,6 +11,9 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage.jsx'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage.jsx'));
 const AlbumsPage = lazy(() => import('./pages/AlbumsPage/AlbumsPage'));
+const CurrentAlbumPage = lazy(() =>
+  import('./pages/CurrentAlbumPage/CurrentAlbumPage')
+);
 
 function App() {
   return (
@@ -21,7 +24,8 @@ function App() {
 
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/albums" element={<AlbumsPage />} />
+          <Route path="/album-list" element={<AlbumsPage />} />
+          <Route path="/album/:id" element={<CurrentAlbumPage />} />
         </Route>
       </Routes>
       <ToastContainer {...toastOptions} />

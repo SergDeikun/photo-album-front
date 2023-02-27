@@ -1,9 +1,11 @@
-import { AddAlbumButton } from './AddButton.styled';
+import { AddBtn } from './AddButton.styled';
 
-const AddButton = ({ onClick }) => {
+const AddButton = ({ onClick, title }) => {
   return (
     <>
-      <AddAlbumButton onClick={onClick}>Add album</AddAlbumButton>
+      <AddBtn type="button" onClick={onClick}>
+        {title}
+      </AddBtn>
     </>
   );
 };

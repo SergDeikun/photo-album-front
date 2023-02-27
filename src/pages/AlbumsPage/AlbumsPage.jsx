@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import Container from 'components/Container/Container';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
@@ -14,12 +12,8 @@ import {
   Image,
 } from './AlbumsPage.styled';
 
-const AlbumPage = () => {
+const AlbumsPage = () => {
   const { data } = useGetCurrentUser();
-
-  if (data) {
-    // console.log(data);
-  }
 
   return (
     <Container>
@@ -30,7 +24,7 @@ const AlbumPage = () => {
             return (
               // Album
               <AlbumItem key={id}>
-                <LinkItem>
+                <LinkItem to={`/album/${id}`}>
                   <ImageBox>
                     <Image src={backgroundURL} alt="" />
                   </ImageBox>
@@ -46,4 +40,4 @@ const AlbumPage = () => {
   );
 };
 
-export default AlbumPage;
+export default AlbumsPage;
