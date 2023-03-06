@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import useAddAlbum from 'react-query/useAddAlbum';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
@@ -21,7 +20,6 @@ const AddAlbumForm = () => {
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [uploadCover, setUploadCover] = useState('');
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
 
@@ -34,14 +32,6 @@ const AddAlbumForm = () => {
     setBackgroundURL(e.target.files[0]);
   };
 
-  // const imageHandler = async e => {
-  //   const fileUploaded = e.target.files[0];
-  //   setBackgroundURL(URL.createObjectURL(fileUploaded));
-  //   const file = new FormData();
-  //   file.append('photo', fileUploaded);
-  //   addAlbum(file);
-  // };
-
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -51,7 +41,7 @@ const AddAlbumForm = () => {
 
     try {
       await addAlbum(newAlbum, {
-        onSuccess: response => {
+        onSuccess: () => {
           notifySuccess('album added');
           setIsOpen(false);
           setName('');
