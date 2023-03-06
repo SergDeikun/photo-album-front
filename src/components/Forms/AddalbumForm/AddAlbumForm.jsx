@@ -1,17 +1,27 @@
 import { useState } from 'react';
-import Fab from '@mui/material/Fab';
+import { useNavigate } from 'react-router-dom';
 
 import useAddAlbum from 'react-query/useAddAlbum';
+import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import Modal from 'components/Modal/Modal';
 import AddButton from 'components/Buttons/AddButton/AddButton';
 import Button from 'components/Buttons/Button';
 
-import { Title, Form, Label, Input, FileInput } from './AddAlbumForm.styled';
+import {
+  Title,
+  Box,
+  Cover,
+  LabelUpload,
+  Input,
+  Icon,
+} from './AddAlbumForm.styled';
 
 const AddAlbumForm = () => {
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
+  const [uploadCover, setUploadCover] = useState('');
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
 
@@ -20,6 +30,7 @@ const AddAlbumForm = () => {
   };
 
   const uploadImage = e => {
+    setUploadCover(URL.createObjectURL(e.target.files[0]));
     setBackgroundURL(e.target.files[0]);
   };
 
@@ -39,7 +50,18 @@ const AddAlbumForm = () => {
     newAlbum.append('backgroundURL', backgroundURL);
 
     try {
-      await addAlbum(newAlbum);
+      await addAlbum(newAlbum, {
+        onSuccess: response => {
+          notifySuccess('album added');
+          setIsOpen(false);
+          setName('');
+          setUploadCover('');
+          setBackgroundURL('');
+        },
+        onError: error => {
+          notifyError(error.response.data.message);
+        },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -52,38 +74,37 @@ const AddAlbumForm = () => {
         <Modal onClick={handleToggleForm}>
           <Title>Add album</Title>
 
-          <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-            <Label htmlFor="email"> Name</Label>
-
+          <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+            <Box>
+              {uploadCover ? (
+                <Cover src={uploadCover} alt="cover" />
+              ) : (
+                <LabelUpload>
+                  <Icon />
+                  Upload cover to your album
+                  <input
+                    name="backgroundURL"
+                    accept=".jpg, .jpeg, .png"
+                    onChange={uploadImage}
+                    type="file"
+                    hidden
+                  />
+                </LabelUpload>
+              )}
+            </Box>
             <Input
-              id="email"
-              type="text"
+              required
+              label="Album name"
               name="name"
+              type="text"
               value={name}
               onChange={e => setName(e.target.value)}
+              //     helperText="
+              // (Passwords must be at least 6 characters)"
+              variant="standard"
             />
-            <Label htmlFor="img">
-              {/* Background */}
-              <FileInput
-                id="img"
-                type="file"
-                name="backgroundURL"
-                accept=".jpg, .jpeg, .png"
-                onChange={uploadImage}
-              />
-              <Fab
-                color="white"
-                size="large"
-                component="span"
-                aria-label="add"
-                variant="extended"
-              >
-                Add style to your album
-              </Fab>
-              {/* <button>upload</button> */}
-            </Label>
             <Button type="submit" disabled={isLoading} title={'add'} />
-          </Form>
+          </form>
         </Modal>
       )}
     </>

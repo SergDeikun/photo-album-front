@@ -10,7 +10,10 @@ export const Backdrop = styled.div`
   /* max-height: 0; */
   overflow: hidden;
   /* transition: max-height 0.25s ease-in-out; */
-  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  background-color: rgba(0, 0, 0, 0.9);
+
+  /* background-color: #1c1c1c; */
 `;
 
 export const ModalWindow = styled.div`

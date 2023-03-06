@@ -95,7 +95,7 @@ const RegisterForm = () => {
           variant="standard"
         />
 
-        <Button type="submit" title={'Register'} disabled={isLoading} />
+        <Button type="submit" title="Register" disabled={isLoading} />
 
         {/* <ButtonSignup type="submit" disabled={isLoading}>
           Register

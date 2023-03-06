@@ -1,6 +1,7 @@
 import Container from 'components/Container/Container';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
+import defaultCover from 'images/cover.jpg';
 
 import {
   PageTitle,
@@ -26,7 +27,7 @@ const AlbumsPage = () => {
               <AlbumItem key={id}>
                 <LinkItem to={`/album/${id}`}>
                   <ImageBox>
-                    <Image src={backgroundURL} alt="" />
+                    <Image src={backgroundURL || defaultCover} alt="" />
                   </ImageBox>
                   <div>
                     <AlbumName>{name}</AlbumName>

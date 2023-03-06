@@ -80,7 +80,7 @@ const LoginForm = () => {
           (Passwords must be at least 6 characters)"
           variant="standard"
         />
-        <Button type="submit" title={'Log In'} disabled={isLoading} />
+        <Button type="submit" title="Log In" disabled={isLoading} />
         {/* TODO кнопка чи посилання??? */}
 
         <ButtonForgot type="button">Forgot password?</ButtonForgot>
