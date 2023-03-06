@@ -78,7 +78,7 @@ const AddAlbumForm = () => {
                 aria-label="add"
                 variant="extended"
               >
-                Background upload
+                Add style to your album
               </Fab>
               {/* <button>upload</button> */}
             </Label>

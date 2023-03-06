@@ -55,7 +55,9 @@ export const getAlbumById = async id => {
   return response.data;
 };
 
-export const addPhoto = async (id, newPhoto) => {
+export const addPhoto = async newPhoto => {
+  const { id } = newPhoto;
+
   const response = await axios.post(`${API_URL}/api/photo/${id}`, newPhoto, {
     headers: {
       'Content-Type': 'multipart/form-data',
