@@ -21,7 +21,6 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="/" element={<HomePage />} />
-
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/album-list" element={<AlbumsPage />} />

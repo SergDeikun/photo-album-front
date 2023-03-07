@@ -1,46 +1,40 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const PageTitle = styled.h1`
-  font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSize[2]}px;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  color: ${p => p.theme.colors.black};
-  text-align: center;
-  margin-bottom: 20px;
-`;
-
-export const AlbumList = styled.ul`
-  /* margin-top: 80px; */
+export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  /* gap: 20px; */
+
+  /* justify-content: center; */
 `;
 
-export const AlbumItem = styled.li`
+export const Item = styled.li`
   display: flex;
   /* align-items: end; */
   /* padding: 10px; */
-  /* background-color: azure; */
   /* height: 600px; */
-  width: 600px;
-  /* margin-bottom: 20px; */
-  /* flex-basis: calc((100% - 10px) / 2); */
+  /* width: 600px; */
+  margin-bottom: 20px;
+  flex-basis: calc((100% - 20px) / 2);
+
   /* border: 1px solid black; */
 
   &:nth-child(2n + 1) {
-    /* margin-right: 10px; */
+    margin-right: 20px;
   }
 `;
+
 export const LinkItem = styled(Link)`
+  /* position: relative; */
+  display: block;
   width: 100%;
   /* height: 100%; */
 `;
 
 export const ImageBox = styled.div`
   /* width: 600px; */
-  height: 500px;
+  /* height: 500px; */
   background-color: azure;
 `;
 export const Image = styled.img`
@@ -48,14 +42,9 @@ export const Image = styled.img`
   height: 100%;
 `;
 
-// export const NameBox = styled.div`
-//   width: 100%;
-//   height: 100%;
-// `;
-
 export const AlbumName = styled.h2`
   /* text-align: center; */
-  margin-top: 30px;
+  margin-top: 10px;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};

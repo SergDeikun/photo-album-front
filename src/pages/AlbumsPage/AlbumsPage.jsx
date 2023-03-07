@@ -1,26 +1,28 @@
 import Container from 'components/Container/Container';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
-import defaultCover from 'images/cover.jpg';
+// import defaultCover from 'images/cover.jpg';
+import AlbumList from 'components/AlbumList/AlbumList';
 
 import {
   PageTitle,
-  AlbumList,
-  AlbumItem,
-  ImageBox,
-  AlbumName,
-  LinkItem,
-  Image,
+  // AlbumList,
+  // AlbumItem,
+  // ImageBox,
+  // AlbumName,
+  // LinkItem,
+  // Image,
 } from './AlbumsPage.styled';
 
 const AlbumsPage = () => {
-  const { data } = useGetCurrentUser();
+  // useGetCurrentUser();
 
   return (
     <Container>
       <PageTitle>My albums</PageTitle>
-      <AlbumList>
-        {data &&
+      {/* {data && <AlbumList />} */}
+      <AlbumList />
+      {/* {data &&
           data.myAlbums.map(({ name, _id: id, backgroundURL }) => {
             return (
               // Album
@@ -35,8 +37,8 @@ const AlbumsPage = () => {
                 </LinkItem>
               </AlbumItem>
             );
-          })}
-      </AlbumList>
+          })} */}
+      {/* </AlbumList> */}
     </Container>
   );
 };

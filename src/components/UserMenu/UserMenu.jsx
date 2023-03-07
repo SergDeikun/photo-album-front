@@ -2,8 +2,6 @@ import { useState } from 'react';
 
 import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
-// import AddAlbumForm from 'components/Forms/AddAlbumForm/AddAlbumForm';
-// import AddPhotoForm from 'components/Forms/AddPhotoForm/AddPhotoForm';
 
 import { ButtonMenu, MenuLink } from './UserMenu.styled';
 
@@ -16,9 +14,6 @@ const UserMenu = () => {
 
   return (
     <>
-      {/* TODO: форму рендерити інакше  */}
-      {/* <AddAlbumForm />
-      <AddPhotoForm /> */}
       <ButtonMenu type="button" onClick={handleToggleMenu}>
         Menu
       </ButtonMenu>

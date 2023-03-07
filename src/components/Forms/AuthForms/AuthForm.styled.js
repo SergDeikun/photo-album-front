@@ -32,7 +32,7 @@ export const Input = styled(TextField)`
     letter-spacing: 0.1rem;
 
     span {
-      color: ${p => p.theme.colors.main};
+      color: ${p => p.theme.colors.red};
     }
 
     &.Mui-focused {

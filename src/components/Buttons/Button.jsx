@@ -5,7 +5,7 @@ const Button = ({ onClick, title, type, disabled }) => {
   return (
     <>
       <Btn onClick={onClick} type={type}>
-        {disabled ? <PulseLoader /> : title}
+        {disabled ? <PulseLoader size={8} /> : title}
       </Btn>
     </>
   );

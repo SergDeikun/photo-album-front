@@ -35,13 +35,13 @@ export const AuthLink = styled(NavLink)`
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: #e8716d;
+    background-color: ${p => p.theme.colors.red};
     transform: rotateY(90deg);
     transition: transform 0.25s linear;
   }
 
   &.active {
-    color: #e8716d;
+    color: ${p => p.theme.colors.red};
   }
 
   /* &:hover {

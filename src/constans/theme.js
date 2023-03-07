@@ -1,5 +1,5 @@
 export const theme = {
-  fonts: { body: 'Montserrat, sans-serif' },
+  fonts: { body: 'Montserrat, sans-serif', button: 'Roboto,sans-serif' },
 
   fontSize: [16, 24, 34, 50],
 
@@ -9,7 +9,7 @@ export const theme = {
   },
 
   colors: {
-    main: '#e8716d',
+    red: '#ff0044',
     black: '#000000',
     white: '#fff',
     grey: '#ccc',
