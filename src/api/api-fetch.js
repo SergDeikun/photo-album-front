@@ -56,7 +56,7 @@ export const getAlbumById = async id => {
 };
 
 export const addPhoto = async newPhoto => {
-  const { id } = newPhoto;
+  const id = newPhoto.get('albumId');
 
   const response = await axios.post(`${API_URL}/api/photo/${id}`, newPhoto, {
     headers: {

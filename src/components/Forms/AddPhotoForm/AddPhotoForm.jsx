@@ -4,29 +4,36 @@ import { useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 import TextField from '@mui/material/TextField';
-import Fab from '@mui/material/Fab';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
+
+import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import useAddPhoto from 'react-query/useAddPhoto';
 
 import AddButton from 'components/Buttons/AddButton/AddButton';
 import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
+import LocationInput from 'components/Inputs/LocationInput/LocationInput';
+import FileInput from 'components/Inputs/FileInput/FileImput';
+import TextInput from 'components/Inputs/TextInput/TextInput';
 
 import {
   Box,
-  WrapperInput,
-  PlaceField,
-  DateField,
+  FileWrapper,
+  FieldWrapper,
+  InputWrapper,
+  // PlaceField,
+  DateLabel,
+  // DateField,
 } from './AddPhotoForm.styled';
 
 const AddPhotoForm = () => {
   const [place, setPlace] = useState('');
-  const [date, setDate] = useState(dayjs('22.02.2022'));
-  const [photo, setPhoto] = useState('');
+  const [date, setDate] = useState('');
+  const [photoURL, setPhoto] = useState('');
+  const [uploadPhoto, setUploadPhoto] = useState('');
   const [comments, setComments] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
@@ -40,26 +47,41 @@ const AddPhotoForm = () => {
   //   setDate(newValue);
   // };
 
-  // const uploadImage = e => {
-  //   setPhoto(e.target.files[0]);
-  // };
+  const uploadImage = e => {
+    setUploadPhoto(URL.createObjectURL(e.target.files[0]));
+    setPhoto(e.target.files[0]);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     const newPhoto = new FormData();
+    newPhoto.append('albumId', id);
     newPhoto.append('place', place);
     newPhoto.append('date', date);
-    newPhoto.append('photoURL', photo);
+    newPhoto.append('photoURL', photoURL);
     newPhoto.append('comments', comments);
-    newPhoto.append('albumId', id);
 
-    // for (const value of newPhoto.values()) {
-    //   console.log(value);
-    // }
+    if (photoURL === '') {
+      notifySuccess('Pleace, upload photo');
+      return;
+    }
 
     try {
-      await addPhoto(newPhoto);
+      await addPhoto(newPhoto, {
+        onSuccess: () => {
+          notifySuccess('photo added');
+          setIsOpen(false);
+          setUploadPhoto('');
+          setPhoto('');
+          setPlace('');
+          setDate('');
+          setComments('');
+        },
+        onError: error => {
+          notifyError(error.response.data.message);
+        },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -73,32 +95,38 @@ const AddPhotoForm = () => {
         <Modal onClick={handleToggleForm}>
           <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
             <Box>
-              <div>
-                <label htmlFor="">
-                  Photo
-                  <input
-                    id="file"
-                    type="file"
-                    accept=".jpg, .jpeg, .png"
-                    name="photoURL"
-                    onChange={e => setPhoto(e.target.files[0])}
-                  />
-                </label>
-              </div>
+              <FileWrapper>
+                <FileInput
+                  title="Upload photo"
+                  name={photoURL}
+                  uploadFile={uploadPhoto}
+                  src={uploadPhoto}
+                  onChange={uploadImage}
+                  alt="photo"
+                />
+              </FileWrapper>
 
-              <div>
-                <WrapperInput>
-                  <PlaceField
+              <FieldWrapper>
+                <InputWrapper>
+                  {/* <LocationInput /> */}
+                  <TextInput
+                    required={false}
                     label="Place"
                     name="place"
-                    type="text"
                     value={place}
                     onChange={e => setPlace(e.target.value)}
-                    variant="standard"
                   />
-                </WrapperInput>
-                <WrapperInput>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                </InputWrapper>
+                <InputWrapper>
+                  <DateLabel htmlFor="">
+                    Date
+                    <input
+                      type="date"
+                      value={date}
+                      onChange={e => setDate(e.target.value)}
+                    />
+                  </DateLabel>
+                  {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateField
                       label="Date"
                       inputFormat="DD/MM/YYYY"
@@ -106,9 +134,9 @@ const AddPhotoForm = () => {
                       onChange={newValue => setDate(newValue)}
                       renderInput={params => <TextField {...params} />}
                     />
-                  </LocalizationProvider>
-                </WrapperInput>
-                <WrapperInput>
+                  </LocalizationProvider> */}
+                </InputWrapper>
+                <InputWrapper>
                   <TextareaAutosize
                     aria-label="empty textarea"
                     placeholder="Comments"
@@ -116,8 +144,8 @@ const AddPhotoForm = () => {
                     value={comments}
                     onChange={e => setComments(e.target.value)}
                   />
-                </WrapperInput>
-              </div>
+                </InputWrapper>
+              </FieldWrapper>
             </Box>
 
             <Button type="submit" disabled={isLoading} title={'add'} />

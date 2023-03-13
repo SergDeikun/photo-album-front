@@ -6,15 +6,10 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import Modal from 'components/Modal/Modal';
 import AddButton from 'components/Buttons/AddButton/AddButton';
 import Button from 'components/Buttons/Button';
+import FileInput from 'components/Inputs/FileInput/FileImput';
+import TextInput from 'components/Inputs/TextInput/TextInput';
 
-import {
-  Title,
-  Box,
-  Cover,
-  LabelUpload,
-  Input,
-  Icon,
-} from './AddAlbumForm.styled';
+import { Title } from './AddAlbumForm.styled';
 
 const AddAlbumForm = () => {
   const [name, setName] = useState('');
@@ -65,33 +60,21 @@ const AddAlbumForm = () => {
           <Title>Add album</Title>
 
           <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-            <Box>
-              {uploadCover ? (
-                <Cover src={uploadCover} alt="cover" />
-              ) : (
-                <LabelUpload>
-                  <Icon />
-                  Upload cover to your album
-                  <input
-                    name="backgroundURL"
-                    accept=".jpg, .jpeg, .png"
-                    onChange={uploadImage}
-                    type="file"
-                    hidden
-                  />
-                </LabelUpload>
-              )}
-            </Box>
-            <Input
-              required
+            <FileInput
+              title="Upload cover to your album"
+              name={backgroundURL}
+              uploadFile={uploadCover}
+              src={uploadCover}
+              onChange={uploadImage}
+              alt="cover"
+            />
+            <TextInput
+              required={true}
               label="Album name"
               name="name"
               type="text"
               value={name}
               onChange={e => setName(e.target.value)}
-              //     helperText="
-              // (Passwords must be at least 6 characters)"
-              variant="standard"
             />
             <Button type="submit" disabled={isLoading} title={'add'} />
           </form>

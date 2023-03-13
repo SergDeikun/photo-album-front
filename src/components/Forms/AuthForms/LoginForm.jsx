@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useLoginUser from 'react-query/useLoginUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import Button from 'components/Buttons/Button';
+import TextInput from 'components/Inputs/TextInput/TextInput';
 
 import { Form, Input, ButtonForgot } from './AuthForm.styled';
 
@@ -59,6 +60,7 @@ const LoginForm = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
+        <TextInput />
         <Input
           required
           label="Email"

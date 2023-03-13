@@ -16,10 +16,16 @@ const CurrentAlbumPage = () => {
       <AddPhotoForm />
       {/* <AddButton title={'Add foto'} onClick={handleToggleForm} /> */}
       {data && <h1>{data.name}</h1>}
-      {data &&
-        data.photo.map((item, id) => {
-          return <li key={id}></li>;
-        })}
+      <ul>
+        {data &&
+          data.photo.map((item, id) => {
+            return (
+              <li key={id}>
+                <img src={item.photoURL} alt="" />
+              </li>
+            );
+          })}
+      </ul>
     </Container>
   );
 };
