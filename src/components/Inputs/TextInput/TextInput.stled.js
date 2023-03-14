@@ -24,7 +24,7 @@ export const TxtField = styled(TextField)`
     letter-spacing: 0.1rem;
 
     span {
-      color: ${p => p.theme.colors.main};
+      color: ${p => p.theme.colors.red};
     }
 
     &.Mui-focused {
@@ -40,14 +40,17 @@ export const TxtField = styled(TextField)`
       .Mui-disabled,
       .Mui-error
     ):before {
-    border-bottom: 2px solid white;
+    /* border-bottom: 2px solid white; */
+    border: none;
   }
 
   .css-v4u5dn-MuiInputBase-root-MuiInput-root:before {
-    border-bottom: 2px solid white;
+    /* border-bottom: 2px solid white; */
+    border: none;
   }
 
   .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
-    border-bottom: 2px solid white;
+    /* border-bottom: 2px solid white; */
+    border: none;
   }
 `;

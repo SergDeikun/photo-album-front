@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 import { BsUpload } from 'react-icons/bs';
 
-export const Box = styled.div`
+export const UploadBox = styled.div`
+  /* display: flex; */
   position: relative;
   width: 500px;
   height: 300px;

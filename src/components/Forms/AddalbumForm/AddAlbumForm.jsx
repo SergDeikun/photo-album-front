@@ -7,14 +7,15 @@ import Modal from 'components/Modal/Modal';
 import AddButton from 'components/Buttons/AddButton/AddButton';
 import Button from 'components/Buttons/Button';
 import FileInput from 'components/Inputs/FileInput/FileImput';
+
 import TextInput from 'components/Inputs/TextInput/TextInput';
 
-import { Title } from './AddAlbumForm.styled';
+import { Title, UploadFile } from './AddAlbumForm.styled';
 
 const AddAlbumForm = () => {
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
-  const [uploadCover, setUploadCover] = useState('');
+  const [previewBackground, setPreviewBackground] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
 
@@ -23,7 +24,7 @@ const AddAlbumForm = () => {
   };
 
   const uploadImage = e => {
-    setUploadCover(URL.createObjectURL(e.target.files[0]));
+    setPreviewBackground(URL.createObjectURL(e.target.files[0]));
     setBackgroundURL(e.target.files[0]);
   };
 
@@ -40,7 +41,7 @@ const AddAlbumForm = () => {
           notifySuccess('album added');
           setIsOpen(false);
           setName('');
-          setUploadCover('');
+          setPreviewBackground('');
           setBackgroundURL('');
         },
         onError: error => {
@@ -63,8 +64,8 @@ const AddAlbumForm = () => {
             <FileInput
               title="Upload cover to your album"
               name={backgroundURL}
-              uploadFile={uploadCover}
-              src={uploadCover}
+              uploadFile={previewBackground}
+              src={previewBackground}
               onChange={uploadImage}
               alt="cover"
             />

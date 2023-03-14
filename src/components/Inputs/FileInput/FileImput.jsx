@@ -1,9 +1,9 @@
-import { Box, Image, LabelUpload, Icon } from './FileInput.styled';
+import { UploadBox, Image, LabelUpload, Icon } from './FileInput.styled';
 
 const FileInput = ({ uploadFile, src, alt, title, name, onChange }) => {
   return (
     <>
-      <Box>
+      <UploadBox>
         {uploadFile ? (
           <Image src={src} alt={alt} />
         ) : (
@@ -19,7 +19,7 @@ const FileInput = ({ uploadFile, src, alt, title, name, onChange }) => {
             />
           </LabelUpload>
         )}
-      </Box>
+      </UploadBox>
     </>
   );
 };
