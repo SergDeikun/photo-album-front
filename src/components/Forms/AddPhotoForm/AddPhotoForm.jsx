@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -13,8 +14,8 @@ import useAddPhoto from 'react-query/useAddPhoto';
 import AddButton from 'components/Buttons/AddButton/AddButton';
 import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
-import LocationInput from 'components/Inputs/LocationInput/LocationInput';
 import FileInput from 'components/Inputs/FileInput/FileImput';
+// import Map from 'components/Map/Map';
 import TextInput from 'components/Inputs/TextInput/TextInput';
 
 import {
@@ -102,14 +103,14 @@ const AddPhotoForm = () => {
 
               <FieldWrapper>
                 <PlaceDateWrapper>
-                  <LocationInput />
-                  <TextInput
+                  <Link to="/map">GO</Link>
+                  {/* <TextInput
                     required={false}
                     label="Place"
                     name="place"
                     value={place}
                     onChange={e => setPlace(e.target.value)}
-                  />
+                  /> */}
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateField
                       label="Date"
