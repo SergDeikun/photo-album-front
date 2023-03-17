@@ -1,4 +1,6 @@
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { useState } from 'react';
+
+import { GoogleMap, Marker } from '@react-google-maps/api';
 
 import Container from 'components/Container/Container';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
@@ -8,17 +10,23 @@ const containerStyle = {
   height: '600px',
 };
 
+const defaultCenter = {
+  lat: 50.4501,
+  lng: 30.5234,
+};
+
 const Map = () => {
-  const center = {
-    lat: -3.745,
-    lng: -38.523,
+  const [place, setPlace] = useState(defaultCenter);
+
+  const onPlaceSelect = coordinates => {
+    setPlace(coordinates);
   };
 
   return (
     <Container>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
-        {/* Child components, such as markers, info windows, etc. */}
-        <Autocomplite />
+      <GoogleMap mapContainerStyle={containerStyle} center={place} zoom={10}>
+        <Autocomplite onSelect={onPlaceSelect} />
+        <Marker position={place} clickable={true} />
       </GoogleMap>
     </Container>
   );

@@ -7,16 +7,15 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 
 import { Root, Input, List, Item } from './Autocomplite.styled';
 
-const Autocomplite = () => {
-  //   const [place, setPlace] = useState('');
+const Autocomplite = ({ onSelect }) => {
   const {
-    ready,
+    // ready,
     value,
     suggestions: { status, data },
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
-    callbackName: 'YOUR_CALLBACK_NAME',
+    // callbackName: 'YOUR_CALLBACK_NAME',
     requestOptions: {
       initOnMount: false,
     },
@@ -45,6 +44,7 @@ const Autocomplite = () => {
       getGeocode({ address: description }).then(results => {
         const { lat, lng } = getLatLng(results[0]);
         console.log('📍 Coordinates: ', { lat, lng });
+        onSelect({ lat, lng });
       });
     };
 
@@ -69,7 +69,7 @@ const Autocomplite = () => {
           value={value}
           onChange={handleInput}
           //   disabled={!ready}
-          placeholder="Search on the map"
+          placeholder="Search"
         />
       </label>
       {status === 'OK' && <List>{renderSuggestions()}</List>}
