@@ -14,26 +14,28 @@ export const Title = styled.h1`
 
 export const Box = styled.div`
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 `;
 
 export const FieldWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
+  /* margin-left: 100px; */
   margin-left: 100px;
 `;
 
-export const PlaceDateWrapper = styled.div`
-  display: flex;
-  text-align: center;
-  justify-content: center;
+export const InputWrapper = styled.div`
+  margin-bottom: 20px;
 `;
+
+// Date
 
 export const DateLabel = styled.label`
   color: ${p => p.theme.colors.white};
 `;
 
 export const DateField = styled(DesktopDatePicker)`
+  width: 100%;
   input {
     font-family: ${p => p.theme.fonts.body};
     font-weight: ${p => p.theme.fontWeights.regular};
@@ -58,6 +60,7 @@ export const DateField = styled(DesktopDatePicker)`
 
   fieldset {
     border: none;
+    border-radius: 0;
   }
 
   legend {
@@ -90,6 +93,8 @@ export const DateField = styled(DesktopDatePicker)`
     fill: ${p => p.theme.colors.grey};
   }
 `;
+
+// Textarea
 
 export const Comments = styled(TextareaAutosize)`
   font-family: ${p => p.theme.fonts.body};

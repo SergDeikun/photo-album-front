@@ -3,7 +3,8 @@ import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import Logo from 'components/Logo/Logo';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
 import UserMenu from 'components/UserMenu/UserMenu';
-import AddAlbumForm from 'components/Forms/AddAlbumForm/AddAlbumForm';
+// import AddAlbumForm from 'components/Forms/AddAlbumForm/AddAlbumForm';
+import AddAlbumForm from 'components/Forms/AddalbumForm/AddAlbumForm';
 // import AddPhotoForm from 'components/Forms/AddPhotoForm/AddPhotoForm';
 
 // import useGetQuery from 'react-query/useGetQuery';

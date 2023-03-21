@@ -9,9 +9,6 @@ const AuthMenu = () => {
       <ListItem>
         <AuthLink to={'/register'}>Register</AuthLink>
       </ListItem>
-      <ListItem>
-        <AuthLink to={'/map'}>Map</AuthLink>
-      </ListItem>
     </ListLink>
   );
 };

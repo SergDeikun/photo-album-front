@@ -37,14 +37,16 @@ const Autocomplite = ({ onSelect }) => {
     () => {
       // When user selects a place, we can replace the keyword without request data from API
       // by setting the second parameter to "false"
+      onSelect(description);
+
       setValue(description, false);
       clearSuggestions();
 
+      console.log(description);
       // Get latitude and longitude via utility functions
       getGeocode({ address: description }).then(results => {
         const { lat, lng } = getLatLng(results[0]);
-        console.log('📍 Coordinates: ', { lat, lng });
-        onSelect({ lat, lng });
+        // console.log('📍 Coordinates: ', { lat, lng });
       });
     };
 
@@ -69,7 +71,7 @@ const Autocomplite = ({ onSelect }) => {
           value={value}
           onChange={handleInput}
           //   disabled={!ready}
-          placeholder="Search"
+          placeholder="Location"
         />
       </label>
       {status === 'OK' && <List>{renderSuggestions()}</List>}

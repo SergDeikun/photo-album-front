@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import moment from 'moment';
-import { Link } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -14,21 +14,21 @@ import useAddPhoto from 'react-query/useAddPhoto';
 import AddButton from 'components/Buttons/AddButton/AddButton';
 import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
+import Autocomplite from 'components/Autocomplite/Autocomplite';
 import FileInput from 'components/Inputs/FileInput/FileImput';
-// import Map from 'components/Map/Map';
-import TextInput from 'components/Inputs/TextInput/TextInput';
 
 import {
   Title,
   Box,
   FieldWrapper,
-  PlaceDateWrapper,
+  InputWrapper,
   DateField,
   Comments,
 } from './AddPhotoForm.styled';
 
 const AddPhotoForm = () => {
   const [place, setPlace] = useState('');
+  console.log(place);
   const [date, setDate] = useState('');
   const [photoURL, setPhoto] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState('');
@@ -44,6 +44,10 @@ const AddPhotoForm = () => {
   const uploadImage = e => {
     setPreviewPhoto(URL.createObjectURL(e.target.files[0]));
     setPhoto(e.target.files[0]);
+  };
+
+  const handleSelectPlace = newValue => {
+    setPlace(newValue);
   };
 
   const handleSubmit = async e => {
@@ -102,38 +106,26 @@ const AddPhotoForm = () => {
               />
 
               <FieldWrapper>
-                <PlaceDateWrapper>
-                  <Link to="/map">GO</Link>
-                  {/* <TextInput
-                    required={false}
-                    label="Place"
-                    name="place"
-                    value={place}
-                    onChange={e => setPlace(e.target.value)}
-                  /> */}
+                <InputWrapper>
+                  <Autocomplite onSelect={handleSelectPlace} />
+                </InputWrapper>
+
+                <InputWrapper>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateField
-                      label="Date"
+                      // label="Date"
                       inputFormat="DD.MM.YYYY"
                       value={date}
                       onChange={newValue => setDate(newValue)}
                       renderInput={params => <TextField {...params} />}
                     />
                   </LocalizationProvider>
-                  {/* <DateLabel htmlFor="">
-                    Date
-                    <DateInput
-                      type="date"
-                      value={date}
-                      onChange={e => setDate(e.target.value)}
-                    />
-                  </DateLabel> */}
-                </PlaceDateWrapper>
+                </InputWrapper>
 
                 <Comments
                   aria-label="empty textarea"
                   placeholder="Comments"
-                  style={{ width: 435, height: 195 }}
+                  style={{ width: 435, height: 162 }}
                   value={comments}
                   onChange={e => setComments(e.target.value)}
                 />
