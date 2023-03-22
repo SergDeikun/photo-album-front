@@ -26,6 +26,7 @@ export const FieldWrapper = styled.div`
 
 export const InputWrapper = styled.div`
   margin-bottom: 20px;
+  position: relative;
 `;
 
 // Date
@@ -41,6 +42,7 @@ export const DateField = styled(DesktopDatePicker)`
     font-weight: ${p => p.theme.fontWeights.regular};
     font-size: ${p => p.theme.fontSize[0]}px;
     color: ${p => p.theme.colors.white};
+    padding: 10px 6px;
     /* border-bottom: 2px solid white; */
 
     outline: none;
@@ -59,6 +61,8 @@ export const DateField = styled(DesktopDatePicker)`
   }
 
   fieldset {
+    /* border-bottom: 2px solid white; */
+
     border: none;
     border-radius: 0;
   }
@@ -79,6 +83,8 @@ export const DateField = styled(DesktopDatePicker)`
 
   .css-o9k5xi-MuiInputBase-root-MuiOutLinedInput-root.Mui-focused.MuiOutLinedInput-notchedOutline {
     border: none;
+    /* border-bottom: 2px solid white; */
+
     border-color: transparent;
   }
 
@@ -86,7 +92,7 @@ export const DateField = styled(DesktopDatePicker)`
     .MuiOutlinedInput-notchedOutline {
     /* border-color: transparent; */
     border: none;
-    border-bottom: 2px solid white;
+    /* border-bottom: 2px solid white; */
   }
 
   .css-i4bv87-MuiSvgIcon-root {

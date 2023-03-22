@@ -1,23 +1,16 @@
 import styled from 'styled-components';
 
 export const Root = styled.div`
-  outline: 1px solid tomato;
+  display: flex;
   margin-bottom: 10px;
-  /* position: absolute; */
-  /* max-width: 500px; */
   width: 100%;
   overflow: hidden;
-
-  /* top: 10px;
-  left: 50%;
-  transform: translateX(-50%); */
-  /* box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; */
 `;
 
 export const Input = styled.input`
   width: 100%;
   border: none;
-  border-bottom: 2px solid white;
+  /* border-bottom: 2px solid white; */
   outline: none;
   padding: 6px;
   font-size: 18px;
@@ -27,7 +20,7 @@ export const Input = styled.input`
 
 export const List = styled.ul`
   position: absolute;
-  /* width: 100%; */
+  width: 100%;
   background-color: ${p => p.theme.colors.grey};
 
   z-index: 5;

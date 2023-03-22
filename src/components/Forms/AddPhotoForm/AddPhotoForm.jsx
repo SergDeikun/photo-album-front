@@ -125,7 +125,7 @@ const AddPhotoForm = () => {
                 <Comments
                   aria-label="empty textarea"
                   placeholder="Comments"
-                  style={{ width: 435, height: 162 }}
+                  style={{ width: 435, height: 175 }}
                   value={comments}
                   onChange={e => setComments(e.target.value)}
                 />

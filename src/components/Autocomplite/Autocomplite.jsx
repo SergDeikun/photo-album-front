@@ -7,6 +7,8 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 
 import { Root, Input, List, Item } from './Autocomplite.styled';
 
+import LocationButton from 'components/Buttons/LocationButton/LocationButton';
+
 const Autocomplite = ({ onSelect }) => {
   const {
     // ready,
@@ -74,6 +76,7 @@ const Autocomplite = ({ onSelect }) => {
           placeholder="Location"
         />
       </label>
+      <LocationButton />
       {status === 'OK' && <List>{renderSuggestions()}</List>}
     </Root>
   );
