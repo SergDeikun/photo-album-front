@@ -1,28 +1,29 @@
+import { useParams } from 'react-router-dom';
+
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 
 import Logo from 'components/Logo/Logo';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
 import UserMenu from 'components/UserMenu/UserMenu';
-// import AddAlbumForm from 'components/Forms/AddAlbumForm/AddAlbumForm';
 import AddAlbumForm from 'components/Forms/AddalbumForm/AddAlbumForm';
-// import AddPhotoForm from 'components/Forms/AddPhotoForm/AddPhotoForm';
-
-// import useGetQuery from 'react-query/useGetQuery';
+import AddPhotoForm from 'components/Forms/AddPhotoForm/AddPhotoForm';
 
 import { Wrapper } from './AppBar.styled';
-// import { UserContext } from 'pages/UserPage/UserPage';
 const AppBar = () => {
+  const { id } = useParams();
   const { data } = useGetCurrentUser();
 
-  // const data = useGetQuery('user');
-  // console.log(data);
+  // if (data) {
+  //   console.log(data);
+  // }
 
   return (
     <Wrapper>
       <Logo />
       {data ? (
         <>
-          <AddAlbumForm />
+          {/* TODO: може є інший варіант??? */}
+          {id ? <AddPhotoForm /> : <AddAlbumForm />}
           <UserMenu />
         </>
       ) : (

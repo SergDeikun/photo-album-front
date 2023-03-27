@@ -28,7 +28,6 @@ import {
 
 const AddPhotoForm = () => {
   const [place, setPlace] = useState('');
-  console.log(place);
   const [date, setDate] = useState('');
   const [photoURL, setPhoto] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState('');
