@@ -7,8 +7,8 @@ import { Item, LinkItem, ImageBox, Image, AlbumName } from './AlbumItem.styled';
 
 const AlbumItem = () => {
   // const { data } = useGetCurrentUser();
-  const data = useGetQuery('user');
-  console.log(data);
+  // const data = useGetQuery('user');
+  // console.log(data);
 
   return (
     <>

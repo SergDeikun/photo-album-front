@@ -6,7 +6,7 @@ export const Backdrop = styled.div`
   right: 0;
   bottom: 0;
   position: fixed;
-  /* z-index: 5; */
+  z-index: 10;
   /* max-height: 0; */
   overflow: hidden;
   /* transition: max-height 0.25s ease-in-out; */

@@ -7,20 +7,20 @@ import AppBar from 'components/AppBar/AppBar';
 import { Header } from './SharedLayout.styled';
 
 const SharedLayout = () => {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [isAppBarVisible, setIsAppBarVisible] = useState(true);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
 
-      if (prevScrollPos > currentScrollPos) {
-        setIsAppBarVisible(true);
+      if (scrollPosition > currentScrollPos) {
+        setIsHeaderVisible(true);
       } else {
-        setIsAppBarVisible(false);
+        setIsHeaderVisible(false);
       }
 
-      setPrevScrollPos(currentScrollPos);
+      setScrollPosition(currentScrollPos);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -28,13 +28,13 @@ const SharedLayout = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [prevScrollPos, isAppBarVisible]);
+  }, [scrollPosition, isHeaderVisible]);
 
   return (
     <>
       <Header
         style={{
-          transform: isAppBarVisible ? 'translateY(0)' : 'translateY(-100%)',
+          transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-100%)',
         }}
       >
         <Container>

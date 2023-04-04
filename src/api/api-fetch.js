@@ -67,3 +67,13 @@ export const addPhoto = async newPhoto => {
 
   return response.data;
 };
+
+export const getPhotoById = async id => {
+  const response = await axios.get(`${API_URL}/api/photo/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
