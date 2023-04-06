@@ -1,6 +1,6 @@
 import usePlacesAutocomplete, {
   getGeocode,
-  getLatLng,
+  // getLatLng,
 } from 'use-places-autocomplete';
 
 import useOnclickOutside from 'react-cool-onclickoutside';
@@ -47,7 +47,7 @@ const Autocomplite = ({ onSelect }) => {
       console.log(description);
       // Get latitude and longitude via utility functions
       getGeocode({ address: description }).then(results => {
-        const { lat, lng } = getLatLng(results[0]);
+        // const { lat, lng } = getLatLng(results[0]);
         // console.log('📍 Coordinates: ', { lat, lng });
       });
     };

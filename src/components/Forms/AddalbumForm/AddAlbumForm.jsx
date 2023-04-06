@@ -10,7 +10,7 @@ import FileInput from 'components/Inputs/FileInput/FileImput';
 
 import TextInput from 'components/Inputs/TextInput/TextInput';
 
-import { Title, UploadFile } from './AddAlbumForm.styled';
+import { Title } from './AddAlbumForm.styled';
 
 const AddAlbumForm = () => {
   const [name, setName] = useState('');

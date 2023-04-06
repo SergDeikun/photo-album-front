@@ -15,7 +15,7 @@ const AlbumsPage = lazy(() => import('./pages/AlbumsPage/AlbumsPage'));
 const CurrentAlbumPage = lazy(() =>
   import('./pages/CurrentAlbumPage/CurrentAlbumPage')
 );
-const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
+// const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
 
 const Map = lazy(() => import('./components/Map/Map'));
 
@@ -37,10 +37,9 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/album-list" element={<AlbumsPage />} />
           <Route path="/album/:id" element={<CurrentAlbumPage />} />
-          <Route path="/photo/:id" element={<PhotoPage />} />
+          {/* <Route path="/photo/:id" element={<PhotoPage />} /> */}
 
           {/* На помилку поставити <Not Found/> */}
-          {/* {isLoaded ? <Route path="/map" element={<Map />} /> : <h2>Error</h2>} */}
           <Route path="/map" element={<Map />} />
         </Route>
       </Routes>

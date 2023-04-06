@@ -21,7 +21,6 @@ const UserMenu = () => {
       {isOpen && (
         <Modal onClick={handleToggleMenu}>
           <MenuLink>Profile</MenuLink>
-          {/* TODO Можна onClik на Link */}
           <MenuLink to={'/album-list'} onClick={handleToggleMenu}>
             Albums
           </MenuLink>

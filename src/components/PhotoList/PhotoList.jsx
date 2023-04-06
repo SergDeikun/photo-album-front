@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
-import { AlbumTitle, Box, Thumb, LinkImg, Image } from './PhotoList.styled';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+
+import { AlbumTitle, Box, Thumb, Image } from './PhotoList.styled';
 
 const styles = [
   { marginTop: '30px', width: '400px', height: '532px' },
@@ -12,12 +16,16 @@ const styles = [
 ];
 
 const PhotoList = () => {
+  const [photoIndex, setPhotoIndex] = useState(null);
+  const [photoURLs, setPhotoURLs] = useState([]);
+  console.log(photoURLs);
+  console.log(photoIndex);
+
   const { id } = useParams();
-  // console.log(id);
   const { data } = useGetAlbumById(id);
 
   // if (data) {
-  //   console.log(data);
+  //   console.log(selectedPhoto);
   // }
 
   return (
@@ -28,9 +36,34 @@ const PhotoList = () => {
           data.photo.map(({ _id: id, photoURL }, index) => {
             return (
               <Thumb key={id} style={styles[index % styles.length]}>
-                <LinkImg to={`/photo/${id}`}>
-                  <Image src={photoURL} alt="" />
-                </LinkImg>
+                <Image
+                  src={photoURL}
+                  alt=""
+                  onClick={() => {
+                    setPhotoIndex(index);
+                    setPhotoURLs(data.photo.map(({ photoURL }) => photoURL));
+                  }}
+                />
+                {photoIndex !== null && (
+                  <Lightbox
+                    mainSrc={photoURLs[photoIndex]}
+                    nextSrc={photoURL[(photoIndex + 1) % photoURL.length]}
+                    prevSrc={
+                      photoURLs[
+                        (photoIndex + photoURLs.length - 1) % photoURLs.length
+                      ]
+                    }
+                    onCloseRequest={() => setPhotoIndex(null)}
+                    onMovePrevRequest={() =>
+                      setPhotoIndex(
+                        (photoIndex + photoURLs.length - 1) % photoURLs.length
+                      )
+                    }
+                    onMoveNextRequest={() =>
+                      setPhotoIndex((photoIndex + 1) % photoURLs.length)
+                    }
+                  />
+                )}
               </Thumb>
             );
           })}
