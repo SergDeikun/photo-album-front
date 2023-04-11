@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
+// import Lightbox from 'react-image-lightbox';
+// import 'react-image-lightbox/style.css';
+
+import Modal from 'components/Modal/Modal';
 
 import { AlbumTitle, Box, Thumb, Image } from './PhotoList.styled';
 
@@ -18,8 +20,6 @@ const styles = [
 const PhotoList = () => {
   const [photoIndex, setPhotoIndex] = useState(null);
   const [photoURLs, setPhotoURLs] = useState([]);
-  console.log(photoURLs);
-  console.log(photoIndex);
 
   const { id } = useParams();
   const { data } = useGetAlbumById(id);
@@ -38,31 +38,17 @@ const PhotoList = () => {
               <Thumb key={id} style={styles[index % styles.length]}>
                 <Image
                   src={photoURL}
-                  alt=""
+                  alt="photo"
                   onClick={() => {
                     setPhotoIndex(index);
                     setPhotoURLs(data.photo.map(({ photoURL }) => photoURL));
                   }}
                 />
                 {photoIndex !== null && (
-                  <Lightbox
-                    mainSrc={photoURLs[photoIndex]}
-                    nextSrc={photoURL[(photoIndex + 1) % photoURL.length]}
-                    prevSrc={
-                      photoURLs[
-                        (photoIndex + photoURLs.length - 1) % photoURLs.length
-                      ]
-                    }
-                    onCloseRequest={() => setPhotoIndex(null)}
-                    onMovePrevRequest={() =>
-                      setPhotoIndex(
-                        (photoIndex + photoURLs.length - 1) % photoURLs.length
-                      )
-                    }
-                    onMoveNextRequest={() =>
-                      setPhotoIndex((photoIndex + 1) % photoURLs.length)
-                    }
-                  />
+                  <Modal onClick={() => setPhotoIndex(null)}>
+                    <img src={photoURLs[photoIndex]} alt="" />
+                    <h1>hello</h1>
+                  </Modal>
                 )}
               </Thumb>
             );

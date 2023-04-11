@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom';
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  margin-top: 40px;
 `;
 
 export const Item = styled.li`
-  display: flex;
+  /* outline: 1px solid tomato; */
+  /* width: 600px;
+  height: 500px; */
+
+  /* display: flex; */
+  /* flex-wrap: wrap; */
   margin-bottom: 20px;
   flex-basis: calc((100% - 20px) / 2);
 
@@ -22,11 +28,21 @@ export const LinkItem = styled(Link)`
 `;
 
 export const ImageBox = styled.div`
+  /* outline: 1px solid tomato; */
+  /* width: 600px;
+  height: 500px; */
+  width: 100%;
+  height: 100%;
   background-color: azure;
 `;
 export const Image = styled.img`
+  /* max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; */
+
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 
 export const AlbumName = styled.h2`

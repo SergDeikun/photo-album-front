@@ -8,6 +8,10 @@ import { Item, LinkItem, ImageBox, Image, AlbumName } from './AlbumList.styled';
 const AlbumList = () => {
   const { data } = useGetCurrentUser();
 
+  // if (data) {
+  //   console.log(data);
+  // }
+
   return (
     <>
       <List>
@@ -20,8 +24,9 @@ const AlbumList = () => {
                   <ImageBox>
                     <Image src={backgroundURL || defaultCover} alt="cover" />
                   </ImageBox>
-                  <AlbumName>{name}</AlbumName>
+                  {/* <AlbumName>{name}</AlbumName> */}
                 </LinkItem>
+                <AlbumName>{name}</AlbumName>
               </Item>
             );
           })}

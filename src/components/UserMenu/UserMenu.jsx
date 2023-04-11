@@ -20,7 +20,9 @@ const UserMenu = () => {
 
       {isOpen && (
         <Modal onClick={handleToggleMenu}>
-          <MenuLink>Profile</MenuLink>
+          <MenuLink to={'/current-user'} onClick={handleToggleMenu}>
+            Profile
+          </MenuLink>
           <MenuLink to={'/album-list'} onClick={handleToggleMenu}>
             Albums
           </MenuLink>

@@ -1,23 +1,45 @@
-import { UploadBox, Image, LabelUpload, Icon } from './FileInput.styled';
+import {
+  UploadBox,
+  ClearButton,
+  Image,
+  LabelUpload,
+  Icon,
+} from './FileInput.styled';
 
-const FileInput = ({ uploadFile, src, alt, title, name, onChange }) => {
+const FileInput = ({
+  uploadFile,
+  clearInput,
+  src,
+  alt,
+  title,
+  name,
+  onChange,
+  onClick,
+}) => {
   return (
     <>
       <UploadBox>
-        {uploadFile ? (
-          <Image src={src} alt={alt} />
-        ) : (
-          <LabelUpload>
-            <Icon />
-            {title}
-            <input
-              name={name}
-              accept=".jpg, .jpeg, .png"
-              onChange={onChange}
-              type="file"
-              hidden
-            />
-          </LabelUpload>
+        <LabelUpload onClick={onClick}>
+          {!uploadFile && (
+            <>
+              <Icon /> {title}
+            </>
+          )}
+          <input
+            name={name}
+            accept=".jpg, .jpeg, .png"
+            onChange={onChange}
+            type="file"
+            hidden
+          />
+        </LabelUpload>
+        {uploadFile && (
+          <>
+            <ClearButton type="button" onClick={clearInput}>
+              X
+            </ClearButton>
+            <Image src={src} alt={alt} />
+          </>
         )}
       </UploadBox>
     </>

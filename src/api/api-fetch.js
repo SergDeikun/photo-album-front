@@ -4,6 +4,7 @@ const API_URL = 'https://photo-album-0ycb.onrender.com';
 
 let token = '';
 
+// Auth
 export const createNewUser = async ({ name, email, password }) => {
   const response = await axios.post(`${API_URL}/api/auth/register`, {
     name,
@@ -35,6 +36,7 @@ export const getCurrentUser = async () => {
   return response.data;
 };
 
+// Album
 export const addAlbum = async newAlbum => {
   const response = await axios.post(`${API_URL}/api/album`, newAlbum, {
     headers: {
@@ -55,6 +57,17 @@ export const getAlbumById = async id => {
   return response.data;
 };
 
+export const deleteAlbum = async id => {
+  const response = await axios.delete(`${API_URL}/api/album/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+// Photo
 export const addPhoto = async newPhoto => {
   const id = newPhoto.get('albumId');
 
