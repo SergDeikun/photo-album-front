@@ -26,6 +26,7 @@ export const loginUser = async ({ email, password }) => {
   return response.data;
 };
 
+// User
 export const getCurrentUser = async () => {
   const response = await axios.get(`${API_URL}/api/user/current`, {
     headers: {
@@ -59,6 +60,16 @@ export const getAlbumById = async id => {
 
 export const deleteAlbum = async id => {
   const response = await axios.delete(`${API_URL}/api/album/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+export const changeAlbum = async id => {
+  const response = await axios.patch(`${API_URL}/api/album/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

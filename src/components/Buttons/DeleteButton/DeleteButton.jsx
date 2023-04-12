@@ -1,11 +1,11 @@
-import { MdOutlineDelete } from 'react-icons/md';
+import { Btn, DeleteIcon } from './DeleteButton.styled';
 
 const DeleteButton = ({ onDelete }) => {
   return (
     <>
-      <button type="button" onClick={onDelete}>
-        <MdOutlineDelete />
-      </button>
+      <Btn type="button" onClick={onDelete}>
+        <DeleteIcon />
+      </Btn>
     </>
   );
 };

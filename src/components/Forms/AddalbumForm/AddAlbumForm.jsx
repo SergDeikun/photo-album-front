@@ -1,8 +1,8 @@
-import { useState, useRef } from 'react';
-import AvatarEditor from 'react-avatar-editor';
+import { useState } from 'react';
+// import AvatarEditor from 'react-avatar-editor';
 
-import Dropzone from 'react-dropzone';
-import defaultCover from 'images/beautiful-woman-posing-boat.jpg';
+// import Dropzone from 'react-dropzone';
+// import defaultCover from 'images/beautiful-woman-posing-boat.jpg';
 
 import useAddAlbum from 'react-query/useAddAlbum';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
@@ -22,7 +22,7 @@ const AddAlbumForm = () => {
   const [previewBackground, setPreviewBackground] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
-  const editor = useRef(null);
+  // const editor = useRef(null);
 
   const handleToggleForm = () => {
     setIsOpen(!isOpen);
@@ -33,12 +33,12 @@ const AddAlbumForm = () => {
     setBackgroundURL(e.target.files[0]);
   };
 
-  const handleSave = () => {
-    if (editor) {
-      const canvas = editor.current;
-      setBackgroundURL(canvas);
-    }
-  };
+  // const handleSave = () => {
+  //   if (editor) {
+  //     const canvas = editor.current;
+  //     setBackgroundURL(canvas);
+  //   }
+  // };
 
   const handleClearInput = () => {
     setPreviewBackground('');

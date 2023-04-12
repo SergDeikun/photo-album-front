@@ -10,7 +10,6 @@ export const Title = styled.h1`
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
-  text-align: center;
   margin-bottom: 20px;
 `;
 
@@ -19,7 +18,7 @@ export const Item = styled.li`
   align-items: center;
   width: 100%;
   padding: 5px;
-  border-radius: ${p => p.theme.borderRadius.grey};
+  border-radius: ${p => p.theme.borderRadius.small};
 
   &:hover {
     background-color: ${p => p.theme.colors.grey};
@@ -29,7 +28,6 @@ export const Item = styled.li`
 export const LinkAlbum = styled(Link)`
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   width: 100%;
 `;
 
@@ -37,4 +35,10 @@ export const IconAlbum = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 30%;
+`;
+
+export const AlbumName = styled.p`
+  /* TODO: розрахувати ширину, щоб вставити друзів */
+  width: 100px;
+  margin-left: 30px;
 `;

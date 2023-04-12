@@ -46,7 +46,8 @@ function App() {
           <Route path="/map" element={<Map />} />
         </Route>
       </Routes>
-      <ToastContainer {...toastOptions} />
+      {/* <ToastContainer {...toastOptions} /> */}
+      <ToastContainer />
     </>
   );
 }

@@ -1,9 +1,12 @@
-import { MdOutlineModeEditOutline } from 'react-icons/md';
+// import { MdOutlineModeEditOutline } from 'react-icons/md';
+import { Btn, EditIcon } from './EditButton.styled';
 
-const EditButton = () => {
+const EditButton = ({ onChange }) => {
   return (
     <>
-      <MdOutlineModeEditOutline />
+      <Btn type="button" onClick={onChange}>
+        <EditIcon />
+      </Btn>
     </>
   );
 };
