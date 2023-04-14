@@ -68,13 +68,19 @@ export const deleteAlbum = async id => {
   return response.data;
 };
 
-export const changeAlbum = async id => {
-  const response = await axios.patch(`${API_URL}/api/album/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const changeAlbum = async updateAlbum => {
+  const id = updateAlbum.get('albumId');
 
+  const response = await axios.patch(
+    `${API_URL}/api/album/${id}`,
+    updateAlbum,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return response.data;
 };
 

@@ -11,14 +11,13 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import useAddPhoto from 'react-query/useAddPhoto';
 
-import AddButton from 'components/Buttons/AddButton/AddButton';
 import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 
 import {
-  Title,
+  // Title,
   Box,
   FieldWrapper,
   InputWrapper,
@@ -26,19 +25,14 @@ import {
   Comments,
 } from './AddPhotoForm.styled';
 
-const AddPhotoForm = () => {
+const AddPhotoForm = ({ onClose }) => {
   const [place, setPlace] = useState('');
   const [date, setDate] = useState('');
   const [photoURL, setPhoto] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState('');
   const [comments, setComments] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
   const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
   const { id } = useParams();
-
-  const handleToggleForm = () => {
-    setIsOpen(!isOpen);
-  };
 
   const uploadImage = e => {
     setPreviewPhoto(URL.createObjectURL(e.target.files[0]));
@@ -70,7 +64,7 @@ const AddPhotoForm = () => {
       await addPhoto(newPhoto, {
         onSuccess: () => {
           notifySuccess('photo added');
-          setIsOpen(false);
+          onClose();
           setPreviewPhoto('');
           setPhoto('');
           setPlace('');
@@ -88,53 +82,48 @@ const AddPhotoForm = () => {
 
   return (
     <>
-      <AddButton title="Add photo" onClick={handleToggleForm} />
+      <Modal onClick={onClose}>
+        <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+          <Box>
+            <FileInput
+              title="Upload photo"
+              name={photoURL}
+              uploadFile={previewPhoto}
+              src={previewPhoto}
+              onChange={uploadImage}
+              alt="photo"
+            />
 
-      {isOpen && (
-        <Modal onClick={handleToggleForm}>
-          <Title>Add photo</Title>
-          <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-            <Box>
-              <FileInput
-                title="Upload photo"
-                name={photoURL}
-                uploadFile={previewPhoto}
-                src={previewPhoto}
-                onChange={uploadImage}
-                alt="photo"
+            <FieldWrapper>
+              <InputWrapper>
+                <Autocomplite onSelect={handleSelectPlace} />
+              </InputWrapper>
+
+              <InputWrapper>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DateField
+                    // label="Date"
+                    inputFormat="DD.MM.YYYY"
+                    value={date}
+                    onChange={newValue => setDate(newValue)}
+                    renderInput={params => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+              </InputWrapper>
+
+              <Comments
+                aria-label="empty textarea"
+                placeholder="Comments"
+                style={{ width: 435, height: 175 }}
+                value={comments}
+                onChange={e => setComments(e.target.value)}
               />
+            </FieldWrapper>
+          </Box>
 
-              <FieldWrapper>
-                <InputWrapper>
-                  <Autocomplite onSelect={handleSelectPlace} />
-                </InputWrapper>
-
-                <InputWrapper>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateField
-                      // label="Date"
-                      inputFormat="DD.MM.YYYY"
-                      value={date}
-                      onChange={newValue => setDate(newValue)}
-                      renderInput={params => <TextField {...params} />}
-                    />
-                  </LocalizationProvider>
-                </InputWrapper>
-
-                <Comments
-                  aria-label="empty textarea"
-                  placeholder="Comments"
-                  style={{ width: 435, height: 175 }}
-                  value={comments}
-                  onChange={e => setComments(e.target.value)}
-                />
-              </FieldWrapper>
-            </Box>
-
-            <Button type="submit" disabled={isLoading} title={'add'} />
-          </form>
-        </Modal>
-      )}
+          <Button type="submit" disabled={isLoading} title={'add'} />
+        </form>
+      </Modal>
     </>
   );
 };

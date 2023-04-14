@@ -6,10 +6,10 @@ import { Backdrop, ModalWindow } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ onClick, children }) => {
+const Modal = ({ onClose, children }) => {
   return createPortal(
     <Backdrop>
-      <CloseButton onClick={onClick} />
+      <CloseButton onClick={onClose} />
       <ModalWindow>{children}</ModalWindow>
     </Backdrop>,
     modalRoot

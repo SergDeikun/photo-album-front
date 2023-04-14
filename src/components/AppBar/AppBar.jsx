@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
@@ -5,38 +6,45 @@ import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import Logo from 'components/Logo/Logo';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
 import UserMenu from 'components/UserMenu/UserMenu';
+import AddButton from 'components/Buttons/AddButton/AddButton';
 import AddAlbumForm from 'components/Forms/AddalbumForm/AddAlbumForm';
 import AddPhotoForm from 'components/Forms/AddPhotoForm/AddPhotoForm';
 
 import { Wrapper } from './AppBar.styled';
-const AppBar = () => {
-  const { id } = useParams();
-  // const { pathname } = useLocation();
-  // console.log(pathname);
 
-  // const pathname1 = '/current-user';
+const AppBar = () => {
+  const [isOpenAlbumForm, setIsOpenAlbumForm] = useState(false);
+  const [isOpenPhotoForm, setIsOpenPhotoForm] = useState(false);
+
+  const { id } = useParams();
   const { data } = useGetCurrentUser();
 
-  // if (data) {
-  //   console.log(data);
-  // }
+  const handleToggleAlbumForm = () => {
+    setIsOpenAlbumForm(!isOpenAlbumForm);
+  };
+
+  const handleTogglePhotoForm = () => {
+    setIsOpenPhotoForm(!isOpenPhotoForm);
+  };
 
   return (
     <Wrapper>
       <Logo />
       {data ? (
         <>
-          {/* {id || !pathname ? <AddPhotoForm /> : null} */}
-          {/* {(!id || pathname !== pathname1) && <AddAlbumForm />} */}
-          {/* {pathname !== pathname1 ? <AddAlbumForm /> : null} */}
-
-          {id ? <AddPhotoForm /> : <AddAlbumForm />}
+          {id ? (
+            <AddButton title="Add photo" onClick={handleTogglePhotoForm} />
+          ) : (
+            <AddButton title="Add album" onClick={handleToggleAlbumForm} />
+          )}
 
           <UserMenu />
         </>
       ) : (
         <AuthMenu />
       )}
+      {isOpenAlbumForm && <AddAlbumForm onClose={handleToggleAlbumForm} />}
+      {isOpenPhotoForm && <AddPhotoForm onClose={handleTogglePhotoForm} />}
     </Wrapper>
   );
 };
