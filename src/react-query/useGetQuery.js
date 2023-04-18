@@ -6,4 +6,8 @@ export const useGetQuery = name => {
   return queryClient.getQueryData(name);
 };
 
-export default useGetQuery;
+export const useGetQueryById = ([name, id]) => {
+  const queryClient = useQueryClient();
+
+  return queryClient.getQueryData([name, id]);
+};

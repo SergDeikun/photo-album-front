@@ -11,7 +11,6 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import useAddPhoto from 'react-query/useAddPhoto';
 
-import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
 import FileInput from 'components/Inputs/FileInput/FileImput';
@@ -23,9 +22,9 @@ import {
   InputWrapper,
   DateField,
   Comments,
-} from './AddPhotoForm.styled';
+} from './PhotoForm.styled';
 
-const AddPhotoForm = ({ onClose }) => {
+const PhotoForm = () => {
   const [place, setPlace] = useState('');
   const [date, setDate] = useState('');
   const [photoURL, setPhoto] = useState('');
@@ -64,7 +63,6 @@ const AddPhotoForm = ({ onClose }) => {
       await addPhoto(newPhoto, {
         onSuccess: () => {
           notifySuccess('photo added');
-          onClose();
           setPreviewPhoto('');
           setPhoto('');
           setPlace('');
@@ -82,50 +80,48 @@ const AddPhotoForm = ({ onClose }) => {
 
   return (
     <>
-      <Modal onClick={onClose}>
-        <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-          <Box>
-            <FileInput
-              title="Upload photo"
-              name={photoURL}
-              uploadFile={previewPhoto}
-              src={previewPhoto}
-              onChange={uploadImage}
-              alt="photo"
+      <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+        <Box>
+          <FileInput
+            title="Upload photo"
+            name={photoURL}
+            uploadFile={previewPhoto}
+            src={previewPhoto}
+            onChange={uploadImage}
+            alt="photo"
+          />
+
+          <FieldWrapper>
+            <InputWrapper>
+              <Autocomplite onSelect={handleSelectPlace} />
+            </InputWrapper>
+
+            <InputWrapper>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateField
+                  // label="Date"
+                  inputFormat="DD.MM.YYYY"
+                  value={date}
+                  onChange={newValue => setDate(newValue)}
+                  renderInput={params => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </InputWrapper>
+
+            <Comments
+              aria-label="empty textarea"
+              placeholder="Comments"
+              style={{ width: 435, height: 175 }}
+              value={comments}
+              onChange={e => setComments(e.target.value)}
             />
+          </FieldWrapper>
+        </Box>
 
-            <FieldWrapper>
-              <InputWrapper>
-                <Autocomplite onSelect={handleSelectPlace} />
-              </InputWrapper>
-
-              <InputWrapper>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateField
-                    // label="Date"
-                    inputFormat="DD.MM.YYYY"
-                    value={date}
-                    onChange={newValue => setDate(newValue)}
-                    renderInput={params => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
-              </InputWrapper>
-
-              <Comments
-                aria-label="empty textarea"
-                placeholder="Comments"
-                style={{ width: 435, height: 175 }}
-                value={comments}
-                onChange={e => setComments(e.target.value)}
-              />
-            </FieldWrapper>
-          </Box>
-
-          <Button type="submit" disabled={isLoading} title={'add'} />
-        </form>
-      </Modal>
+        <Button type="submit" disabled={isLoading} title={'add'} />
+      </form>
     </>
   );
 };
 
-export default AddPhotoForm;
+export default PhotoForm;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { MdOutlineDelete } from 'react-icons/md';
 
 export const Box = styled.div`
   margin-top: 80px;
@@ -41,4 +42,10 @@ export const AlbumName = styled.p`
   /* TODO: розрахувати ширину, щоб вставити друзів */
   width: 100px;
   margin-left: 30px;
+`;
+
+export const DeleteIcon = styled(MdOutlineDelete)`
+  width: 24px;
+  height: 24px;
+  fill: ${p => p.theme.colors.red};
 `;

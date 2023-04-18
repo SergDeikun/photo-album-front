@@ -10,15 +10,14 @@ export const Btn = styled.button`
   background-color: transparent;
   border: none;
 
-  &:hover {
-    /* border: 1px solid teal; */
+  /* &:hover {
     border-radius: 30%;
     background-color: ${p => p.theme.colors.red};
-  }
+  } */
 `;
 
 export const DeleteIcon = styled(MdOutlineDelete)`
   width: 24px;
   height: 24px;
-  fill: ${p => p.theme.colors.black};
+  fill: ${p => p.theme.colors.red};
 `;

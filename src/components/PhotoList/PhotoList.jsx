@@ -25,7 +25,7 @@ const PhotoList = () => {
   const { data } = useGetAlbumById(id);
 
   // if (data) {
-  //   console.log(selectedPhoto);
+  //   console.log(data);
   // }
 
   return (

@@ -3,13 +3,12 @@ import { useState } from 'react';
 import useAddAlbum from 'react-query/useAddAlbum';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 import TextInput from 'components/Inputs/TextInput/TextInput';
 
-const AddAlbumForm = ({ onClose }) => {
-  const [name, setName] = useState('');
+const AlbumForm = ({ updateName }) => {
+  const [name, setName] = useState(updateName);
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
@@ -35,7 +34,6 @@ const AddAlbumForm = ({ onClose }) => {
       await addAlbum(newAlbum, {
         onSuccess: () => {
           notifySuccess('album added');
-          onClose();
           setName('');
           setPreviewBackground('');
           setBackgroundURL('');
@@ -51,31 +49,29 @@ const AddAlbumForm = ({ onClose }) => {
 
   return (
     <>
-      <Modal onClose={onClose}>
-        <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-          <FileInput
-            title="Upload cover to your album"
-            name={backgroundURL}
-            uploadFile={previewBackground}
-            clearInput={handleClearInput}
-            src={previewBackground}
-            onChange={uploadImage}
-            alt="cover"
-          />
+      <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+        <FileInput
+          title="Upload cover to your album"
+          name={backgroundURL}
+          uploadFile={previewBackground}
+          clearInput={handleClearInput}
+          src={previewBackground}
+          onChange={uploadImage}
+          alt="cover"
+        />
 
-          <TextInput
-            required={true}
-            label="Album name"
-            name="name"
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-          <Button type="submit" disabled={isLoading} title={'add'} />
-        </form>
-      </Modal>
+        <TextInput
+          required={true}
+          label="Album name"
+          name="name"
+          type="text"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+        <Button type="submit" disabled={isLoading} title={'add'} />
+      </form>
     </>
   );
 };
 
-export default AddAlbumForm;
+export default AlbumForm;

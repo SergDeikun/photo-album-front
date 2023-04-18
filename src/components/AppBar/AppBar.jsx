@@ -7,8 +7,9 @@ import Logo from 'components/Logo/Logo';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
 import UserMenu from 'components/UserMenu/UserMenu';
 import AddButton from 'components/Buttons/AddButton/AddButton';
-import AddAlbumForm from 'components/Forms/AddalbumForm/AddAlbumForm';
-import AddPhotoForm from 'components/Forms/AddPhotoForm/AddPhotoForm';
+import Modal from 'components/Modal/Modal';
+import AlbumForm from 'components/Forms/AlbumForm/AlbumForm';
+import PhotoForm from 'components/Forms/PhotoForm/PhotoForm';
 
 import { Wrapper } from './AppBar.styled';
 
@@ -43,8 +44,16 @@ const AppBar = () => {
       ) : (
         <AuthMenu />
       )}
-      {isOpenAlbumForm && <AddAlbumForm onClose={handleToggleAlbumForm} />}
-      {isOpenPhotoForm && <AddPhotoForm onClose={handleTogglePhotoForm} />}
+      {isOpenAlbumForm && (
+        <Modal onClose={handleToggleAlbumForm}>
+          <AlbumForm />
+        </Modal>
+      )}
+      {isOpenPhotoForm && (
+        <Modal onClose={handleTogglePhotoForm}>
+          <PhotoForm />
+        </Modal>
+      )}
     </Wrapper>
   );
 };
