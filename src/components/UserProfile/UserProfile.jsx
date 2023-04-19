@@ -14,7 +14,6 @@ import {
   LinkAlbum,
   IconAlbum,
   AlbumName,
-  DeleteIcon,
 } from './UserProfile.styled';
 
 const UserProfile = () => {

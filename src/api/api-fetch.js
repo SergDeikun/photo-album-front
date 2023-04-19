@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://photo-album-0ycb.onrender.com';
+// const API_URL = 'https://photo-album-0ycb.onrender.com';
+const API_URL = 'http://localhost:3000';
 
 let token = '';
 
@@ -100,6 +101,16 @@ export const addPhoto = async newPhoto => {
 
 export const getPhotoById = async id => {
   const response = await axios.get(`${API_URL}/api/photo/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+export const deletePhoto = async id => {
+  const response = await axios.delete(`${API_URL}/api/photo/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

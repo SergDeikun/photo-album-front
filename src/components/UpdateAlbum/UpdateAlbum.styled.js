@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
+import { MdOutlineDelete } from 'react-icons/md';
 
 export const Box = styled.div`
   margin-top: 80px;
@@ -28,10 +28,22 @@ export const PhotoItem = styled.li`
   }
 `;
 
-export const DeleteBtn = styled(DeleteButton)`
+export const DeleteBtn = styled.button`
   position: absolute;
   top: 5px;
   right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   height: 30px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+`;
+
+export const DeleteIcon = styled(MdOutlineDelete)`
+  width: 24px;
+  height: 24px;
+  fill: ${p => p.theme.colors.red};
 `;

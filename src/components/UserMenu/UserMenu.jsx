@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
@@ -12,6 +12,19 @@ const UserMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    // todo: функцію винести в helpers
+    const handleEscClose = e => {
+      if (e.keyCode === 27) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscClose);
+    return () => {
+      document.removeEventListener('keydown', handleEscClose);
+    };
+  }, []);
+
   return (
     <>
       <ButtonMenu type="button" onClick={handleToggleMenu}>
@@ -19,7 +32,7 @@ const UserMenu = () => {
       </ButtonMenu>
 
       {isOpen && (
-        <Modal onClick={handleToggleMenu}>
+        <Modal onClose={handleToggleMenu}>
           <MenuLink to={'/current-user'} onClick={handleToggleMenu}>
             Profile
           </MenuLink>

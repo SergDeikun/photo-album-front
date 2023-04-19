@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
@@ -27,6 +27,20 @@ const AppBar = () => {
   const handleTogglePhotoForm = () => {
     setIsOpenPhotoForm(!isOpenPhotoForm);
   };
+
+  useEffect(() => {
+    // todo: функцію винести в helpers
+    const handleEscClose = e => {
+      if (e.keyCode === 27) {
+        setIsOpenAlbumForm(false);
+        setIsOpenPhotoForm(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscClose);
+    return () => {
+      document.removeEventListener('keydown', handleEscClose);
+    };
+  }, []);
 
   return (
     <Wrapper>
