@@ -27,6 +27,16 @@ export const loginUser = async ({ email, password }) => {
   return response.data;
 };
 
+export const logout = async () => {
+  const response = await axios.get(`${API_URL}/api/auth/logout`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
 // User
 export const getCurrentUser = async () => {
   const response = await axios.get(`${API_URL}/api/user/current`, {
@@ -46,6 +56,7 @@ export const addAlbum = async newAlbum => {
       Authorization: `Bearer ${token}`,
     },
   });
+
   return response.data;
 };
 
