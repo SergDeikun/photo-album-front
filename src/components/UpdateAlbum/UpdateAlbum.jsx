@@ -9,6 +9,12 @@ import useDeletePhoto from 'react-query/useDeletePhotoById';
 
 import {
   Box,
+  FileWrapper,
+  Cover,
+  BlackBox,
+  PhotocameraIcon,
+  FileLabel,
+  NameLabel,
   NameField,
   PhotoList,
   PhotoItem,
@@ -34,17 +40,32 @@ const UpdateAlbum = () => {
   };
 
   return (
-    <Box>
-      <form action="">
-        <label htmlFor="1"></label>
-        <NameField
-          type="text"
-          name="name"
-          id="1"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-      </form>
+    <>
+      <Box>
+        {/* <form action=""> */}
+        <FileWrapper>
+          <Cover src={currentAlbum.backgroundURL} alt="" />
+
+          <BlackBox>
+            <PhotocameraIcon />
+            <FileLabel>
+              Edit cover
+              <input type="file" hidden id="1" />
+            </FileLabel>
+          </BlackBox>
+        </FileWrapper>
+
+        <NameLabel>
+          <NameField
+            type="text"
+            name="name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </NameLabel>
+      </Box>
+
+      {/* </form> */}
       {/* <h1>{currentAlbum.name}</h1> */}
       {/* <img src={currentAlbum.backgroundURL} alt="cover" /> */}
       {/* {data && ( */}
@@ -61,7 +82,8 @@ const UpdateAlbum = () => {
         })}
       </PhotoList>
       {/* )} */}
-    </Box>
+      {/* </Box> */}
+    </>
   );
 };
 
