@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
+import { useGetQuery } from 'react-query/useGetQuery';
 
 import Logo from 'components/Logo/Logo';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
@@ -19,6 +20,8 @@ const AppBar = () => {
 
   const { id } = useParams();
   const { data } = useGetCurrentUser();
+  const user = useGetQuery('user');
+  console.log(user);
 
   const handleToggleAlbumForm = () => {
     setIsOpenAlbumForm(!isOpenAlbumForm);

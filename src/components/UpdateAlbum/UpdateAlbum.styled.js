@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MdOutlineDelete } from 'react-icons/md';
+// import { MdOutlineDelete } from 'react-icons/md';
 import { MdOutlineDeleteOutline } from 'react-icons/md';
 
 import { MdPhotoCamera } from 'react-icons/md';
@@ -9,6 +9,7 @@ export const Box = styled.div`
   margin-top: 80px;
 `;
 
+// File
 export const FileWrapper = styled.div`
   position: relative;
   height: 200px;
@@ -45,6 +46,14 @@ export const FileLabel = styled.label`
   cursor: pointer;
 `;
 
+// Name
+export const NameWrapper = styled.div`
+  /* position: absolute;
+  left: 15px;
+  bottom: -23px;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.9); */
+`;
 export const NameLabel = styled.label`
   position: absolute;
   left: 15px;
@@ -53,10 +62,9 @@ export const NameLabel = styled.label`
 `;
 
 export const NameField = styled.input`
+  /* width: 100px; */
   background-color: rgba(0, 0, 0, 0.5);
-  background-color: black;
   border-radius: ${p => p.theme.borderRadius.small};
-
   font-size: 50px;
   color: white;
   border: none;

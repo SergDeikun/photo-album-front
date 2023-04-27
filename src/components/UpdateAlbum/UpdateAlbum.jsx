@@ -14,6 +14,7 @@ import {
   BlackBox,
   PhotocameraIcon,
   FileLabel,
+  // NameWrapper,
   NameLabel,
   NameField,
   PhotoList,
@@ -54,7 +55,7 @@ const UpdateAlbum = () => {
             </FileLabel>
           </BlackBox>
         </FileWrapper>
-
+        {/* <NameWrapper> */}
         <NameLabel>
           <NameField
             type="text"
@@ -63,6 +64,7 @@ const UpdateAlbum = () => {
             onChange={e => setName(e.target.value)}
           />
         </NameLabel>
+        {/* </NameWrapper> */}
       </Box>
 
       {/* </form> */}
