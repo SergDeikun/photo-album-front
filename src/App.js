@@ -27,7 +27,11 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ['places'];
 
 function App() {
-  const { isLoaded, loadError } = useJsApiLoader({
+  // const { isLoaded, loadError } = useJsApiLoader({
+  //   googleMapsApiKey: API_KEY,
+  //   libraries,
+  // });
+  useJsApiLoader({
     googleMapsApiKey: API_KEY,
     libraries,
   });
