@@ -9,7 +9,7 @@ export const AddBtn = styled.button`
   line-height: 1.88;
   color: ${p => p.theme.colors.black};
   border: none;
-  background-color: ${p => p.theme.colors.white};
+  background-color: transparent;
 
   &:after {
     content: '';

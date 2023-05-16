@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 
 export const ButtonMenu = styled.button`
   position: relative;
-  margin-left: 50px;
+  /* margin-left: 50px; */
+  margin-left: auto;
+
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
   line-height: 1.88;
   color: ${p => p.theme.colors.black};
   border: none;
-  background-color: ${p => p.theme.colors.white};
+  background-color: transparent;
 
   &:after {
     content: '';

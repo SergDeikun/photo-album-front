@@ -19,5 +19,10 @@ export const Btn = styled.button`
 export const DeleteIcon = styled(MdOutlineDelete)`
   width: 24px;
   height: 24px;
-  fill: ${p => p.theme.colors.red};
+  fill: ${p => p.theme.colors.black};
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${Btn}:hover & {
+    fill: ${p => p.theme.colors.red};
+  }
 `;

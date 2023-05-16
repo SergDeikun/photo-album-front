@@ -1,10 +1,7 @@
-import { Link } from 'react-router-dom';
-import { RxAvatar } from 'react-icons/rx';
-
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
 
-import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
+import { showAlert } from 'helpers/showAlert';
 
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
@@ -21,6 +18,9 @@ import {
   LinkAlbum,
   IconAlbum,
   AlbumName,
+  DeleteBtn,
+  EditLink,
+  EditIcon,
 } from './UserProfile.styled';
 
 const UserProfile = () => {
@@ -30,6 +30,7 @@ const UserProfile = () => {
   const handleDelete = async id => {
     await deleteAlbum(id, {
       //  TODO:перенести в хук
+
       onSuccess: () => {
         notifySuccess('album deleted');
       },
@@ -39,9 +40,9 @@ const UserProfile = () => {
     });
   };
 
-  // if (data) {
-  //   console.log(data);
-  // }
+  const handleShowAlert = id => {
+    showAlert(id, handleDelete);
+  };
 
   return (
     <>
@@ -67,8 +68,11 @@ const UserProfile = () => {
                       <IconAlbum src={backgroundURL} alt="cover" />
                       <AlbumName>{name}</AlbumName>
                     </LinkAlbum>
-                    <DeleteButton onDelete={() => handleDelete(id)} />
-                    <Link to={`/${id}/${name}/update`}>update</Link>
+                    <DeleteBtn onDelete={() => handleShowAlert(id)} />
+
+                    <EditLink to={`/${id}/${name}/update`}>
+                      <EditIcon />
+                    </EditLink>
                   </Item>
                 );
               })}

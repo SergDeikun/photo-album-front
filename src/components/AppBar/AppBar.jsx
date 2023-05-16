@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 // import { useGetQuery } from 'react-query/useGetQuery';
@@ -17,8 +17,10 @@ import { Wrapper } from './AppBar.styled';
 const AppBar = () => {
   const [isOpenAlbumForm, setIsOpenAlbumForm] = useState(false);
   const [isOpenPhotoForm, setIsOpenPhotoForm] = useState(false);
-
+  const location = useLocation();
+  // console.log(location.pathname);
   const { id } = useParams();
+  // console.log(id);
   const { data } = useGetCurrentUser();
   // const data = useGetQuery('user');
   // console.log(data);
@@ -50,10 +52,11 @@ const AppBar = () => {
       <Logo />
       {data ? (
         <>
-          {id ? (
-            <AddButton title="Add photo" onClick={handleTogglePhotoForm} />
-          ) : (
+          {location.pathname === '/album-list' && (
             <AddButton title="Add album" onClick={handleToggleAlbumForm} />
+          )}
+          {location.pathname === `/album/${id}` && (
+            <AddButton title="Add photo" onClick={handleTogglePhotoForm} />
           )}
 
           <UserMenu />

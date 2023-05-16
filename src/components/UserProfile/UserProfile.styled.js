@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { MdOutlineDelete } from 'react-icons/md';
 import { RxAvatar } from 'react-icons/rx';
+import { MdOutlineEdit } from 'react-icons/md';
+
+import bgAvatar from '../../images/bg-avatar.jpg';
+import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
 export const Box = styled.div`
   margin-top: 80px;
@@ -11,10 +14,11 @@ export const Box = styled.div`
 export const UserWrapper = styled.div`
   display: flex;
   align-items: center;
-  border-bottom: 1px solid grey;
-  padding-top: 20px;
-  padding-bottom: 50px;
-  background-color: azure;
+  padding: 20px;
+  background-image: url(${bgAvatar});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
 
 export const AvatarWrapper = styled.div`
@@ -35,14 +39,14 @@ export const Name = styled.p`
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[1]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.white};
 `;
 
 export const Email = styled.p`
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[1]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.white};
   margin-top: 10px;
 `;
 
@@ -53,7 +57,8 @@ export const Title = styled.h1`
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
-  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 export const Item = styled.li`
@@ -86,8 +91,34 @@ export const AlbumName = styled.p`
   margin-left: 30px;
 `;
 
-export const DeleteIcon = styled(MdOutlineDelete)`
+export const DeleteBtn = styled(DeleteButton)`
+  opacity: 0;
+
+  ${Item}:hover & {
+    opacity: 1;
+  }
+`;
+
+export const EditLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  padding: 5px;
+`;
+
+export const EditIcon = styled(MdOutlineEdit)`
   width: 24px;
   height: 24px;
-  fill: ${p => p.theme.colors.red};
+  opacity: 0;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${Item}:hover & {
+    opacity: 1;
+    fill: black;
+  }
+
+  ${EditLink}:hover & {
+    fill: ${p => p.theme.colors.red};
+  }
 `;

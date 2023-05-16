@@ -9,6 +9,7 @@ export const theme = {
   },
 
   colors: {
+    bodyBg: '#fbf9f6',
     red: '#ff0044',
     black: '#000000',
     white: '#fff',
