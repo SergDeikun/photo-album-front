@@ -30,12 +30,16 @@ const SharedLayout = () => {
     };
   }, [scrollPosition, isHeaderVisible]);
 
+  const shadow =
+    scrollPosition > 0 ? '0 3px 6px 0 rgba(0, 0, 0, 0.05)' : 'none';
+
   return (
     <>
       <Header
         style={{
           transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-100%)',
         }}
+        shadow={shadow}
       >
         <Container>
           <AppBar />

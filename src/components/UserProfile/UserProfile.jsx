@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { RxAvatar } from 'react-icons/rx';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
@@ -9,6 +10,12 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
   Box,
+  UserWrapper,
+  AvatarWrapper,
+  Avatar,
+  UserInfo,
+  Name,
+  Email,
   Title,
   Item,
   LinkAlbum,
@@ -40,8 +47,16 @@ const UserProfile = () => {
     <>
       {data && (
         <Box>
-          <h1>{data.name}</h1>
-          <h1>{data.email}</h1>
+          <UserWrapper>
+            <AvatarWrapper>
+              <Avatar />
+            </AvatarWrapper>
+            <UserInfo>
+              <Name> {data.name}</Name>
+              <Email> {data.email}</Email>
+            </UserInfo>
+          </UserWrapper>
+
           <Title>My Albums</Title>
           <ul>
             {data &&

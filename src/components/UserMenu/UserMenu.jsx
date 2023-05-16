@@ -11,7 +11,7 @@ import { ButtonMenu, MenuLink } from './UserMenu.styled';
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const logout = useLogout();
+  const { mutateAsync: logout } = useLogout();
 
   const handleToggleMenu = () => {
     setIsOpen(!isOpen);
@@ -33,6 +33,7 @@ const UserMenu = () => {
   const handleLogout = async () => {
     await logout();
     navigate('/');
+    console.log('ok');
   };
 
   return (
@@ -46,7 +47,7 @@ const UserMenu = () => {
           <MenuLink to={'/'} onClick={handleToggleMenu}>
             Home page
           </MenuLink>
-          <MenuLink to={'/current-user'} onClick={handleToggleMenu}>
+          <MenuLink to={'/profile'} onClick={handleToggleMenu}>
             Profile
           </MenuLink>
           <MenuLink to={'/album-list'} onClick={handleToggleMenu}>

@@ -20,8 +20,8 @@ const AppBar = () => {
 
   const { id } = useParams();
   const { data } = useGetCurrentUser();
-  // const user = useGetQuery('user');
-  // console.log(user);
+  // const data = useGetQuery('user');
+  // console.log(data);
 
   const handleToggleAlbumForm = () => {
     setIsOpenAlbumForm(!isOpenAlbumForm);

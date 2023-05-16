@@ -19,9 +19,9 @@ const PhotoList = () => {
   const [photoURLs, setPhotoURLs] = useState([]);
   const { id } = useParams();
   const { data } = useGetAlbumById(id);
-  if (data) {
-    console.log(data);
-  }
+  // if (data) {
+  //   console.log(data);
+  // }
   return (
     <>
       {data && <AlbumTitle>{data.name}</AlbumTitle>}
@@ -38,6 +38,7 @@ const PhotoList = () => {
                     setPhotoURLs(data.photo.map(({ photoURL }) => photoURL));
                   }}
                 />
+                {/* TODO:Винести за MAP */}
                 {photoIndex !== null && (
                   <Modal onClick={() => setPhotoIndex(null)}>
                     <img src={photoURLs[photoIndex]} alt="" />

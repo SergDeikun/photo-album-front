@@ -71,6 +71,8 @@ export const NameField = styled.input`
   outline: none;
 `;
 
+// PhotoList
+
 export const PhotoList = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -80,10 +82,13 @@ export const PhotoItem = styled.li`
   position: relative;
   width: 100%;
   height: 100%;
-  margin-bottom: 10px;
-  flex-basis: calc((100% - 10px) / 4);
+  &:nth-child(-n + 4) {
+    margin-bottom: 10px;
+  }
+  /* margin-right: 10px; */
+  flex-basis: calc((100% - 30px) / 4);
 
-  &:nth-child(odd) {
+  &:not(:nth-child(4)) {
     margin-right: 10px;
   }
 `;
@@ -100,7 +105,7 @@ export const DeleteBtn = styled.button`
   border-radius: 50%;
   border: none;
   padding: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(192, 192, 192, 0.9);
 `;
 
 export const DeleteIcon = styled(MdOutlineDeleteOutline)`

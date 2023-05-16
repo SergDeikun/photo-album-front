@@ -46,7 +46,7 @@ function App() {
           <Route path="/album-list" element={<AlbumsPage />} />
           {/* <Route path="new" element={<AddAlbumPage />} /> */}
           <Route path="/album/:id" element={<CurrentAlbumPage />} />
-          <Route path="/current-user" element={<UserPage />} />
+          <Route path="/profile" element={<UserPage />} />
           <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
 
           {/* <Route path="/photo/:id" element={<PhotoPage />} /> */}
