@@ -52,7 +52,6 @@ const AlbumForm = ({ updateName }) => {
       <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
         <FileInput
           title="Upload cover to your album"
-          name={backgroundURL}
           uploadFile={previewBackground}
           clearInput={handleClearInput}
           src={previewBackground}

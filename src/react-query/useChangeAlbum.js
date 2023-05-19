@@ -5,7 +5,7 @@ import { changeAlbum } from 'api/api-fetch';
 
 const useChangeAlbum = () => {
   const mutation = useMutation({
-    mutationFn: id => changeAlbum(id),
+    mutationFn: ({ updateAlbum, id }) => changeAlbum({ updateAlbum, id }),
 
     onSuccess: () => {
       queryClient.invalidateQueries('user');

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
 
@@ -25,7 +27,16 @@ import {
 
 const UserProfile = () => {
   const { data } = useGetCurrentUser();
+  // console.log(data);
+
+  const [name, setName] = useState(data.name);
+  const [email, setEmail] = useState(data.email);
+
   const { mutateAsync: deleteAlbum } = useDeleteAlbum();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
 
   const handleDelete = async id => {
     await deleteAlbum(id, {
@@ -52,9 +63,31 @@ const UserProfile = () => {
             <AvatarWrapper>
               <Avatar />
             </AvatarWrapper>
+            {/* Form */}
             <UserInfo>
-              <Name> {data.name}</Name>
-              <Email> {data.email}</Email>
+              <form
+                encType="multipart/form-data"
+                onSubmit={handleSubmit}
+                action=""
+              >
+                <label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                  />
+                </label>
+                <label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                  />
+                </label>
+                <button type="submit">Go</button>
+              </form>
+              {/* <Name> {data.name}</Name>
+              <Email> {data.email}</Email> */}
             </UserInfo>
           </UserWrapper>
 
