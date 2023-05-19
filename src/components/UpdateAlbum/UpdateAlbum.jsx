@@ -37,7 +37,11 @@ const UpdateAlbum = () => {
   const [name, setName] = useState(currentAlbum.name);
 
   const handleDelete = async id => {
-    await deletePhoto(id);
+    try {
+      await deletePhoto(id);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -63,6 +67,7 @@ const UpdateAlbum = () => {
             value={name}
             onChange={e => setName(e.target.value)}
           />
+          <button type="submit">go</button>
         </NameLabel>
         {/* </NameWrapper> */}
       </Box>

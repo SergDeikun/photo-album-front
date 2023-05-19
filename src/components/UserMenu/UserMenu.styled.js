@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const ButtonMenu = styled.button`
   position: relative;
-  /* margin-left: 50px; */
-  margin-left: auto;
+  margin-left: 50px;
 
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[0]}px;

@@ -14,7 +14,7 @@ export const Title = styled.h1`
   width: 526px;
   /* text-align: center; */
 
-  /* margin-top: 150px; */
+  margin-top: 100px;
 
   margin-left: auto;
   margin-right: auto;

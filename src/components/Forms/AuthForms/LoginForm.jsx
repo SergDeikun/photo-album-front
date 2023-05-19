@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import useLoginUser from 'react-query/useLoginUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import Button from 'components/Buttons/Button';
-import TextInput from 'components/Inputs/TextInput/TextInput';
+// import queryClient from './queryClient';
+import queryClient from '../../../react-query/queryClient';
 
 import { Form, Input, ButtonForgot } from './AuthForm.styled';
 
@@ -41,6 +42,8 @@ const LoginForm = () => {
           onSuccess: response => {
             notifySuccess('Successful login');
             navigate('/album-list');
+            queryClient.invalidateQueries();
+
             // console.log(response);
             return response;
           },
@@ -60,7 +63,6 @@ const LoginForm = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <TextInput />
         <Input
           required
           label="Email"

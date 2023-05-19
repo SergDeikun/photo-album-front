@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 // import { useGetQuery } from 'react-query/useGetQuery';
 
@@ -12,17 +11,16 @@ import Modal from 'components/Modal/Modal';
 import AlbumForm from 'components/Forms/AlbumForm/AlbumForm';
 import PhotoForm from 'components/Forms/PhotoForm/PhotoForm';
 
-import { Wrapper } from './AppBar.styled';
+import { Wrapper, ButtonWrap } from './AppBar.styled';
 
 const AppBar = () => {
   const [isOpenAlbumForm, setIsOpenAlbumForm] = useState(false);
   const [isOpenPhotoForm, setIsOpenPhotoForm] = useState(false);
   const location = useLocation();
-  // console.log(location.pathname);
   const { id } = useParams();
-  // console.log(id);
   const { data } = useGetCurrentUser();
   // const data = useGetQuery('user');
+  // const data = queryCache.getQueryData('user');
   // console.log(data);
 
   const handleToggleAlbumForm = () => {
@@ -51,7 +49,7 @@ const AppBar = () => {
     <Wrapper>
       <Logo />
       {data ? (
-        <>
+        <ButtonWrap>
           {location.pathname === '/album-list' && (
             <AddButton title="Add album" onClick={handleToggleAlbumForm} />
           )}
@@ -60,7 +58,7 @@ const AppBar = () => {
           )}
 
           <UserMenu />
-        </>
+        </ButtonWrap>
       ) : (
         <AuthMenu />
       )}
