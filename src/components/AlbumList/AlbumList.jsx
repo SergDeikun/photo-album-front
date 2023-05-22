@@ -14,6 +14,7 @@ const AlbumList = () => {
 
   return (
     <>
+      {!data && <h1>Hello! You don't have albums yet, create the first one</h1>}
       <List>
         {data &&
           data.myAlbums.map(({ name, _id: id, backgroundURL }) => {

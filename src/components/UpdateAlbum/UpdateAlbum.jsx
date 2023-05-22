@@ -5,6 +5,8 @@ import useGetAlbumById from 'react-query/useGetAlbumById';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useChangeAlbum from 'react-query/useChangeAlbum';
 
+import { showAlert } from 'helpers/showAlert';
+
 // import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
@@ -71,6 +73,10 @@ const UpdateAlbum = () => {
     }
   };
 
+  const handleShowAlert = id => {
+    showAlert(id, handleDelete);
+  };
+
   return (
     <>
       {data && (
@@ -108,20 +114,20 @@ const UpdateAlbum = () => {
         </Box>
       )}
 
-      {/* {data && (
+      {data && (
         <PhotoList>
-          {data.map(({ _id: id, photoURL }) => {
+          {data.photo.map(({ _id: id, photoURL }) => {
             return (
               <PhotoItem key={id}>
                 <img src={photoURL} alt="" />
-                <DeleteBtn type="button" onClick={() => handleDelete(id)}>
+                <DeleteBtn type="button" onClick={() => handleShowAlert(id)}>
                   <DeleteIcon />
                 </DeleteBtn>
               </PhotoItem>
             );
           })}
         </PhotoList>
-      )} */}
+      )}
       {/* </Box> */}
     </>
   );

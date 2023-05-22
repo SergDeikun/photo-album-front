@@ -10,7 +10,7 @@ const useDeletePhoto = () => {
     mutationFn: id => deletePhoto(id),
 
     onSuccess: () => {
-      queryClient.invalidateQueries('user');
+      queryClient.invalidateQueries('album');
       notifySuccess('photo deleted');
     },
     onError: error => {

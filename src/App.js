@@ -19,6 +19,8 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const UpdateAlbumPage = lazy(() =>
   import('./pages/UpdateAlbumPage/UpdateAlbumPage')
 );
+
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 // const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
 
 // const Map = lazy(() => import('./components/Map/Map'));
@@ -54,6 +56,7 @@ function App() {
           {/* На помилку поставити <Not Found/> */}
           {/* <Route path="/map" element={<Map />} /> */}
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {/* <ToastContainer {...toastOptions} /> */}
       <ToastContainer />

@@ -76,21 +76,22 @@ export const NameField = styled.input`
 export const PhotoList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
 `;
 
 export const PhotoItem = styled.li`
   position: relative;
   width: 100%;
   height: 100%;
-  &:nth-child(-n + 4) {
+  flex-basis: calc((100% - 30px) / 4);
+
+  /* &:nth-child(-n + 4) {
     margin-bottom: 10px;
   }
-  /* margin-right: 10px; */
-  flex-basis: calc((100% - 30px) / 4);
 
   &:not(:nth-child(4)) {
     margin-right: 10px;
-  }
+  } */
 `;
 
 export const DeleteBtn = styled.button`
