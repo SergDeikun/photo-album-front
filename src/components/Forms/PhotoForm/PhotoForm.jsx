@@ -48,7 +48,6 @@ const PhotoForm = () => {
     const formatDate = moment(date).format('DD.MM.YYYY');
 
     const newPhoto = new FormData();
-    newPhoto.append('albumId', id);
     newPhoto.append('place', place);
     newPhoto.append('date', formatDate);
     newPhoto.append('photoURL', photoURL);
@@ -60,19 +59,22 @@ const PhotoForm = () => {
     }
 
     try {
-      await addPhoto(newPhoto, {
-        onSuccess: () => {
-          notifySuccess('photo added');
-          setPreviewPhoto('');
-          setPhoto('');
-          setPlace('');
-          setDate('');
-          setComments('');
-        },
-        onError: error => {
-          notifyError(error.response.data.message);
-        },
-      });
+      await addPhoto(
+        { newPhoto, id },
+        {
+          onSuccess: () => {
+            notifySuccess('photo added');
+            setPreviewPhoto('');
+            setPhoto('');
+            setPlace('');
+            setDate('');
+            setComments('');
+          },
+          onError: error => {
+            notifyError(error.response.data.message);
+          },
+        }
+      );
     } catch (error) {
       console.log(error);
     }

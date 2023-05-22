@@ -48,9 +48,9 @@ export const getCurrentUser = async () => {
   return response.data;
 };
 
-export const updateUser = async () => {
-  const response = await axios;
-};
+// export const updateUser = async () => {
+//   const response = await axios;
+// };
 
 // Album
 export const addAlbum = async newAlbum => {
@@ -99,9 +99,7 @@ export const changeAlbum = async ({ updateAlbum, id }) => {
 };
 
 // Photo
-export const addPhoto = async newPhoto => {
-  const id = newPhoto.get('albumId');
-
+export const addPhoto = async ({ newPhoto, id }) => {
   const response = await axios.post(`${API_URL}/api/photo/${id}`, newPhoto, {
     headers: {
       'Content-Type': 'multipart/form-data',
