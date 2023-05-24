@@ -1,9 +1,17 @@
-import { Box, Title, BackLink } from './NotFound.styled';
+import {
+  Box,
+  Title,
+  ErrorNumber,
+  VerticalLine,
+  BackLink,
+} from './NotFound.styled';
 
 const NotFound = () => {
   return (
     <Box>
-      <Title>404 | Not Found</Title>
+      <Title>
+        <ErrorNumber>404</ErrorNumber> <VerticalLine></VerticalLine> Not Found
+      </Title>
       <BackLink to={'/'}>Go back</BackLink>
     </Box>
   );

@@ -20,6 +20,7 @@ export const Input = styled.input`
 
 export const List = styled.ul`
   position: absolute;
+  top: 35px;
   width: 100%;
   background-color: ${p => p.theme.colors.grey};
 

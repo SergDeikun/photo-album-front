@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
-import Modal from 'components/Modal/Modal';
+import InformationButton from 'components/Buttons/InformationButton/Information';
 
-import { AlbumTitle, Box, Thumb, Image } from './PhotoList.styled';
+import {
+  AlbumTitle,
+  Box,
+  Thumb,
+  Image,
+  Modal,
+  ButtonWrapper,
+  PhotoLightBoxImg,
+  DeleteBtn,
+  Comments,
+  Place,
+  Date,
+} from './PhotoList.styled';
 
 const styles = [
   { marginTop: '30px', width: '400px', height: '532px' },
@@ -15,34 +27,54 @@ const styles = [
 ];
 
 const PhotoList = () => {
-  const [photoIndex, setPhotoIndex] = useState(null);
-  const [photoURLs, setPhotoURLs] = useState([]);
   const { id } = useParams();
   const { data } = useGetAlbumById(id);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  useEffect(() => {
+    if (selectedPhoto) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [selectedPhoto]);
+
+  const handlePhotoClick = (photo, index) => {
+    setSelectedPhoto(photo);
+  };
+
   // if (data) {
   //   console.log(data);
   // }
+
   return (
     <>
       {data && <AlbumTitle>{data.name}</AlbumTitle>}
       <Box>
         {data &&
-          data.photo.map(({ _id: id, photoURL }, index) => {
+          data.photo.map((photo, index) => {
             return (
-              <Thumb key={id} style={styles[index % styles.length]}>
+              <Thumb key={photo._id} style={styles[index % styles.length]}>
                 <Image
-                  src={photoURL}
+                  src={photo.photoURL}
                   alt="photo"
-                  onClick={() => {
-                    setPhotoIndex(index);
-                    setPhotoURLs(data.photo.map(({ photoURL }) => photoURL));
-                  }}
+                  onClick={() => handlePhotoClick(photo, index)}
                 />
-                {/* TODO:Винести за MAP */}
-                {photoIndex !== null && (
-                  <Modal onClick={() => setPhotoIndex(null)}>
-                    <img src={photoURLs[photoIndex]} alt="" />
-                    <h1>hello</h1>
+                {selectedPhoto && selectedPhoto === photo && (
+                  <Modal onClose={() => setSelectedPhoto(null)}>
+                    <ButtonWrapper>
+                      <DeleteBtn />
+                      <InformationButton />
+                    </ButtonWrapper>
+
+                    <PhotoLightBoxImg src={photo.photoURL} alt="" />
+                    <Comments>{photo.comments}</Comments>
+                    <Place>{photo.place}</Place>
+                    <Date>{photo.date}</Date>
                   </Modal>
                 )}
               </Thumb>

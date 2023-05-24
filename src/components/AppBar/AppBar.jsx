@@ -23,15 +23,13 @@ const AppBar = () => {
   // const data = queryCache.getQueryData('user');
   // console.log(data);
 
-  const handleToggleAlbumForm = () => {
-    setIsOpenAlbumForm(!isOpenAlbumForm);
-  };
-
-  const handleTogglePhotoForm = () => {
-    setIsOpenPhotoForm(!isOpenPhotoForm);
-  };
-
   useEffect(() => {
+    if (isOpenAlbumForm || isOpenPhotoForm) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
     // todo: функцію винести в helpers
     const handleEscClose = e => {
       if (e.keyCode === 27) {
@@ -40,10 +38,20 @@ const AppBar = () => {
       }
     };
     document.addEventListener('keydown', handleEscClose);
+
     return () => {
+      document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', handleEscClose);
     };
-  }, []);
+  }, [isOpenAlbumForm, isOpenPhotoForm]);
+
+  const handleToggleAlbumForm = () => {
+    setIsOpenAlbumForm(!isOpenAlbumForm);
+  };
+
+  const handleTogglePhotoForm = () => {
+    setIsOpenPhotoForm(!isOpenPhotoForm);
+  };
 
   return (
     <Wrapper>

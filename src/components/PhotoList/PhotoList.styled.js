@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import Backdrop from 'components/Backdrop/Backdrop';
+import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
+
 // import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const AlbumTitle = styled.h1`
@@ -12,7 +15,7 @@ export const AlbumTitle = styled.h1`
   margin-top: 70px;
   margin-bottom: 20px;
 `;
-
+// PhotoList
 export const Box = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -58,14 +61,49 @@ export const Image = styled.img`
   }
 `;
 
-// export const Image = styled(LazyLoadImage)`
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
+// PhotoLightBox
 
-//   transition: transform 0.2s ease-in-out;
+export const Modal = styled(Backdrop)`
+  background-color: rgb(0, 0, 0);
+`;
 
-//   &:hover {
-//     transform: scale(1.02);
-//   }
-// `;
+export const ButtonWrapper = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 78px;
+  display: flex;
+`;
+
+export const PhotoLightBoxImg = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const DeleteBtn = styled(DeleteButton)`
+  margin-right: 10px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  svg {
+    fill: ${p => p.theme.colors.white};
+  }
+
+  &:hover {
+    background-color: grey;
+    border-radius: 50%;
+    fill: ${p => p.theme.colors.white};
+  }
+`;
+
+export const Comments = styled.p`
+  color: white;
+`;
+
+export const Place = styled.p`
+  color: white;
+`;
+
+export const Date = styled.p`
+  color: white;
+`;
