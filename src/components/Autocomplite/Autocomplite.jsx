@@ -5,11 +5,9 @@ import usePlacesAutocomplete, {
 
 import useOnclickOutside from 'react-cool-onclickoutside';
 
-import { Root, Input, List, Item } from './Autocomplite.styled';
+import { Root, Label, Input, List, Item } from './Autocomplite.styled';
 
-import LocationButton from 'components/Buttons/LocationButton/LocationButton';
-
-const Autocomplite = ({ onSelect }) => {
+const Autocomplite = ({ onSelect, updatePlace, className }) => {
   const {
     // ready,
     value,
@@ -60,23 +58,27 @@ const Autocomplite = ({ onSelect }) => {
       } = suggestion;
 
       return (
-        <Item key={place_id} onClick={handleSelect(suggestion)}>
+        <Item
+          className={className || ''}
+          key={place_id}
+          onClick={handleSelect(suggestion)}
+        >
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </Item>
       );
     });
   return (
-    <Root ref={ref}>
-      <label>
+    <Root className={className || ''} ref={ref}>
+      <Label>
         <Input
+          // className={className || ''}
           type="text"
           value={value}
           onChange={handleInput}
           //   disabled={!ready}
           placeholder="Location"
         />
-      </label>
-      <LocationButton />
+      </Label>
       {status === 'OK' && <List>{renderSuggestions()}</List>}
     </Root>
   );

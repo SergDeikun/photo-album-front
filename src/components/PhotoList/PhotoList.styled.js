@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+// import { MdLocationPin } from 'react-icons/md';
+// import { IoMdCalendar } from 'react-icons/io';
 
 import Backdrop from 'components/Backdrop/Backdrop';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
+import CloseButton from 'components/Buttons/CloseButton/CloseButton';
+import Autocomplite from 'components/Autocomplite/Autocomplite';
 
 // import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -74,13 +78,6 @@ export const ButtonWrapper = styled.div`
   display: flex;
 `;
 
-export const PhotoLightBoxImg = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
 export const DeleteBtn = styled(DeleteButton)`
   margin-right: 10px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -96,14 +93,79 @@ export const DeleteBtn = styled(DeleteButton)`
   }
 `;
 
-export const Comments = styled.p`
-  color: white;
+// Image
+
+export const PhotoLightBoxImg = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
-export const Place = styled.p`
-  color: white;
+// Info
+
+export const InfoWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 400px;
+  background-color: ${p => p.theme.colors.bodyBg};
+  padding: 10px;
 `;
 
-export const Date = styled.p`
-  color: white;
+export const CloseBtn = styled(CloseButton)`
+  right: 355px;
+
+  svg {
+    fill: ${p => p.theme.colors.black};
+  }
 `;
+
+export const Place = styled(Autocomplite)`
+  div {
+    margin-top: 80px;
+  }
+
+  input {
+    color: blue;
+  }
+`;
+
+// export const ListInfo = styled.ul`
+//   margin-top: 80px;
+//   text-align: start;
+//   padding-left: 10px;
+// `;
+
+// export const ItemInfo = styled.li`
+//   /* width: 100%; */
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: center;
+//   font-family: ${p => p.theme.fonts.body};
+//   font-weight: ${p => p.theme.fontWeights.regular};
+//   font-size: ${p => p.theme.fontSize[0]}px;
+//   line-height: 1.3;
+//   letter-spacing: 0.1rem;
+//   color: ${p => p.theme.colors.black};
+// `;
+
+// export const DateIcon = styled(IoMdCalendar)`
+//   width: 24px;
+//   height: 24px;
+//   margin-right: 10px;
+// `;
+
+// export const PlaceIcon = styled(MdLocationPin)`
+//   width: 24px;
+//   height: 24px;
+//   margin-right: 10px;
+//   fill: ${p => p.theme.colors.grey};
+// `;
+
+// export const Infotext = styled.p`
+//   /* width: 100%; */
+//   overflow: hidden;
+//   word-wrap: break-word;
+// `;

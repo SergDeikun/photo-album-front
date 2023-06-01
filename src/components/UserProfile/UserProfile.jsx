@@ -39,6 +39,7 @@ const UserProfile = () => {
   };
 
   const handleDelete = async id => {
+    // TODO:добавити tryCatch
     await deleteAlbum(id, {
       //  TODO:перенести в хук
 

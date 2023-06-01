@@ -1,9 +1,9 @@
 import { Btn, IconBtn } from './Information.styled';
 
-const InformationButton = () => {
+const InformationButton = ({ onClick }) => {
   return (
     <>
-      <Btn type="button">
+      <Btn type="button" onClick={onClick}>
         <IconBtn />
       </Btn>
     </>

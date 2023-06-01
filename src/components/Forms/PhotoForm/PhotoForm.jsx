@@ -13,6 +13,7 @@ import useAddPhoto from 'react-query/useAddPhoto';
 
 import Button from 'components/Buttons/Button';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
+import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 
 import {
@@ -20,6 +21,7 @@ import {
   Box,
   FieldWrapper,
   InputWrapper,
+  Place,
   DateField,
   Comments,
 } from './PhotoForm.styled';
@@ -96,6 +98,7 @@ const PhotoForm = () => {
           <FieldWrapper>
             <InputWrapper>
               <Autocomplite onSelect={handleSelectPlace} />
+              <LocationButton />
             </InputWrapper>
 
             <InputWrapper>

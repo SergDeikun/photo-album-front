@@ -7,6 +7,10 @@ export const Root = styled.div`
   overflow: hidden;
 `;
 
+export const Label = styled.label`
+  width: 100%;
+`;
+
 export const Input = styled.input`
   width: 100%;
   border: none;

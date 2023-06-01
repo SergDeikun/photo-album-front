@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
+import useDeletePhoto from 'react-query/useDeletePhotoById';
+import { showAlert } from 'helpers/showAlert';
+
 import InformationButton from 'components/Buttons/InformationButton/Information';
+// import Autocomplite from 'components/Autocomplite/Autocomplite';
 
 import {
   AlbumTitle,
@@ -13,9 +17,14 @@ import {
   ButtonWrapper,
   PhotoLightBoxImg,
   DeleteBtn,
-  Comments,
+  InfoWrapper,
+  CloseBtn,
   Place,
-  Date,
+  // ListInfo,
+  // ItemInfo,
+  // DateIcon,
+  // PlaceIcon,
+  // Infotext,
 } from './PhotoList.styled';
 
 const styles = [
@@ -30,6 +39,9 @@ const PhotoList = () => {
   const { id } = useParams();
   const { data } = useGetAlbumById(id);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [isOpenInfo, setIsOpenInfo] = useState(false);
+  const { mutateAsync: deletePhoto } = useDeletePhoto();
+  const [updatePlace, setUpdatePlace] = useState('');
 
   useEffect(() => {
     if (selectedPhoto) {
@@ -47,6 +59,26 @@ const PhotoList = () => {
     setSelectedPhoto(photo);
   };
 
+  const handleDelete = async id => {
+    try {
+      await deletePhoto(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleShowAlert = id => {
+    showAlert(id, handleDelete);
+  };
+
+  const handleToggleInfo = () => {
+    setIsOpenInfo(!isOpenInfo);
+  };
+
+  const handleSelectUpdatePlace = newValue => {
+    setUpdatePlace(newValue);
+  };
+
   // if (data) {
   //   console.log(data);
   // }
@@ -57,24 +89,50 @@ const PhotoList = () => {
       <Box>
         {data &&
           data.photo.map((photo, index) => {
+            const { _id: photoId, photoURL, comments, place, date } = photo;
+
             return (
-              <Thumb key={photo._id} style={styles[index % styles.length]}>
+              <Thumb key={photoId} style={styles[index % styles.length]}>
                 <Image
-                  src={photo.photoURL}
+                  src={photoURL}
                   alt="photo"
                   onClick={() => handlePhotoClick(photo, index)}
                 />
                 {selectedPhoto && selectedPhoto === photo && (
                   <Modal onClose={() => setSelectedPhoto(null)}>
                     <ButtonWrapper>
-                      <DeleteBtn />
-                      <InformationButton />
+                      <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
+                      <InformationButton onClick={handleToggleInfo} />
                     </ButtonWrapper>
+                    <PhotoLightBoxImg src={photoURL} alt="" />
 
-                    <PhotoLightBoxImg src={photo.photoURL} alt="" />
-                    <Comments>{photo.comments}</Comments>
-                    <Place>{photo.place}</Place>
-                    <Date>{photo.date}</Date>
+                    {/* Info */}
+
+                    {isOpenInfo && (
+                      <InfoWrapper>
+                        <CloseBtn onClick={handleToggleInfo} />
+                        <form encType="multipart/form-data" action="">
+                          {/* <Place>{place}</Place> */}
+                          <Place
+                            onSelect={handleSelectUpdatePlace}
+                            updatePlace={place}
+                          />
+                        </form>
+                        {/* <ListInfo>
+                          <ItemInfo>
+                            <DateIcon />
+                            {date}
+                          </ItemInfo>
+                          <ItemInfo>
+                            <PlaceIcon />
+                            <Infotext>{place}</Infotext>
+                          </ItemInfo>
+                          <ItemInfo>
+                            Comments: <Infotext>{comments}</Infotext>{' '}
+                          </ItemInfo>
+                        </ListInfo> */}
+                      </InfoWrapper>
+                    )}
                   </Modal>
                 )}
               </Thumb>

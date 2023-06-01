@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
+import Autocomplite from 'components/Autocomplite/Autocomplite';
 // export const Title = styled.h1`
 //   font-family: ${p => p.theme.fonts.body};
 //   font-size: ${p => p.theme.fontSize[2]}px;
@@ -18,13 +19,15 @@ export const Box = styled.div`
 `;
 
 export const FieldWrapper = styled.div`
-  /* display: flex;
-  flex-wrap: wrap; */
+  /* display: flex; */
+  /* flex-wrap: wrap; */
   /* margin-left: 100px; */
   margin-left: 100px;
 `;
 
 export const InputWrapper = styled.div`
+  display: flex;
+  /* justify-content: space-between; */
   margin-bottom: 20px;
   position: relative;
 `;
