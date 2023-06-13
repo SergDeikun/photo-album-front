@@ -58,19 +58,19 @@ const Autocomplite = ({ onSelect, updatePlace, className }) => {
       } = suggestion;
 
       return (
-        <Item
+        <li
           className={className || ''}
           key={place_id}
           onClick={handleSelect(suggestion)}
         >
           <strong>{main_text}</strong> <small>{secondary_text}</small>
-        </Item>
+        </li>
       );
     });
   return (
     <Root className={className || ''} ref={ref}>
-      <Label>
-        <Input
+      <label>
+        <input
           // className={className || ''}
           type="text"
           value={value}
@@ -78,8 +78,8 @@ const Autocomplite = ({ onSelect, updatePlace, className }) => {
           //   disabled={!ready}
           placeholder="Location"
         />
-      </Label>
-      {status === 'OK' && <List>{renderSuggestions()}</List>}
+      </label>
+      {status === 'OK' && <ul>{renderSuggestions()}</ul>}
     </Root>
   );
 };

@@ -17,8 +17,13 @@ import {
   ButtonWrapper,
   PhotoLightBoxImg,
   DeleteBtn,
+  PrevButton,
+  PrevButtonIcon,
+  NextButton,
+  NextButtonIcon,
   InfoWrapper,
   CloseBtn,
+  PlaceWrapper,
   Place,
   // ListInfo,
   // ItemInfo,
@@ -39,6 +44,8 @@ const PhotoList = () => {
   const { id } = useParams();
   const { data } = useGetAlbumById(id);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [photoURLs, setPhotoURLs] = useState([]);
+  const [photoIndex, setPhotoIndex] = useState(null);
   const [isOpenInfo, setIsOpenInfo] = useState(false);
   const { mutateAsync: deletePhoto } = useDeletePhoto();
   const [updatePlace, setUpdatePlace] = useState('');
@@ -55,8 +62,9 @@ const PhotoList = () => {
     };
   }, [selectedPhoto]);
 
-  const handlePhotoClick = (photo, index) => {
+  const handleOpenPhoto = (photo, index) => {
     setSelectedPhoto(photo);
+    setPhotoIndex(index);
   };
 
   const handleDelete = async id => {
@@ -79,6 +87,22 @@ const PhotoList = () => {
     setUpdatePlace(newValue);
   };
 
+  const handlePrevPhoto = () => {
+    if (photoIndex === 0) {
+      setPhotoIndex(photoURLs.length - 1);
+    } else {
+      setPhotoIndex(photoIndex - 1);
+    }
+  };
+
+  const handleNextPhoto = () => {
+    if (photoIndex === photoURLs.length - 1) {
+      setPhotoIndex(0);
+    } else {
+      setPhotoIndex(photoIndex + 1);
+    }
+  };
+
   // if (data) {
   //   console.log(data);
   // }
@@ -96,7 +120,13 @@ const PhotoList = () => {
                 <Image
                   src={photoURL}
                   alt="photo"
-                  onClick={() => handlePhotoClick(photo, index)}
+                  onClick={() => {
+                    setPhotoURLs(data.photo.map(({ photoURL }) => photoURL));
+                    handleOpenPhoto(photo, index);
+                    // setSelectedPhoto(photo);
+
+                    // setPhotoIndex(index);
+                  }}
                 />
                 {selectedPhoto && selectedPhoto === photo && (
                   <Modal onClose={() => setSelectedPhoto(null)}>
@@ -104,7 +134,14 @@ const PhotoList = () => {
                       <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
                       <InformationButton onClick={handleToggleInfo} />
                     </ButtonWrapper>
-                    <PhotoLightBoxImg src={photoURL} alt="" />
+
+                    <PrevButton type="button" onClick={handlePrevPhoto}>
+                      <PrevButtonIcon />
+                    </PrevButton>
+                    <PhotoLightBoxImg src={photoURLs[photoIndex]} alt="img" />
+                    <NextButton type="button" onClick={handleNextPhoto}>
+                      <NextButtonIcon />
+                    </NextButton>
 
                     {/* Info */}
 
@@ -113,10 +150,12 @@ const PhotoList = () => {
                         <CloseBtn onClick={handleToggleInfo} />
                         <form encType="multipart/form-data" action="">
                           {/* <Place>{place}</Place> */}
-                          <Place
-                            onSelect={handleSelectUpdatePlace}
-                            updatePlace={place}
-                          />
+                          <PlaceWrapper>
+                            <Place
+                              onSelect={handleSelectUpdatePlace}
+                              updatePlace={place}
+                            />
+                          </PlaceWrapper>
                         </form>
                         {/* <ListInfo>
                           <ItemInfo>

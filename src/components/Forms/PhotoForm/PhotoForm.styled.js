@@ -13,6 +13,49 @@ import Autocomplite from 'components/Autocomplite/Autocomplite';
 //   margin-bottom: 50px;
 // `;
 
+export const Place = styled(Autocomplite)`
+  /* div {
+    display: flex;
+    margin-bottom: 10px;
+    width: 100%;
+    overflow: hidden;
+  } */
+
+  label {
+    display: block;
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    /* border-bottom: 2px solid white; */
+    outline: none;
+    padding: 6px;
+    font-size: 18px;
+    background-color: transparent;
+    color: ${p => p.theme.colors.grey};
+  }
+
+  ul {
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    background-color: ${p => p.theme.colors.bodyBg};
+    z-index: 5;
+  }
+
+  li {
+    color: ${p => p.theme.colors.black};
+    padding: 6px 15px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${p => p.theme.colors.grey};
+    }
+  }
+`;
+
 export const Box = styled.div`
   display: flex;
   justify-content: space-between;

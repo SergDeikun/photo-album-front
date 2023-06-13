@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 // import { MdLocationPin } from 'react-icons/md';
 // import { IoMdCalendar } from 'react-icons/io';
+import { GrFormPrevious } from 'react-icons/gr';
+import { GrFormNext } from 'react-icons/gr';
 
 import Backdrop from 'components/Backdrop/Backdrop';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
@@ -93,6 +95,45 @@ export const DeleteBtn = styled(DeleteButton)`
   }
 `;
 
+export const PrevButton = styled.button`
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 12px;
+  border: none;
+  border-radius: 50%;
+  /* background-color: transparent; */
+`;
+
+export const PrevButtonIcon = styled(GrFormPrevious)`
+  width: 36px;
+  height: 36px;
+  /* fill: ${p => p.theme.colors.white}; */
+  fill: white;
+`;
+
+export const NextButton = styled.button`
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 12px;
+  border: none;
+  border-radius: 50%;
+`;
+
+export const NextButtonIcon = styled(GrFormNext)`
+  width: 36px;
+  height: 36px;
+  /* fill: ${p => p.theme.colors.white}; */
+  fill: white;
+`;
+
 // Image
 
 export const PhotoLightBoxImg = styled.img`
@@ -122,13 +163,42 @@ export const CloseBtn = styled(CloseButton)`
   }
 `;
 
+export const PlaceWrapper = styled.div`
+  position: relative;
+  margin-top: 100px;
+`;
+
 export const Place = styled(Autocomplite)`
-  div {
-    margin-top: 80px;
+  label {
+    width: 100%;
+  }
+  input {
+    width: 100%;
+    border: none;
+    /* border-bottom: 2px solid white; */
+    outline: none;
+    padding: 6px;
+    font-size: 18px;
+    background-color: transparent;
+    color: ${p => p.theme.colors.black};
   }
 
-  input {
-    color: blue;
+  ul {
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    background-color: ${p => p.theme.colors.bodyBg};
+    z-index: 5;
+  }
+  li {
+    color: ${p => p.theme.colors.black};
+
+    padding: 6px 15px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${p => p.theme.colors.grey};
+    }
   }
 `;
 

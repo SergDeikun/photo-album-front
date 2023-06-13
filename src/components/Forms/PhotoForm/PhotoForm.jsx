@@ -97,7 +97,7 @@ const PhotoForm = () => {
 
           <FieldWrapper>
             <InputWrapper>
-              <Autocomplite onSelect={handleSelectPlace} />
+              <Place onSelect={handleSelectPlace} />
               <LocationButton />
             </InputWrapper>
 
