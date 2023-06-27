@@ -12,7 +12,7 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import useAddPhoto from 'react-query/useAddPhoto';
 
 import Button from 'components/Buttons/Button';
-import Autocomplite from 'components/Autocomplite/Autocomplite';
+// import Autocomplite from 'components/Autocomplite/Autocomplite';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 

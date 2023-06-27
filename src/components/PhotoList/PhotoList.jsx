@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
+import { useGetQuery } from 'react-query/useGetQuery';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import { showAlert } from 'helpers/showAlert';
 
@@ -49,6 +50,18 @@ const PhotoList = () => {
   const [isOpenInfo, setIsOpenInfo] = useState(false);
   const { mutateAsync: deletePhoto } = useDeletePhoto();
   const [updatePlace, setUpdatePlace] = useState('');
+
+  const { myAlbums } = useGetQuery('user');
+
+  const { photo } = myAlbums.find(item => {
+    return item._id === id;
+  });
+  console.log(photo);
+
+  const [place1, setPlace] = useState(photo.place);
+  console.log(place1);
+
+  // console.log(photo);
 
   useEffect(() => {
     if (selectedPhoto) {
@@ -153,7 +166,7 @@ const PhotoList = () => {
                           <PlaceWrapper>
                             <Place
                               onSelect={handleSelectUpdatePlace}
-                              updatePlace={place}
+                              place2={place}
                             />
                           </PlaceWrapper>
                         </form>

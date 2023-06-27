@@ -181,6 +181,7 @@ export const Place = styled(Autocomplite)`
     font-size: 18px;
     background-color: transparent;
     color: ${p => p.theme.colors.black};
+    overflow-wrap: break-word;
   }
 
   ul {
@@ -192,7 +193,6 @@ export const Place = styled(Autocomplite)`
   }
   li {
     color: ${p => p.theme.colors.black};
-
     padding: 6px 15px;
     cursor: pointer;
 

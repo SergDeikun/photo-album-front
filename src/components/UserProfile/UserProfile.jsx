@@ -13,8 +13,12 @@ import {
   AvatarWrapper,
   Avatar,
   UserInfo,
-  Name,
-  Email,
+  InputWrapper,
+  Label,
+  Field,
+  SubmitButton,
+  // Name,
+  // Email,
   Title,
   Item,
   LinkAlbum,
@@ -71,21 +75,32 @@ const UserProfile = () => {
                 onSubmit={handleSubmit}
                 action=""
               >
-                <label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                  />
-                </label>
-                <label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                  />
-                </label>
-                <button type="submit">Go</button>
+                <InputWrapper>
+                  <Label>
+                    Name:
+                    <Field
+                      type="text"
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                    />
+                  </Label>
+                  <SubmitButton type="submit">
+                    <EditIcon />
+                  </SubmitButton>
+                </InputWrapper>
+                <InputWrapper>
+                  <Label>
+                    Email:
+                    <Field
+                      type="email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                    />
+                  </Label>
+                  <SubmitButton type="submit">
+                    <EditIcon />
+                  </SubmitButton>
+                </InputWrapper>
               </form>
               {/* <Name> {data.name}</Name>
               <Email> {data.email}</Email> */}
