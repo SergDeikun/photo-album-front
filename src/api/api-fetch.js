@@ -27,16 +27,6 @@ export const loginUser = async ({ email, password }) => {
   return response.data;
 };
 
-export const logout = async () => {
-  const response = await axios.get(`${API_URL}/api/auth/logout`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return response.data;
-};
-
 // User
 export const getCurrentUser = async () => {
   const response = await axios.get(`${API_URL}/api/user/current`, {
@@ -48,9 +38,29 @@ export const getCurrentUser = async () => {
   return response.data;
 };
 
-// export const updateUser = async () => {
-//   const response = await axios;
-// };
+export const updateUser = async ({ name, email }) => {
+  const response = await axios.patch(
+    `${API_URL}/api/user/update`,
+    { name, email },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+};
+
+export const logout = async () => {
+  const response = await axios.get(`${API_URL}/api/user/logout`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
 
 // Album
 export const addAlbum = async newAlbum => {

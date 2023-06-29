@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
+import { AiOutlineCheck } from 'react-icons/ai';
 
 import bgAvatar from '../../images/bg-avatar.jpg';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
@@ -43,14 +44,36 @@ export const Avatar = styled(FaUser)`
 
 export const UserInfo = styled.div`
   margin-left: 50px;
-  /* outline: 1px solid tomato; */
 `;
 
 export const InputWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
   /* outline: 1px solid teal; */
-  margin-bottom: 20px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    box-shadow: 0px -1px 0px ${p => p.theme.colors.red};
+    transform: rotateY(90deg);
+    transition: transform 0.25s linear;
+  }
+
+  &:hover:after,
+  &:focus-within:after {
+    transform: rotate(0deg);
+  }
 `;
 
 export const Label = styled.label`
@@ -72,24 +95,36 @@ export const Field = styled.input`
 `;
 
 export const SubmitButton = styled.button`
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
   background-color: transparent;
+  border-radius: 50%;
+  border: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: grey;
+    border-radius: 50%;
+  }
 `;
 
-// export const Name = styled.p`
-//   font-family: ${p => p.theme.fonts.body};
-//   font-size: ${p => p.theme.fontSize[1]}px;
-//   font-weight: ${p => p.theme.fontWeights.medium};
-//   color: ${p => p.theme.colors.white};
-// `;
+export const EditUserButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: none;
+`;
 
-// export const Email = styled.p`
-//   font-family: ${p => p.theme.fonts.body};
-//   font-size: ${p => p.theme.fontSize[1]}px;
-//   font-weight: ${p => p.theme.fontWeights.medium};
-//   color: ${p => p.theme.colors.white};
-//   margin-top: 10px;
-// `;
+export const CheckIcon = styled(AiOutlineCheck)`
+  width: 24px;
+  height: 24px;
+  fill: ${p => p.theme.colors.black};
+`;
 
 //Albums
 
@@ -155,16 +190,16 @@ export const EditIcon = styled(MdOutlineEdit)`
   width: 24px;
   height: 24px;
   opacity: 0;
+  fill: ${p => p.theme.colors.black};
+
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   ${Item}:hover & {
     opacity: 1;
-    fill: ${p => p.theme.colors.black};
   }
 
   ${InputWrapper}:hover & {
     opacity: 1;
-    fill: ${p => p.theme.colors.black};
   }
 
   ${EditLink}:hover & {

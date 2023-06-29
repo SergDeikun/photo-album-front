@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
+import useUpdateUser from 'react-query/useUpdateUser';
 
 import { showAlert } from 'helpers/showAlert';
 
@@ -17,6 +18,8 @@ import {
   Label,
   Field,
   SubmitButton,
+  EditUserButton,
+  CheckIcon,
   // Name,
   // Email,
   Title,
@@ -31,15 +34,39 @@ import {
 
 const UserProfile = () => {
   const { data } = useGetCurrentUser();
+  const { mutateAsync: updateUser, isSuccess } = useUpdateUser();
+  const [isFocusedName, setIsFocusedName] = useState(false);
+  const [isFocusedEmail, setIsFocusedEmail] = useState(false);
+
   // console.log(data);
 
   const [name, setName] = useState(data.name);
   const [email, setEmail] = useState(data.email);
 
   const { mutateAsync: deleteAlbum } = useDeleteAlbum();
+  console.log(isSuccess);
 
-  const handleSubmit = e => {
+  const handleFocusedName = () => {
+    setIsFocusedName(true);
+  };
+
+  const handleFocusedEmail = () => {
+    setIsFocusedEmail(true);
+  };
+
+  const handleSubmit = async e => {
     e.preventDefault();
+
+    try {
+      await updateUser({ name, email });
+
+      if (isSuccess) {
+        setIsFocusedName(false);
+        // setIsFocusedEmail(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDelete = async id => {
@@ -76,18 +103,28 @@ const UserProfile = () => {
                 action=""
               >
                 <InputWrapper>
-                  <Label>
+                  <Label htmlFor="1">
                     Name:
                     <Field
+                      id="1"
                       type="text"
                       value={name}
                       onChange={e => setName(e.target.value)}
+                      onClick={handleFocusedName}
                     />
                   </Label>
-                  <SubmitButton type="submit">
-                    <EditIcon />
-                  </SubmitButton>
+
+                  {isFocusedName ? (
+                    <SubmitButton type="submit" onClick={handleSubmit}>
+                      <CheckIcon />
+                    </SubmitButton>
+                  ) : (
+                    <EditUserButton onClick={handleFocusedName} type="button">
+                      <EditIcon />
+                    </EditUserButton>
+                  )}
                 </InputWrapper>
+
                 <InputWrapper>
                   <Label>
                     Email:
@@ -95,11 +132,19 @@ const UserProfile = () => {
                       type="email"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
+                      onClick={handleFocusedEmail}
                     />
                   </Label>
-                  <SubmitButton type="submit">
-                    <EditIcon />
-                  </SubmitButton>
+
+                  {isFocusedEmail ? (
+                    <SubmitButton type="submit" onClick={handleSubmit}>
+                      <CheckIcon />
+                    </SubmitButton>
+                  ) : (
+                    <EditUserButton onClick={handleFocusedEmail} type="button">
+                      <EditIcon />
+                    </EditUserButton>
+                  )}
                 </InputWrapper>
               </form>
               {/* <Name> {data.name}</Name>
