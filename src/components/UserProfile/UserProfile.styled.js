@@ -4,7 +4,7 @@ import { FaUser } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
 import { AiOutlineCheck } from 'react-icons/ai';
 
-import bgAvatar from '../../images/bg-avatar.jpg';
+import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
 export const Box = styled.div`
@@ -14,25 +14,23 @@ export const Box = styled.div`
 // User
 export const UserWrapper = styled.div`
   display: flex;
-  /* align-items: center; */
   align-items: end;
 
   padding: 20px;
-  /* background-image: url(${bgAvatar}); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 `;
 
-export const AvatarWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 2px solid ${p => p.theme.colors.black};
-  width: 200px;
-  height: 200px;
-`;
+// export const AvatarWrapper = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 50%;
+//   border: 2px solid ${p => p.theme.colors.black};
+//   width: 200px;
+//   height: 200px;
+// `;
 
 export const Avatar = styled(FaUser)`
   width: 100px;
@@ -47,7 +45,6 @@ export const UserInfo = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-  /* outline: 1px solid teal; */
   width: 100%;
   position: relative;
   display: flex;
@@ -110,13 +107,12 @@ export const SubmitButton = styled.button`
   }
 `;
 
-export const EditUserButton = styled.button`
+export const EditIconWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 3px;
   background-color: transparent;
-  border-radius: 50%;
   border: none;
 `;
 
@@ -160,6 +156,17 @@ export const IconAlbum = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 30%;
+`;
+
+export const DefaultCover = styled(DefaultAlbumCover)`
+  width: 40px;
+  height: 40px;
+  border-radius: 30%;
+
+  span {
+    font-family: ${p => p.theme.fonts.body};
+    font-size: 8px;
+  }
 `;
 
 export const AlbumName = styled.p`

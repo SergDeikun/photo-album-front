@@ -4,6 +4,8 @@ import { MdOutlineDeleteOutline } from 'react-icons/md';
 
 import { MdPhotoCamera } from 'react-icons/md';
 
+import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
+
 export const Box = styled.div`
   position: relative;
   margin-top: 80px;
@@ -16,6 +18,17 @@ export const FileWrapper = styled.div`
   margin-bottom: 30px;
   overflow: hidden;
   border-radius: ${p => p.theme.borderRadius.small};
+`;
+
+export const DefaultCover = styled(DefaultAlbumCover)`
+  width: 100%;
+  height: 100%;
+  span {
+    /* width: 225px; */
+    display: none;
+    font-size: ${p => p.theme.fontSize[3]}px;
+    word-break: break-all;
+  }
 `;
 
 export const Cover = styled.img`

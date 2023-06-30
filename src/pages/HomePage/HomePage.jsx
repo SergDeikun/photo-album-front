@@ -2,6 +2,7 @@ import Container from 'components/Container/Container';
 import {
   BoxImage,
   Title,
+  Word,
   Img1,
   Img2,
   Img3,

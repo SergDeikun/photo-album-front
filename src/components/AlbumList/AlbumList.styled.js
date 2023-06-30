@@ -25,21 +25,15 @@ export const Item = styled.li`
 export const LinkItem = styled(Link)`
   display: block;
   width: 100%;
+  /* border: 3px solid black; */
 `;
 
-export const ImageBox = styled.div`
-  /* outline: 1px solid tomato; */
-  /* width: 600px;
-  height: 500px; */
-  width: 100%;
-  height: 100%;
-  background-color: azure;
-`;
+// export const ImageBox = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   background-color: #2d545e;
+// `;
 export const Image = styled.img`
-  /* max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; */
-
   width: 100%;
   height: 100%;
   object-fit: cover;

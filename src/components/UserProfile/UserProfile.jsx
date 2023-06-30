@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Avatar from 'react-avatar';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
 import useUpdateUser from 'react-query/useUpdateUser';
+
+import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 
 import { showAlert } from 'helpers/showAlert';
 
@@ -11,14 +14,14 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import {
   Box,
   UserWrapper,
-  AvatarWrapper,
-  Avatar,
+  // AvatarWrapper,
+  // Avatar,
   UserInfo,
   InputWrapper,
   Label,
   Field,
   SubmitButton,
-  EditUserButton,
+  EditIconWrap,
   CheckIcon,
   // Name,
   // Email,
@@ -26,6 +29,7 @@ import {
   Item,
   LinkAlbum,
   IconAlbum,
+  DefaultCover,
   AlbumName,
   DeleteBtn,
   EditLink,
@@ -34,7 +38,7 @@ import {
 
 const UserProfile = () => {
   const { data } = useGetCurrentUser();
-  const { mutateAsync: updateUser, isSuccess } = useUpdateUser();
+  const { mutateAsync: updateUser } = useUpdateUser();
   const [isFocusedName, setIsFocusedName] = useState(false);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
 
@@ -44,11 +48,12 @@ const UserProfile = () => {
   const [email, setEmail] = useState(data.email);
 
   const { mutateAsync: deleteAlbum } = useDeleteAlbum();
-  console.log(isSuccess);
 
   const handleFocusedName = () => {
     setIsFocusedName(true);
   };
+
+  // setIsFocusedEmail(false);
 
   const handleFocusedEmail = () => {
     setIsFocusedEmail(true);
@@ -58,12 +63,18 @@ const UserProfile = () => {
     e.preventDefault();
 
     try {
-      await updateUser({ name, email });
-
-      if (isSuccess) {
-        setIsFocusedName(false);
-        // setIsFocusedEmail(false);
-      }
+      await updateUser(
+        { name, email },
+        {
+          onSuccess: () => {
+            setIsFocusedName(false);
+            setIsFocusedEmail(false);
+          },
+          onError: error => {
+            notifyError(error.response.data.message);
+          },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -92,9 +103,20 @@ const UserProfile = () => {
       {data && (
         <Box>
           <UserWrapper>
-            <AvatarWrapper>
-              <Avatar />
-            </AvatarWrapper>
+            {/* <AvatarWrapper> */}
+            {/* <Avatar name={name} color={'#165954'} round="100px" size="200px" /> */}
+            <Avatar
+              name={name}
+              color={Avatar.getRandomColor('sitebase', [
+                '#165954',
+                '#ed6b5b',
+                '#876d97',
+              ])}
+              round="100px"
+              size="200px"
+            />
+            {/* <Avatar /> */}
+            {/* </AvatarWrapper> */}
             {/* Form */}
             <UserInfo>
               <form
@@ -103,14 +125,13 @@ const UserProfile = () => {
                 action=""
               >
                 <InputWrapper>
-                  <Label htmlFor="1">
+                  <Label>
                     Name:
                     <Field
-                      id="1"
                       type="text"
                       value={name}
                       onChange={e => setName(e.target.value)}
-                      onClick={handleFocusedName}
+                      onFocus={handleFocusedName}
                     />
                   </Label>
 
@@ -119,9 +140,9 @@ const UserProfile = () => {
                       <CheckIcon />
                     </SubmitButton>
                   ) : (
-                    <EditUserButton onClick={handleFocusedName} type="button">
+                    <EditIconWrap>
                       <EditIcon />
-                    </EditUserButton>
+                    </EditIconWrap>
                   )}
                 </InputWrapper>
 
@@ -132,7 +153,7 @@ const UserProfile = () => {
                       type="email"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
-                      onClick={handleFocusedEmail}
+                      onFocus={handleFocusedEmail}
                     />
                   </Label>
 
@@ -141,9 +162,9 @@ const UserProfile = () => {
                       <CheckIcon />
                     </SubmitButton>
                   ) : (
-                    <EditUserButton onClick={handleFocusedEmail} type="button">
+                    <EditIconWrap>
                       <EditIcon />
-                    </EditUserButton>
+                    </EditIconWrap>
                   )}
                 </InputWrapper>
               </form>
@@ -159,7 +180,12 @@ const UserProfile = () => {
                 return (
                   <Item key={id}>
                     <LinkAlbum to={`/album/${id}`}>
-                      <IconAlbum src={backgroundURL} alt="cover" />
+                      {backgroundURL ? (
+                        <IconAlbum src={backgroundURL} alt="cover" />
+                      ) : (
+                        <DefaultCover />
+                      )}
+
                       <AlbumName>{name}</AlbumName>
                     </LinkAlbum>
                     <DeleteBtn onDelete={() => handleShowAlert(id)} />

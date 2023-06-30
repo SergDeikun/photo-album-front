@@ -11,10 +11,10 @@ export const Box = styled.div`
 
 export const Title = styled.h1`
   /* width: 445px; */
-  width: 526px;
+  width: 545px;
   /* text-align: center; */
 
-  margin-top: 100px;
+  margin-top: 120px;
 
   margin-left: auto;
   margin-right: auto;
@@ -26,71 +26,83 @@ export const Title = styled.h1`
   line-height: 1.2;
 `;
 
+export const Word = styled.span`
+  color: ${p => p.theme.colors.red};
+`;
+
 export const BoxImage = styled.div`
   position: relative;
   display: flex;
+  /* transform: rotate(90deg); */
 `;
 
 export const Img1 = styled.img`
   position: absolute;
   right: -20px;
-  top: -60px;
+  top: -30px;
   width: 300px;
   rotate: -15deg;
-  /* z-index: 1; */
-  /* height: 100px; */
 `;
 export const Img2 = styled.img`
   position: absolute;
   top: 50px;
   left: 390px;
   width: 500px;
-  /* rotate: 10deg; */
   rotate: 7deg;
 `;
 
 export const Img3 = styled.img`
   width: 300px;
-  top: 100px;
+  top: 90px;
+  left: -60px;
   position: absolute;
-  rotate: -10deg;
+  rotate: -5deg;
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    scale: 1.2;
+    z-index: 7;
+  }
 `;
 
 export const Img4 = styled.img`
   position: absolute;
   right: 100px;
-  /* top: 215px; */
   top: 300px;
   z-index: 1;
   width: 300px;
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    scale: 1.2;
+  }
 `;
-
-// export const Img5 = styled.img`
-//   position: absolute;
-//   left: 100px;
-//   top: 300px;
-
-//   width: 100px;
-// `;
 
 export const Img6 = styled.img`
   position: absolute;
   left: 0px;
-  /* top: 100px; */
-  top: 300px;
-
+  top: 290px;
   width: 300px;
-  /* rotate: 10deg; */
-  rotate: 20deg;
+  rotate: 5deg;
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    scale: 1.2;
+  }
 `;
 
 export const Img8 = styled.img`
   position: absolute;
   left: 0px;
-  /* top: 100px; */
-  top: -60px;
-
+  top: -85px;
   width: 300px;
-  /* rotate: 10deg; */
-  rotate: 14deg;
+  rotate: 10deg;
+  z-index: 6;
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    scale: 1.2;
+    z-index: 6;
+  }
 `;

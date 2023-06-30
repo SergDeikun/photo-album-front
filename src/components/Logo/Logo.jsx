@@ -1,9 +1,9 @@
-import { LogoLink } from './Logo.styled';
+import { LogoLink, LogoIcon } from './Logo.styled';
 
 const Logo = () => {
   return (
     <>
-      <LogoLink to={'/'}>LOGO</LogoLink>
+      <LogoLink to={'/'}>Keep</LogoLink>
     </>
   );
 };

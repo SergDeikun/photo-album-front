@@ -12,6 +12,7 @@ import { showAlert } from 'helpers/showAlert';
 import {
   Box,
   FileWrapper,
+  DefaultCover,
   Cover,
   BlackBox,
   PhotocameraIcon,
@@ -83,7 +84,11 @@ const UpdateAlbum = () => {
         <Box>
           <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
             <FileWrapper>
-              <Cover src={previewBackground || backgroundURL} alt="cover" />
+              {previewBackground || backgroundURL ? (
+                <Cover src={previewBackground || backgroundURL} alt="cover" />
+              ) : (
+                <DefaultCover />
+              )}
 
               <BlackBox>
                 <PhotocameraIcon />
