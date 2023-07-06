@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -33,7 +35,7 @@ export const LinkItem = styled(Link)`
 //   height: 100%;
 //   background-color: #2d545e;
 // `;
-export const Image = styled.img`
+export const Image = styled(LazyLoadImage)`
   width: 100%;
   height: 100%;
   object-fit: cover;

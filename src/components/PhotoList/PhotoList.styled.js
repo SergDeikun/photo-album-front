@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import { MdLocationPin } from 'react-icons/md';
 // import { IoMdCalendar } from 'react-icons/io';
 import { GrFormPrevious } from 'react-icons/gr';
@@ -10,7 +10,7 @@ import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
 
-// import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const AlbumTitle = styled.h1`
   font-family: ${p => p.theme.fonts.body};
@@ -18,7 +18,7 @@ export const AlbumTitle = styled.h1`
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
   text-align: center;
-  margin-top: 70px;
+  margin-top: 80px;
   margin-bottom: 20px;
 `;
 // PhotoList
@@ -27,43 +27,51 @@ export const Box = styled.div`
   flex-wrap: wrap;
   text-align: center;
   justify-content: space-between;
+  padding-bottom: 20px;
 `;
 
 export const Thumb = styled.div`
-  /* width: 400px;
-  height: 532px; */
-  /* margin-top: 30px; */
   position: relative;
   overflow: hidden;
   cursor: pointer;
 
-  /* &::before {
+  &:after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 0;
+    height: 100%;
     width: 100%;
-    background: #455a47;
-    z-index: -1;
-    transition: all 0.5s linear;
-  } */
+    background: #234d58;
+    transform: translateY(100%);
+    transition: transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  ${p => p.isLoaded && '&:after {transform: translateY(-100%)}'};
 `;
 
-export const LinkImg = styled(Link)`
+export const ImageWrapper = styled.div`
+  position: absolute;
+  /* z-index: 1; */
   width: 100%;
   height: 100%;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.75s cubic-bezier(0.645, 0.045, 0.355, 1),
+    transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  ${p => p.isLoaded && 'transform:translateY(0);opacity:1'};
 `;
 
-export const Image = styled.img`
+export const Image = styled(LazyLoadImage)`
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-  transition: transform 0.2s ease-in-out;
+  transition-delay: 0.4s;
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    transform: scale(1.02);
+    scale: 1.02;
   }
 `;
 

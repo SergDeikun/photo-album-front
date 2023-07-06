@@ -12,6 +12,7 @@ import InformationButton from 'components/Buttons/InformationButton/Information'
 import {
   AlbumTitle,
   Box,
+  ImageWrapper,
   Thumb,
   Image,
   Modal,
@@ -50,18 +51,11 @@ const PhotoList = () => {
   const [isOpenInfo, setIsOpenInfo] = useState(false);
   const { mutateAsync: deletePhoto } = useDeletePhoto();
   const [updatePlace, setUpdatePlace] = useState('');
+  const [isLoadedPhoto, setIsLoadedPhoto] = useState([]);
 
-  const { myAlbums } = useGetQuery('user');
-
-  const { photo } = myAlbums.find(item => {
-    return item._id === id;
-  });
-  console.log(photo);
-
-  const [place1, setPlace] = useState(photo.place);
-  console.log(place1);
-
-  // console.log(photo);
+  const handleImageLoad = index => {
+    setIsLoadedPhoto(prevLoadedPhotos => [...prevLoadedPhotos, index]);
+  };
 
   useEffect(() => {
     if (selectedPhoto) {
@@ -120,6 +114,10 @@ const PhotoList = () => {
   //   console.log(data);
   // }
 
+  // const handleImageLoad = () => {
+  //   setIsLoaded(true);
+  // };
+
   return (
     <>
       {data && <AlbumTitle>{data.name}</AlbumTitle>}
@@ -129,48 +127,59 @@ const PhotoList = () => {
             const { _id: photoId, photoURL, comments, place, date } = photo;
 
             return (
-              <Thumb key={photoId} style={styles[index % styles.length]}>
-                <Image
-                  src={photoURL}
-                  alt="photo"
-                  onClick={() => {
-                    setPhotoURLs(data.photo.map(({ photoURL }) => photoURL));
-                    handleOpenPhoto(photo, index);
-                    // setSelectedPhoto(photo);
+              <Thumb
+                key={photoId}
+                style={styles[index % styles.length]}
+                // isLoaded={isLoaded}
+                isLoaded={isLoadedPhoto.includes(index)}
+              >
+                <ImageWrapper
+                  isLoaded={isLoadedPhoto.includes(index)}
+                  // isLoaded={isLoaded}
+                >
+                  <Image
+                    // onLoad={handleImageLoad}
+                    afterLoad={() => handleImageLoad(index)}
+                    src={photoURL}
+                    alt="photo"
+                    onClick={() => {
+                      setPhotoURLs(data.photo.map(({ photoURL }) => photoURL));
+                      handleOpenPhoto(photo, index);
+                      // setSelectedPhoto(photo);
 
-                    // setPhotoIndex(index);
-                  }}
-                />
-                {selectedPhoto && selectedPhoto === photo && (
-                  <Modal onClose={() => setSelectedPhoto(null)}>
-                    <ButtonWrapper>
-                      <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
-                      <InformationButton onClick={handleToggleInfo} />
-                    </ButtonWrapper>
+                      // setPhotoIndex(index);
+                    }}
+                  />
+                  {selectedPhoto && selectedPhoto === photo && (
+                    <Modal onClose={() => setSelectedPhoto(null)}>
+                      <ButtonWrapper>
+                        <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
+                        <InformationButton onClick={handleToggleInfo} />
+                      </ButtonWrapper>
 
-                    <PrevButton type="button" onClick={handlePrevPhoto}>
-                      <PrevButtonIcon />
-                    </PrevButton>
-                    <PhotoLightBoxImg src={photoURLs[photoIndex]} alt="img" />
-                    <NextButton type="button" onClick={handleNextPhoto}>
-                      <NextButtonIcon />
-                    </NextButton>
+                      <PrevButton type="button" onClick={handlePrevPhoto}>
+                        <PrevButtonIcon />
+                      </PrevButton>
+                      <PhotoLightBoxImg src={photoURLs[photoIndex]} alt="img" />
+                      <NextButton type="button" onClick={handleNextPhoto}>
+                        <NextButtonIcon />
+                      </NextButton>
 
-                    {/* Info */}
+                      {/* Info */}
 
-                    {isOpenInfo && (
-                      <InfoWrapper>
-                        <CloseBtn onClick={handleToggleInfo} />
-                        <form encType="multipart/form-data" action="">
-                          {/* <Place>{place}</Place> */}
-                          <PlaceWrapper>
-                            <Place
-                              onSelect={handleSelectUpdatePlace}
-                              place2={place}
-                            />
-                          </PlaceWrapper>
-                        </form>
-                        {/* <ListInfo>
+                      {isOpenInfo && (
+                        <InfoWrapper>
+                          <CloseBtn onClick={handleToggleInfo} />
+                          <form encType="multipart/form-data" action="">
+                            {/* <Place>{place}</Place> */}
+                            <PlaceWrapper>
+                              <Place
+                                onSelect={handleSelectUpdatePlace}
+                                place2={place}
+                              />
+                            </PlaceWrapper>
+                          </form>
+                          {/* <ListInfo>
                           <ItemInfo>
                             <DateIcon />
                             {date}
@@ -183,10 +192,11 @@ const PhotoList = () => {
                             Comments: <Infotext>{comments}</Infotext>{' '}
                           </ItemInfo>
                         </ListInfo> */}
-                      </InfoWrapper>
-                    )}
-                  </Modal>
-                )}
+                        </InfoWrapper>
+                      )}
+                    </Modal>
+                  )}
+                </ImageWrapper>
               </Thumb>
             );
           })}
