@@ -26,7 +26,7 @@ import {
   Comments,
 } from './PhotoForm.styled';
 
-const PhotoForm = () => {
+const PhotoForm = ({ onClose }) => {
   const [place, setPlace] = useState('');
   const [date, setDate] = useState('');
   const [photoURL, setPhoto] = useState('');
@@ -71,6 +71,7 @@ const PhotoForm = () => {
             setPlace('');
             setDate('');
             setComments('');
+            onClose();
           },
           onError: error => {
             notifyError(error.response.data.message);

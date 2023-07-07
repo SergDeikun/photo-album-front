@@ -72,12 +72,12 @@ const AppBar = () => {
       )}
       {isOpenAlbumForm && (
         <Modal onClose={handleToggleAlbumForm}>
-          <AlbumForm />
+          <AlbumForm onClose={handleToggleAlbumForm} />
         </Modal>
       )}
       {isOpenPhotoForm && (
         <Modal onClose={handleTogglePhotoForm}>
-          <PhotoForm />
+          <PhotoForm onClose={handleTogglePhotoForm} />
         </Modal>
       )}
     </Wrapper>

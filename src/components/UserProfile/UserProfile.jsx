@@ -173,6 +173,8 @@ const UserProfile = () => {
             </UserInfo>
           </UserWrapper>
 
+          {/* Album list */}
+
           <Title>My Albums</Title>
           <ul>
             {data &&

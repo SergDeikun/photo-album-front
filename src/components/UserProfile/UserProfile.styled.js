@@ -9,6 +9,7 @@ import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
 export const Box = styled.div`
   margin-top: 80px;
+  padding-bottom: 20px;
 `;
 
 // User

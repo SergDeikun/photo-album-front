@@ -130,56 +130,49 @@ const PhotoList = () => {
               <Thumb
                 key={photoId}
                 style={styles[index % styles.length]}
-                // isLoaded={isLoaded}
                 isLoaded={isLoadedPhoto.includes(index)}
               >
-                <ImageWrapper
-                  isLoaded={isLoadedPhoto.includes(index)}
-                  // isLoaded={isLoaded}
-                >
+                <ImageWrapper isLoaded={isLoadedPhoto.includes(index)}>
                   <Image
-                    // onLoad={handleImageLoad}
                     afterLoad={() => handleImageLoad(index)}
                     src={photoURL}
                     alt="photo"
                     onClick={() => {
                       setPhotoURLs(data.photo.map(({ photoURL }) => photoURL));
                       handleOpenPhoto(photo, index);
-                      // setSelectedPhoto(photo);
-
-                      // setPhotoIndex(index);
                     }}
                   />
-                  {selectedPhoto && selectedPhoto === photo && (
-                    <Modal onClose={() => setSelectedPhoto(null)}>
-                      <ButtonWrapper>
-                        <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
-                        <InformationButton onClick={handleToggleInfo} />
-                      </ButtonWrapper>
+                </ImageWrapper>
+                {selectedPhoto && selectedPhoto === photo && (
+                  <Modal onClose={() => setSelectedPhoto(null)}>
+                    <ButtonWrapper>
+                      <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
+                      <InformationButton onClick={handleToggleInfo} />
+                    </ButtonWrapper>
 
-                      <PrevButton type="button" onClick={handlePrevPhoto}>
-                        <PrevButtonIcon />
-                      </PrevButton>
-                      <PhotoLightBoxImg src={photoURLs[photoIndex]} alt="img" />
-                      <NextButton type="button" onClick={handleNextPhoto}>
-                        <NextButtonIcon />
-                      </NextButton>
+                    <PrevButton type="button" onClick={handlePrevPhoto}>
+                      <PrevButtonIcon />
+                    </PrevButton>
+                    <PhotoLightBoxImg src={photoURLs[photoIndex]} alt="img" />
+                    <NextButton type="button" onClick={handleNextPhoto}>
+                      <NextButtonIcon />
+                    </NextButton>
 
-                      {/* Info */}
+                    {/* Info */}
 
-                      {isOpenInfo && (
-                        <InfoWrapper>
-                          <CloseBtn onClick={handleToggleInfo} />
-                          <form encType="multipart/form-data" action="">
-                            {/* <Place>{place}</Place> */}
-                            <PlaceWrapper>
-                              <Place
-                                onSelect={handleSelectUpdatePlace}
-                                place2={place}
-                              />
-                            </PlaceWrapper>
-                          </form>
-                          {/* <ListInfo>
+                    {isOpenInfo && (
+                      <InfoWrapper>
+                        <CloseBtn onClick={handleToggleInfo} />
+                        <form encType="multipart/form-data" action="">
+                          {/* <Place>{place}</Place> */}
+                          <PlaceWrapper>
+                            <Place
+                              onSelect={handleSelectUpdatePlace}
+                              place2={place}
+                            />
+                          </PlaceWrapper>
+                        </form>
+                        {/* <ListInfo>
                           <ItemInfo>
                             <DateIcon />
                             {date}
@@ -192,11 +185,10 @@ const PhotoList = () => {
                             Comments: <Infotext>{comments}</Infotext>{' '}
                           </ItemInfo>
                         </ListInfo> */}
-                        </InfoWrapper>
-                      )}
-                    </Modal>
-                  )}
-                </ImageWrapper>
+                      </InfoWrapper>
+                    )}
+                  </Modal>
+                )}
               </Thumb>
             );
           })}

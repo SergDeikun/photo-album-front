@@ -19,6 +19,7 @@ export const AlbumTitle = styled.h1`
   color: ${p => p.theme.colors.black};
   text-align: center;
   margin-top: 80px;
+
   margin-bottom: 20px;
 `;
 // PhotoList

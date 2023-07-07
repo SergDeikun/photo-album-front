@@ -21,14 +21,11 @@ const AlbumList = () => {
               // Album
               <Item key={id}>
                 <LinkItem to={`/album/${id}`}>
-                  {/* <ImageBox> */}
                   {backgroundURL ? (
                     <Image src={backgroundURL} alt="cover" />
                   ) : (
                     <DefaultAlbumCover />
                   )}
-
-                  {/* </ImageBox> */}
                 </LinkItem>
                 <AlbumName>{name}</AlbumName>
               </Item>

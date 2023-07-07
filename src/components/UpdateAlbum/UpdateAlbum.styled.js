@@ -90,6 +90,7 @@ export const PhotoList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  padding-bottom: 20px;
 `;
 
 export const PhotoItem = styled.li`

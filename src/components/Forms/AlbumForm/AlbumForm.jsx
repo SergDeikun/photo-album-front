@@ -7,7 +7,7 @@ import Button from 'components/Buttons/Button';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 import TextInput from 'components/Inputs/TextInput/TextInput';
 
-const AlbumForm = ({ updateName }) => {
+const AlbumForm = ({ updateName, onClose }) => {
   const [name, setName] = useState(updateName);
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
@@ -37,6 +37,7 @@ const AlbumForm = ({ updateName }) => {
           setName('');
           setPreviewBackground('');
           setBackgroundURL('');
+          onClose();
         },
         onError: error => {
           notifyError(error.response.data.message);
