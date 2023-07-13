@@ -14,6 +14,7 @@ export const Box = styled.div`
 // File
 export const FileWrapper = styled.div`
   position: relative;
+  width: 1280px;
   height: 200px;
   margin-bottom: 30px;
   overflow: hidden;
@@ -21,8 +22,8 @@ export const FileWrapper = styled.div`
 `;
 
 export const DefaultCover = styled(DefaultAlbumCover)`
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   span {
     /* width: 225px; */
     display: none;
@@ -126,5 +127,5 @@ export const DeleteBtn = styled.button`
 export const DeleteIcon = styled(MdOutlineDeleteOutline)`
   width: 24px;
   height: 24px;
-  fill: ${p => p.theme.colors.red};
+  fill: ${p => p.theme.colors.black};
 `;

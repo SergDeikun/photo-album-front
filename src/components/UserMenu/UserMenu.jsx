@@ -6,7 +6,7 @@ import useLogout from 'react-query/useLogout';
 import Modal from 'components/Modal/Modal';
 import Button from 'components/Buttons/Button';
 
-import { ButtonMenu, MenuLink } from './UserMenu.styled';
+import { ButtonMenu, MenuList, MenuItem, MenuLink } from './UserMenu.styled';
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,15 +52,23 @@ const UserMenu = () => {
 
       {isOpen && (
         <Modal onClose={handleToggleMenu}>
-          <MenuLink to={'/'} onClick={handleToggleMenu}>
-            Home page
-          </MenuLink>
-          <MenuLink to={'/profile'} onClick={handleToggleMenu}>
-            Profile
-          </MenuLink>
-          <MenuLink to={'/album-list'} onClick={handleToggleMenu}>
-            Albums
-          </MenuLink>
+          <MenuList>
+            <MenuItem>
+              <MenuLink to={'/'} onClick={handleToggleMenu}>
+                Home page
+              </MenuLink>
+            </MenuItem>
+            <MenuItem>
+              <MenuLink to={'/profile'} onClick={handleToggleMenu}>
+                Profile
+              </MenuLink>
+            </MenuItem>
+            <MenuItem>
+              <MenuLink to={'/album-list'} onClick={handleToggleMenu}>
+                Albums
+              </MenuLink>
+            </MenuItem>
+          </MenuList>
 
           <Button
             type="button"
