@@ -4,7 +4,7 @@ const TextInput = ({ required, label, name, value, onChange }) => {
   return (
     <>
       <TxtField
-        autoFocus
+        // autoFocus
         required={required}
         label={label}
         name={name}

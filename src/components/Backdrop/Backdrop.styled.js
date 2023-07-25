@@ -11,12 +11,12 @@ export const BackdropBox = styled.div`
   align-items: center;
   justify-content: center; */
   overflow: hidden;
+
   /* background-color: rgba(0, 0, 0, 0.9); */
   background-color: rgba(0, 0, 0, 0.7);
-
-  width: 200vw;
-  height: 200vh;
-  /* width: 100%;
-  height: 100%; */
+  /* width: 200vw;
+  height: 200vh; */
+  width: 100%;
+  height: 100%;
   /* border-radius: 50%; */
 `;

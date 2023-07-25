@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 // const API_URL = 'https://photo-album-0ycb.onrender.com';
-// const API_URL = 'https://photo-album.fly.dev';
 
 const API_URL = 'http://localhost:3000';
 

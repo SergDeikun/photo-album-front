@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import usePlacesAutocomplete, {
   getGeocode,
   // getLatLng,
@@ -7,7 +9,7 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 
 import { Root, Label, Input, List, Item } from './Autocomplite.styled';
 
-const Autocomplite = ({ onSelect, updatePlace, className }) => {
+const Autocomplite = ({ onSelect, place, className }) => {
   const {
     // ready,
     value,
@@ -21,6 +23,11 @@ const Autocomplite = ({ onSelect, updatePlace, className }) => {
     },
     debounce: 300,
   });
+
+  useEffect(() => {
+    setValue(place);
+  }, [place, setValue]);
+
   const ref = useOnclickOutside(() => {
     // When user clicks outside of the component, we can dismiss
     // the searched suggestions by calling this method
@@ -79,7 +86,7 @@ const Autocomplite = ({ onSelect, updatePlace, className }) => {
           placeholder="Location"
         />
       </label>
-      {status === 'OK' && <ul>{renderSuggestions()}</ul>}
+      {status === 'OK' && place !== value && <ul>{renderSuggestions()}</ul>}
     </Root>
   );
 };

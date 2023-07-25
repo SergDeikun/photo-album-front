@@ -70,12 +70,12 @@ const UserMenu = () => {
             </MenuItem>
           </MenuList>
 
-          <Button
+          {/* <Button
             type="button"
             title="Log out"
             onClick={handleLogout}
             // disabled={isLoading}
-          />
+          /> */}
         </Modal>
       )}
     </>

@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+// import moment from 'moment';
+import TextField from '@mui/material/TextField';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
-import { useGetQuery } from 'react-query/useGetQuery';
+// import { useGetQuery } from 'react-query/useGetQuery';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import { showAlert } from 'helpers/showAlert';
 
@@ -27,11 +34,6 @@ import {
   CloseBtn,
   PlaceWrapper,
   Place,
-  // ListInfo,
-  // ItemInfo,
-  // DateIcon,
-  // PlaceIcon,
-  // Infotext,
 } from './PhotoList.styled';
 
 const styles = [
@@ -45,13 +47,20 @@ const styles = [
 const PhotoList = () => {
   const { id } = useParams();
   const { data } = useGetAlbumById(id);
+  // if (data) {
+  //   console.log(data.photo);
+  // }
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [photoURLs, setPhotoURLs] = useState([]);
   const [photoIndex, setPhotoIndex] = useState(null);
   const [isOpenInfo, setIsOpenInfo] = useState(false);
   const { mutateAsync: deletePhoto } = useDeletePhoto();
-  const [updatePlace, setUpdatePlace] = useState('');
   const [isLoadedPhoto, setIsLoadedPhoto] = useState([]);
+  const [updatePlace, setUpdatePlace] = useState('');
+  const [updateComments, setUpdateComments] = useState('');
+  const [updateDate, setUpdateDate] = useState('');
+  // const formatDate = moment(date).format('DD.MM.YYYY');
+  // console.log(updateDate);
 
   const handleImageLoad = index => {
     setIsLoadedPhoto(prevLoadedPhotos => [...prevLoadedPhotos, index]);
@@ -70,8 +79,11 @@ const PhotoList = () => {
   }, [selectedPhoto]);
 
   const handleOpenPhoto = (photo, index) => {
+    // console.log(photo.date);
     setSelectedPhoto(photo);
     setPhotoIndex(index);
+    setUpdateComments(photo.comments);
+    setUpdateDate(photo.date);
   };
 
   const handleDelete = async id => {
@@ -110,22 +122,14 @@ const PhotoList = () => {
     }
   };
 
-  // if (data) {
-  //   console.log(data);
-  // }
-
-  // const handleImageLoad = () => {
-  //   setIsLoaded(true);
-  // };
-
   return (
     <>
       {data && <AlbumTitle>{data.name}</AlbumTitle>}
       <Box>
         {data &&
           data.photo.map((photo, index) => {
-            const { _id: photoId, photoURL, comments, place, date } = photo;
-
+            const { _id: photoId, photoURL, place, date } = photo;
+            console.log(date);
             return (
               <Thumb
                 key={photoId}
@@ -133,6 +137,7 @@ const PhotoList = () => {
                 isLoaded={isLoadedPhoto.includes(index)}
               >
                 <ImageWrapper isLoaded={isLoadedPhoto.includes(index)}>
+                  {/* <Link to={`/photo/${photoId}`}> */}
                   <Image
                     afterLoad={() => handleImageLoad(index)}
                     src={photoURL}
@@ -142,7 +147,11 @@ const PhotoList = () => {
                       handleOpenPhoto(photo, index);
                     }}
                   />
+                  {/* </Link> */}
                 </ImageWrapper>
+
+                {/* PhotoLightBox */}
+
                 {selectedPhoto && selectedPhoto === photo && (
                   <Modal onClose={() => setSelectedPhoto(null)}>
                     <ButtonWrapper>
@@ -164,27 +173,47 @@ const PhotoList = () => {
                       <InfoWrapper>
                         <CloseBtn onClick={handleToggleInfo} />
                         <form encType="multipart/form-data" action="">
-                          {/* <Place>{place}</Place> */}
+                          {/* Date */}
+
+                          {/* <div>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                              <DesktopDatePicker
+                                // label="Date"
+                                inputFormat="DD.MM.YYYY"
+                                value={updateDate}
+                                // value={date}
+                                onChange={newValue => setUpdateDate(newValue)}
+                                renderInput={params => (
+                                  <TextField {...params} />
+                                )}
+                              />
+                            </LocalizationProvider>
+                            <button type="submit">ok</button>
+                          </div> */}
+
+                          {/* Place */}
+
                           <PlaceWrapper>
                             <Place
                               onSelect={handleSelectUpdatePlace}
-                              place2={place}
+                              place={place}
                             />
                           </PlaceWrapper>
+                          <button type="submit">ok</button>
+
+                          {/* Comments */}
+
+                          <div>
+                            <textarea
+                              aria-label="empty textarea"
+                              placeholder="Comments"
+                              style={{ width: 435, height: 175 }}
+                              value={updateComments}
+                              onChange={e => setUpdateComments(e.target.value)}
+                            />
+                            <button type="submit">ok</button>
+                          </div>
                         </form>
-                        {/* <ListInfo>
-                          <ItemInfo>
-                            <DateIcon />
-                            {date}
-                          </ItemInfo>
-                          <ItemInfo>
-                            <PlaceIcon />
-                            <Infotext>{place}</Infotext>
-                          </ItemInfo>
-                          <ItemInfo>
-                            Comments: <Infotext>{comments}</Infotext>{' '}
-                          </ItemInfo>
-                        </ListInfo> */}
                       </InfoWrapper>
                     )}
                   </Modal>

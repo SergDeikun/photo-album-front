@@ -7,6 +7,8 @@ import Button from 'components/Buttons/Button';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 import TextInput from 'components/Inputs/TextInput/TextInput';
 
+import { Form, NameWrapper, InputName } from './AlbumForm.styled';
+
 const AlbumForm = ({ updateName, onClose }) => {
   const [name, setName] = useState(updateName);
   const [backgroundURL, setBackgroundURL] = useState('');
@@ -50,7 +52,29 @@ const AlbumForm = ({ updateName, onClose }) => {
 
   return (
     <>
-      <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+      <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+        <NameWrapper>
+          <label>
+            <InputName
+              required
+              type="text"
+              name="name"
+              value={name}
+              placeholder="Enter album name"
+              onChange={e => setName(e.target.value)}
+            />
+          </label>
+          {/* <TextInput
+            required={true}
+            // label="Album name"
+            name="name"
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          /> */}
+        </NameWrapper>
+        {/* <Button type="submit" disabled={isLoading} title={'add'} /> */}
+        {/* <div> */}
         <FileInput
           title="Upload cover to your album"
           uploadFile={previewBackground}
@@ -59,17 +83,9 @@ const AlbumForm = ({ updateName, onClose }) => {
           onChange={uploadImage}
           alt="cover"
         />
-
-        <TextInput
-          required={true}
-          label="Album name"
-          name="name"
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
+        {/* </div> */}
         <Button type="submit" disabled={isLoading} title={'add'} />
-      </form>
+      </Form>
     </>
   );
 };

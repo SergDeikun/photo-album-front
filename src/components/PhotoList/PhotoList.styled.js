@@ -146,6 +146,8 @@ export const NextButtonIcon = styled(GrFormNext)`
 // Image
 
 export const PhotoLightBoxImg = styled.img`
+  width: 70%;
+  height: 90%;
   position: absolute;
   top: 50%;
   left: 50%;

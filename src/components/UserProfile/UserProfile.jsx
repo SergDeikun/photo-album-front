@@ -5,6 +5,7 @@ import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
 import useUpdateUser from 'react-query/useUpdateUser';
 
+import Button from 'components/Buttons/Button';
 import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 
 import { showAlert } from 'helpers/showAlert';
@@ -171,6 +172,7 @@ const UserProfile = () => {
               {/* <Name> {data.name}</Name>
               <Email> {data.email}</Email> */}
             </UserInfo>
+            <Button type="button" title="Log out" />
           </UserWrapper>
 
           {/* Album list */}

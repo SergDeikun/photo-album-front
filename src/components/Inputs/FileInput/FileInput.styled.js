@@ -7,10 +7,11 @@ export const UploadBox = styled.div`
   position: relative;
   /* position: absolute; */
 
-  width: 500px;
-  height: 300px;
-  border: 2px dashed white;
-  border-radius: ${p => p.theme.borderRadius.small};
+  min-width: 320px;
+  /* height: 300px; */
+  height: 480px;
+  /* border: 2px dashed white; */
+  /* border-radius: ${p => p.theme.borderRadius.small}; */
   margin-bottom: 35px;
 `;
 
@@ -41,6 +42,8 @@ export const LabelUpload = styled.label`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* width: 100%;
+  height: 100%; */
   width: 100%;
   height: 100%;
   color: white;

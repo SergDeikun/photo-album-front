@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import moment from 'moment';
+import dayjs from 'dayjs';
 
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -29,6 +30,7 @@ import {
 const PhotoForm = ({ onClose }) => {
   const [place, setPlace] = useState('');
   const [date, setDate] = useState('');
+  // console.log(date);
   const [photoURL, setPhoto] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState('');
   const [comments, setComments] = useState('');
@@ -48,6 +50,7 @@ const PhotoForm = ({ onClose }) => {
     e.preventDefault();
 
     const formatDate = moment(date).format('DD.MM.YYYY');
+    console.log(formatDate);
 
     const newPhoto = new FormData();
     newPhoto.append('place', place);
@@ -107,8 +110,9 @@ const PhotoForm = ({ onClose }) => {
                 <DateField
                   // label="Date"
                   inputFormat="DD.MM.YYYY"
+                  // defaultValue={dayjs('2022-04-17')}
                   value={date}
-                  onChange={newValue => setDate(newValue)}
+                  onChange={date => setDate(date)}
                   renderInput={params => <TextField {...params} />}
                 />
               </LocalizationProvider>

@@ -8,7 +8,6 @@ const Backdrop = ({ data = [1, 2, 3], onClose, className, children }) => {
   const transitions = useTransition(data, {
     from: {
       opacity: 0,
-      // transform: 'scale3d(0)',
       transition: 'opacity  ease',
       position: 'fixed',
       zIndex: '10',
@@ -19,14 +18,9 @@ const Backdrop = ({ data = [1, 2, 3], onClose, className, children }) => {
     },
     enter: {
       opacity: 1,
-      // transform: 'scale3d(1)',
-      width: '100%',
-      height: '100%',
     },
     leave: {
       opacity: 0,
-      // transform: 'scale3d(0)',
-      transition: 'opacity  ease',
     },
     // config: { duration: 250 },
   });

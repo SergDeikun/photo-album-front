@@ -35,9 +35,9 @@ const FileInput = ({
         </LabelUpload>
         {uploadFile && (
           <>
-            <ClearButton type="button" onClick={clearInput}>
+            {/* <ClearButton type="button" onClick={clearInput}>
               X
-            </ClearButton>
+            </ClearButton> */}
             <Image src={src} alt={alt} />
           </>
         )}
