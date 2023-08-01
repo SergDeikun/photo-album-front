@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import moment from 'moment';
 import dayjs from 'dayjs';
 
 import TextField from '@mui/material/TextField';
@@ -14,7 +13,7 @@ import useAddPhoto from 'react-query/useAddPhoto';
 
 import Button from 'components/Buttons/Button';
 // import Autocomplite from 'components/Autocomplite/Autocomplite';
-import LocationButton from 'components/Buttons/LocationButton/LocationButton';
+// import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 
 import {
@@ -22,7 +21,7 @@ import {
   Box,
   FieldWrapper,
   InputWrapper,
-  Place,
+  // Place,
   DateField,
   Comments,
 } from './PhotoForm.styled';
@@ -30,10 +29,10 @@ import {
 const PhotoForm = ({ onClose }) => {
   const [place, setPlace] = useState('');
   const [date, setDate] = useState('');
-  // console.log(date);
   const [photoURL, setPhoto] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState('');
   const [comments, setComments] = useState('');
+  // console.log(comments);
   const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
   const { id } = useParams();
 
@@ -42,15 +41,14 @@ const PhotoForm = ({ onClose }) => {
     setPhoto(e.target.files[0]);
   };
 
-  const handleSelectPlace = newValue => {
-    setPlace(newValue);
-  };
+  // const handleSelectPlace = place => {
+  //   setPlace(place);
+  // };
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const formatDate = moment(date).format('DD.MM.YYYY');
-    console.log(formatDate);
+    const formatDate = dayjs(date).format('DD.MM.YYYY');
 
     const newPhoto = new FormData();
     newPhoto.append('place', place);
@@ -59,7 +57,7 @@ const PhotoForm = ({ onClose }) => {
     newPhoto.append('comments', comments);
 
     if (photoURL === '') {
-      notifySuccess('Pleace, upload photo');
+      notifyError('Pleace, upload photo');
       return;
     }
 
@@ -100,19 +98,17 @@ const PhotoForm = ({ onClose }) => {
           />
 
           <FieldWrapper>
-            <InputWrapper>
+            {/* <InputWrapper>
               <Place onSelect={handleSelectPlace} />
               <LocationButton />
-            </InputWrapper>
+            </InputWrapper> */}
 
             <InputWrapper>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateField
-                  // label="Date"
                   inputFormat="DD.MM.YYYY"
-                  // defaultValue={dayjs('2022-04-17')}
                   value={date}
-                  onChange={date => setDate(date)}
+                  onChange={newDate => setDate(newDate)}
                   renderInput={params => <TextField {...params} />}
                 />
               </LocalizationProvider>

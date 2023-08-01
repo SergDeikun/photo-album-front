@@ -129,7 +129,7 @@ const PhotoList = () => {
         {data &&
           data.photo.map((photo, index) => {
             const { _id: photoId, photoURL, place, date } = photo;
-            console.log(date);
+            // console.log(date);
             return (
               <Thumb
                 key={photoId}
