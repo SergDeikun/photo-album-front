@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-// import moment from 'moment';
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -21,7 +20,7 @@ import {
   Box,
   ImageWrapper,
   Thumb,
-  Image,
+  ImageLazyLoad,
   Modal,
   ButtonWrapper,
   PhotoLightBoxImg,
@@ -32,7 +31,8 @@ import {
   NextButtonIcon,
   InfoWrapper,
   CloseBtn,
-  PlaceWrapper,
+  Form,
+  FieldWrapper,
   Place,
 } from './PhotoList.styled';
 
@@ -59,6 +59,8 @@ const PhotoList = () => {
   const [updatePlace, setUpdatePlace] = useState('');
   const [updateComments, setUpdateComments] = useState('');
   const [updateDate, setUpdateDate] = useState('');
+  console.log(updateDate);
+
   // const formatDate = moment(date).format('DD.MM.YYYY');
   // console.log(updateDate);
 
@@ -129,7 +131,7 @@ const PhotoList = () => {
         {data &&
           data.photo.map((photo, index) => {
             const { _id: photoId, photoURL, place, date } = photo;
-            // console.log(date);
+            console.log(date);
             return (
               <Thumb
                 key={photoId}
@@ -138,7 +140,7 @@ const PhotoList = () => {
               >
                 <ImageWrapper isLoaded={isLoadedPhoto.includes(index)}>
                   {/* <Link to={`/photo/${photoId}`}> */}
-                  <Image
+                  <ImageLazyLoad
                     afterLoad={() => handleImageLoad(index)}
                     src={photoURL}
                     alt="photo"
@@ -162,7 +164,22 @@ const PhotoList = () => {
                     <PrevButton type="button" onClick={handlePrevPhoto}>
                       <PrevButtonIcon />
                     </PrevButton>
+                    {/* <div
+                      style={{
+                        position: 'absolute',
+                        // top: '50%',
+                        // left: '50%',
+                        // top: 0,
+                        // left: 0,
+                        // transform: ' translate(-50%, -50%)',
+                        width: '100%',
+                        height: '100%',
+                      }}
+                    > */}
                     <PhotoLightBoxImg src={photoURLs[photoIndex]} alt="img" />
+                    {/* </div> */}
+                    {/* <Image src="https://example.com/image.jpg" alt="img" /> */}
+
                     <NextButton type="button" onClick={handleNextPhoto}>
                       <NextButtonIcon />
                     </NextButton>
@@ -172,16 +189,14 @@ const PhotoList = () => {
                     {isOpenInfo && (
                       <InfoWrapper>
                         <CloseBtn onClick={handleToggleInfo} />
-                        <form encType="multipart/form-data" action="">
+                        <Form encType="multipart/form-data" action="">
                           {/* Date */}
 
-                          {/* <div>
+                          <FieldWrapper>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                               <DesktopDatePicker
-                                // label="Date"
-                                inputFormat="DD.MM.YYYY"
+                                // inputFormat="DD.MM.YYYY"
                                 value={updateDate}
-                                // value={date}
                                 onChange={newValue => setUpdateDate(newValue)}
                                 renderInput={params => (
                                   <TextField {...params} />
@@ -189,21 +204,21 @@ const PhotoList = () => {
                               />
                             </LocalizationProvider>
                             <button type="submit">ok</button>
-                          </div> */}
+                          </FieldWrapper>
 
                           {/* Place */}
 
-                          <PlaceWrapper>
+                          <FieldWrapper>
                             <Place
                               onSelect={handleSelectUpdatePlace}
                               place={place}
                             />
-                          </PlaceWrapper>
-                          <button type="submit">ok</button>
+                            <button type="submit">ok</button>
+                          </FieldWrapper>
 
                           {/* Comments */}
 
-                          <div>
+                          <FieldWrapper>
                             <textarea
                               aria-label="empty textarea"
                               placeholder="Comments"
@@ -212,8 +227,8 @@ const PhotoList = () => {
                               onChange={e => setUpdateComments(e.target.value)}
                             />
                             <button type="submit">ok</button>
-                          </div>
-                        </form>
+                          </FieldWrapper>
+                        </Form>
                       </InfoWrapper>
                     )}
                   </Modal>

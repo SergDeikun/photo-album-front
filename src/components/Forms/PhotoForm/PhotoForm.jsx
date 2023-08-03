@@ -13,7 +13,7 @@ import useAddPhoto from 'react-query/useAddPhoto';
 
 import Button from 'components/Buttons/Button';
 // import Autocomplite from 'components/Autocomplite/Autocomplite';
-// import LocationButton from 'components/Buttons/LocationButton/LocationButton';
+import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 
 import {
@@ -21,7 +21,7 @@ import {
   Box,
   FieldWrapper,
   InputWrapper,
-  // Place,
+  Place,
   DateField,
   Comments,
 } from './PhotoForm.styled';
@@ -41,9 +41,9 @@ const PhotoForm = ({ onClose }) => {
     setPhoto(e.target.files[0]);
   };
 
-  // const handleSelectPlace = place => {
-  //   setPlace(place);
-  // };
+  const handleSelectPlace = place => {
+    setPlace(place);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -98,15 +98,15 @@ const PhotoForm = ({ onClose }) => {
           />
 
           <FieldWrapper>
-            {/* <InputWrapper>
+            <InputWrapper>
               <Place onSelect={handleSelectPlace} />
               <LocationButton />
-            </InputWrapper> */}
+            </InputWrapper>
 
             <InputWrapper>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateField
-                  inputFormat="DD.MM.YYYY"
+                  inputFormat="DD/MM/YYYY"
                   value={date}
                   onChange={newDate => setDate(newDate)}
                   renderInput={params => <TextField {...params} />}

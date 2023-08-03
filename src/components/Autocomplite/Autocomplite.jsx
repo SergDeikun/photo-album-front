@@ -24,9 +24,9 @@ const Autocomplite = ({ onSelect, place, className }) => {
     debounce: 300,
   });
 
-  useEffect(() => {
-    setValue(place);
-  }, [place, setValue]);
+  // useEffect(() => {
+  //   setValue(place);
+  // }, [place, setValue]);
 
   const ref = useOnclickOutside(() => {
     // When user clicks outside of the component, we can dismiss
@@ -49,7 +49,7 @@ const Autocomplite = ({ onSelect, place, className }) => {
       setValue(description, false);
       clearSuggestions();
 
-      console.log(description);
+      // console.log(description);
       // Get latitude and longitude via utility functions
       getGeocode({ address: description }).then(results => {
         // const { lat, lng } = getLatLng(results[0]);

@@ -64,7 +64,7 @@ export const ImageWrapper = styled.div`
   ${p => p.isLoaded && 'transform:translateY(0);opacity:1'};
 `;
 
-export const Image = styled(LazyLoadImage)`
+export const ImageLazyLoad = styled(LazyLoadImage)`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -80,10 +80,12 @@ export const Image = styled(LazyLoadImage)`
 
 export const Modal = styled(Backdrop)`
   background-color: rgb(0, 0, 0);
+  /* position: relative; */
 `;
 
 export const ButtonWrapper = styled.div`
   position: absolute;
+  z-index: 5;
   top: 10px;
   right: 78px;
   display: flex;
@@ -146,12 +148,14 @@ export const NextButtonIcon = styled(GrFormNext)`
 // Image
 
 export const PhotoLightBoxImg = styled.img`
-  width: 70%;
-  height: 90%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* height: 95%; */
+  height: 100%;
+  /* object-fit: contain;
+  object-position: center; */
 `;
 
 // Info
@@ -160,6 +164,7 @@ export const InfoWrapper = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 10;
   height: 100%;
   width: 400px;
   background-color: ${p => p.theme.colors.bodyBg};
@@ -174,9 +179,18 @@ export const CloseBtn = styled(CloseButton)`
   }
 `;
 
+export const Form = styled.form`
+  margin-top: 100px;
+`;
+
+export const FieldWrapper = styled.div`
+  outline: 1px solid teal;
+  margin-bottom: 20px;
+`;
+
 export const PlaceWrapper = styled.div`
   position: relative;
-  margin-top: 100px;
+  /* margin-top: 100px; */
 `;
 
 export const Place = styled(Autocomplite)`

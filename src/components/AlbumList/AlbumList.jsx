@@ -22,7 +22,9 @@ const AlbumList = () => {
               <Item key={id}>
                 <LinkItem to={`/album/${id}`}>
                   {backgroundURL ? (
-                    <Image src={backgroundURL} alt="cover" />
+                    <div style={{ height: '509px' }}>
+                      <Image src={backgroundURL} alt="cover" />
+                    </div>
                   ) : (
                     <DefaultAlbumCover />
                   )}

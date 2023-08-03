@@ -4,6 +4,7 @@ import { VscChromeClose } from 'react-icons/vsc';
 
 export const CloseBtn = styled.button`
   position: absolute;
+  z-index: 5;
   /* top: 25px; */
   /* right: 90px; */
   top: 10px;
