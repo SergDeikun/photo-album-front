@@ -25,8 +25,10 @@ import {
   ButtonWrapper,
   PhotoLightBoxImg,
   DeleteBtn,
+  PrevBtnWrap,
   PrevButton,
   PrevButtonIcon,
+  NextBtnWrap,
   NextButton,
   NextButtonIcon,
   InfoWrapper,
@@ -160,29 +162,17 @@ const PhotoList = () => {
                       <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
                       <InformationButton onClick={handleToggleInfo} />
                     </ButtonWrapper>
-
-                    <PrevButton type="button" onClick={handlePrevPhoto}>
-                      <PrevButtonIcon />
-                    </PrevButton>
-                    {/* <div
-                      style={{
-                        position: 'absolute',
-                        // top: '50%',
-                        // left: '50%',
-                        // top: 0,
-                        // left: 0,
-                        // transform: ' translate(-50%, -50%)',
-                        width: '100%',
-                        height: '100%',
-                      }}
-                    > */}
+                    <PrevBtnWrap>
+                      <PrevButton type="button" onClick={handlePrevPhoto}>
+                        <PrevButtonIcon />
+                      </PrevButton>
+                    </PrevBtnWrap>
                     <PhotoLightBoxImg src={photoURLs[photoIndex]} alt="img" />
-                    {/* </div> */}
-                    {/* <Image src="https://example.com/image.jpg" alt="img" /> */}
-
-                    <NextButton type="button" onClick={handleNextPhoto}>
-                      <NextButtonIcon />
-                    </NextButton>
+                    <NextBtnWrap>
+                      <NextButton type="button" onClick={handleNextPhoto}>
+                        <NextButtonIcon />
+                      </NextButton>
+                    </NextBtnWrap>
 
                     {/* Info */}
 

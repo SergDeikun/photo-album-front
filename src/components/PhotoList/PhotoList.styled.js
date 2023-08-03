@@ -85,7 +85,7 @@ export const Modal = styled(Backdrop)`
 
 export const ButtonWrapper = styled.div`
   position: absolute;
-  z-index: 5;
+  z-index: 10;
   top: 10px;
   right: 78px;
   display: flex;
@@ -106,6 +106,16 @@ export const DeleteBtn = styled(DeleteButton)`
   }
 `;
 
+export const PrevBtnWrap = styled.div`
+  position: absolute;
+  z-index: 5;
+
+  top: 0;
+  left: 20px;
+  width: 40%;
+  height: 100%;
+`;
+
 export const PrevButton = styled.button`
   position: absolute;
   left: 20px;
@@ -116,7 +126,12 @@ export const PrevButton = styled.button`
   padding: 12px;
   border: none;
   border-radius: 50%;
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   /* background-color: transparent; */
+  ${PrevBtnWrap}:hover & {
+    opacity: 1;
+  }
 `;
 
 export const PrevButtonIcon = styled(GrFormPrevious)`
@@ -124,6 +139,15 @@ export const PrevButtonIcon = styled(GrFormPrevious)`
   height: 36px;
   /* fill: ${p => p.theme.colors.white}; */
   fill: white;
+`;
+
+export const NextBtnWrap = styled.div`
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: 20px;
+  width: 40%;
+  height: 100%;
 `;
 
 export const NextButton = styled.button`
@@ -136,6 +160,12 @@ export const NextButton = styled.button`
   padding: 12px;
   border: none;
   border-radius: 50%;
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${NextBtnWrap}:hover & {
+    opacity: 1;
+  }
 `;
 
 export const NextButtonIcon = styled(GrFormNext)`
