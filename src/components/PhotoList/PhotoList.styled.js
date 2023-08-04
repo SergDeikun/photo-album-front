@@ -100,7 +100,7 @@ export const DeleteBtn = styled(DeleteButton)`
   }
 
   &:hover {
-    background-color: grey;
+    background-color: ${p => p.theme.colors.grey};
     border-radius: 50%;
     fill: ${p => p.theme.colors.white};
   }
@@ -109,11 +109,11 @@ export const DeleteBtn = styled(DeleteButton)`
 export const PrevBtnWrap = styled.div`
   position: absolute;
   z-index: 5;
-
   top: 0;
   left: 20px;
-  width: 40%;
+  width: 30%;
   height: 100%;
+  cursor: initial;
 `;
 
 export const PrevButton = styled.button`
@@ -127,8 +127,10 @@ export const PrevButton = styled.button`
   border: none;
   border-radius: 50%;
   opacity: 0;
+  background-color: ${p => p.theme.colors.grey};
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  /* background-color: transparent; */
+  /* background-color: rgba(66, 66, 66, 0.54); */
+
   ${PrevBtnWrap}:hover & {
     opacity: 1;
   }
@@ -138,7 +140,6 @@ export const PrevButtonIcon = styled(GrFormPrevious)`
   width: 36px;
   height: 36px;
   /* fill: ${p => p.theme.colors.white}; */
-  fill: white;
 `;
 
 export const NextBtnWrap = styled.div`
@@ -146,8 +147,9 @@ export const NextBtnWrap = styled.div`
   z-index: 5;
   top: 0;
   right: 20px;
-  width: 40%;
+  width: 30%;
   height: 100%;
+  cursor: initial;
 `;
 
 export const NextButton = styled.button`
@@ -161,6 +163,7 @@ export const NextButton = styled.button`
   border: none;
   border-radius: 50%;
   opacity: 0;
+  background-color: ${p => p.theme.colors.grey};
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   ${NextBtnWrap}:hover & {
@@ -172,7 +175,6 @@ export const NextButtonIcon = styled(GrFormNext)`
   width: 36px;
   height: 36px;
   /* fill: ${p => p.theme.colors.white}; */
-  fill: white;
 `;
 
 // Image
@@ -184,6 +186,7 @@ export const PhotoLightBoxImg = styled.img`
   transform: translate(-50%, -50%);
   /* height: 95%; */
   height: 100%;
+  cursor: initial;
   /* object-fit: contain;
   object-position: center; */
 `;
@@ -257,40 +260,4 @@ export const Place = styled(Autocomplite)`
   }
 `;
 
-// export const ListInfo = styled.ul`
-//   margin-top: 80px;
-//   text-align: start;
-//   padding-left: 10px;
-// `;
-
-// export const ItemInfo = styled.li`
-//   /* width: 100%; */
-//   display: flex;
-//   flex-wrap: wrap;
-//   align-items: center;
-//   font-family: ${p => p.theme.fonts.body};
-//   font-weight: ${p => p.theme.fontWeights.regular};
-//   font-size: ${p => p.theme.fontSize[0]}px;
-//   line-height: 1.3;
-//   letter-spacing: 0.1rem;
-//   color: ${p => p.theme.colors.black};
-// `;
-
-// export const DateIcon = styled(IoMdCalendar)`
-//   width: 24px;
-//   height: 24px;
-//   margin-right: 10px;
-// `;
-
-// export const PlaceIcon = styled(MdLocationPin)`
-//   width: 24px;
-//   height: 24px;
-//   margin-right: 10px;
-//   fill: ${p => p.theme.colors.grey};
-// `;
-
-// export const Infotext = styled.p`
-//   /* width: 100%; */
-//   overflow: hidden;
-//   word-wrap: break-word;
-// `;
+// export const

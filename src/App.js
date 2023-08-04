@@ -5,6 +5,8 @@ import { useJsApiLoader } from '@react-google-maps/api';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import ScrollToTop from 'react-scroll-to-top';
+
 // import toastOptions from 'helpers/toastOptions';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
@@ -60,6 +62,7 @@ function App() {
       </Routes>
       {/* <ToastContainer {...toastOptions} /> */}
       <ToastContainer />
+      <ScrollToTop smooth component={<p style={{ color: '#ff0044' }}>UP</p>} />
     </>
   );
 }

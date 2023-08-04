@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
-// import { useGetQuery } from 'react-query/useGetQuery';
 
 import Logo from 'components/Logo/Logo';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
@@ -19,9 +18,6 @@ const AppBar = () => {
   const location = useLocation();
   const { id } = useParams();
   const { data } = useGetCurrentUser();
-  // const data = useGetQuery('user');
-  // const data = queryCache.getQueryData('user');
-  // console.log(data);
 
   useEffect(() => {
     if (isOpenAlbumForm || isOpenPhotoForm) {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
@@ -8,12 +8,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
-// import { useGetQuery } from 'react-query/useGetQuery';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import { showAlert } from 'helpers/showAlert';
 
 import InformationButton from 'components/Buttons/InformationButton/Information';
-// import Autocomplite from 'components/Autocomplite/Autocomplite';
 
 import {
   AlbumTitle,
@@ -61,7 +59,7 @@ const PhotoList = () => {
   const [updatePlace, setUpdatePlace] = useState('');
   const [updateComments, setUpdateComments] = useState('');
   const [updateDate, setUpdateDate] = useState('');
-  console.log(updateDate);
+  // console.log(updateDate);
 
   // const formatDate = moment(date).format('DD.MM.YYYY');
   // console.log(updateDate);
@@ -69,18 +67,6 @@ const PhotoList = () => {
   const handleImageLoad = index => {
     setIsLoadedPhoto(prevLoadedPhotos => [...prevLoadedPhotos, index]);
   };
-
-  useEffect(() => {
-    if (selectedPhoto) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [selectedPhoto]);
 
   const handleOpenPhoto = (photo, index) => {
     // console.log(photo.date);
@@ -110,21 +96,58 @@ const PhotoList = () => {
     setUpdatePlace(newValue);
   };
 
-  const handlePrevPhoto = () => {
+  const handlePrevPhoto = useCallback(() => {
     if (photoIndex === 0) {
       setPhotoIndex(photoURLs.length - 1);
     } else {
       setPhotoIndex(photoIndex - 1);
     }
-  };
+  }, [photoIndex, photoURLs.length]);
 
-  const handleNextPhoto = () => {
+  const handleNextPhoto = useCallback(() => {
     if (photoIndex === photoURLs.length - 1) {
       setPhotoIndex(0);
     } else {
       setPhotoIndex(photoIndex + 1);
     }
-  };
+  }, [photoIndex, photoURLs.length]);
+
+  useEffect(() => {
+    if (selectedPhoto) {
+      document.body.style.overflow = 'hidden';
+
+      const handleEscClose = e => {
+        if (e.keyCode === 27) {
+          setIsOpenInfo(false);
+          setSelectedPhoto(null);
+        }
+      };
+
+      const handleKeyPress = e => {
+        if (e.key === 'ArrowLeft') {
+          handlePrevPhoto(photoIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          handleNextPhoto(photoIndex + 1);
+        }
+      };
+      document.addEventListener('keydown', handleEscClose);
+      document.addEventListener('keydown', handleKeyPress);
+
+      return () => {
+        document.body.style.overflow = 'auto';
+        document.removeEventListener('keydown', handleEscClose);
+        document.removeEventListener('keydown', handleKeyPress);
+      };
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [
+    handleNextPhoto,
+    handlePrevPhoto,
+    photoIndex,
+    photoURLs.length,
+    selectedPhoto,
+  ]);
 
   return (
     <>
@@ -133,7 +156,6 @@ const PhotoList = () => {
         {data &&
           data.photo.map((photo, index) => {
             const { _id: photoId, photoURL, place, date } = photo;
-            console.log(date);
             return (
               <Thumb
                 key={photoId}
