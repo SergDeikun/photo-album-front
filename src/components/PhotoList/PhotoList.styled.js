@@ -43,7 +43,9 @@ export const Thumb = styled.div`
     left: 0;
     height: 100%;
     width: 100%;
-    background: #234d58;
+    /* background-color: #234d58; */
+    background-color: rgba(34, 34, 34, 0.85);
+
     transform: translateY(100%);
     transition: transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   }

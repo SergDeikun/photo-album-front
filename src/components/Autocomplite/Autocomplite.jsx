@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import usePlacesAutocomplete, {
   getGeocode,
   // getLatLng,
@@ -7,7 +5,8 @@ import usePlacesAutocomplete, {
 
 import useOnclickOutside from 'react-cool-onclickoutside';
 
-import { Root, Label, Input, List, Item } from './Autocomplite.styled';
+// import { Root, Label, Input, List, Item } from './Autocomplite.styled';
+import { Root } from './Autocomplite.styled';
 
 const Autocomplite = ({ onSelect, place, className }) => {
   const {
@@ -18,15 +17,12 @@ const Autocomplite = ({ onSelect, place, className }) => {
     clearSuggestions,
   } = usePlacesAutocomplete({
     // callbackName: 'YOUR_CALLBACK_NAME',
+    defaultValue: place,
     requestOptions: {
       initOnMount: false,
     },
     debounce: 300,
   });
-
-  // useEffect(() => {
-  //   setValue(place);
-  // }, [place, setValue]);
 
   const ref = useOnclickOutside(() => {
     // When user clicks outside of the component, we can dismiss
@@ -80,6 +76,7 @@ const Autocomplite = ({ onSelect, place, className }) => {
         <input
           // className={className || ''}
           type="text"
+          // defaultValue="london"
           value={value}
           onChange={handleInput}
           //   disabled={!ready}

@@ -106,7 +106,7 @@ const PhotoForm = ({ onClose }) => {
             <InputWrapper>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateField
-                  inputFormat="DD/MM/YYYY"
+                  inputFormat="DD.MM.YYYY"
                   value={date}
                   onChange={newDate => setDate(newDate)}
                   renderInput={params => <TextField {...params} />}

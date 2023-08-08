@@ -6,6 +6,8 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
+import dayjs from 'dayjs';
+
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
 import useDeletePhoto from 'react-query/useDeletePhotoById';
@@ -59,21 +61,17 @@ const PhotoList = () => {
   const [updatePlace, setUpdatePlace] = useState('');
   const [updateComments, setUpdateComments] = useState('');
   const [updateDate, setUpdateDate] = useState('');
-  // console.log(updateDate);
-
-  // const formatDate = moment(date).format('DD.MM.YYYY');
-  // console.log(updateDate);
 
   const handleImageLoad = index => {
     setIsLoadedPhoto(prevLoadedPhotos => [...prevLoadedPhotos, index]);
   };
 
   const handleOpenPhoto = (photo, index) => {
-    // console.log(photo.date);
     setSelectedPhoto(photo);
     setPhotoIndex(index);
     setUpdateComments(photo.comments);
-    setUpdateDate(photo.date);
+    const formatDate = dayjs(photo.date, 'DD.MM.YYYY');
+    setUpdateDate(formatDate);
   };
 
   const handleDelete = async id => {
@@ -155,7 +153,8 @@ const PhotoList = () => {
       <Box>
         {data &&
           data.photo.map((photo, index) => {
-            const { _id: photoId, photoURL, place, date } = photo;
+            const { _id: photoId, photoURL, place } = photo;
+            // console.log(place);
             return (
               <Thumb
                 key={photoId}
@@ -207,7 +206,7 @@ const PhotoList = () => {
                           <FieldWrapper>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                               <DesktopDatePicker
-                                // inputFormat="DD.MM.YYYY"
+                                inputFormat="DD.MM.YYYY"
                                 value={updateDate}
                                 onChange={newValue => setUpdateDate(newValue)}
                                 renderInput={params => (
@@ -222,8 +221,9 @@ const PhotoList = () => {
 
                           <FieldWrapper>
                             <Place
-                              onSelect={handleSelectUpdatePlace}
+                              // defaultValue="London"
                               place={place}
+                              onSelect={handleSelectUpdatePlace}
                             />
                             <button type="submit">ok</button>
                           </FieldWrapper>
