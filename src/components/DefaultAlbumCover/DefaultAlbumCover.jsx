@@ -3,7 +3,7 @@ import { BoxCover, Text } from './DefaultAlbumCover.styled';
 const DefaultAlbumCover = ({ className }) => {
   return (
     <BoxCover className={className || ''}>
-      <Text>Memoris Book</Text>
+      <Text>Memories Book</Text>
     </BoxCover>
   );
 };

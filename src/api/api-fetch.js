@@ -132,6 +132,24 @@ export const getPhotoById = async id => {
   return response.data;
 };
 
+export const updatePhoto = async ({ date, comments, place, photoId }) => {
+  const response = await axios.patch(
+    `${API_URL}/api/photo/${photoId}`,
+    {
+      date,
+      comments,
+      place,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response;
+};
+
 export const deletePhoto = async id => {
   const response = await axios.delete(`${API_URL}/api/photo/${id}`, {
     headers: {

@@ -1,10 +1,9 @@
-// import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
-import PhotoList from 'components/PhotoList/PhotoList';
+import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
 
 const PhotoPage = () => {
   return (
     <>
-      <PhotoList />
+      <PhotoLightBox />
     </>
   );
 };
