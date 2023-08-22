@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -8,8 +7,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import dayjs from 'dayjs';
 
-import { useGetQuery } from 'react-query/useGetQuery';
-import useGetAlbumById from 'react-query/useGetAlbumById';
 import useGetPhotoById from 'react-query/useGetPhotoById';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useUpdatePhoto from 'react-query/useUpdatePhoto';
@@ -18,19 +15,22 @@ import { showAlert } from 'helpers/showAlert';
 
 import InformationButton from 'components/Buttons/InformationButton/Information';
 
+import queryClient from 'react-query/queryClient';
+
 import {
-  AlbumTitle,
-  Box,
-  ImageWrapper,
-  Thumb,
-  ImageLazyLoad,
+  // AlbumTitle,
+  // Box,
+  // ImageWrapper,
+  // Thumb,
+  // ImageLazyLoad,
   Modal,
   ButtonWrapper,
-  PhotoLightBoxImg,
+  // PhotoLightBoxImg,
   DeleteBtn,
   PrevBtnWrap,
   PrevButton,
   PrevButtonIcon,
+  PhotoLightBoxImg,
   NextBtnWrap,
   NextButton,
   NextButtonIcon,
@@ -39,41 +39,45 @@ import {
   Form,
   FieldWrapper,
   Place,
-} from '../PhotoList/PhotoList.styled';
+} from '../PhotoLightBox/PhotoLightBox.styled';
 
-const PhotoLightBox = () => {
-  const { id: photoId } = useParams();
+const PhotoLightBox = ({
+  photoId,
+  onClose,
+  photoIndex,
+  currentAlbumPhotos,
+}) => {
   const { data: currentPhotoData } = useGetPhotoById(photoId);
+
+  const { mutateAsync: updatePhoto } = useUpdatePhoto();
+  const { mutateAsync: deletePhoto } = useDeletePhoto();
+  const [index, setIndex] = useState(photoIndex);
   const [isOpenInfo, setIsOpenInfo] = useState(false);
-  const [albumId, setAlbumId] = useState('');
-  // console.log(albumId);
   const [date, setDate] = useState('');
   const [place, setPlace] = useState('');
   const [comments, setComments] = useState('');
-  const { mutateAsync: updatePhoto } = useUpdatePhoto();
-  const { mutateAsync: deletePhoto, isLoading } = useDeletePhoto();
-  const navigate = useNavigate();
-  const userData = useGetQuery('user');
-  console.log(userData);
-  // const albumId = currentPhotoData && currentPhotoData.albumId;
-  // const { data: albumData } = useGetAlbumById(albumId);
-  // console.log(albumData);
 
-  // const handlePrevPhoto = () => {
-  //   console.log('ok');
-  //   if (index === 0) {
-  //     setIndex(albumData.photo.lenght - 1);
-  //   }
-  // };
+  const handlePrevPhoto = () => {
+    if (index === 0) {
+      setIndex(currentAlbumPhotos.length - 1);
+    } else {
+      setIndex(index - 1);
+    }
+  };
 
-  // const handleNextPhoto = () => {};
+  const handleNextPhoto = () => {
+    if (index === currentAlbumPhotos.length - 1) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
+  };
 
   useEffect(() => {
     if (currentPhotoData) {
       setDate(currentPhotoData.date);
       setPlace(currentPhotoData.place);
       setComments(currentPhotoData.comments);
-      // setAlbumId(currentPhotoData.albumId);
     }
   }, [currentPhotoData]);
 
@@ -81,7 +85,7 @@ const PhotoLightBox = () => {
     try {
       await deletePhoto(id, {
         onSuccess: () => {
-          navigate(`/album/${albumId}`);
+          onClose();
         },
       });
     } catch (error) {
@@ -118,22 +122,26 @@ const PhotoLightBox = () => {
 
   return (
     <>
-      {/* {isLoading && <div>LOADING</div>} */}
       {currentPhotoData && (
-        <Modal onClose={() => navigate(`/album/${albumId}`)}>
+        <Modal onClose={onClose}>
           <ButtonWrapper>
             <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
             <InformationButton onClick={handleToggleInfo} />
           </ButtonWrapper>
           <PrevBtnWrap>
-            {/* <PrevButton type="button" onClick={handlePrevPhoto}> */}
-            <PrevButton type="button">
+            <PrevButton type="button" onClick={handlePrevPhoto}>
               <PrevButtonIcon />
             </PrevButton>
           </PrevBtnWrap>
-          <img src={currentPhotoData.photoURL} height="100%" alt="" />
+
+          <PhotoLightBoxImg
+            src={currentAlbumPhotos[index]}
+            height="100%"
+            alt=""
+          />
+
           <NextBtnWrap>
-            <NextButton type="button">
+            <NextButton type="button" onClick={handleNextPhoto}>
               <NextButtonIcon />
             </NextButton>
           </NextBtnWrap>
