@@ -8,6 +8,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import dayjs from 'dayjs';
 
+import { useGetQuery } from 'react-query/useGetQuery';
 import useGetAlbumById from 'react-query/useGetAlbumById';
 import useGetPhotoById from 'react-query/useGetPhotoById';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
@@ -44,7 +45,7 @@ const PhotoLightBox = () => {
   const { id: photoId } = useParams();
   const { data: currentPhotoData } = useGetPhotoById(photoId);
   const [isOpenInfo, setIsOpenInfo] = useState(false);
-  // const [albumId, setAlbumId] = useState('');
+  const [albumId, setAlbumId] = useState('');
   // console.log(albumId);
   const [date, setDate] = useState('');
   const [place, setPlace] = useState('');
@@ -52,9 +53,11 @@ const PhotoLightBox = () => {
   const { mutateAsync: updatePhoto } = useUpdatePhoto();
   const { mutateAsync: deletePhoto, isLoading } = useDeletePhoto();
   const navigate = useNavigate();
-  const albumId = currentPhotoData && currentPhotoData.albumId;
-  const { data: albumData } = useGetAlbumById(albumId);
-  console.log(albumData.photo);
+  const userData = useGetQuery('user');
+  console.log(userData);
+  // const albumId = currentPhotoData && currentPhotoData.albumId;
+  // const { data: albumData } = useGetAlbumById(albumId);
+  // console.log(albumData);
 
   // const handlePrevPhoto = () => {
   //   console.log('ok');
@@ -78,7 +81,7 @@ const PhotoLightBox = () => {
     try {
       await deletePhoto(id, {
         onSuccess: () => {
-          // navigate(`/album/${albumId}`);
+          navigate(`/album/${albumId}`);
         },
       });
     } catch (error) {

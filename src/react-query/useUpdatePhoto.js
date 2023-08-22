@@ -11,8 +11,8 @@ const useUpdatePhoto = () => {
       updatePhoto({ date, comments, place, photoId }),
 
     onSuccess: () => {
-      queryClient.invalidateQueries('photo');
-      // queryClient.invalidateQueries('album');
+      // queryClient.invalidateQueries('photo');
+      queryClient.invalidateQueries('album');
 
       notifySuccess('photo update');
     },

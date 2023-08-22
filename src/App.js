@@ -50,7 +50,7 @@ function App() {
           <Route path="/profile" element={<UserPage />} />
           <Route path="/album-list" element={<AlbumsPage />} />
           <Route path="/album/:id" element={<CurrentAlbumPage />} />
-          <Route path="/photo/:id" element={<PhotoPage />} />
+          {/* <Route path="/photo/:id" element={<PhotoPage />} /> */}
           <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
 
           {/* На помилку поставити <Not Found/> */}

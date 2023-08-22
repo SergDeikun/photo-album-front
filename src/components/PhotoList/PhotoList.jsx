@@ -49,9 +49,9 @@ const styles = [
 
 const PhotoList = () => {
   const { id: albumID } = useParams();
-  const { data } = useGetAlbumById(albumID);
-  // if (data) {
-  //   console.log(data.photo);
+  const { data: currentAlbumData } = useGetAlbumById(albumID);
+  // if (currentAlbumData) {
+  //   console.log(currentAlbumData);
   // }
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [photoURLs, setPhotoURLs] = useState([]);
@@ -63,7 +63,6 @@ const PhotoList = () => {
   const [place, setPlace] = useState('');
   const [comments, setComments] = useState('');
   const [date, setDate] = useState('');
-  // console.log(date);
   const [photoId, setPhotoId] = useState('');
 
   const handleImageLoad = index => {
@@ -73,13 +72,9 @@ const PhotoList = () => {
   const handleOpenPhoto = (photo, index) => {
     setSelectedPhoto(photo);
     setPhotoIndex(index);
+    setDate(photo.date);
+    setPlace(photo.place);
     setComments(photo.comments);
-    // setDate(photo.date);
-
-    const formatDate = dayjs(photo.date, 'DD.MM.YYYY');
-
-    setDate(formatDate);
-
     setPhotoId(photo._id);
   };
 
@@ -160,12 +155,19 @@ const PhotoList = () => {
     e.preventDefault();
 
     try {
-      await updatePhoto({
-        date,
-        comments,
-        place,
-        photoId,
-      });
+      await updatePhoto(
+        {
+          date,
+          comments,
+          place,
+          photoId,
+        },
+        {
+          onSuccess: () => {
+            setIsOpenInfo(true);
+          },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -173,10 +175,10 @@ const PhotoList = () => {
 
   return (
     <>
-      {data && <AlbumTitle>{data.name}</AlbumTitle>}
+      {currentAlbumData && <AlbumTitle>{currentAlbumData.name}</AlbumTitle>}
       <Box>
-        {data &&
-          data.photo.map((photo, index) => {
+        {currentAlbumData &&
+          currentAlbumData.photo.map((photo, index) => {
             const { _id: photoId, photoURL } = photo;
             return (
               <Thumb
@@ -185,23 +187,22 @@ const PhotoList = () => {
                 isLoaded={isLoadedPhoto.includes(index)}
               >
                 <ImageWrapper isLoaded={isLoadedPhoto.includes(index)}>
-                  <Link to={`/photo/${photoId}`}>
-                    <ImageLazyLoad
-                      effect="blur"
-                      afterLoad={() => handleImageLoad(index)}
-                      src={photoURL}
-                      alt="photo"
-                      onClick={() => {
-                        setPhotoURLs(
-                          data.photo.map(({ photoURL }) => photoURL)
-                        );
-                        handleOpenPhoto(photo, index);
-                      }}
-                    />
-                  </Link>
+                  {/* <Link to={`/photo/${photoId}`}> */}
+                  <ImageLazyLoad
+                    afterLoad={() => handleImageLoad(index)}
+                    src={photoURL}
+                    alt="photo"
+                    onClick={() => {
+                      setPhotoURLs(
+                        currentAlbumData.photo.map(({ photoURL }) => photoURL)
+                      );
+                      handleOpenPhoto(photo, index);
+                    }}
+                  />
+                  {/* </Link> */}
                 </ImageWrapper>
 
-                {/* {selectedPhoto && selectedPhoto === photo && (
+                {selectedPhoto && selectedPhoto === photo && (
                   <Modal onClose={() => setSelectedPhoto(null)}>
                     <ButtonWrapper>
                       <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
@@ -231,10 +232,10 @@ const PhotoList = () => {
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                               <DesktopDatePicker
                                 inputFormat="DD.MM.YYYY"
-                                // value={updateDate}
                                 value={dayjs(date, 'DD.MM.YYYY')}
-                                // onChange={newValue => setUpdateDate(newValue)}
-                                onChange={newValue => setDate(newValue)}
+                                onChange={newValue =>
+                                  setDate(dayjs(newValue).format('DD.MM.YYYY'))
+                                }
                                 renderInput={params => (
                                   <TextField {...params} />
                                 )}
@@ -256,9 +257,7 @@ const PhotoList = () => {
                               aria-label="empty textarea"
                               placeholder="Comments"
                               style={{ width: 435, height: 175 }}
-                              // value={updateComments}
                               value={comments}
-                              // onChange={e => setUpdateComments(e.target.value)}
                               onChange={e => setComments(e.target.value)}
                             />
                             <button type="submit">ok</button>
@@ -267,7 +266,7 @@ const PhotoList = () => {
                       </InfoWrapper>
                     )}
                   </Modal>
-                )} */}
+                )}
               </Thumb>
             );
           })}
