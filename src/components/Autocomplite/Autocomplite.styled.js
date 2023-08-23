@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Root = styled.div`
   display: flex;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   width: 100%;
   overflow: hidden;
 `;

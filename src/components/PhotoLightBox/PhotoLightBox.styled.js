@@ -4,14 +4,12 @@ import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
 
 import Backdrop from 'components/Backdrop/Backdrop';
-// import Backdrop from 'components/Backdrop/Backdrop';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
 
 export const Modal = styled(Backdrop)`
   background-color: rgb(0, 0, 0);
-  /* position: relative; */
 `;
 
 export const ButtonWrapper = styled.div`
@@ -70,7 +68,6 @@ export const PrevButton = styled.button`
 export const PrevButtonIcon = styled(GrFormPrevious)`
   width: 36px;
   height: 36px;
-  /* fill: ${p => p.theme.colors.white}; */
 `;
 
 export const NextBtnWrap = styled.div`
@@ -105,7 +102,6 @@ export const NextButton = styled.button`
 export const NextButtonIcon = styled(GrFormNext)`
   width: 36px;
   height: 36px;
-  /* fill: ${p => p.theme.colors.white}; */
 `;
 
 // Image
@@ -115,7 +111,6 @@ export const PhotoLightBoxImg = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* height: 95%; */
   height: 100%;
   cursor: initial;
   /* object-fit: contain;
@@ -148,13 +143,13 @@ export const Form = styled.form`
 `;
 
 export const FieldWrapper = styled.div`
-  outline: 1px solid teal;
+  /* outline: 1px solid teal; */
+  display: flex;
   margin-bottom: 20px;
 `;
 
 export const PlaceWrapper = styled.div`
   position: relative;
-  /* margin-top: 100px; */
 `;
 
 export const Place = styled(Autocomplite)`
@@ -164,10 +159,13 @@ export const Place = styled(Autocomplite)`
   input {
     width: 100%;
     border: none;
-    /* border-bottom: 2px solid white; */
     outline: none;
+    font-family: ${p => p.theme.fonts.body};
+    font-weight: ${p => p.theme.fontWeights.regular};
+    font-size: ${p => p.theme.fontSize[0]}px;
+    line-height: 1.88;
+    letter-spacing: 0.1rem;
     padding: 6px;
-    font-size: 18px;
     background-color: transparent;
     color: ${p => p.theme.colors.black};
     overflow-wrap: break-word;

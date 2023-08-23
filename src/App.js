@@ -23,7 +23,7 @@ const UpdateAlbumPage = lazy(() =>
 );
 
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
-const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
+// const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
 
 // const Map = lazy(() => import('./components/Map/Map'));
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Avatar from 'react-avatar';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
@@ -6,7 +6,7 @@ import useDeleteAlbum from 'react-query/useDeleteAlbum';
 import useUpdateUser from 'react-query/useUpdateUser';
 
 import Button from 'components/Buttons/Button';
-import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
+// import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 
 import { showAlert } from 'helpers/showAlert';
 

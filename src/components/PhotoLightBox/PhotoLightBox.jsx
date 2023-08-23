@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { MdOutlineEdit } from 'react-icons/md';
 
 import dayjs from 'dayjs';
 
@@ -14,8 +15,10 @@ import useUpdatePhoto from 'react-query/useUpdatePhoto';
 import { showAlert } from 'helpers/showAlert';
 
 import InformationButton from 'components/Buttons/InformationButton/Information';
+import Comments from 'components/Inputs/Comments/Comments';
+import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 
-import queryClient from 'react-query/queryClient';
+// import queryClient from 'react-query/queryClient';
 
 import {
   // AlbumTitle,
@@ -55,31 +58,59 @@ const PhotoLightBox = ({
   const [isOpenInfo, setIsOpenInfo] = useState(false);
   const [date, setDate] = useState('');
   const [place, setPlace] = useState('');
+  const [placeChange, setPlaceChange] = useState(false);
   const [comments, setComments] = useState('');
+  const [commentsChange, setCommentsChange] = useState(false);
 
-  const handlePrevPhoto = () => {
+  const handlePrevPhoto = useCallback(() => {
     if (index === 0) {
       setIndex(currentAlbumPhotos.length - 1);
     } else {
       setIndex(index - 1);
     }
-  };
+  }, [currentAlbumPhotos.length, index]);
 
-  const handleNextPhoto = () => {
+  const handleNextPhoto = useCallback(() => {
     if (index === currentAlbumPhotos.length - 1) {
       setIndex(0);
     } else {
       setIndex(index + 1);
     }
-  };
+  }, [currentAlbumPhotos.length, index]);
 
   useEffect(() => {
     if (currentPhotoData) {
       setDate(currentPhotoData.date);
       setPlace(currentPhotoData.place);
       setComments(currentPhotoData.comments);
+      document.body.style.overflow = 'hidden';
+
+      const handleEscClose = e => {
+        if (e.keyCode === 27) {
+          onClose();
+        }
+      };
+
+      const handleKeyPress = e => {
+        if (e.key === 'ArrowLeft') {
+          handlePrevPhoto(photoIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          handleNextPhoto(photoIndex + 1);
+        }
+      };
+
+      document.addEventListener('keydown', handleEscClose);
+      document.addEventListener('keydown', handleKeyPress);
+
+      return () => {
+        document.body.style.overflow = 'auto';
+        document.removeEventListener('keydown', handleEscClose);
+        document.removeEventListener('keydown', handleKeyPress);
+      };
+    } else {
+      document.body.style.overflow = 'auto';
     }
-  }, [currentPhotoData]);
+  }, [currentPhotoData, handleNextPhoto, handlePrevPhoto, onClose, photoIndex]);
 
   const handleDelete = async id => {
     try {
@@ -103,6 +134,12 @@ const PhotoLightBox = ({
 
   const handleSelectUpdatePlace = newValue => {
     setPlace(newValue);
+    setPlaceChange(true);
+  };
+
+  const handleCommentsChange = e => {
+    setComments(e.target.value);
+    setCommentsChange(true);
   };
 
   const handleSubmit = async e => {
@@ -118,6 +155,9 @@ const PhotoLightBox = ({
     } catch (error) {
       console.log(error);
     }
+
+    setPlaceChange(false);
+    setCommentsChange(false);
   };
 
   return (
@@ -167,23 +207,32 @@ const PhotoLightBox = ({
                       renderInput={params => <TextField {...params} />}
                     />
                   </LocalizationProvider>
-                  <button type="submit">ok</button>
+                  <button type="submit">
+                    <MdOutlineEdit />
+                  </button>
                 </FieldWrapper>
 
+                {/* Place */}
+
                 <FieldWrapper>
+                  <LocationButton />
                   <Place place={place} onSelect={handleSelectUpdatePlace} />
-                  <button type="submit">ok</button>
+                  {placeChange && (
+                    <button type="submit">
+                      <MdOutlineEdit />
+                    </button>
+                  )}
                 </FieldWrapper>
 
+                {/* Comments */}
+
                 <FieldWrapper>
-                  <textarea
-                    aria-label="empty textarea"
-                    placeholder="Comments"
-                    style={{ width: 435, height: 175 }}
-                    value={comments}
-                    onChange={e => setComments(e.target.value)}
-                  />
-                  <button type="submit">ok</button>
+                  <Comments value={comments} onChange={handleCommentsChange} />
+                  {commentsChange && (
+                    <button type="submit">
+                      <MdOutlineEdit />
+                    </button>
+                  )}
                 </FieldWrapper>
               </Form>
             </InfoWrapper>
