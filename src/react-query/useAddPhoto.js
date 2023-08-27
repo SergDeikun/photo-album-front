@@ -5,7 +5,7 @@ import { addPhoto } from 'api/api-fetch';
 
 const useAddPhoto = () => {
   const mutation = useMutation({
-    mutationFn: ({ newPhoto, id }) => addPhoto({ newPhoto, id }),
+    mutationFn: ({ newPhoto, albumId }) => addPhoto({ newPhoto, albumId }),
 
     onSuccess: () => {
       queryClient.invalidateQueries('album');

@@ -34,7 +34,7 @@ const PhotoForm = ({ onClose }) => {
   const [comments, setComments] = useState('');
   // console.log(comments);
   const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
-  const { id } = useParams();
+  const { albumId } = useParams();
 
   const uploadImage = e => {
     setPreviewPhoto(URL.createObjectURL(e.target.files[0]));
@@ -63,7 +63,7 @@ const PhotoForm = ({ onClose }) => {
 
     try {
       await addPhoto(
-        { newPhoto, id },
+        { newPhoto, albumId },
         {
           onSuccess: () => {
             notifySuccess('photo added');

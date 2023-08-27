@@ -3,9 +3,11 @@ import PhotoList from 'components/PhotoList/PhotoList';
 
 const CurrentAlbumPage = () => {
   return (
-    <Container>
-      <PhotoList />
-    </Container>
+    <>
+      <Container>
+        <PhotoList />
+      </Container>
+    </>
   );
 };
 

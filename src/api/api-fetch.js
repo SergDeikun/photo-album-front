@@ -111,13 +111,17 @@ export const changeAlbum = async ({ updateAlbum, id }) => {
 };
 
 // Photo
-export const addPhoto = async ({ newPhoto, id }) => {
-  const response = await axios.post(`${API_URL}/api/photo/${id}`, newPhoto, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const addPhoto = async ({ newPhoto, albumId }) => {
+  const response = await axios.post(
+    `${API_URL}/api/photo/${albumId}`,
+    newPhoto,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   return response.data;
 };

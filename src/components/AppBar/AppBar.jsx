@@ -16,7 +16,7 @@ const AppBar = () => {
   const [isOpenAlbumForm, setIsOpenAlbumForm] = useState(false);
   const [isOpenPhotoForm, setIsOpenPhotoForm] = useState(false);
   const location = useLocation();
-  const { id } = useParams();
+  const { albumId, photoId } = useParams();
   const { data } = useGetCurrentUser();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const AppBar = () => {
           {location.pathname === '/album-list' && (
             <AddButton title="Add album" onClick={handleToggleAlbumForm} />
           )}
-          {location.pathname === `/album/${id}` && (
+          {location.pathname === `/album/${albumId}` && (
             <AddButton title="Add photo" onClick={handleTogglePhotoForm} />
           )}
 

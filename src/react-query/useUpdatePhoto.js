@@ -12,6 +12,7 @@ const useUpdatePhoto = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries('photo');
+      // queryClient.invalidateQueries('album');
 
       notifySuccess('photo update');
     },

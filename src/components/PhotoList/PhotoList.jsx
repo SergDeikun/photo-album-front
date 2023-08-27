@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 // import TextField from '@mui/material/TextField';
 // import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -14,7 +14,7 @@ import useGetAlbumById from 'react-query/useGetAlbumById';
 
 // import { showAlert } from 'helpers/showAlert';
 
-import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
+// import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
 // import InformationButton from 'components/Buttons/InformationButton/Information';
 
 import {
@@ -49,33 +49,42 @@ const styles = [
 ];
 
 const PhotoList = () => {
-  const { id: albumID } = useParams();
-  const { data: currentAlbumData } = useGetAlbumById(albumID);
-  // if (currentAlbumData) {
-  //   console.log(currentAlbumData);
-  // }
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [photoURLs, setPhotoURLs] = useState([]);
-  const [photoIndex, setPhotoIndex] = useState(null);
-  const [photoId, setPhotoId] = useState('');
-  // const { mutateAsync: deletePhoto } = useDeletePhoto();
-  // const { mutateAsync: updatePhoto } = useUpdatePhoto();
-  // const [isOpenInfo, setIsOpenInfo] = useState(false);
+  const { albumId } = useParams();
+  const { data: currentAlbumData } = useGetAlbumById(albumId);
   const [isLoadedPhoto, setIsLoadedPhoto] = useState([]);
-  // const [place, setPlace] = useState('');
-  // const [comments, setComments] = useState('');
-  // const [date, setDate] = useState('');
-  // const [photoId, setPhotoId] = useState('');
 
   const handleImageLoad = index => {
     setIsLoadedPhoto(prevLoadedPhotos => [...prevLoadedPhotos, index]);
   };
 
-  const handleOpenPhoto = (photo, index) => {
-    setSelectedPhoto(photo);
-    setPhotoIndex(index);
-    setPhotoId(photo._id);
-  };
+  // const { name, photo, _id: albumId } = currentAlbumData;
+  // const { id: albumId } = useParams();
+  // const { data: currentAlbumData } = useGetAlbumById(albumId);
+  // if (currentAlbumData) {
+  //   console.log(currentAlbumData);
+  // }
+  // const [selectedPhoto, setSelectedPhoto] = useState(null);
+  // const [photoURLs, setPhotoURLs] = useState([]);
+  // const [photoIndex, setPhotoIndex] = useState(null);
+  // const [photoId, setPhotoId] = useState('');
+  // const { mutateAsync: deletePhoto } = useDeletePhoto();
+  // const { mutateAsync: updatePhoto } = useUpdatePhoto();
+  // const [isOpenInfo, setIsOpenInfo] = useState(false);
+  // const [isLoadedPhoto, setIsLoadedPhoto] = useState([]);
+  // const [place, setPlace] = useState('');
+  // const [comments, setComments] = useState('');
+  // const [date, setDate] = useState('');
+
+  // const handleImageLoad = index => {
+  //   setIsLoadedPhoto(prevLoadedPhotos => [...prevLoadedPhotos, index]);
+  // };
+
+  // const handleOpenPhoto = (photo, index) => {
+  //   setSelectedPhoto(photo);
+  //   setPhotoIndex(index);
+  //   // setPhotoId(photo._id);
+  //   // console.log(photo._id);
+  // };
 
   // const handlePrevPhoto = useCallback(() => {
   //   if (photoIndex === 0) {
@@ -133,38 +142,30 @@ const PhotoList = () => {
   return (
     <>
       {currentAlbumData && <AlbumTitle>{currentAlbumData.name}</AlbumTitle>}
+
       <Box>
         {currentAlbumData &&
           currentAlbumData.photo.map((photo, index) => {
-            const { _id: id, photoURL } = photo;
+            const { _id: photoId, photoURL } = photo;
             return (
               <Thumb
-                key={id}
+                key={photoId}
                 style={styles[index % styles.length]}
                 isLoaded={isLoadedPhoto.includes(index)}
               >
                 <ImageWrapper isLoaded={isLoadedPhoto.includes(index)}>
-                  <ImageLazyLoad
-                    afterLoad={() => handleImageLoad(index)}
-                    src={photoURL}
-                    alt="photo"
-                    onClick={() => {
-                      setPhotoURLs(
-                        currentAlbumData.photo.map(({ photoURL }) => photoURL)
-                      );
-                      handleOpenPhoto(photo, index);
-                    }}
-                  />
+                  <Link to={`/album/${albumId}/photo/${photoId}`}>
+                    <ImageLazyLoad
+                      afterLoad={() => handleImageLoad(index)}
+                      src={photoURL}
+                      alt="photo"
+                      // onClick={() => {
+                      //   setPhotoURLs(photo.map(({ photoURL }) => photoURL));
+                      //   handleOpenPhoto(photo, index);
+                      // }}
+                    />
+                  </Link>
                 </ImageWrapper>
-                {selectedPhoto && (
-                  <PhotoLightBox
-                    onClose={() => setSelectedPhoto(null)}
-                    albumId={albumID}
-                    photoId={photoId}
-                    photoIndex={photoIndex}
-                    currentAlbumPhotos={photoURLs}
-                  />
-                )}
               </Thumb>
             );
           })}
