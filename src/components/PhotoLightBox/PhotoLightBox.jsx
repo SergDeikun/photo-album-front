@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation, Link } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -49,46 +49,63 @@ import {
 const PhotoLightBox = () => {
   const { albumId, photoId } = useParams();
   const { data: currentAlbumData } = useGetAlbumById(albumId);
+  console.log(currentAlbumData);
   const { data: currentPhotoData } = useGetPhotoById(photoId);
   const { mutateAsync: updatePhoto } = useUpdatePhoto();
   const { mutateAsync: deletePhoto } = useDeletePhoto();
-  const [photos, setPhotos] = useState([]);
-  // console.log(photos);
-  // const [index, setIndex] = useState(photoIndex);
   const [isOpenInfo, setIsOpenInfo] = useState(false);
-  const [date, setDate] = useState('');
-  const [place, setPlace] = useState('');
-  const [placeChange, setPlaceChange] = useState(false);
-  const [comments, setComments] = useState('');
-  const [commentsChange, setCommentsChange] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const index = queryParams.get('index') || 0;
+
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(parseInt(index));
+  console.log(currentPhotoIndex);
+
+  const [comments, setComments] = useState(
+    currentAlbumData.photo[currentPhotoIndex].comments
+  );
+  const [commentsChange, setCommentsChange] = useState(false);
+  const [date, setDate] = useState(
+    currentAlbumData.photo[currentPhotoIndex].date
+  );
+  const [place, setPlace] = useState(
+    currentAlbumData.photo[currentPhotoIndex].place
+  );
+  const [placeChange, setPlaceChange] = useState(false);
 
   const handleClose = () => {
     navigate(`/album/${albumId}`);
+    // setCurrentPhotoIndex(null);
   };
 
   // const handlePrevPhoto = useCallback(() => {
-  //   if (index === 0) {
-  //     setIndex(currentAlbumPhotos.length - 1);
-  //   } else {
-  //     setIndex(index - 1);
-  //   }
-  // }, [currentAlbumPhotos.length, index]);
+  //   const newIndex =
+  //     (currentPhotoIndex - 1 + currentAlbumData.photo.length) %
+  //     currentAlbumData.photo.length;
+  //   setCurrentPhotoIndex(newIndex);
+  // }, [currentAlbumData.photo.length, currentPhotoIndex]);
+  // console.log(currentAlbumData.photo[currentPhotoIndex]._id);
+
+  const handlePrevPhoto = useCallback(() => {
+    if (currentPhotoIndex === 0) {
+      setCurrentPhotoIndex(currentAlbumData.length - 1);
+    } else {
+      setCurrentPhotoIndex(currentPhotoIndex - 1);
+    }
+  }, [currentAlbumData.length, currentPhotoIndex]);
 
   // const handleNextPhoto = useCallback(() => {
-  //   if (index === currentAlbumPhotos.length - 1) {
-  //     setIndex(0);
-  //   } else {
-  //     setIndex(index + 1);
-  //   }
-  // }, [currentAlbumPhotos.length, index]);
+  //   const newIndex = (currentPhotoIndex + 1) % currentAlbumData.photo.length;
+  //   setCurrentPhotoIndex(newIndex);
+  // }, [currentAlbumData.photo.length, currentPhotoIndex]);
 
   useEffect(() => {
-    if (currentPhotoData) {
-      setDate(currentPhotoData.date);
-      setPlace(currentPhotoData.place);
-      setComments(currentPhotoData.comments);
-      setPhotos(currentAlbumData.photo);
+    if (currentAlbumData.photo) {
+      // setDate(date);
+      // setPlace(place);
+      // setComments(comments);
+
       document.body.style.overflow = 'hidden';
 
       const handleEscClose = e => {
@@ -100,9 +117,9 @@ const PhotoLightBox = () => {
 
       // const handleKeyPress = e => {
       //   if (e.key === 'ArrowLeft') {
-      //     handlePrevPhoto(photoIndex - 1);
+      //     handlePrevPhoto(index - 1);
       //   } else if (e.key === 'ArrowRight') {
-      //     handleNextPhoto(photoIndex + 1);
+      //     handleNextPhoto(index + 1);
       //   }
       // };
 
@@ -117,7 +134,15 @@ const PhotoLightBox = () => {
     } else {
       document.body.style.overflow = 'auto';
     }
-  }, [albumId, currentAlbumData.photo, currentPhotoData, navigate, photoId]);
+  }, [
+    albumId,
+    comments,
+    currentAlbumData.photo,
+    currentPhotoIndex,
+    date,
+    navigate,
+    place,
+  ]);
 
   const handleDelete = async id => {
     try {
@@ -169,30 +194,41 @@ const PhotoLightBox = () => {
 
   return (
     <>
-      {currentPhotoData && (
+      {currentAlbumData && (
         <Modal onClose={handleClose}>
           <ButtonWrapper>
             <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
             <InformationButton onClick={handleToggleInfo} />
           </ButtonWrapper>
-          {/* <PrevBtnWrap>
-            <PrevButton type="button" onClick={handlePrevPhoto}>
+          <PrevBtnWrap>
+            <PrevButton
+              type="button"
+              // to={`/album/${albumId}/photo/${
+              //   currentAlbumData.photo[currentPhotoIndex - 1]._id
+              // }?index=${currentPhotoIndex - 1}`}
+              onClick={handlePrevPhoto}
+            >
               <PrevButtonIcon />
             </PrevButton>
-          </PrevBtnWrap> */}
+          </PrevBtnWrap>
 
           <PhotoLightBoxImg
-            // src={photos[index]}
-            src={currentPhotoData.photoURL}
+            src={currentAlbumData.photo[currentPhotoIndex].photoURL}
             height="100%"
             alt=""
           />
 
-          {/* <NextBtnWrap>
-            <NextButton type="button" onClick={handleNextPhoto}>
+          <NextBtnWrap>
+            <NextButton
+            // type="button"
+            // to={`/album/${albumId}/photo/${
+            //   currentAlbumData.photo[currentPhotoIndex + 1]._id
+            // }`}
+            // onClick={handleNextPhoto}
+            >
               <NextButtonIcon />
             </NextButton>
-          </NextBtnWrap> */}
+          </NextBtnWrap>
 
           {/* Info */}
 

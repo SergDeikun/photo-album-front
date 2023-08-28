@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
@@ -80,7 +81,7 @@ export const NextBtnWrap = styled.div`
   cursor: initial;
 `;
 
-export const NextButton = styled.button`
+export const NextButton = styled(Link)`
   position: absolute;
   right: 20px;
   top: 50%;

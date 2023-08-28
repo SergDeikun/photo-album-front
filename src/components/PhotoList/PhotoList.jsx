@@ -154,7 +154,9 @@ const PhotoList = () => {
                 isLoaded={isLoadedPhoto.includes(index)}
               >
                 <ImageWrapper isLoaded={isLoadedPhoto.includes(index)}>
-                  <Link to={`/album/${albumId}/photo/${photoId}`}>
+                  <Link
+                    to={`/album/${albumId}/photo/${photoId}?index=${index}`}
+                  >
                     <ImageLazyLoad
                       afterLoad={() => handleImageLoad(index)}
                       src={photoURL}
