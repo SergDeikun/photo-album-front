@@ -18,6 +18,7 @@ const Autocomplite = ({ onSelect, place, className }) => {
   } = usePlacesAutocomplete({
     // callbackName: 'YOUR_CALLBACK_NAME',
     defaultValue: place,
+
     requestOptions: {
       initOnMount: false,
     },
