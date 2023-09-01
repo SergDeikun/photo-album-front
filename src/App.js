@@ -30,7 +30,7 @@ const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
 const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ['places'];
 
-function App() {
+const App = () => {
   // const { isLoaded, loadError } = useJsApiLoader({
   //   googleMapsApiKey: API_KEY,
   //   libraries,
@@ -65,6 +65,6 @@ function App() {
       <ScrollToTop smooth component={<p style={{ color: '#ff0044' }}>UP</p>} />
     </>
   );
-}
+};
 
 export default App;

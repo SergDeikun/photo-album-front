@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar';
 
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -62,6 +63,7 @@ const PhotoLightBox = () => {
   const [place, setPlace] = useState('');
   console.log(place);
   const [placeChange, setPlaceChange] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleClose = () => {
     navigate(`/album/${albumId}`);
@@ -75,7 +77,7 @@ const PhotoLightBox = () => {
     const newPhotoId = currentAlbumData.photo[newIndex]._id;
 
     setCurrentPhotoIndex(newIndex);
-
+    setProgress(100);
     navigate(`/album/${albumId}/photo/${newPhotoId}?index=${newIndex}`);
   }, [albumId, currentAlbumData.photo, currentPhotoIndex, navigate]);
 
@@ -84,6 +86,7 @@ const PhotoLightBox = () => {
 
     const newPhotoId = currentAlbumData.photo[newIndex]._id;
 
+    setProgress(100);
     setCurrentPhotoIndex(newIndex);
 
     navigate(`/album/${albumId}/photo/${newPhotoId}?index=${newIndex}`);
@@ -189,6 +192,11 @@ const PhotoLightBox = () => {
 
   return (
     <>
+      <LoadingBar
+        color="#f11946"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       {currentPhotoData && (
         <Modal onClose={handleClose}>
           <ButtonWrapper>
@@ -261,7 +269,7 @@ const PhotoLightBox = () => {
                 <FieldWrapper>
                   <Comments value={comments} onChange={handleCommentsChange} />
                   {commentsChange && (
-                    <button type="submit">
+                    <button type="submit" onClick={() => setProgress(100)}>
                       <MdOutlineEdit />
                     </button>
                   )}

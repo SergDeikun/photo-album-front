@@ -12,12 +12,10 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import useAddPhoto from 'react-query/useAddPhoto';
 
 import Button from 'components/Buttons/Button';
-// import Autocomplite from 'components/Autocomplite/Autocomplite';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 
 import {
-  // Title,
   Box,
   FieldWrapper,
   InputWrapper,
@@ -32,7 +30,6 @@ const PhotoForm = ({ onClose }) => {
   const [photoURL, setPhoto] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState('');
   const [comments, setComments] = useState('');
-  // console.log(comments);
   const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
   const { albumId } = useParams();
 

@@ -29,6 +29,7 @@
     "react-scroll-to-top": "^3.0.0",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.1",
+    "react-top-loading-bar": "^2.3.1",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.7.5",
     "use-places-autocomplete": "^4.0.0",

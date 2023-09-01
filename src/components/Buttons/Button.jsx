@@ -4,7 +4,7 @@ import PulseLoader from 'react-spinners/PulseLoader';
 const Button = ({ onClick, title, type, disabled }) => {
   return (
     <>
-      <Btn onClick={onClick} type={type}>
+      <Btn onClick={onClick} type={type} disabled={disabled}>
         {disabled ? <PulseLoader size={8} /> : title}
       </Btn>
     </>
