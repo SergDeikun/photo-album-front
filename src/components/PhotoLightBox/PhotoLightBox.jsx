@@ -27,7 +27,7 @@ import {
   // ImageWrapper,
   // Thumb,
   // ImageLazyLoad,
-  Modal,
+  WrapperBox,
   ButtonWrapper,
   // PhotoLightBoxImg,
   DeleteBtn,
@@ -48,7 +48,7 @@ import {
 const PhotoLightBox = () => {
   const { albumId, photoId } = useParams();
   const { data: currentAlbumData } = useGetAlbumById(albumId);
-  const { data: currentPhotoData, isLoading } = useGetPhotoById(photoId);
+  const { data: currentPhotoData } = useGetPhotoById(photoId);
   const { mutateAsync: updatePhoto } = useUpdatePhoto();
   const { mutateAsync: deletePhoto } = useDeletePhoto();
   const [isOpenInfo, setIsOpenInfo] = useState(false);
@@ -59,9 +59,10 @@ const PhotoLightBox = () => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(parseInt(index));
   const [comments, setComments] = useState('');
   const [commentsChange, setCommentsChange] = useState(false);
-  const [date, setDate] = useState('');
+  // const [date, setDate] = useState('');
+  const [date, setDate] = useState(null);
+
   const [place, setPlace] = useState('');
-  console.log(place);
   const [placeChange, setPlaceChange] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -97,6 +98,8 @@ const PhotoLightBox = () => {
       const initialPhoto = currentAlbumData.photo[currentPhotoIndex];
       setComments(initialPhoto.comments);
       setDate(initialPhoto.date);
+      // setDate(dayjs(initialPhoto.date, 'YYYY-MM-DD'));
+
       setPlace(initialPhoto.place);
     }
   }, [currentAlbumData.photo, currentPhotoIndex]);
@@ -191,19 +194,19 @@ const PhotoLightBox = () => {
   };
 
   return (
-    <>
+    <WrapperBox onClose={handleClose}>
       <LoadingBar
         color="#f11946"
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
-      {currentPhotoData && (
-        <Modal onClose={handleClose}>
-          <ButtonWrapper>
-            <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
-            <InformationButton onClick={handleToggleInfo} />
-          </ButtonWrapper>
+      <ButtonWrapper>
+        <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
+        <InformationButton onClick={handleToggleInfo} />
+      </ButtonWrapper>
 
+      {currentPhotoData && (
+        <>
           {!isOpenInfo && (
             <PrevBtnWrap>
               <PrevButton type="button" onClick={handlePrevPhoto}>
@@ -226,8 +229,6 @@ const PhotoLightBox = () => {
             </NextBtnWrap>
           )}
 
-          {/* Info */}
-
           {isOpenInfo && (
             <InfoWrapper>
               <CloseBtn onClick={handleToggleInfo} />
@@ -240,14 +241,18 @@ const PhotoLightBox = () => {
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DesktopDatePicker
                       inputFormat="DD.MM.YYYY"
-                      value={dayjs(date, 'DD.MM.YYYY')}
-                      onChange={newValue =>
-                        setDate(dayjs(newValue).format('DD.MM.YYYY'))
-                      }
+                      value={date ? dayjs(date, 'DD.MM.YYYY') : null}
+                      onChange={newValue => {
+                        if (newValue) {
+                          setDate(dayjs(newValue).format('DD.MM.YYYY'));
+                        } else {
+                          setDate(null);
+                        }
+                      }}
                       renderInput={params => <TextField {...params} />}
                     />
                   </LocalizationProvider>
-                  <button type="submit">
+                  <button type="submit " onClick={() => setProgress(100)}>
                     <MdOutlineEdit />
                   </button>
                 </FieldWrapper>
@@ -258,7 +263,7 @@ const PhotoLightBox = () => {
                   <LocationButton />
                   <Place place={place} onSelect={handleSelectUpdatePlace} />
                   {placeChange && (
-                    <button type="submit">
+                    <button type="submit" onClick={() => setProgress(100)}>
                       <MdOutlineEdit />
                     </button>
                   )}
@@ -277,9 +282,9 @@ const PhotoLightBox = () => {
               </Form>
             </InfoWrapper>
           )}
-        </Modal>
+        </>
       )}
-    </>
+    </WrapperBox>
   );
 };
 

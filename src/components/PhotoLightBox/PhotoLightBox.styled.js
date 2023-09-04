@@ -8,7 +8,7 @@ import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
 
-export const Modal = styled(Backdrop)`
+export const WrapperBox = styled(Backdrop)`
   background-color: rgb(0, 0, 0);
 `;
 

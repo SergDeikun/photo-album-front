@@ -10,6 +10,7 @@ import ScrollToTop from 'react-scroll-to-top';
 // import toastOptions from 'helpers/toastOptions';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
+
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -49,13 +50,10 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<UserPage />} />
           <Route path="/album-list" element={<AlbumsPage />} />
-          <Route path="/album/:albumId" element={<CurrentAlbumPage />}>
-            {/* <Route path="photo/:id" element={<PhotoPage />} /> */}
-          </Route>
+          <Route path="/album/:albumId" element={<CurrentAlbumPage />} />
           <Route path="album/:albumId/photo/:photoId" element={<PhotoPage />} />
           <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
 
-          {/* На помилку поставити <Not Found/> */}
           {/* <Route path="/map" element={<Map />} /> */}
         </Route>
         <Route path="*" element={<NotFoundPage />} />
