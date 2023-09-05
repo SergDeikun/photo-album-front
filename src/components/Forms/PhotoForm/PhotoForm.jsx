@@ -26,8 +26,7 @@ import {
 
 const PhotoForm = ({ onClose }) => {
   const [place, setPlace] = useState('');
-  const [date, setDate] = useState('');
-  console.log(date);
+  const [date, setDate] = useState(null);
   const [photoURL, setPhoto] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState('');
   const [comments, setComments] = useState('');
@@ -46,11 +45,13 @@ const PhotoForm = ({ onClose }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const formatDate = dayjs(date).format('DD.MM.YYYY');
+    // const formatDate = dayjs(date).format('DD.MM.YYYY');
 
     const newPhoto = new FormData();
     newPhoto.append('place', place);
-    newPhoto.append('date', formatDate);
+    // newPhoto.append('date', formatDate);
+    newPhoto.append('date', date);
+
     newPhoto.append('photoURL', photoURL);
     newPhoto.append('comments', comments);
 
@@ -104,9 +105,12 @@ const PhotoForm = ({ onClose }) => {
             <InputWrapper>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateField
+                  required={false}
                   inputFormat="DD.MM.YYYY"
-                  value={date}
-                  onChange={newDate => setDate(newDate)}
+                  value={dayjs(date, 'DD.MM.YYYY')}
+                  onChange={newValue =>
+                    setDate(dayjs(newValue).format('DD.MM.YYYY'))
+                  }
                   renderInput={params => <TextField {...params} />}
                 />
               </LocalizationProvider>

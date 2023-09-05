@@ -4,6 +4,7 @@ import LoadingBar from 'react-top-loading-bar';
 
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MdOutlineEdit } from 'react-icons/md';
@@ -60,8 +61,8 @@ const PhotoLightBox = () => {
   const [comments, setComments] = useState('');
   const [commentsChange, setCommentsChange] = useState(false);
   // const [date, setDate] = useState('');
-  const [date, setDate] = useState(null);
-
+  const [date, setDate] = useState('');
+  console.log(date);
   const [place, setPlace] = useState('');
   const [placeChange, setPlaceChange] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -240,16 +241,19 @@ const PhotoLightBox = () => {
                 <FieldWrapper>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DesktopDatePicker
+                      required={false}
                       inputFormat="DD.MM.YYYY"
-                      value={date ? dayjs(date, 'DD.MM.YYYY') : null}
-                      onChange={newValue => {
-                        if (newValue) {
-                          setDate(dayjs(newValue).format('DD.MM.YYYY'));
-                        } else {
-                          setDate(null);
-                        }
-                      }}
-                      renderInput={params => <TextField {...params} />}
+                      value={dayjs(date, 'DD.MM.YYYY')}
+                      onChange={newValue =>
+                        setDate(dayjs(newValue).format('DD.MM.YYYY'))
+                      }
+                      renderInput={params => (
+                        <TextField
+                          {...params}
+                          value={date || ''}
+                          error={!date}
+                        />
+                      )}
                     />
                   </LocalizationProvider>
                   <button type="submit " onClick={() => setProgress(100)}>
