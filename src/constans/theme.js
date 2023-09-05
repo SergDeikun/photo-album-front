@@ -1,5 +1,5 @@
 export const theme = {
-  fonts: { body: 'Montserrat, sans-serif', button: 'Roboto,sans-serif' },
+  fonts: { body: 'Montserrat, sans-serif', text: 'Roboto,sans-serif' },
 
   fontSize: [16, 24, 34, 50, 100],
 
@@ -22,4 +22,6 @@ export const theme = {
     small: '3px',
     round: '50px',
   },
+
+  // transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 };

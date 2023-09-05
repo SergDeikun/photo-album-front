@@ -119,6 +119,16 @@ export const DateField = styled(DesktopDatePicker)`
     }
   }
 
+  .mdc-datetime-picker .mdc-datetime-picker__input-container .mdc-icon-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* .mdc-datetime-picker .mdc-datetime-picker__input-container .mdc-icon-button {
+    float: left;
+  } */
+
   .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root.Mui-error {
     color: ${p => p.theme.colors.grey};
   }
@@ -132,6 +142,10 @@ export const DateField = styled(DesktopDatePicker)`
     /* border-bottom: 2px solid white; */
 
     border-color: transparent;
+  }
+
+  .css-o9k5xi-MuiInputBase-root-MuiOutLinedInput-root {
+    float: start;
   }
 
   .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error

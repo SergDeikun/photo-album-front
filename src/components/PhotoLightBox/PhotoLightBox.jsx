@@ -3,6 +3,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
 
 import TextField from '@mui/material/TextField';
+// import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -19,7 +20,6 @@ import useUpdatePhoto from 'react-query/useUpdatePhoto';
 import { showAlert } from 'helpers/showAlert';
 
 import InformationButton from 'components/Buttons/InformationButton/Information';
-import Comments from 'components/Inputs/Comments/Comments';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 
 import {
@@ -30,7 +30,6 @@ import {
   // ImageLazyLoad,
   WrapperBox,
   ButtonWrapper,
-  // PhotoLightBoxImg,
   DeleteBtn,
   PrevBtnWrap,
   PrevButton,
@@ -40,11 +39,17 @@ import {
   NextButton,
   NextButtonIcon,
   InfoWrapper,
+  InfoBlock,
   CloseBtn,
+  InfoTitle,
   Form,
   FieldWrapper,
   Place,
+  Comments,
+  SubmitButton,
 } from '../PhotoLightBox/PhotoLightBox.styled';
+
+import { DateField } from 'components/Forms/PhotoForm/PhotoForm.styled';
 
 const PhotoLightBox = () => {
   const { albumId, photoId } = useParams();
@@ -58,13 +63,24 @@ const PhotoLightBox = () => {
   const queryParams = new URLSearchParams(location.search);
   const index = queryParams.get('index') || 0;
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(parseInt(index));
+
+  // Comments
+
   const [comments, setComments] = useState('');
   const [commentsChange, setCommentsChange] = useState(false);
-  // const [date, setDate] = useState('');
+  // console.log(commentsChange);
+
+  // Date
+
   const [date, setDate] = useState('');
-  console.log(date);
+
+  // Place
+
   const [place, setPlace] = useState('');
+
   const [placeChange, setPlaceChange] = useState(false);
+  console.log(placeChange);
+
   const [progress, setProgress] = useState(0);
 
   const handleClose = () => {
@@ -99,8 +115,6 @@ const PhotoLightBox = () => {
       const initialPhoto = currentAlbumData.photo[currentPhotoIndex];
       setComments(initialPhoto.comments);
       setDate(initialPhoto.date);
-      // setDate(dayjs(initialPhoto.date, 'YYYY-MM-DD'));
-
       setPlace(initialPhoto.place);
     }
   }, [currentAlbumData.photo, currentPhotoIndex]);
@@ -164,6 +178,7 @@ const PhotoLightBox = () => {
 
   const handleToggleInfo = () => {
     setIsOpenInfo(!isOpenInfo);
+    setCommentsChange(false);
   };
 
   const handleSelectUpdatePlace = newValue => {
@@ -232,7 +247,11 @@ const PhotoLightBox = () => {
 
           {isOpenInfo && (
             <InfoWrapper>
-              <CloseBtn onClick={handleToggleInfo} />
+              <InfoBlock>
+                <CloseBtn onClick={handleToggleInfo} />
+                <InfoTitle>Information</InfoTitle>
+              </InfoBlock>
+
               <Form
                 encType="multipart/form-data"
                 onSubmit={handleSubmit}
@@ -240,15 +259,18 @@ const PhotoLightBox = () => {
               >
                 <FieldWrapper>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DesktopDatePicker
+                    <DateField
+                      startIcon
                       required={false}
                       inputFormat="DD.MM.YYYY"
+                      maxDate={new Date()}
                       value={dayjs(date, 'DD.MM.YYYY')}
                       onChange={newValue =>
                         setDate(dayjs(newValue).format('DD.MM.YYYY'))
                       }
                       renderInput={params => (
                         <TextField
+                          position="start"
                           {...params}
                           value={date || ''}
                           error={!date}
@@ -256,9 +278,9 @@ const PhotoLightBox = () => {
                       )}
                     />
                   </LocalizationProvider>
-                  <button type="submit " onClick={() => setProgress(100)}>
-                    <MdOutlineEdit />
-                  </button>
+                  <SubmitButton type="submit " onClick={() => setProgress(100)}>
+                    Save
+                  </SubmitButton>
                 </FieldWrapper>
 
                 {/* Place */}
@@ -266,23 +288,43 @@ const PhotoLightBox = () => {
                 <FieldWrapper>
                   <LocationButton />
                   <Place place={place} onSelect={handleSelectUpdatePlace} />
-                  {placeChange && (
-                    <button type="submit" onClick={() => setProgress(100)}>
-                      <MdOutlineEdit />
-                    </button>
-                  )}
+                  {/* {placeChange && (
+                    <SubmitButton
+                      type="submit"
+                      onClick={() => setProgress(100)}
+                    >
+                      Save
+                    </SubmitButton>
+                  )} */}
                 </FieldWrapper>
 
                 {/* Comments */}
 
                 <FieldWrapper>
-                  <Comments value={comments} onChange={handleCommentsChange} />
-                  {commentsChange && (
-                    <button type="submit" onClick={() => setProgress(100)}>
-                      <MdOutlineEdit />
-                    </button>
-                  )}
+                  <Comments
+                    aria-label="empty textarea"
+                    placeholder="Add comments"
+                    value={comments}
+                    onChange={handleCommentsChange}
+                  />
+                  {/* {commentsChange && (
+                    <SubmitButton
+                      type="submit"
+                      onClick={() => setProgress(100)}
+                    >
+                      Save
+                    </SubmitButton>
+                  )} */}
                 </FieldWrapper>
+                {placeChange ||
+                  (commentsChange && (
+                    <SubmitButton
+                      type="submit"
+                      onClick={() => setProgress(100)}
+                    >
+                      Save
+                    </SubmitButton>
+                  ))}
               </Form>
             </InfoWrapper>
           )}

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
 
@@ -125,17 +126,33 @@ export const InfoWrapper = styled.div`
   right: 0;
   z-index: 10;
   height: 100%;
-  width: 400px;
+  width: 360px;
   background-color: ${p => p.theme.colors.bodyBg};
   padding: 10px;
 `;
 
+export const InfoBlock = styled.div`
+  /* outline: 1px solid tomato; */
+  display: flex;
+  align-items: center;
+`;
+
 export const CloseBtn = styled(CloseButton)`
-  right: 355px;
+  /* right: 330px; */
+  position: static;
 
   svg {
     fill: ${p => p.theme.colors.black};
   }
+`;
+
+export const InfoTitle = styled.p`
+  font-family: ${p => p.theme.fonts.text};
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSize[1]}px;
+  line-height: 1.88;
+  letter-spacing: 0.1rem;
+  /* margin-left: 10px; */
 `;
 
 export const Form = styled.form`
@@ -144,7 +161,8 @@ export const Form = styled.form`
 
 export const FieldWrapper = styled.div`
   /* outline: 1px solid teal; */
-  display: flex;
+  /* display: flex; */
+  /* align-items: center; */
   margin-bottom: 20px;
 `;
 
@@ -187,4 +205,41 @@ export const Place = styled(Autocomplite)`
       background-color: ${p => p.theme.colors.grey};
     }
   }
+`;
+
+export const Comments = styled(TextareaAutosize)`
+  font-family: ${p => p.theme.fonts.text};
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSize[0]}px;
+  line-height: 1.88;
+  letter-spacing: 0.1rem;
+  padding: 6px;
+  background-color: transparent;
+  color: ${p => p.theme.colors.black};
+  resize: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  width: 395px;
+  height: 175px;
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+
+  &:focus {
+    border-bottom: 1px solid ${props => props.theme.colors.red};
+  }
+`;
+
+export const SubmitButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSize[0]}px;
+  font-weight: ${p => p.theme.fontWeights.regular};
+  line-height: 1.88;
+  color: ${props => props.theme.colors.red};
 `;

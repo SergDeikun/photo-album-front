@@ -12,7 +12,7 @@ export const Btn = styled.button`
   border-radius: 3px;
   border: none;
   /* padding: 10px 35px; */
-  font-family: ${p => p.theme.fonts.button};
+  font-family: ${p => p.theme.fonts.text};
   font-weight: ${p => p.theme.fontWeights.regular};
   font-size: ${p => p.theme.fontSize[0]}px;
   line-height: 1.88;

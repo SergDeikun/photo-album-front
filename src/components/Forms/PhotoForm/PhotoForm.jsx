@@ -107,6 +107,7 @@ const PhotoForm = ({ onClose }) => {
                 <DateField
                   required={false}
                   inputFormat="DD.MM.YYYY"
+                  maxDate={new Date()}
                   value={dayjs(date, 'DD.MM.YYYY')}
                   onChange={newValue =>
                     setDate(dayjs(newValue).format('DD.MM.YYYY'))
