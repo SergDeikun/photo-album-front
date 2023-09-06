@@ -19,9 +19,9 @@ const CurrentAlbumPage = lazy(() =>
   import('./pages/CurrentAlbumPage/CurrentAlbumPage')
 );
 const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
-const UpdateAlbumPage = lazy(() =>
-  import('./pages/UpdateAlbumPage/UpdateAlbumPage')
-);
+// const UpdateAlbumPage = lazy(() =>
+//   import('./pages/UpdateAlbumPage/UpdateAlbumPage')
+// );
 
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
@@ -52,7 +52,7 @@ const App = () => {
           <Route path="/album-list" element={<AlbumsPage />} />
           <Route path="/album/:albumId" element={<CurrentAlbumPage />} />
           <Route path="album/:albumId/photo/:photoId" element={<PhotoPage />} />
-          <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
+          {/* <Route path="/:id/:name/update" element={<UpdateAlbumPage />} /> */}
 
           {/* <Route path="/map" element={<Map />} /> */}
         </Route>
