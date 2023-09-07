@@ -7,4 +7,6 @@ export const Wrapper = styled.div`
 
 export const ButtonWrap = styled.div`
   margin-left: auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
 `;

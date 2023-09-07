@@ -1,9 +1,13 @@
-import { LogoLink, LogoIcon } from './Logo.styled';
+import LogoIcon from '../../images/logo.png';
+
+import { LogoLink, LogoImg } from './Logo.styled';
 
 const Logo = () => {
   return (
     <>
-      <LogoLink to={'/'}>Keep</LogoLink>
+      <LogoLink to={'/'}>
+        <LogoImg src={LogoIcon} alt="icon" />
+      </LogoLink>
     </>
   );
 };

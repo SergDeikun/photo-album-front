@@ -20,17 +20,14 @@ export const AuthLink = styled(NavLink)`
   line-height: 1.88;
   color: ${p => p.theme.colors.black};
 
-  /* padding-top: 30px;
-  padding-bottom: 30px; */
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   transition-property: transform;
 
   &:after {
     content: '';
     position: absolute;
-    /* bottom: 40px; */
-    bottom: 35px;
+    bottom: 28px;
 
     left: 0;
     width: 100%;
@@ -43,10 +40,6 @@ export const AuthLink = styled(NavLink)`
   &.active {
     color: ${p => p.theme.colors.red};
   }
-
-  /* &:hover {
-    transform: scale(1);
-  } */
 
   &:hover:after {
     transform: rotate(0deg);
