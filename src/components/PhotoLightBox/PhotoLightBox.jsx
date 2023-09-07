@@ -5,10 +5,10 @@ import LoadingBar from 'react-top-loading-bar';
 import TextField from '@mui/material/TextField';
 // import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { MdOutlineEdit } from 'react-icons/md';
+// import { MdOutlineEdit } from 'react-icons/md';
 
 import dayjs from 'dayjs';
 
@@ -41,7 +41,7 @@ import {
   InfoWrapper,
   InfoBlock,
   CloseBtn,
-  InfoTitle,
+  // InfoTitle,
   Form,
   FieldWrapper,
   Place,
@@ -49,7 +49,7 @@ import {
   SubmitButton,
 } from '../PhotoLightBox/PhotoLightBox.styled';
 
-import { DateField } from 'components/Forms/PhotoForm/PhotoForm.styled';
+// import { DateField } from 'components/Forms/PhotoForm/PhotoForm.styled';
 
 const PhotoLightBox = () => {
   const { albumId, photoId } = useParams();
@@ -63,25 +63,12 @@ const PhotoLightBox = () => {
   const queryParams = new URLSearchParams(location.search);
   const index = queryParams.get('index') || 0;
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(parseInt(index));
-
-  // Comments
-
   const [comments, setComments] = useState('');
-  const [commentsChange, setCommentsChange] = useState(false);
-  // console.log(commentsChange);
-
-  // Date
-
   const [date, setDate] = useState('');
-
-  // Place
-
   const [place, setPlace] = useState('');
-
-  const [placeChange, setPlaceChange] = useState(false);
-  console.log(placeChange);
-
   const [progress, setProgress] = useState(0);
+  const [saveBtnVisible, setSaveBtnVisible] = useState(false);
+  console.log(saveBtnVisible);
 
   const handleClose = () => {
     navigate(`/album/${albumId}`);
@@ -152,7 +139,9 @@ const PhotoLightBox = () => {
     }
   }, [
     albumId,
+    currentAlbumData.photo,
     currentPhotoData,
+    currentPhotoIndex,
     handleNextPhoto,
     handlePrevPhoto,
     index,
@@ -178,17 +167,21 @@ const PhotoLightBox = () => {
 
   const handleToggleInfo = () => {
     setIsOpenInfo(!isOpenInfo);
-    setCommentsChange(false);
   };
 
-  const handleSelectUpdatePlace = newValue => {
-    setPlace(newValue);
-    setPlaceChange(true);
+  const handleDateChange = newDate => {
+    setDate(dayjs(newDate).format('DD.MM.YYYY'));
+    setSaveBtnVisible(true);
+  };
+
+  const handleSelectUpdatePlace = newPlace => {
+    setPlace(newPlace);
+    setSaveBtnVisible(true);
   };
 
   const handleCommentsChange = e => {
     setComments(e.target.value);
-    setCommentsChange(true);
+    setSaveBtnVisible(true);
   };
 
   const handleSubmit = async e => {
@@ -205,8 +198,7 @@ const PhotoLightBox = () => {
       console.log(error);
     }
 
-    setPlaceChange(false);
-    setCommentsChange(false);
+    setSaveBtnVisible(false);
   };
 
   return (
@@ -249,7 +241,7 @@ const PhotoLightBox = () => {
             <InfoWrapper>
               <InfoBlock>
                 <CloseBtn onClick={handleToggleInfo} />
-                <InfoTitle>Information</InfoTitle>
+                {/* <InfoTitle>Information</InfoTitle> */}
               </InfoBlock>
 
               <Form
@@ -257,17 +249,17 @@ const PhotoLightBox = () => {
                 onSubmit={handleSubmit}
                 action=""
               >
+                {/* Date */}
+
                 <FieldWrapper>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateField
+                    <DesktopDatePicker
                       startIcon
                       required={false}
                       inputFormat="DD.MM.YYYY"
                       maxDate={new Date()}
                       value={dayjs(date, 'DD.MM.YYYY')}
-                      onChange={newValue =>
-                        setDate(dayjs(newValue).format('DD.MM.YYYY'))
-                      }
+                      onChange={handleDateChange}
                       renderInput={params => (
                         <TextField
                           position="start"
@@ -278,9 +270,6 @@ const PhotoLightBox = () => {
                       )}
                     />
                   </LocalizationProvider>
-                  <SubmitButton type="submit " onClick={() => setProgress(100)}>
-                    Save
-                  </SubmitButton>
                 </FieldWrapper>
 
                 {/* Place */}
@@ -288,14 +277,6 @@ const PhotoLightBox = () => {
                 <FieldWrapper>
                   <LocationButton />
                   <Place place={place} onSelect={handleSelectUpdatePlace} />
-                  {/* {placeChange && (
-                    <SubmitButton
-                      type="submit"
-                      onClick={() => setProgress(100)}
-                    >
-                      Save
-                    </SubmitButton>
-                  )} */}
                 </FieldWrapper>
 
                 {/* Comments */}
@@ -307,24 +288,15 @@ const PhotoLightBox = () => {
                     value={comments}
                     onChange={handleCommentsChange}
                   />
-                  {/* {commentsChange && (
-                    <SubmitButton
-                      type="submit"
-                      onClick={() => setProgress(100)}
-                    >
-                      Save
-                    </SubmitButton>
-                  )} */}
                 </FieldWrapper>
-                {placeChange ||
-                  (commentsChange && (
-                    <SubmitButton
-                      type="submit"
-                      onClick={() => setProgress(100)}
-                    >
-                      Save
-                    </SubmitButton>
-                  ))}
+
+                {/* Save button */}
+
+                {saveBtnVisible && (
+                  <SubmitButton type="submit" onClick={() => setProgress(100)}>
+                    Save
+                  </SubmitButton>
+                )}
               </Form>
             </InfoWrapper>
           )}
