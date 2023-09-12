@@ -107,6 +107,12 @@ const PhotoLightBox = () => {
   }, [currentAlbumData.photo, currentPhotoIndex]);
 
   useEffect(() => {
+    if (currentPhotoData) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflowY = 'scroll';
+    }
+
     const handleEscClose = e => {
       if (e.keyCode === 27) {
         navigate(`/album/${albumId}`);
@@ -123,20 +129,14 @@ const PhotoLightBox = () => {
       }
     };
 
-    if (currentPhotoData) {
-      document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleEscClose);
+    document.addEventListener('keydown', handleKeyPress);
 
-      document.addEventListener('keydown', handleEscClose);
-      document.addEventListener('keydown', handleKeyPress);
-
-      return () => {
-        document.body.style.overflow = 'auto';
-        document.removeEventListener('keydown', handleEscClose);
-        document.removeEventListener('keydown', handleKeyPress);
-      };
-    } else {
+    return () => {
       document.body.style.overflow = 'auto';
-    }
+      document.removeEventListener('keydown', handleEscClose);
+      document.removeEventListener('keydown', handleKeyPress);
+    };
   }, [
     albumId,
     currentAlbumData.photo,

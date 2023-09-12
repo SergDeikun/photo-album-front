@@ -10,6 +10,10 @@ export const Form = styled.form`
   width: 445px;
 `;
 
+export const InputrWrapper = styled.div`
+  margin-bottom: 10px;
+`;
+
 export const Input = styled(TextField)`
   width: 100%;
 

@@ -8,10 +8,6 @@ import { Item, LinkItem, Image, AlbumName } from './AlbumList.styled';
 const AlbumList = () => {
   const { data } = useGetCurrentUser();
 
-  // if (data) {
-  //   console.log(data);
-  // }
-
   return (
     <>
       <List>

@@ -15,9 +15,9 @@ const UserMenu = () => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      // document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      // document.body.style.overflow = 'auto';
     }
 
     // todo: функцію винести в helpers
@@ -29,7 +29,7 @@ const UserMenu = () => {
     document.addEventListener('keydown', handleEscClose);
 
     return () => {
-      document.body.style.overflow = 'auto';
+      // document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', handleEscClose);
     };
   }, [isOpen]);

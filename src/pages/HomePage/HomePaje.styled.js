@@ -36,73 +36,9 @@ export const BoxImage = styled.div`
   /* transform: rotate(90deg); */
 `;
 
-export const Img1 = styled.img`
+export const Image = styled.img`
   position: absolute;
-  right: -20px;
-  top: -30px;
-  width: 300px;
-  rotate: -15deg;
-`;
-export const Img2 = styled.img`
-  position: absolute;
+  z-index: 15;
+  left: 500px;
   top: 50px;
-  left: 390px;
-  width: 500px;
-  rotate: 7deg;
-`;
-
-export const Img3 = styled.img`
-  width: 300px;
-  top: 90px;
-  left: -60px;
-  position: absolute;
-  rotate: -5deg;
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    scale: 1.2;
-    z-index: 7;
-  }
-`;
-
-export const Img4 = styled.img`
-  position: absolute;
-  right: 100px;
-  top: 300px;
-  z-index: 1;
-  width: 300px;
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    scale: 1.2;
-  }
-`;
-
-export const Img6 = styled.img`
-  position: absolute;
-  left: 0px;
-  top: 290px;
-  width: 300px;
-  rotate: 5deg;
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    scale: 1.2;
-  }
-`;
-
-export const Img8 = styled.img`
-  position: absolute;
-  left: 0px;
-  top: -85px;
-  width: 300px;
-  rotate: 10deg;
-  z-index: 6;
-
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    scale: 1.2;
-    z-index: 6;
-  }
 `;

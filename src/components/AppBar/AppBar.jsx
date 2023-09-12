@@ -23,7 +23,7 @@ const AppBar = () => {
     if (isOpenAlbumForm || isOpenPhotoForm) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflowY = 'scroll';
     }
 
     // todo: функцію винести в helpers
@@ -33,6 +33,7 @@ const AppBar = () => {
         setIsOpenPhotoForm(false);
       }
     };
+
     document.addEventListener('keydown', handleEscClose);
 
     return () => {

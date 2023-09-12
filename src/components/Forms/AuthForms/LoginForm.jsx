@@ -3,16 +3,20 @@ import { useNavigate } from 'react-router-dom';
 
 import useLoginUser from 'react-query/useLoginUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
+
 import Button from 'components/Buttons/Button';
-// import queryClient from './queryClient';
+
 import queryClient from '../../../react-query/queryClient';
 
-import { Form, Input, ButtonForgot } from './AuthForm.styled';
+import { Form, InputrWrapper, Input, ButtonForgot } from './AuthForm.styled';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('qwerty@mail.com');
+  // const [email, setEmail] = useState('qwerty@mail.com');
+  // const [password, setPassword] = useState('qwerty');
 
-  const [password, setPassword] = useState('qwerty');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
   const { mutateAsync: loginUser, isLoading } = useLoginUser();
 
@@ -63,27 +67,32 @@ const LoginForm = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Input
-          required
-          label="Email"
-          name="email"
-          type="email"
-          value={email}
-          onChange={handleChange}
-          helperText="(example@mail.com)"
-          variant="standard"
-        />
-        <Input
-          required
-          label="Password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={handleChange}
-          helperText="
+        <InputrWrapper>
+          <Input
+            required
+            label="Email"
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleChange}
+            helperText="(example@mail.com)"
+            variant="standard"
+          />
+        </InputrWrapper>
+
+        <InputrWrapper>
+          <Input
+            required
+            label="Password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={handleChange}
+            helperText="
           (Passwords must be at least 6 characters)"
-          variant="standard"
-        />
+            variant="standard"
+          />
+        </InputrWrapper>
         <Button type="submit" title="Log In" disabled={isLoading} />
         {/* TODO кнопка чи посилання??? */}
 
