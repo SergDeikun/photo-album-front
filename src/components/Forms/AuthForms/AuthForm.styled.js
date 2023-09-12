@@ -17,6 +17,17 @@ export const InputrWrapper = styled.div`
 export const Input = styled(TextField)`
   width: 100%;
 
+  div {
+    border-bottom: 1px solid ${p => p.theme.colors.black};
+    &:before {
+      content: none;
+    }
+
+    &:after {
+      content: none;
+    }
+  }
+
   input {
     font-family: ${p => p.theme.fonts.body};
     font-weight: ${p => p.theme.fontWeights.regular};
@@ -32,7 +43,9 @@ export const Input = styled(TextField)`
     font-family: ${p => p.theme.fonts.body};
     font-weight: ${p => p.theme.fontWeights.regular};
     font-size: ${p => p.theme.fontSize[0]}px;
-    color: ${p => p.theme.colors.grey};
+    /* color: ${p => p.theme.colors.grey}; */
+    color: ${p => p.theme.colors.black};
+
     letter-spacing: 0.1rem;
 
     span {
@@ -40,7 +53,8 @@ export const Input = styled(TextField)`
     }
 
     &.Mui-focused {
-      color: ${p => p.theme.colors.darkGrey};
+      /* color: ${p => p.theme.colors.darkGrey}; */
+      color: ${p => p.theme.colors.black};
     }
   }
 
@@ -48,16 +62,18 @@ export const Input = styled(TextField)`
     color: ${p => p.theme.colors.grey};
   }
 
-  .css-v4u5dn-MuiInputBase-root-MuiInput-root:hover:not(
+  /* .css-v4u5dn-MuiInputBase-root-MuiInput-root:hover:not(
       .Mui-disabled,
       .Mui-error
     ):before {
     border-bottom: 2px solid grey;
-  }
+    border-bottom: 1px solid ${p => p.theme.colors.black};
+  } */
 
-  .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+  /* .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
     border-bottom: 1px solid #ccc;
-  }
+    border-bottom: 1px solid ${p => p.theme.colors.black};
+  } */
 `;
 
 export const ButtonForgot = styled.button`
