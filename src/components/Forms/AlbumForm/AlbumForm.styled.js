@@ -17,11 +17,12 @@ export const NameWrapper = styled.div`
 `;
 
 export const InputName = styled.input`
+  outline: 1px solid tomato;
   width: 100%;
   text-align: center;
   background-color: transparent;
   border: none;
-  outline: none;
+  /* outline: none; */
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.regular};
   font-size: ${p => p.theme.fontSize[0]}px;
@@ -31,6 +32,6 @@ export const InputName = styled.input`
   padding: 0;
 
   &:hover {
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
 `;
