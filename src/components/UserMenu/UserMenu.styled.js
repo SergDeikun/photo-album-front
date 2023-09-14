@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-// import Modal from 'components/Modal/Modal';
+import Modal from 'components/Modal/Modal';
 
 export const ButtonMenu = styled.button`
   position: relative;
@@ -33,13 +33,41 @@ export const ButtonMenu = styled.button`
   }
 `;
 
-export const MenuList = styled.ul`
-  /* &:hover {
-    filter: blur(5px);
-  } */
+const openMenu = keyframes`
+0% { opacity: 0;transform: translate(0, -25px)}
+100% { opacity: 1;transform: translate(0, 0) }
 `;
 
-export const MenuItem = styled.li``;
+const closeMenu = keyframes`
+0% { opacity: 1;transform: translate(0, 0) }
+100% { opacity: 0;transform: translate(0, -25px)}
+`;
+
+export const MenuBox = styled(Modal)`
+  top: 0;
+  left: 1050px;
+  width: 320px;
+  z-index: 10;
+  transform: translate(0, 0);
+  padding: 115px 20px;
+  background-color: ${p => p.theme.colors.black};
+
+  animation: ${p => (p.isOpen ? openMenu : closeMenu)} 0.7s
+    cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* animation: ${closeMenu} 0.7s cubic-bezier(0.19, 1, 0.22, 1); */
+
+  /* animation: ${openMenu} 0.7s cubic-bezier(0.19, 1, 0.22, 1); */
+`;
+
+export const MenuList = styled.ul``;
+
+export const MenuItem = styled.li`
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
+  border-bottom: 1px solid #575150;
+`;
 
 export const MenuLink = styled(Link)`
   font-family: ${p => p.theme.fonts.body};
@@ -47,6 +75,7 @@ export const MenuLink = styled(Link)`
   font-weight: ${p => p.theme.fontWeights.regular};
   color: ${p => p.theme.colors.white};
   line-height: 1.66;
+  text-align: start;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
