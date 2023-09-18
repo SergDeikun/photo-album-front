@@ -1,12 +1,9 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-import Modal from 'components/Modal/Modal';
 
 export const ButtonMenu = styled.button`
   position: relative;
   margin-left: 50px;
-
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
@@ -31,33 +28,6 @@ export const ButtonMenu = styled.button`
   &:hover:after {
     transform: rotate(0deg);
   }
-`;
-
-const openMenu = keyframes`
-0% { opacity: 0;transform: translate(0, -25px)}
-100% { opacity: 1;transform: translate(0, 0) }
-`;
-
-const closeMenu = keyframes`
-0% { opacity: 1;transform: translate(0, 0) }
-100% { opacity: 0;transform: translate(0, -25px)}
-`;
-
-export const MenuBox = styled(Modal)`
-  top: 0;
-  left: 1050px;
-  width: 320px;
-  z-index: 10;
-  transform: translate(0, 0);
-  padding: 115px 20px;
-  background-color: ${p => p.theme.colors.black};
-
-  animation: ${p => (p.isOpen ? openMenu : closeMenu)} 0.7s
-    cubic-bezier(0.19, 1, 0.22, 1);
-
-  /* animation: ${closeMenu} 0.7s cubic-bezier(0.19, 1, 0.22, 1); */
-
-  /* animation: ${openMenu} 0.7s cubic-bezier(0.19, 1, 0.22, 1); */
 `;
 
 export const MenuList = styled.ul``;

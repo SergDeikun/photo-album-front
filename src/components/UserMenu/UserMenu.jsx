@@ -1,88 +1,86 @@
 import { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
 
-// import useLogout from 'react-query/useLogout';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 
-// import Modal from 'components/Modal/Modal';
-// import Button from 'components/Buttons/Button';
-
-import {
-  ButtonMenu,
-  MenuBox,
-  // CloseBtn,
-  MenuList,
-  MenuItem,
-  MenuLink,
-} from './UserMenu.styled';
+import { ButtonMenu, MenuList, MenuItem, MenuLink } from './UserMenu.styled';
 
 const UserMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  // console.log(isOpen);
-  // const navigate = useNavigate();
-  // const { mutateAsync: logout } = useLogout();
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  console.log(isOpenMenu);
 
   useEffect(() => {
-    if (isOpen) {
-      // document.body.style.overflow = 'hidden';
-    } else {
-      // document.body.style.overflow = 'auto';
-    }
-
     // todo: функцію винести в helpers
     const handleEscClose = e => {
       if (e.keyCode === 27) {
-        setIsOpen(false);
+        setIsOpenMenu(false);
       }
     };
     document.addEventListener('keydown', handleEscClose);
 
     return () => {
-      // document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', handleEscClose);
     };
-  }, [isOpen]);
+  }, [isOpenMenu]);
 
   const handleToggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpenMenu(!isOpenMenu);
   };
 
   return (
     <>
-      {/* <ButtonMenu type="button" onClick={handleToggleMenu}>
+      <ButtonMenu type="button" onClick={handleToggleMenu}>
         Menu
-      </ButtonMenu> */}
-
-      {isOpen && (
-        <MenuBox isOpen={isOpen}>
-          <CloseButton onClick={handleToggleMenu} />
-          <MenuList>
-            <MenuItem>
-              <MenuLink to={'/'} onClick={handleToggleMenu}>
-                Home page
-              </MenuLink>
-            </MenuItem>
-            <MenuItem>
-              <MenuLink to={'/profile'} onClick={handleToggleMenu}>
-                Profile
-              </MenuLink>
-            </MenuItem>
-            <MenuItem>
-              <MenuLink to={'/album-list'} onClick={handleToggleMenu}>
-                Albums
-              </MenuLink>
-            </MenuItem>
-          </MenuList>
-
-          {/* <Button
-            type="button"
-            title="Log out"
-            onClick={handleLogout}
-            // disabled={isLoading}
-          /> */}
-        </MenuBox>
-      )}
+      </ButtonMenu>
+      <AnimatePresence>
+        {isOpenMenu && (
+          <motion.div
+            key={isOpenMenu}
+            style={{
+              position: 'absolute',
+              zindex: '10',
+              width: '320px',
+              left: '1050px',
+              top: '0',
+              backgroundColor: 'black',
+              padding: '115px 20px',
+            }}
+            initial={{
+              opacity: 0,
+              y: -25,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            exit={{
+              opacity: 0,
+              y: -25,
+            }}
+            transition={{ duration: 0.2 }}
+          >
+            <CloseButton onClick={handleToggleMenu} />
+            <MenuList>
+              <MenuItem>
+                <MenuLink to={'/'} onClick={handleToggleMenu}>
+                  Home
+                </MenuLink>
+              </MenuItem>
+              <MenuItem>
+                <MenuLink to={'/profile'} onClick={handleToggleMenu}>
+                  Profile
+                </MenuLink>
+              </MenuItem>
+              <MenuItem>
+                <MenuLink to={'/album-list'} onClick={handleToggleMenu}>
+                  Albums
+                </MenuLink>
+              </MenuItem>
+            </MenuList>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

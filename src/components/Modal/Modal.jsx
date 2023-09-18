@@ -6,7 +6,8 @@ import { ModalWindow } from './Modal.styled';
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ isOpen, children, className }) => {
-  // console.log(isOpen);
+  console.log(isOpen);
+  // console.log(onClose);
 
   return createPortal(
     // <Backdrop onClose={onClose}>

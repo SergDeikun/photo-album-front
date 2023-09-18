@@ -9,15 +9,16 @@ import AddButton from 'components/Buttons/AddButton/AddButton';
 import Modal from 'components/Modal/Modal';
 import AlbumForm from 'components/Forms/AlbumForm/AlbumForm';
 import PhotoForm from 'components/Forms/PhotoForm/PhotoForm';
+import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 
-import { ButtonMenu } from 'components/UserMenu/UserMenu.styled';
+import { ButtonMenu, MenuBox } from 'components/UserMenu/UserMenu.styled';
 import { Wrapper, ButtonWrap } from './AppBar.styled';
 
 const AppBar = () => {
   const [isOpenAlbumForm, setIsOpenAlbumForm] = useState(false);
-  // console.log(isOpenAlbumForm);
   const [isOpenPhotoForm, setIsOpenPhotoForm] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  // console.log(isOpenMenu);`
   const location = useLocation();
   const { albumId, photoId } = useParams();
   const { data } = useGetCurrentUser();
@@ -53,6 +54,14 @@ const AppBar = () => {
     setIsOpenPhotoForm(!isOpenPhotoForm);
   };
 
+  const handleOpenMenu = () => {
+    setIsOpenMenu(true);
+  };
+
+  const handleCloseMenu = () => {
+    setIsOpenMenu(false);
+  };
+
   const handleToggleMenu = () => {
     setIsOpenMenu(!isOpenMenu);
   };
@@ -69,11 +78,17 @@ const AppBar = () => {
             <AddButton title="Add photo" onClick={handleTogglePhotoForm} />
           )}
           {/*  */}
-          <ButtonMenu type="button" onClick={handleToggleMenu}>
+          {/* <ButtonMenu type="button" onClick={handleToggleMenu}>
             Menu
-          </ButtonMenu>
-          {/* {isOpenMenu && <UserMenu />} */}
-          {/* <UserMenu /> */}
+          </ButtonMenu> */}
+          {/* {isOpenMenu && (
+            <MenuBox isOpen={isOpenMenu}>
+            <UserMenu isOpen={isOpenMenu}>
+              <CloseButton onClick={handleToggleMenu} />
+            </UserMenu>
+             </MenuBox>
+          )} */}
+          <UserMenu />
 
           {/*  */}
         </ButtonWrap>
