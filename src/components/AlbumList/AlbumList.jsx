@@ -1,18 +1,18 @@
 import { List } from './AlbumList.styled';
 
-import useGetCurrentUser from 'react-query/useGetCurrentUser';
+// import useGetCurrentUser from 'react-query/useGetCurrentUser';
 
 import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import { Item, LinkItem, Image, AlbumName } from './AlbumList.styled';
 
-const AlbumList = () => {
-  const { data } = useGetCurrentUser();
+const AlbumList = ({ myAlbums }) => {
+  // const { data } = useGetCurrentUser();
 
   return (
     <>
       <List>
-        {data &&
-          data.myAlbums.map(({ name, _id: id, backgroundURL }) => {
+        {myAlbums &&
+          myAlbums.map(({ name, _id: id, backgroundURL }) => {
             return (
               // Album
               <Item key={id}>

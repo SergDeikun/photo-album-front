@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AvatarEditor from 'react-avatar-editor';
 
 import useAddAlbum from 'react-query/useAddAlbum';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
@@ -73,8 +74,18 @@ const AlbumForm = ({ updateName, onClose }) => {
             onChange={e => setName(e.target.value)}
           /> */}
         </NameWrapper>
-        {/* <Button type="submit" disabled={isLoading} title={'add'} /> */}
-        {/* <div> */}
+
+        {/* <AvatarEditor
+          // image={previewBackground}
+          image="http://example.com/initialimage.jpg"
+          width={510}
+          height={458}
+          border={50}
+          color={[255, 255, 255, 0.6]} // RGBA
+          scale={1.2}
+          rotate={0}
+        /> */}
+
         <FileInput
           title="Upload cover to your album"
           uploadFile={previewBackground}
@@ -83,7 +94,6 @@ const AlbumForm = ({ updateName, onClose }) => {
           onChange={uploadImage}
           alt="cover"
         />
-        {/* </div> */}
         <Button type="submit" disabled={isLoading} title={'add'} />
       </Form>
     </>

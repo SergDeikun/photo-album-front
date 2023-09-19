@@ -8,7 +8,7 @@ import { ButtonMenu, MenuList, MenuItem, MenuLink } from './UserMenu.styled';
 
 const UserMenu = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  console.log(isOpenMenu);
+  // console.log(isOpenMenu);
 
   useEffect(() => {
     // todo: функцію винести в helpers

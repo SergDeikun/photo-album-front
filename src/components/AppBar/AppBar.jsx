@@ -77,20 +77,7 @@ const AppBar = () => {
           {location.pathname === `/album/${albumId}` && (
             <AddButton title="Add photo" onClick={handleTogglePhotoForm} />
           )}
-          {/*  */}
-          {/* <ButtonMenu type="button" onClick={handleToggleMenu}>
-            Menu
-          </ButtonMenu> */}
-          {/* {isOpenMenu && (
-            <MenuBox isOpen={isOpenMenu}>
-            <UserMenu isOpen={isOpenMenu}>
-              <CloseButton onClick={handleToggleMenu} />
-            </UserMenu>
-             </MenuBox>
-          )} */}
           <UserMenu />
-
-          {/*  */}
         </ButtonWrap>
       ) : (
         <AuthMenu />
