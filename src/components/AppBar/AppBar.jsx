@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import useGetCurrentUser from 'react-query/useGetCurrentUser';
+import Cookies from 'js-cookie';
+
+// import useGetCurrentUser from 'react-query/useGetCurrentUser';
+// import { useGetQuery } from 'react-query/useGetQuery';
 
 import Logo from 'components/Logo/Logo';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
@@ -9,19 +12,15 @@ import AddButton from 'components/Buttons/AddButton/AddButton';
 import Modal from 'components/Modal/Modal';
 import AlbumForm from 'components/Forms/AlbumForm/AlbumForm';
 import PhotoForm from 'components/Forms/PhotoForm/PhotoForm';
-import CloseButton from 'components/Buttons/CloseButton/CloseButton';
-
-import { ButtonMenu, MenuBox } from 'components/UserMenu/UserMenu.styled';
 import { Wrapper, ButtonWrap } from './AppBar.styled';
 
 const AppBar = () => {
+  const token = Cookies.get('token');
+
   const [isOpenAlbumForm, setIsOpenAlbumForm] = useState(false);
   const [isOpenPhotoForm, setIsOpenPhotoForm] = useState(false);
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  // console.log(isOpenMenu);`
   const location = useLocation();
-  const { albumId, photoId } = useParams();
-  const { data } = useGetCurrentUser();
+  const { albumId } = useParams();
 
   useEffect(() => {
     if (isOpenAlbumForm || isOpenPhotoForm) {
@@ -54,22 +53,10 @@ const AppBar = () => {
     setIsOpenPhotoForm(!isOpenPhotoForm);
   };
 
-  const handleOpenMenu = () => {
-    setIsOpenMenu(true);
-  };
-
-  const handleCloseMenu = () => {
-    setIsOpenMenu(false);
-  };
-
-  const handleToggleMenu = () => {
-    setIsOpenMenu(!isOpenMenu);
-  };
-
   return (
     <Wrapper>
       <Logo />
-      {data ? (
+      {token ? (
         <ButtonWrap>
           {location.pathname === '/album-list' && (
             <AddButton title="Add album" onClick={handleToggleAlbumForm} />

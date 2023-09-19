@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
+import Cookies from 'js-cookie';
 
 import useAddAlbum from 'react-query/useAddAlbum';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
@@ -11,10 +12,12 @@ import FileInput from 'components/Inputs/FileInput/FileImput';
 import { Form, NameWrapper, InputName } from './AlbumForm.styled';
 
 const AlbumForm = ({ updateName, onClose }) => {
+  const token = Cookies.get('token');
+
   const [name, setName] = useState(updateName);
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
-  const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
+  const { mutateAsync: addAlbum, isLoading } = useAddAlbum(token);
 
   const uploadImage = e => {
     setPreviewBackground(URL.createObjectURL(e.target.files[0]));

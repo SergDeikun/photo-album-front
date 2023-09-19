@@ -3,9 +3,9 @@ import queryClient from './queryClient';
 
 import { deleteAlbum } from 'api/api-fetch';
 
-const useDeleteAlbum = () => {
+const useDeleteAlbum = token => {
   const mutation = useMutation({
-    mutationFn: id => deleteAlbum(id),
+    mutationFn: id => deleteAlbum(id, token),
 
     onSuccess: () => {
       queryClient.invalidateQueries('user');

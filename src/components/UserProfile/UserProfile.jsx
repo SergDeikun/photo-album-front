@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Avatar from 'react-avatar';
+import Cookies from 'js-cookie';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
 import useUpdateUser from 'react-query/useUpdateUser';
+import useLogout from 'react-query/useLogout';
 
 import Button from 'components/Buttons/Button';
 // import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
@@ -38,17 +41,18 @@ import {
 } from './UserProfile.styled';
 
 const UserProfile = () => {
-  const { data } = useGetCurrentUser();
-  const { mutateAsync: updateUser } = useUpdateUser();
+  const token = Cookies.get('token');
+
+  const { data } = useGetCurrentUser(token);
+  const { mutateAsync: updateUser } = useUpdateUser(token);
+  const { mutateAsync: logout } = useLogout(token);
+  const { mutateAsync: deleteAlbum } = useDeleteAlbum(token);
+
   const [isFocusedName, setIsFocusedName] = useState(false);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
-
-  // console.log(data);
-
   const [name, setName] = useState(data.name);
   const [email, setEmail] = useState(data.email);
-
-  const { mutateAsync: deleteAlbum } = useDeleteAlbum();
+  const navigate = useNavigate();
 
   const handleFocusedName = () => {
     setIsFocusedName(true);
@@ -83,20 +87,36 @@ const UserProfile = () => {
 
   const handleDelete = async id => {
     // TODO:добавити tryCatch
-    await deleteAlbum(id, {
-      //  TODO:перенести в хук
+    try {
+      await deleteAlbum(id, {
+        //  TODO:перенести в хук
 
-      onSuccess: () => {
-        notifySuccess('album deleted');
-      },
-      onError: error => {
-        notifyError(error.response.data.message);
-      },
-    });
+        onSuccess: () => {
+          notifySuccess('album deleted');
+        },
+        onError: error => {
+          notifyError(error.response.data.message);
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleShowAlert = id => {
     showAlert(id, handleDelete);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout({
+        onSuccess: () => {
+          navigate('/');
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -172,7 +192,7 @@ const UserProfile = () => {
               {/* <Name> {data.name}</Name>
               <Email> {data.email}</Email> */}
             </UserInfo>
-            <Button type="button" title="Log out" />
+            <Button type="button" title="Log out" onClick={handleLogout} />
           </UserWrapper>
 
           {/* Album list */}

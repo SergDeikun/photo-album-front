@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import dayjs from 'dayjs';
 
@@ -25,12 +26,14 @@ import {
 } from './PhotoForm.styled';
 
 const PhotoForm = ({ onClose }) => {
+  const token = Cookies.get('token');
+
   const [place, setPlace] = useState('');
   const [date, setDate] = useState(null);
   const [photoURL, setPhoto] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState('');
   const [comments, setComments] = useState('');
-  const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
+  const { mutateAsync: addPhoto, isLoading } = useAddPhoto(token);
   const { albumId } = useParams();
 
   const uploadImage = e => {

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import useLoginUser from 'react-query/useLoginUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
@@ -44,11 +45,16 @@ const LoginForm = () => {
         { email, password },
         {
           onSuccess: response => {
+            Cookies.set('token', response.token, {
+              expires: 7,
+              secure: true,
+              sameSite: 'strict',
+              // httpOnly: true,
+            });
             notifySuccess('Successful login');
             navigate('/album-list');
             queryClient.invalidateQueries();
 
-            // console.log(response);
             return response;
           },
           onError: error => {

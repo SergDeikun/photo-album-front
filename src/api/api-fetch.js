@@ -5,8 +5,6 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:3000';
 
-let token = '';
-
 // Auth
 export const createNewUser = async ({ name, email, password }) => {
   const response = await axios.post(`${API_URL}/api/auth/register`, {
@@ -24,13 +22,11 @@ export const loginUser = async ({ email, password }) => {
     password,
   });
 
-  token = response.data.token;
-
   return response.data;
 };
 
 // User
-export const getCurrentUser = async () => {
+export const getCurrentUser = async token => {
   const response = await axios.get(`${API_URL}/api/user/current`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -40,7 +36,7 @@ export const getCurrentUser = async () => {
   return response.data;
 };
 
-export const updateUser = async ({ name, email }) => {
+export const updateUser = async ({ name, email }, token) => {
   const response = await axios.patch(
     `${API_URL}/api/user/update`,
     { name, email },
@@ -54,7 +50,7 @@ export const updateUser = async ({ name, email }) => {
   return response.data;
 };
 
-export const logout = async () => {
+export const logout = async token => {
   const response = await axios.get(`${API_URL}/api/user/logout`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -65,7 +61,7 @@ export const logout = async () => {
 };
 
 // Album
-export const addAlbum = async newAlbum => {
+export const addAlbum = async (newAlbum, token) => {
   const response = await axios.post(`${API_URL}/api/album`, newAlbum, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -76,7 +72,7 @@ export const addAlbum = async newAlbum => {
   return response.data;
 };
 
-export const getAlbumById = async id => {
+export const getAlbumById = async (id, token) => {
   const response = await axios.get(`${API_URL}/api/album/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -86,7 +82,7 @@ export const getAlbumById = async id => {
   return response.data;
 };
 
-export const deleteAlbum = async id => {
+export const deleteAlbum = async (id, token) => {
   const response = await axios.delete(`${API_URL}/api/album/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -103,7 +99,7 @@ export const changeAlbum = async ({ updateAlbum, id }) => {
     {
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
       },
     }
   );
@@ -111,7 +107,7 @@ export const changeAlbum = async ({ updateAlbum, id }) => {
 };
 
 // Photo
-export const addPhoto = async ({ newPhoto, albumId }) => {
+export const addPhoto = async ({ newPhoto, albumId }, token) => {
   const response = await axios.post(
     `${API_URL}/api/photo/${albumId}`,
     newPhoto,
@@ -129,7 +125,7 @@ export const addPhoto = async ({ newPhoto, albumId }) => {
 export const getPhotoById = async id => {
   const response = await axios.get(`${API_URL}/api/photo/${id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     },
   });
 
@@ -146,7 +142,7 @@ export const updatePhoto = async ({ date, comments, place, photoId }) => {
     },
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
       },
     }
   );
@@ -157,7 +153,7 @@ export const updatePhoto = async ({ date, comments, place, photoId }) => {
 export const deletePhoto = async id => {
   const response = await axios.delete(`${API_URL}/api/photo/${id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     },
   });
 

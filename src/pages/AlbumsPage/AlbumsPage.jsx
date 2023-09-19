@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 
@@ -10,7 +11,9 @@ import { WelcomeText, PageTitle } from './AlbumsPage.styled';
 import LoadingBar from 'react-top-loading-bar';
 
 const AlbumsPage = () => {
-  const { data, isLoading } = useGetCurrentUser();
+  const token = Cookies.get('token');
+
+  const { data, isLoading } = useGetCurrentUser(token);
   const [progress, setProgress] = useState(0);
 
   const showWelcomeText =
