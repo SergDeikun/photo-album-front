@@ -5,9 +5,9 @@ import { deletePhoto } from 'api/api-fetch';
 
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-const useDeletePhoto = () => {
+const useDeletePhoto = token => {
   const mutation = useMutation({
-    mutationFn: id => deletePhoto(id),
+    mutationFn: id => deletePhoto(id, token),
 
     onSuccess: () => {
       queryClient.invalidateQueries('album');

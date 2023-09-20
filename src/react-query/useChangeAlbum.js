@@ -5,9 +5,10 @@ import { changeAlbum } from 'api/api-fetch';
 
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-const useChangeAlbum = () => {
+const useChangeAlbum = token => {
   const mutation = useMutation({
-    mutationFn: ({ updateAlbum, id }) => changeAlbum({ updateAlbum, id }),
+    mutationFn: ({ updateAlbum, id }) =>
+      changeAlbum({ updateAlbum, id }, token),
 
     onSuccess: () => {
       queryClient.invalidateQueries('user');

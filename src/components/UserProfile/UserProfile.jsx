@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import Cookies from 'js-cookie';
@@ -50,9 +50,16 @@ const UserProfile = () => {
 
   const [isFocusedName, setIsFocusedName] = useState(false);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
-  const [name, setName] = useState(data.name);
-  const [email, setEmail] = useState(data.email);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (data) {
+      setName(data.name);
+      setEmail(data.email);
+    }
+  }, [data]);
 
   const handleFocusedName = () => {
     setIsFocusedName(true);
@@ -109,11 +116,10 @@ const UserProfile = () => {
 
   const handleLogout = async () => {
     try {
-      await logout({
-        onSuccess: () => {
-          navigate('/');
-        },
-      });
+      Cookies.remove('token', { path: '/' });
+      navigate('/');
+
+      await logout();
     } catch (error) {
       console.log(error);
     }

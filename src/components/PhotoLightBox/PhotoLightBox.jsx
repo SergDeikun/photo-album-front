@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import LoadingBar from 'react-top-loading-bar';
 
 import TextField from '@mui/material/TextField';
@@ -52,11 +53,13 @@ import {
 // import { DateField } from 'components/Forms/PhotoForm/PhotoForm.styled';
 
 const PhotoLightBox = () => {
+  const token = Cookies.get('token');
+
   const { albumId, photoId } = useParams();
   const { data: currentAlbumData } = useGetAlbumById(albumId);
-  const { data: currentPhotoData } = useGetPhotoById(photoId);
-  const { mutateAsync: updatePhoto } = useUpdatePhoto();
-  const { mutateAsync: deletePhoto } = useDeletePhoto();
+  const { data: currentPhotoData } = useGetPhotoById(photoId, token);
+  const { mutateAsync: updatePhoto } = useUpdatePhoto(token);
+  const { mutateAsync: deletePhoto } = useDeletePhoto(token);
   const [isOpenInfo, setIsOpenInfo] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();

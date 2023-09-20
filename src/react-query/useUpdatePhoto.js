@@ -5,10 +5,10 @@ import { updatePhoto } from 'api/api-fetch';
 
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-const useUpdatePhoto = () => {
+const useUpdatePhoto = token => {
   const mutation = useMutation({
     mutationFn: ({ date, comments, place, photoId }) =>
-      updatePhoto({ date, comments, place, photoId }),
+      updatePhoto({ date, comments, place, photoId }, token),
 
     onSuccess: () => {
       queryClient.invalidateQueries('photo');

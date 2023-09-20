@@ -92,14 +92,14 @@ export const deleteAlbum = async (id, token) => {
   return response.data;
 };
 
-export const changeAlbum = async ({ updateAlbum, id }) => {
+export const changeAlbum = async ({ updateAlbum, id }, token) => {
   const response = await axios.patch(
     `${API_URL}/api/album/${id}/update`,
     updateAlbum,
     {
       headers: {
         'Content-Type': 'multipart/form-data',
-        // Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     }
   );
@@ -122,17 +122,20 @@ export const addPhoto = async ({ newPhoto, albumId }, token) => {
   return response.data;
 };
 
-export const getPhotoById = async id => {
+export const getPhotoById = async (id, token) => {
   const response = await axios.get(`${API_URL}/api/photo/${id}`, {
     headers: {
-      // Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
   return response.data;
 };
 
-export const updatePhoto = async ({ date, comments, place, photoId }) => {
+export const updatePhoto = async (
+  { date, comments, place, photoId },
+  token
+) => {
   const response = await axios.patch(
     `${API_URL}/api/photo/${photoId}`,
     {
@@ -142,7 +145,7 @@ export const updatePhoto = async ({ date, comments, place, photoId }) => {
     },
     {
       headers: {
-        // Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     }
   );
@@ -150,10 +153,10 @@ export const updatePhoto = async ({ date, comments, place, photoId }) => {
   return response;
 };
 
-export const deletePhoto = async id => {
+export const deletePhoto = async (id, token) => {
   const response = await axios.delete(`${API_URL}/api/photo/${id}`, {
     headers: {
-      // Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
