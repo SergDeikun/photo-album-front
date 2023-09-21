@@ -2,27 +2,29 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 
-import TextField from '@mui/material/TextField';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import TextField from '@mui/material/TextField';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import useAddPhoto from 'react-query/useAddPhoto';
 
-import Button from 'components/Buttons/Button';
-import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import FileInput from 'components/Inputs/FileInput/FileImput';
+import LocationButton from 'components/Buttons/LocationButton/LocationButton';
+import DateInput from 'components/Inputs/DateInput/DateInput';
+import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
+import Button from 'components/Buttons/Button';
 
 import {
   Box,
   FieldWrapper,
   InputWrapper,
   Place,
-  DateField,
-  Comments,
+  // DateField,
+  // Comments,
 } from './PhotoForm.styled';
 
 const PhotoForm = ({ onClose }) => {
@@ -106,26 +108,14 @@ const PhotoForm = ({ onClose }) => {
             </InputWrapper>
 
             <InputWrapper>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DateField
-                  required={false}
-                  inputFormat="DD.MM.YYYY"
-                  maxDate={new Date()}
-                  value={dayjs(date, 'DD.MM.YYYY')}
-                  onChange={newValue =>
-                    setDate(dayjs(newValue).format('DD.MM.YYYY'))
-                  }
-                  renderInput={params => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+              <DateInput initialDate={date} onDateChange={setDate} />
             </InputWrapper>
 
-            <Comments
-              aria-label="empty textarea"
+            <CommentsInput
               placeholder="Comments"
-              style={{ width: 435, height: 175 }}
-              value={comments}
-              onChange={e => setComments(e.target.value)}
+              initialComments={comments}
+              onCommentsChange={e => setComments(e.target.value)}
+              style={{ height: '175px' }}
             />
           </FieldWrapper>
         </Box>

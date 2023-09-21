@@ -3,12 +3,12 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import LoadingBar from 'react-top-loading-bar';
 
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 // import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // import { MdOutlineEdit } from 'react-icons/md';
 
 import dayjs from 'dayjs';
@@ -19,7 +19,6 @@ import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useUpdatePhoto from 'react-query/useUpdatePhoto';
 
 import { showAlert } from 'helpers/showAlert';
-
 import InformationButton from 'components/Buttons/InformationButton/Information';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 
@@ -45,18 +44,17 @@ import {
   // InfoTitle,
   Form,
   FieldWrapper,
+  DateField,
   Place,
   Comments,
   SubmitButton,
 } from '../PhotoLightBox/PhotoLightBox.styled';
 
-// import { DateField } from 'components/Forms/PhotoForm/PhotoForm.styled';
-
 const PhotoLightBox = () => {
   const token = Cookies.get('token');
 
   const { albumId, photoId } = useParams();
-  const { data: currentAlbumData } = useGetAlbumById(albumId);
+  const { data: currentAlbumData } = useGetAlbumById(albumId, token);
   const { data: currentPhotoData } = useGetPhotoById(photoId, token);
   const { mutateAsync: updatePhoto } = useUpdatePhoto(token);
   const { mutateAsync: deletePhoto } = useDeletePhoto(token);
@@ -71,43 +69,44 @@ const PhotoLightBox = () => {
   const [place, setPlace] = useState('');
   const [progress, setProgress] = useState(0);
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
-  console.log(saveBtnVisible);
+
+  useEffect(() => {
+    if (currentPhotoData) {
+      setComments(currentPhotoData.comments);
+      setDate(currentPhotoData.date);
+      setPlace(currentPhotoData.place);
+    }
+  }, [currentPhotoData]);
 
   const handleClose = () => {
     navigate(`/album/${albumId}`);
   };
 
   const handlePrevPhoto = useCallback(() => {
-    const newIndex =
-      (currentPhotoIndex - 1 + currentAlbumData.photo.length) %
-      currentAlbumData.photo.length;
+    if (currentAlbumData) {
+      const newIndex =
+        (currentPhotoIndex - 1 + currentAlbumData.photo.length) %
+        currentAlbumData.photo.length;
+      const newPhotoId = currentAlbumData.photo[newIndex]._id;
 
-    const newPhotoId = currentAlbumData.photo[newIndex]._id;
-
-    setCurrentPhotoIndex(newIndex);
-    setProgress(100);
-    navigate(`/album/${albumId}/photo/${newPhotoId}?index=${newIndex}`);
-  }, [albumId, currentAlbumData.photo, currentPhotoIndex, navigate]);
+      setCurrentPhotoIndex(newIndex);
+      setProgress(100);
+      navigate(`/album/${albumId}/photo/${newPhotoId}?index=${newIndex}`);
+    }
+  }, [albumId, currentAlbumData, currentPhotoIndex, navigate]);
 
   const handleNextPhoto = useCallback(() => {
-    const newIndex = (currentPhotoIndex + 1) % currentAlbumData.photo.length;
+    if (currentAlbumData) {
+      const newIndex = (currentPhotoIndex + 1) % currentAlbumData.photo.length;
 
-    const newPhotoId = currentAlbumData.photo[newIndex]._id;
+      const newPhotoId = currentAlbumData.photo[newIndex]._id;
 
-    setProgress(100);
-    setCurrentPhotoIndex(newIndex);
+      setProgress(100);
+      setCurrentPhotoIndex(newIndex);
 
-    navigate(`/album/${albumId}/photo/${newPhotoId}?index=${newIndex}`);
-  }, [albumId, currentAlbumData.photo, currentPhotoIndex, navigate]);
-
-  useEffect(() => {
-    if (currentAlbumData.photo && currentAlbumData.photo.length > 0) {
-      const initialPhoto = currentAlbumData.photo[currentPhotoIndex];
-      setComments(initialPhoto.comments);
-      setDate(initialPhoto.date);
-      setPlace(initialPhoto.place);
+      navigate(`/album/${albumId}/photo/${newPhotoId}?index=${newIndex}`);
     }
-  }, [currentAlbumData.photo, currentPhotoIndex]);
+  }, [albumId, currentAlbumData, currentPhotoIndex, navigate]);
 
   useEffect(() => {
     if (currentPhotoData) {
@@ -136,13 +135,12 @@ const PhotoLightBox = () => {
     document.addEventListener('keydown', handleKeyPress);
 
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflowY = 'scroll';
       document.removeEventListener('keydown', handleEscClose);
       document.removeEventListener('keydown', handleKeyPress);
     };
   }, [
     albumId,
-    currentAlbumData.photo,
     currentPhotoData,
     currentPhotoIndex,
     handleNextPhoto,
@@ -252,27 +250,23 @@ const PhotoLightBox = () => {
                 onSubmit={handleSubmit}
                 action=""
               >
+                {/* Comments */}
+
+                <FieldWrapper>
+                  <Comments
+                    placeholder="Add comments"
+                    initialComments={comments}
+                    onCommentsChange={handleCommentsChange}
+                  />
+                </FieldWrapper>
+
                 {/* Date */}
 
                 <FieldWrapper>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DesktopDatePicker
-                      startIcon
-                      required={false}
-                      inputFormat="DD.MM.YYYY"
-                      maxDate={new Date()}
-                      value={dayjs(date, 'DD.MM.YYYY')}
-                      onChange={handleDateChange}
-                      renderInput={params => (
-                        <TextField
-                          position="start"
-                          {...params}
-                          value={date || ''}
-                          error={!date}
-                        />
-                      )}
-                    />
-                  </LocalizationProvider>
+                  <DateField
+                    initialDate={date}
+                    onDateChange={handleDateChange}
+                  />
                 </FieldWrapper>
 
                 {/* Place */}
@@ -280,17 +274,6 @@ const PhotoLightBox = () => {
                 <FieldWrapper>
                   <LocationButton />
                   <Place place={place} onSelect={handleSelectUpdatePlace} />
-                </FieldWrapper>
-
-                {/* Comments */}
-
-                <FieldWrapper>
-                  <Comments
-                    aria-label="empty textarea"
-                    placeholder="Add comments"
-                    value={comments}
-                    onChange={handleCommentsChange}
-                  />
                 </FieldWrapper>
 
                 {/* Save button */}

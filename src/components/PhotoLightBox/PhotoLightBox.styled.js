@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+// import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
 
 import Backdrop from 'components/Backdrop/Backdrop';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
+import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
+import DateInput from 'components/Inputs/DateInput/DateInput';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
 
 export const WrapperBox = styled(Backdrop)`
@@ -156,14 +158,39 @@ export const InfoTitle = styled.p`
 `;
 
 export const Form = styled.form`
-  margin-top: 100px;
+  margin-top: 20px;
 `;
 
 export const FieldWrapper = styled.div`
+  overflow: hidden;
   /* outline: 1px solid teal; */
   /* display: flex; */
   /* align-items: center; */
   margin-bottom: 20px;
+`;
+
+export const Comments = styled(CommentsInput)`
+  line-height: 1.5;
+  color: ${p => p.theme.colors.black};
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  width: 360px;
+  height: 30px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+
+  &:focus {
+    border-bottom: 1px solid ${props => props.theme.colors.red};
+  }
+`;
+
+export const DateField = styled(DateInput)`
+  input {
+    color: ${p => p.theme.colors.black};
+  }
+
+  &:focus {
+    border-bottom: 1px solid ${props => props.theme.colors.red};
+  }
 `;
 
 export const PlaceWrapper = styled.div`
@@ -204,29 +231,6 @@ export const Place = styled(Autocomplite)`
     &:hover {
       background-color: ${p => p.theme.colors.grey};
     }
-  }
-`;
-
-export const Comments = styled(TextareaAutosize)`
-  font-family: ${p => p.theme.fonts.text};
-  font-weight: ${p => p.theme.fontWeights.regular};
-  font-size: ${p => p.theme.fontSize[0]}px;
-  line-height: 1.88;
-  letter-spacing: 0.1rem;
-  padding: 6px;
-  background-color: transparent;
-  color: ${p => p.theme.colors.black};
-  resize: none;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  width: 395px;
-  height: 175px;
-
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-
-  &:focus {
-    border-bottom: 1px solid ${props => props.theme.colors.red};
   }
 `;
 
