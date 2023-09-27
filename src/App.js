@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from 'react-scroll-to-top';
 
 // import toastOptions from 'helpers/toastOptions';
+import { setAuthorizationHeader } from 'helpers/setAuthorizationHeader';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
 
@@ -32,6 +35,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ['places'];
 
 const App = () => {
+  setAuthorizationHeader();
   // const { isLoaded, loadError } = useJsApiLoader({
   //   googleMapsApiKey: API_KEY,
   //   libraries,

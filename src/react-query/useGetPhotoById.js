@@ -2,8 +2,8 @@ import { useQuery } from 'react-query';
 
 import { getPhotoById } from 'api/api-fetch';
 
-const useGetPhotoById = (id, token) => {
-  const photo = useQuery(['photo', id], () => getPhotoById(id, token));
+const useGetPhotoById = id => {
+  const photo = useQuery(['photo', id], () => getPhotoById(id));
 
   return photo;
 };

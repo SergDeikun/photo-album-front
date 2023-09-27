@@ -41,12 +41,12 @@ import {
 } from './UserProfile.styled';
 
 const UserProfile = () => {
-  const token = Cookies.get('token');
+  // const token = Cookies.get('token');
 
-  const { data } = useGetCurrentUser(token);
-  const { mutateAsync: updateUser } = useUpdateUser(token);
-  const { mutateAsync: logout } = useLogout(token);
-  const { mutateAsync: deleteAlbum } = useDeleteAlbum(token);
+  const { data } = useGetCurrentUser();
+  const { mutateAsync: updateUser } = useUpdateUser();
+  const { mutateAsync: logout } = useLogout();
+  const { mutateAsync: deleteAlbum } = useDeleteAlbum();
 
   const [isFocusedName, setIsFocusedName] = useState(false);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);

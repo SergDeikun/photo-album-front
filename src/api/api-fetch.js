@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 // const API_URL = 'https://photo-album-gggk.onrender.com';
 // const API_URL = 'https://photo-album.fly.dev';
@@ -26,139 +27,84 @@ export const loginUser = async ({ email, password }) => {
 };
 
 // User
-export const getCurrentUser = async token => {
-  const response = await axios.get(`${API_URL}/api/user/current`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+export const getCurrentUser = async () => {
+  const token = Cookies.get('token');
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  const response = await axios.get(`${API_URL}/api/user/current`);
+
+  return response.data;
+};
+
+export const updateUser = async ({ name, email }) => {
+  const response = await axios.patch(`${API_URL}/api/user/update`, {
+    name,
+    email,
   });
 
   return response.data;
 };
 
-export const updateUser = async ({ name, email }, token) => {
-  const response = await axios.patch(
-    `${API_URL}/api/user/update`,
-    { name, email },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-
-  return response.data;
-};
-
-export const logout = async token => {
-  const response = await axios.get(`${API_URL}/api/user/logout`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const logout = async () => {
+  const response = await axios.get(`${API_URL}/api/user/logout`, {});
 
   return response.data;
 };
 
 // Album
-export const addAlbum = async (newAlbum, token) => {
-  const response = await axios.post(`${API_URL}/api/album`, newAlbum, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const addAlbum = async newAlbum => {
+  const response = await axios.post(`${API_URL}/api/album`, newAlbum, {});
 
   return response.data;
 };
 
-export const getAlbumById = async (id, token) => {
-  const response = await axios.get(`${API_URL}/api/album/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const getAlbumById = async id => {
+  const response = await axios.get(`${API_URL}/api/album/${id}`, {});
 
   return response.data;
 };
 
-export const deleteAlbum = async (id, token) => {
-  const response = await axios.delete(`${API_URL}/api/album/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const deleteAlbum = async id => {
+  const response = await axios.delete(`${API_URL}/api/album/${id}`, {});
 
   return response.data;
 };
 
-export const changeAlbum = async ({ updateAlbum, id }, token) => {
+export const changeAlbum = async ({ updateAlbum, id }) => {
   const response = await axios.patch(
     `${API_URL}/api/album/${id}/update`,
-    updateAlbum,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    updateAlbum
   );
   return response.data;
 };
 
 // Photo
-export const addPhoto = async ({ newPhoto, albumId }, token) => {
+export const addPhoto = async ({ newPhoto, albumId }) => {
   const response = await axios.post(
     `${API_URL}/api/photo/${albumId}`,
-    newPhoto,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    newPhoto
   );
 
   return response.data;
 };
 
-export const getPhotoById = async (id, token) => {
-  const response = await axios.get(`${API_URL}/api/photo/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+export const getPhotoById = async id => {
+  const response = await axios.get(`${API_URL}/api/photo/${id}`, {});
+
+  return response.data;
+};
+
+export const updatePhoto = async ({ date, comments, place, photoId }) => {
+  const response = await axios.patch(`${API_URL}/api/photo/${photoId}`, {
+    date,
+    comments,
+    place,
   });
-
-  return response.data;
-};
-
-export const updatePhoto = async (
-  { date, comments, place, photoId },
-  token
-) => {
-  const response = await axios.patch(
-    `${API_URL}/api/photo/${photoId}`,
-    {
-      date,
-      comments,
-      place,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
 
   return response;
 };
 
-export const deletePhoto = async (id, token) => {
-  const response = await axios.delete(`${API_URL}/api/photo/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const deletePhoto = async id => {
+  const response = await axios.delete(`${API_URL}/api/photo/${id}`, {});
 
   return response.data;
 };

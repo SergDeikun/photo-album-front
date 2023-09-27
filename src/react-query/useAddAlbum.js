@@ -3,9 +3,9 @@ import queryClient from './queryClient';
 
 import { addAlbum } from 'api/api-fetch';
 
-const useAddAlbum = token => {
+const useAddAlbum = () => {
   const mutation = useMutation({
-    mutationFn: newAlbum => addAlbum(newAlbum, token),
+    mutationFn: newAlbum => addAlbum(newAlbum),
 
     onSuccess: () => {
       queryClient.invalidateQueries('user');

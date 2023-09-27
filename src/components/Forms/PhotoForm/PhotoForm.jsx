@@ -1,12 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Cookies from 'js-cookie';
-
-// import dayjs from 'dayjs';
-
-// import TextField from '@mui/material/TextField';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import Cookies from 'js-cookie';
 
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
@@ -18,24 +12,17 @@ import DateInput from 'components/Inputs/DateInput/DateInput';
 import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
 import Button from 'components/Buttons/Button';
 
-import {
-  Box,
-  FieldWrapper,
-  InputWrapper,
-  Place,
-  // DateField,
-  // Comments,
-} from './PhotoForm.styled';
+import { Box, FieldWrapper, InputWrapper, Place } from './PhotoForm.styled';
 
 const PhotoForm = ({ onClose }) => {
-  const token = Cookies.get('token');
+  // const token = Cookies.get('token');
 
   const [place, setPlace] = useState('');
   const [date, setDate] = useState(null);
   const [photoURL, setPhoto] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState('');
   const [comments, setComments] = useState('');
-  const { mutateAsync: addPhoto, isLoading } = useAddPhoto(token);
+  const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
   const { albumId } = useParams();
 
   const uploadImage = e => {
@@ -50,13 +37,9 @@ const PhotoForm = ({ onClose }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // const formatDate = dayjs(date).format('DD.MM.YYYY');
-
     const newPhoto = new FormData();
     newPhoto.append('place', place);
-    // newPhoto.append('date', formatDate);
     newPhoto.append('date', date);
-
     newPhoto.append('photoURL', photoURL);
     newPhoto.append('comments', comments);
 

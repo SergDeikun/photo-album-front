@@ -11,9 +11,9 @@ import { logout } from 'api/api-fetch';
 //   return quite;
 // };
 
-const useLogout = token => {
+const useLogout = () => {
   const mutation = useMutation({
-    mutationFn: () => logout(token),
+    mutationFn: () => logout(),
 
     onSuccess: () => {
       queryClient.clear();

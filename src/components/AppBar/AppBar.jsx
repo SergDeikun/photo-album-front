@@ -3,7 +3,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // import useGetCurrentUser from 'react-query/useGetCurrentUser';
-// import { useGetQuery } from 'react-query/useGetQuery';
+import { useGetQuery } from 'react-query/useGetQuery';
 
 import Logo from 'components/Logo/Logo';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
@@ -16,7 +16,11 @@ import { Wrapper, ButtonWrap } from './AppBar.styled';
 
 const AppBar = () => {
   const token = Cookies.get('token');
+  const userData = useGetQuery('user');
 
+  // if (userData) {
+  //   console.log(userData);
+  // }
   const [isOpenAlbumForm, setIsOpenAlbumForm] = useState(false);
   const [isOpenPhotoForm, setIsOpenPhotoForm] = useState(false);
   const location = useLocation();

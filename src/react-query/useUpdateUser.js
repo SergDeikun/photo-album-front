@@ -5,9 +5,9 @@ import { updateUser } from 'api/api-fetch';
 
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-const useUpdateUser = token => {
+const useUpdateUser = () => {
   const mutation = useMutation({
-    mutationFn: ({ name, email }) => updateUser({ name, email }, token),
+    mutationFn: ({ name, email }) => updateUser({ name, email }),
 
     //TODO: При оновленні name, notifySuccess('${name} update');
     //TODO: При оновленні email, notifySuccess('${email} update');

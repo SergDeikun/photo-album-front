@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 import useGetAlbumById from 'react-query/useGetAlbumById';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
@@ -28,17 +28,17 @@ import {
 } from './UpdateAlbum.styled';
 
 const UpdateAlbum = () => {
-  const token = Cookies.get('token');
+  // const token = Cookies.get('token');
 
   const { id } = useParams();
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
 
-  const { mutateAsync: deletePhoto } = useDeletePhoto(token);
-  const { mutateAsync: changeAlbum } = useChangeAlbum(token);
+  const { mutateAsync: deletePhoto } = useDeletePhoto();
+  const { mutateAsync: changeAlbum } = useChangeAlbum();
 
-  const { data } = useGetAlbumById(id, token);
+  const { data } = useGetAlbumById(id);
 
   //  todo:без хука не оновлюється сторінка після видалення
 

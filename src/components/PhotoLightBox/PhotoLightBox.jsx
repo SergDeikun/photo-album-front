@@ -1,17 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import LoadingBar from 'react-top-loading-bar';
-
-// import TextField from '@mui/material/TextField';
-// import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { MdOutlineEdit } from 'react-icons/md';
-
-import dayjs from 'dayjs';
 
 import useGetPhotoById from 'react-query/useGetPhotoById';
 import useGetAlbumById from 'react-query/useGetAlbumById';
@@ -23,11 +13,6 @@ import InformationButton from 'components/Buttons/InformationButton/Information'
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 
 import {
-  // AlbumTitle,
-  // Box,
-  // ImageWrapper,
-  // Thumb,
-  // ImageLazyLoad,
   WrapperBox,
   ButtonWrapper,
   DeleteBtn,
@@ -41,7 +26,6 @@ import {
   InfoWrapper,
   InfoBlock,
   CloseBtn,
-  // InfoTitle,
   Form,
   FieldWrapper,
   DateField,
@@ -51,13 +35,13 @@ import {
 } from '../PhotoLightBox/PhotoLightBox.styled';
 
 const PhotoLightBox = () => {
-  const token = Cookies.get('token');
+  // const token = Cookies.get('token');
 
   const { albumId, photoId } = useParams();
-  const { data: currentAlbumData } = useGetAlbumById(albumId, token);
-  const { data: currentPhotoData } = useGetPhotoById(photoId, token);
-  const { mutateAsync: updatePhoto } = useUpdatePhoto(token);
-  const { mutateAsync: deletePhoto } = useDeletePhoto(token);
+  const { data: currentAlbumData } = useGetAlbumById(albumId);
+  const { data: currentPhotoData } = useGetPhotoById(photoId);
+  const { mutateAsync: updatePhoto } = useUpdatePhoto();
+  const { mutateAsync: deletePhoto } = useDeletePhoto();
   const [isOpenInfo, setIsOpenInfo] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -171,7 +155,8 @@ const PhotoLightBox = () => {
   };
 
   const handleDateChange = newDate => {
-    setDate(dayjs(newDate).format('DD.MM.YYYY'));
+    setDate(newDate);
+
     setSaveBtnVisible(true);
   };
 

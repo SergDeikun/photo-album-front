@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 
@@ -11,13 +11,13 @@ import { WelcomeText, PageTitle } from './AlbumsPage.styled';
 import LoadingBar from 'react-top-loading-bar';
 
 const AlbumsPage = () => {
-  const token = Cookies.get('token');
+  // const token = Cookies.get('token');
 
-  const { data, isLoading } = useGetCurrentUser(token);
+  const { data, isLoading } = useGetCurrentUser();
   const [progress, setProgress] = useState(0);
 
   const showWelcomeText =
-    !isLoading && (!data || !data.myAlbums || data.myAlbums.length === 0);
+    !isLoading && data && data.myAlbums && data.myAlbums.length === 0;
 
   useEffect(() => {
     if (isLoading) {
