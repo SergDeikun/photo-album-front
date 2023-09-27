@@ -37,13 +37,34 @@ export const Place = styled(Autocomplite)`
   }
 `;
 
+export const AddInfoBtn = styled.button`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  padding: 16px 24px;
+  border-radius: 3px;
+`;
+
 export const Box = styled.div`
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  /* justify-content: space-between; */
+  /* justify-content: center; */
+
+  height: 100%;
+`;
+
+export const Text = styled.p`
+  color: ${p => p.theme.colors.white};
 `;
 
 export const FieldWrapper = styled.div`
-  margin-left: 100px;
+  position: absolute;
+  padding: 10px;
+  background-color: black;
+  /* margin-left: 100px; */
 `;
 
 export const InputWrapper = styled.div`

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import Cookies from 'js-cookie';
 
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
@@ -12,18 +11,28 @@ import DateInput from 'components/Inputs/DateInput/DateInput';
 import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
 import Button from 'components/Buttons/Button';
 
-import { Box, FieldWrapper, InputWrapper, Place } from './PhotoForm.styled';
+import {
+  AddInfoBtn,
+  Box,
+  Text,
+  FieldWrapper,
+  InputWrapper,
+  Place,
+} from './PhotoForm.styled';
 
 const PhotoForm = ({ onClose }) => {
-  // const token = Cookies.get('token');
-
+  const { albumId } = useParams();
+  const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
+  const [previewPhoto, setPreviewPhoto] = useState('');
+  const [photoURL, setPhoto] = useState('');
+  const [isOpenFieldForm, setIsOpenFieldForm] = useState(false);
   const [place, setPlace] = useState('');
   const [date, setDate] = useState(null);
-  const [photoURL, setPhoto] = useState('');
-  const [previewPhoto, setPreviewPhoto] = useState('');
   const [comments, setComments] = useState('');
-  const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
-  const { albumId } = useParams();
+
+  const handleOpenFiedForm = () => {
+    setIsOpenFieldForm(!isOpenFieldForm);
+  };
 
   const uploadImage = e => {
     setPreviewPhoto(URL.createObjectURL(e.target.files[0]));
@@ -73,6 +82,12 @@ const PhotoForm = ({ onClose }) => {
 
   return (
     <>
+      {previewPhoto && (
+        <AddInfoBtn type="button" onClick={handleOpenFiedForm}>
+          Add info
+        </AddInfoBtn>
+      )}
+
       <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
         <Box>
           <FileInput
@@ -84,7 +99,29 @@ const PhotoForm = ({ onClose }) => {
             alt="photo"
           />
 
-          <FieldWrapper>
+          {isOpenFieldForm && (
+            <FieldWrapper>
+              <button type="button" onClick={handleOpenFiedForm}>
+                X
+              </button>
+              <InputWrapper>
+                <Place onSelect={handleSelectPlace} />
+                <LocationButton />
+              </InputWrapper>
+
+              <InputWrapper>
+                <DateInput initialDate={date} onDateChange={setDate} />
+              </InputWrapper>
+
+              <CommentsInput
+                placeholder="Comments"
+                initialComments={comments}
+                onCommentsChange={e => setComments(e.target.value)}
+                style={{ height: '175px' }}
+              />
+            </FieldWrapper>
+          )}
+          {/* <FieldWrapper>
             <InputWrapper>
               <Place onSelect={handleSelectPlace} />
               <LocationButton />
@@ -100,10 +137,10 @@ const PhotoForm = ({ onClose }) => {
               onCommentsChange={e => setComments(e.target.value)}
               style={{ height: '175px' }}
             />
-          </FieldWrapper>
+          </FieldWrapper> */}
         </Box>
 
-        <Button type="submit" disabled={isLoading} title={'add'} />
+        <Button type="submit" disabled={isLoading} title="save" />
       </form>
     </>
   );

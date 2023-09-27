@@ -8,11 +8,12 @@ export const UploadBox = styled.div`
   /* position: absolute; */
 
   min-width: 320px;
+  height: 100%;
   /* height: 300px; */
   height: 480px;
-  /* border: 2px dashed white; */
-  /* border-radius: ${p => p.theme.borderRadius.small}; */
-  margin-bottom: 35px;
+  /* border: 2px dashed ${p => p.theme.colors.grey}; */
+  border-radius: ${p => p.theme.borderRadius.small};
+  /* margin-bottom: 35px; */
 `;
 
 export const ClearButton = styled.button`

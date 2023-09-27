@@ -1,6 +1,6 @@
 import {
   UploadBox,
-  ClearButton,
+  // ClearButton,
   Image,
   LabelUpload,
   Icon,
