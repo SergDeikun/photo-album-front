@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import Cookies from 'js-cookie';
 
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
@@ -22,8 +21,6 @@ const styles = [
 ];
 
 const PhotoList = () => {
-  // const token = Cookies.get('token');
-
   const { albumId } = useParams();
   const { data: currentAlbumData } = useGetAlbumById(albumId);
   const [isLoadedPhoto, setIsLoadedPhoto] = useState([]);

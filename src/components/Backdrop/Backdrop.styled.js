@@ -6,7 +6,9 @@ export const BackdropBox = styled.div`
   right: 0;
   bottom: 0;
   position: fixed;
-  z-index: 15;
+  /* z-index: 15; */
+  z-index: 150;
+
   /* display: flex;
   align-items: center;
   justify-content: center;

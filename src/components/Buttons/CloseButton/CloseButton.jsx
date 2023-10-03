@@ -1,9 +1,9 @@
 import { CloseBtn, CloseIcon } from './CloseButton.styled';
 
-const CloseButton = ({ onClick, className }) => {
+const CloseButton = ({ onClose, className }) => {
   return (
     <>
-      <CloseBtn type="button" onClick={onClick} className={className || ''}>
+      <CloseBtn type="button" onClick={onClose} className={className || ''}>
         <CloseIcon />
       </CloseBtn>
     </>

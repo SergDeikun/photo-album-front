@@ -60,7 +60,7 @@ const UserMenu = () => {
             }}
             transition={{ duration: 0.2 }}
           >
-            <CloseButton onClick={handleToggleMenu} />
+            <CloseButton onClose={handleToggleMenu} />
             <MenuList>
               <MenuItem>
                 <MenuLink to={'/'} onClick={handleToggleMenu}>

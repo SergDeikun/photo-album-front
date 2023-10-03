@@ -1,6 +1,32 @@
 import styled from 'styled-components';
 
+// import Button from 'components/Buttons/Button';
+import InformationButton from 'components/Buttons/InformationButton/InformationButton';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
+
+export const Box = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+`;
+
+export const AddInfoBtn = styled.button`
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 6px;
+  background-color: rgba(0, 0, 0, 0.5);
+  outline: none;
+  border: none;
+  color: white;
+`;
+
+export const InfoBtn = styled(InformationButton)`
+  position: absolute;
+  z-index: 10;
+  fill: red;
+`;
 
 export const Place = styled(Autocomplite)`
   label {
@@ -37,23 +63,17 @@ export const Place = styled(Autocomplite)`
   }
 `;
 
-export const AddInfoBtn = styled.button`
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 10;
-  padding: 16px 24px;
-  border-radius: 3px;
-`;
+// export const AddInfoBtn = styled(Button)`
+//   position: absolute;
+//   top: 10px;
+//   left: 10px;
+//   z-index: 10;
+//   padding: 16px 24px;
+//   border-radius: 3px;
+// `;
 
-export const Box = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  /* justify-content: space-between; */
-  /* justify-content: center; */
-
-  height: 100%;
+export const Form = styled.form`
+  /* position: relative; */
 `;
 
 export const Text = styled.p`
@@ -62,9 +82,17 @@ export const Text = styled.p`
 
 export const FieldWrapper = styled.div`
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 10px;
-  background-color: black;
-  /* margin-left: 100px; */
+  background-image: linear-gradient(
+    #242b33 11.98%,
+    rgba(45, 52, 60, 0.38) 51.04%,
+    #242b33 92.19%
+  );
+  border-radius: 3px;
+  /* height: 460px; */
 `;
 
 export const InputWrapper = styled.div`

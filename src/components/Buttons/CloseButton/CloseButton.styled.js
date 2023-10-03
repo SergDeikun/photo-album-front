@@ -5,10 +5,7 @@ import { VscChromeClose } from 'react-icons/vsc';
 export const CloseBtn = styled.button`
   position: absolute;
   z-index: 10;
-  /* top: 25px; */
-  /* right: 90px; */
   top: 10px;
-
   right: 20px;
 
   display: flex;
@@ -21,8 +18,8 @@ export const CloseBtn = styled.button`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: grey;
-    border-radius: 50%;
+    background-color: ${p => p.theme.colors.grey};
+    /* border-radius: 50%; */
   }
 `;
 

@@ -18,12 +18,14 @@ export const ButtonWrapper = styled.div`
   position: absolute;
   z-index: 10;
   top: 10px;
-  right: 78px;
+  /* right: 78px; */
+  right: 20px;
+
   display: flex;
+  /* justify-content: space-between; */
 `;
 
 export const DeleteBtn = styled(DeleteButton)`
-  margin-right: 10px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   svg {
@@ -33,8 +35,12 @@ export const DeleteBtn = styled(DeleteButton)`
   &:hover {
     background-color: ${p => p.theme.colors.grey};
     border-radius: 50%;
-    fill: ${p => p.theme.colors.white};
+    /* fill: ${p => p.theme.colors.white}; */
   }
+`;
+
+export const CloseBtn = styled(CloseButton)`
+  position: static;
 `;
 
 export const PrevBtnWrap = styled.div`
@@ -138,7 +144,7 @@ export const InfoBlock = styled.div`
   align-items: center;
 `;
 
-export const CloseBtn = styled(CloseButton)`
+export const CloseInfoBtn = styled(CloseButton)`
   /* right: 330px; */
   position: static;
 

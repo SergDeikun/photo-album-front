@@ -13,8 +13,8 @@ export const Btn = styled.button`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: grey;
-    border-radius: 50%;
+    background-color: ${p => p.theme.colors.grey};
+    /* border-radius: 50%; */
   }
 `;
 

@@ -9,12 +9,15 @@ import FileInput from 'components/Inputs/FileInput/FileImput';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import DateInput from 'components/Inputs/DateInput/DateInput';
 import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
+// import InformationButton from 'components/Buttons/InformationButton/Information';
 import Button from 'components/Buttons/Button';
 
 import {
+  InfoBtn,
   AddInfoBtn,
+  Form,
   Box,
-  Text,
+  // Text,
   FieldWrapper,
   InputWrapper,
   Place,
@@ -26,12 +29,14 @@ const PhotoForm = ({ onClose }) => {
   const [previewPhoto, setPreviewPhoto] = useState('');
   const [photoURL, setPhoto] = useState('');
   const [isOpenFieldForm, setIsOpenFieldForm] = useState(false);
+  const [titleBtn, setTitleBtn] = useState('Add information');
   const [place, setPlace] = useState('');
   const [date, setDate] = useState(null);
   const [comments, setComments] = useState('');
 
-  const handleOpenFiedForm = () => {
+  const handleOpenFieldForm = () => {
     setIsOpenFieldForm(!isOpenFieldForm);
+    setTitleBtn(isOpenFieldForm ? 'Add information' : 'Close information');
   };
 
   const uploadImage = e => {
@@ -82,13 +87,9 @@ const PhotoForm = ({ onClose }) => {
 
   return (
     <>
-      {previewPhoto && (
-        <AddInfoBtn type="button" onClick={handleOpenFiedForm}>
-          Add info
-        </AddInfoBtn>
-      )}
+      {/* {previewPhoto && <InfoBtn onClick={handleOpenFiedForm} />} */}
 
-      <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+      <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
         <Box>
           <FileInput
             title="Upload photo"
@@ -98,12 +99,14 @@ const PhotoForm = ({ onClose }) => {
             onChange={uploadImage}
             alt="photo"
           />
+          {previewPhoto && (
+            <AddInfoBtn type="button" onClick={handleOpenFieldForm}>
+              {titleBtn}
+            </AddInfoBtn>
+          )}
 
           {isOpenFieldForm && (
             <FieldWrapper>
-              <button type="button" onClick={handleOpenFiedForm}>
-                X
-              </button>
               <InputWrapper>
                 <Place onSelect={handleSelectPlace} />
                 <LocationButton />
@@ -121,27 +124,13 @@ const PhotoForm = ({ onClose }) => {
               />
             </FieldWrapper>
           )}
-          {/* <FieldWrapper>
-            <InputWrapper>
-              <Place onSelect={handleSelectPlace} />
-              <LocationButton />
-            </InputWrapper>
-
-            <InputWrapper>
-              <DateInput initialDate={date} onDateChange={setDate} />
-            </InputWrapper>
-
-            <CommentsInput
-              placeholder="Comments"
-              initialComments={comments}
-              onCommentsChange={e => setComments(e.target.value)}
-              style={{ height: '175px' }}
-            />
-          </FieldWrapper> */}
         </Box>
 
-        <Button type="submit" disabled={isLoading} title="save" />
-      </form>
+        {previewPhoto && (
+          <Button type="submit" disabled={isLoading} title="save" />
+        )}
+        {/* <Button type="submit" disabled={isLoading} title="save" /> */}
+      </Form>
     </>
   );
 };

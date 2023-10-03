@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-// import Cookies from 'js-cookie';
 import LoadingBar from 'react-top-loading-bar';
 
 import useGetPhotoById from 'react-query/useGetPhotoById';
@@ -9,13 +8,15 @@ import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useUpdatePhoto from 'react-query/useUpdatePhoto';
 
 import { showAlert } from 'helpers/showAlert';
-import InformationButton from 'components/Buttons/InformationButton/Information';
+
+import InformationButton from 'components/Buttons/InformationButton/InformationButton';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 
 import {
   WrapperBox,
   ButtonWrapper,
   DeleteBtn,
+  CloseBtn,
   PrevBtnWrap,
   PrevButton,
   PrevButtonIcon,
@@ -25,9 +26,9 @@ import {
   NextButtonIcon,
   InfoWrapper,
   InfoBlock,
-  CloseBtn,
   Form,
   FieldWrapper,
+  CloseInfoBtn,
   DateField,
   Place,
   Comments,
@@ -35,8 +36,6 @@ import {
 } from '../PhotoLightBox/PhotoLightBox.styled';
 
 const PhotoLightBox = () => {
-  // const token = Cookies.get('token');
-
   const { albumId, photoId } = useParams();
   const { data: currentAlbumData } = useGetAlbumById(albumId);
   const { data: currentPhotoData } = useGetPhotoById(photoId);
@@ -197,6 +196,7 @@ const PhotoLightBox = () => {
       <ButtonWrapper>
         <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
         <InformationButton onClick={handleToggleInfo} />
+        <CloseBtn onClose={() => navigate(`/album/${albumId}`)} />
       </ButtonWrapper>
 
       {currentPhotoData && (
@@ -226,7 +226,7 @@ const PhotoLightBox = () => {
           {isOpenInfo && (
             <InfoWrapper>
               <InfoBlock>
-                <CloseBtn onClick={handleToggleInfo} />
+                <CloseInfoBtn onClose={handleToggleInfo} />
                 {/* <InfoTitle>Information</InfoTitle> */}
               </InfoBlock>
 
