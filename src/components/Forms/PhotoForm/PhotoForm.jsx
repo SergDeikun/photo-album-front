@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import useAddPhoto from 'react-query/useAddPhoto';
@@ -9,19 +12,22 @@ import FileInput from 'components/Inputs/FileInput/FileImput';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import DateInput from 'components/Inputs/DateInput/DateInput';
 import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
-// import InformationButton from 'components/Buttons/InformationButton/Information';
 import Button from 'components/Buttons/Button';
 
 import {
-  InfoBtn,
   AddInfoBtn,
-  Form,
   Box,
-  // Text,
   FieldWrapper,
   InputWrapper,
   Place,
 } from './PhotoForm.styled';
+
+const validationSchema = yup.object({
+  photoURL: yup.string('').required('photo required'),
+  place: yup.string(''),
+  date: yup.string(''),
+  comments: yup.string(''),
+});
 
 const PhotoForm = ({ onClose }) => {
   const { albumId } = useParams();
@@ -33,6 +39,46 @@ const PhotoForm = ({ onClose }) => {
   const [place, setPlace] = useState('');
   const [date, setDate] = useState(null);
   const [comments, setComments] = useState('');
+
+  // const formik = useFormik({
+  //   initialValues: {
+  //     photoURL: '',
+  //     place: '',
+  //     date: '',
+  //     comments: '',
+  //   },
+  //   validationSchema: validationSchema,
+  //   onSubmit: async values => {
+  //     const { photoURL, place, date, comments } = values;
+
+  //     const newPhoto = new FormData();
+  //     newPhoto.append('place', place);
+  //     newPhoto.append('date', date);
+  //     newPhoto.append('photoURL', photoURL);
+  //     newPhoto.append('comments', comments);
+
+  //     await addPhoto(
+  //       { newPhoto, albumId },
+  //       {
+  //         onSuccess: () => {
+  //           notifySuccess('photo added');
+  //           setPreviewPhoto('');
+  //           setPhoto('');
+  //           setPlace('');
+  //           setDate('');
+  //           setComments('');
+  //         },
+  //         onError: error => {
+  //           notifyError(error.response.data.message);
+  //         },
+  //       }
+  //     );
+
+  //     formik.resetForm();
+
+  //     onClose();
+  //   },
+  // });
 
   const handleOpenFieldForm = () => {
     setIsOpenFieldForm(!isOpenFieldForm);
@@ -87,9 +133,7 @@ const PhotoForm = ({ onClose }) => {
 
   return (
     <>
-      {/* {previewPhoto && <InfoBtn onClick={handleOpenFiedForm} />} */}
-
-      <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+      <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
         <Box>
           <FileInput
             title="Upload photo"
@@ -129,8 +173,7 @@ const PhotoForm = ({ onClose }) => {
         {previewPhoto && (
           <Button type="submit" disabled={isLoading} title="save" />
         )}
-        {/* <Button type="submit" disabled={isLoading} title="save" /> */}
-      </Form>
+      </form>
     </>
   );
 };

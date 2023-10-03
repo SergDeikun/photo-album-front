@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-// import Button from 'components/Buttons/Button';
-import InformationButton from 'components/Buttons/InformationButton/InformationButton';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
 
 export const Box = styled.div`
@@ -22,10 +20,18 @@ export const AddInfoBtn = styled.button`
   color: white;
 `;
 
-export const InfoBtn = styled(InformationButton)`
+export const FieldWrapper = styled.div`
   position: absolute;
-  z-index: 10;
-  fill: red;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  background-image: linear-gradient(
+    #242b33 11.98%,
+    rgba(45, 52, 60, 0.38) 51.04%,
+    #242b33 92.19%
+  );
+  border-radius: 3px;
 `;
 
 export const Place = styled(Autocomplite)`
@@ -61,38 +67,6 @@ export const Place = styled(Autocomplite)`
       background-color: ${p => p.theme.colors.grey};
     }
   }
-`;
-
-// export const AddInfoBtn = styled(Button)`
-//   position: absolute;
-//   top: 10px;
-//   left: 10px;
-//   z-index: 10;
-//   padding: 16px 24px;
-//   border-radius: 3px;
-// `;
-
-export const Form = styled.form`
-  /* position: relative; */
-`;
-
-export const Text = styled.p`
-  color: ${p => p.theme.colors.white};
-`;
-
-export const FieldWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px;
-  background-image: linear-gradient(
-    #242b33 11.98%,
-    rgba(45, 52, 60, 0.38) 51.04%,
-    #242b33 92.19%
-  );
-  border-radius: 3px;
-  /* height: 460px; */
 `;
 
 export const InputWrapper = styled.div`
