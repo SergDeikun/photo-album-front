@@ -1,111 +1,104 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 import useRegisterUser from 'react-query/useRegisterUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
-import Button from 'components/Buttons/Button';
 
-import { Form, InputrWrapper, Input } from './AuthForm.styled';
+import { Form, InputrWrapper, Input, SubmitBtn } from './AuthForm.styled';
+
+const validationSchema = yup.object({
+  name: yup.string().required('Name is required'),
+  email: yup
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup
+    .string('Enter your password')
+    .required('Password is required')
+    .min(8, 'Password should be of minimum 8 characters length'),
+});
 
 const RegisterForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { mutateAsync: registerUser, isLoading } = useRegisterUser();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: async values => {
+      const { name, email, password } = values;
 
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-
-      case 'email':
-        setEmail(value);
-        break;
-
-      case 'password':
-        setPassword(value);
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    try {
-      await registerUser(
-        { name, email, password },
-        {
-          onSuccess: () => {
-            notifySuccess('User register');
-            navigate('/login');
-          },
-          onError: error => {
-            notifyError(error.response.data.message);
-          },
-        }
-      );
-
-      setName('');
-      setEmail('');
-      setPassword('');
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+      try {
+        await registerUser(
+          { name, email, password },
+          {
+            onSuccess: () => {
+              notifySuccess('User register');
+              navigate('/login');
+            },
+            onError: error => {
+              notifyError(error.response.data.message);
+            },
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={formik.handleSubmit}>
         <InputrWrapper>
           <Input
-            required
-            label="Name"
+            variant="filled"
+            fullWidth
+            id="name"
             name="name"
-            type="text"
-            value={name}
-            onChange={handleChange}
-            helperText="(Required)"
-            variant="standard"
+            label="Name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.name && Boolean(formik.errors.name)}
+            helperText={formik.touched.name && formik.errors.name}
           />
         </InputrWrapper>
         <InputrWrapper>
           <Input
-            required
-            label="Email"
+            variant="filled"
+            fullWidth
+            id="email"
             name="email"
-            type="email"
-            value={email}
-            onChange={handleChange}
-            helperText="(example@mail.com)"
-            variant="standard"
+            label="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
           />
         </InputrWrapper>
         <InputrWrapper>
           <Input
-            required
-            label="Password"
+            variant="filled"
+            fullWidth
+            id="password"
             name="password"
-            type="password"
-            value={password}
-            onChange={handleChange}
-            helperText="
-          (Passwords must be at least 6 characters)"
-            variant="standard"
+            label="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
           />
         </InputrWrapper>
 
-        <Button type="submit" title="Register" disabled={isLoading} />
-
-        {/* <ButtonSignup type="submit" disabled={isLoading}>
-          Register
-        </ButtonSignup> */}
+        <SubmitBtn type="submit" title="Register" disabled={isLoading} />
       </Form>
     </>
   );

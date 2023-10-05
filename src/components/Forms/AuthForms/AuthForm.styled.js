@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import TextField from '@mui/material/TextField';
+import Button from 'components/Buttons/Button';
 
 export const Form = styled.form`
   position: absolute;
@@ -15,10 +16,10 @@ export const InputrWrapper = styled.div`
 `;
 
 export const Input = styled(TextField)`
-  width: 100%;
-
   div {
     border-bottom: 1px solid ${p => p.theme.colors.black};
+    background-color: transparent;
+
     &:before {
       content: none;
     }
@@ -35,45 +36,40 @@ export const Input = styled(TextField)`
     line-height: 1.88;
     letter-spacing: 0.1rem;
     color: ${p => p.theme.colors.black};
+    padding-left: 2px;
   }
 
   transition: border-color 0.2s ease-in-out;
 
   label {
+    left: -12px;
     font-family: ${p => p.theme.fonts.body};
     font-weight: ${p => p.theme.fontWeights.regular};
     font-size: ${p => p.theme.fontSize[0]}px;
-    /* color: ${p => p.theme.colors.grey}; */
     color: ${p => p.theme.colors.black};
 
     letter-spacing: 0.1rem;
 
-    span {
-      color: ${p => p.theme.colors.red};
-    }
-
     &.Mui-focused {
-      /* color: ${p => p.theme.colors.darkGrey}; */
       color: ${p => p.theme.colors.black};
     }
   }
 
   p {
-    color: ${p => p.theme.colors.grey};
+    margin-left: 2px;
   }
 
-  /* .css-v4u5dn-MuiInputBase-root-MuiInput-root:hover:not(
-      .Mui-disabled,
-      .Mui-error
-    ):before {
-    border-bottom: 2px solid grey;
-    border-bottom: 1px solid ${p => p.theme.colors.black};
-  } */
+  .css-2y464i-MuiInputBase-root-MuiFilledInput-root:hover {
+    background-color: transparent;
+  }
 
-  /* .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
-    border-bottom: 1px solid #ccc;
-    border-bottom: 1px solid ${p => p.theme.colors.black};
-  } */
+  .css-2y464i-MuiInputBase-root-MuiFilledInput-root.Mui-focused {
+    background-color: transparent;
+  }
+`;
+
+export const SubmitBtn = styled(Button)`
+  margin-top: 50px;
 `;
 
 export const ButtonForgot = styled.button`

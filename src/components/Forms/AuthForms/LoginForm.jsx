@@ -1,107 +1,110 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 import useLoginUser from 'react-query/useLoginUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-import Button from 'components/Buttons/Button';
-
 import queryClient from '../../../react-query/queryClient';
 
-import { Form, InputrWrapper, Input, ButtonForgot } from './AuthForm.styled';
+import {
+  Form,
+  InputrWrapper,
+  Input,
+  SubmitBtn,
+  ButtonForgot,
+} from './AuthForm.styled';
+
+const validationSchema = yup.object({
+  email: yup
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup
+    .string('Enter your password')
+    .required('Password is required')
+    .min(8, 'Password should be of minimum 8 characters length'),
+});
 
 const LoginForm = () => {
-  // const [email, setEmail] = useState('qwerty@mail.com');
-  // const [password, setPassword] = useState('qwerty');
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const navigate = useNavigate();
   const { mutateAsync: loginUser, isLoading } = useLoginUser();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
+  const formik = useFormik({
+    initialValues: {
+      email: 'qwerty@mail.com',
+      password: 'qwerty123',
+      // email: '',
+      // password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: async values => {
+      const { email, password } = values;
 
-    switch (name) {
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
+      try {
+        await loginUser(
+          { email, password },
+          {
+            onSuccess: response => {
+              Cookies.set('token', response.token, {
+                expires: 7,
+                secure: true,
+                sameSite: 'strict',
+                // httpOnly: true,
+              });
+              notifySuccess('Successful login');
+              navigate('/album-list');
+              queryClient.invalidateQueries();
 
-      default:
-        break;
-    }
-  };
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    try {
-      await loginUser(
-        { email, password },
-        {
-          onSuccess: response => {
-            Cookies.set('token', response.token, {
-              expires: 7,
-              secure: true,
-              sameSite: 'strict',
-              // httpOnly: true,
-            });
-            notifySuccess('Successful login');
-            navigate('/album-list');
-            queryClient.invalidateQueries();
-
-            return response;
-          },
-          onError: error => {
-            notifyError(error.response.data.message);
-          },
-        }
-      );
-
-      // setEmail('');
-      // setPassword('');
-    } catch (error) {
-      console.log(error);
-    }
-  };
+              return response;
+            },
+            onError: error => {
+              notifyError(error.response.data.message);
+            },
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={formik.handleSubmit}>
         <InputrWrapper>
           <Input
-            required
-            label="Email"
+            variant="filled"
+            fullWidth
+            id="email"
             name="email"
-            type="email"
-            value={email}
-            onChange={handleChange}
-            helperText="(example@mail.com)"
-            variant="standard"
+            label="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
           />
         </InputrWrapper>
 
         <InputrWrapper>
           <Input
-            required
-            label="Password"
+            variant="filled"
+            fullWidth
+            id="password"
             name="password"
-            type="password"
-            value={password}
-            onChange={handleChange}
-            helperText="
-          (Passwords must be at least 6 characters)"
-            variant="standard"
+            label="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
           />
         </InputrWrapper>
-        <Button type="submit" title="Log In" disabled={isLoading} />
-        {/* TODO кнопка чи посилання??? */}
+        <SubmitBtn type="submit" title="Log In" disabled={isLoading} />
 
+        {/* TODO кнопка чи посилання??? */}
         <ButtonForgot type="button">Forgot password?</ButtonForgot>
       </Form>
     </>

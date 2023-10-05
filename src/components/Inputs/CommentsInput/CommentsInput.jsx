@@ -15,7 +15,6 @@ const CommentsInput = ({
         placeholder={placeholder}
         className={className || ''}
         name="comments"
-        // value={initialComments}
         value={value}
         onChange={onChange}
         style={style}
