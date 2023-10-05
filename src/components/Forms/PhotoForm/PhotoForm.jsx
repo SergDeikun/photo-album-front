@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import useAddPhoto from 'react-query/useAddPhoto';
@@ -22,13 +19,6 @@ import {
   Place,
 } from './PhotoForm.styled';
 
-const validationSchema = yup.object({
-  photoURL: yup.string('').required('photo required'),
-  place: yup.string(''),
-  date: yup.string(''),
-  comments: yup.string(''),
-});
-
 const PhotoForm = ({ onClose }) => {
   const { albumId } = useParams();
   const { mutateAsync: addPhoto, isLoading } = useAddPhoto();
@@ -39,46 +29,6 @@ const PhotoForm = ({ onClose }) => {
   const [place, setPlace] = useState('');
   const [date, setDate] = useState(null);
   const [comments, setComments] = useState('');
-
-  // const formik = useFormik({
-  //   initialValues: {
-  //     photoURL: '',
-  //     place: '',
-  //     date: '',
-  //     comments: '',
-  //   },
-  //   validationSchema: validationSchema,
-  //   onSubmit: async values => {
-  //     const { photoURL, place, date, comments } = values;
-
-  //     const newPhoto = new FormData();
-  //     newPhoto.append('place', place);
-  //     newPhoto.append('date', date);
-  //     newPhoto.append('photoURL', photoURL);
-  //     newPhoto.append('comments', comments);
-
-  //     await addPhoto(
-  //       { newPhoto, albumId },
-  //       {
-  //         onSuccess: () => {
-  //           notifySuccess('photo added');
-  //           setPreviewPhoto('');
-  //           setPhoto('');
-  //           setPlace('');
-  //           setDate('');
-  //           setComments('');
-  //         },
-  //         onError: error => {
-  //           notifyError(error.response.data.message);
-  //         },
-  //       }
-  //     );
-
-  //     formik.resetForm();
-
-  //     onClose();
-  //   },
-  // });
 
   const handleOpenFieldForm = () => {
     setIsOpenFieldForm(!isOpenFieldForm);
@@ -100,6 +50,7 @@ const PhotoForm = ({ onClose }) => {
     const newPhoto = new FormData();
     newPhoto.append('place', place);
     newPhoto.append('date', date);
+    console.log(('photoURL', photoURL));
     newPhoto.append('photoURL', photoURL);
     newPhoto.append('comments', comments);
 
@@ -137,7 +88,7 @@ const PhotoForm = ({ onClose }) => {
         <Box>
           <FileInput
             title="Upload photo"
-            name={photoURL}
+            name="photoURL"
             uploadFile={previewPhoto}
             src={previewPhoto}
             onChange={uploadImage}
@@ -157,13 +108,13 @@ const PhotoForm = ({ onClose }) => {
               </InputWrapper>
 
               <InputWrapper>
-                <DateInput initialDate={date} onDateChange={setDate} />
+                <DateInput value={date} onChange={setDate} />
               </InputWrapper>
 
               <CommentsInput
                 placeholder="Comments"
-                initialComments={comments}
-                onCommentsChange={e => setComments(e.target.value)}
+                value={comments}
+                onChange={e => setComments(e.target.value)}
                 style={{ height: '175px' }}
               />
             </FieldWrapper>

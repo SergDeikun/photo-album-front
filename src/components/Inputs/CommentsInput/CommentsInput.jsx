@@ -2,8 +2,9 @@ import { Comments } from './CommentsInput.styled';
 
 const CommentsInput = ({
   placeholder,
-  initialComments,
-  onCommentsChange,
+  // initialComments,
+  value,
+  onChange,
   className,
   style,
 }) => {
@@ -13,8 +14,10 @@ const CommentsInput = ({
         aria-label="empty textarea"
         placeholder={placeholder}
         className={className || ''}
-        value={initialComments}
-        onChange={onCommentsChange}
+        name="comments"
+        // value={initialComments}
+        value={value}
+        onChange={onChange}
         style={style}
       />
     </>

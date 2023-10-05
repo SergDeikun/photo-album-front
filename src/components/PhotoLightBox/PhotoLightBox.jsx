@@ -240,7 +240,8 @@ const PhotoLightBox = () => {
                 <FieldWrapper>
                   <Comments
                     placeholder="Add comments"
-                    initialComments={comments}
+                    value={comments}
+                    // initialComments={comments}
                     onCommentsChange={handleCommentsChange}
                   />
                 </FieldWrapper>
@@ -248,10 +249,7 @@ const PhotoLightBox = () => {
                 {/* Date */}
 
                 <FieldWrapper>
-                  <DateField
-                    initialDate={date}
-                    onDateChange={handleDateChange}
-                  />
+                  <DateField value={date} onDateChange={handleDateChange} />
                 </FieldWrapper>
 
                 {/* Place */}

@@ -5,19 +5,18 @@ import dayjs from 'dayjs';
 
 import { DateField } from './DateInput.styled';
 
-const DateInput = ({ initialDate, onDateChange, className }) => {
+const DateInput = ({ value, onChange, className }) => {
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateField
+          name="date"
           className={className || ''}
           required={false}
           inputFormat="DD.MM.YYYY"
           maxDate={new Date()}
-          value={dayjs(initialDate, 'DD.MM.YYYY')}
-          onChange={newValue =>
-            onDateChange(dayjs(newValue).format('DD.MM.YYYY'))
-          }
+          value={dayjs(value, 'DD.MM.YYYY')}
+          onChange={newValue => onChange(dayjs(newValue).format('DD.MM.YYYY'))}
           renderInput={params => <TextField {...params} />}
         />
       </LocalizationProvider>
