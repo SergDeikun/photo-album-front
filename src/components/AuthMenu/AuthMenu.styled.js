@@ -14,38 +14,19 @@ export const ListItem = styled.li`
 
 export const AuthLink = styled(NavLink)`
   position: relative;
-  /* font-family: ${p => p.theme.fonts.body}; */
-  font-family: ${p => p.theme.fonts.main};
-
-  font-size: ${p => p.theme.fontSize[0]}px;
-  font-weight: ${p => p.theme.fontWeights.regular};
+  padding: 25px 6px;
+  font-family: ${p => p.theme.fonts.secondary};
+  font-size: ${p => p.theme.fontSize[1]}px;
+  font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.88;
   color: ${p => p.theme.colors.black};
-
-  padding: 25px 6px;
-
-  /* padding-top: 25px;
-  padding-bottom: 25px; */
-  transition-property: transform;
-
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 28px;
-
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: ${p => p.theme.colors.red};
-    transform: rotateY(90deg);
-    transition: transform 0.25s linear;
-  }
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
   &.active {
     color: ${p => p.theme.colors.red};
   }
 
-  &:hover:after {
-    transform: rotate(0deg);
+  &:hover {
+    color: ${p => p.theme.colors.red};
   }
 `;

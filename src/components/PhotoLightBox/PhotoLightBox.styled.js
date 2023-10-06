@@ -64,7 +64,7 @@ export const PrevButton = styled.button`
   border: none;
   border-radius: 50%;
   opacity: 0;
-  background-color: ${p => p.theme.colors.grey};
+  background-color: ${p => p.theme.colors.yellow};
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   /* background-color: rgba(66, 66, 66, 0.54); */
 
@@ -99,7 +99,7 @@ export const NextButton = styled.button`
   border: none;
   border-radius: 50%;
   opacity: 0;
-  background-color: ${p => p.theme.colors.grey};
+  background-color: ${p => p.theme.colors.yellow};
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   ${NextBtnWrap}:hover & {

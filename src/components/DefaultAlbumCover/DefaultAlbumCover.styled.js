@@ -7,8 +7,6 @@ export const BoxCover = styled.div`
   justify-content: center;
   width: 610px;
   height: 509px;
-  /* height: 100%; */
-
   background-image: url(${BgCover});
   background-position: center;
   background-repeat: no-repeat;

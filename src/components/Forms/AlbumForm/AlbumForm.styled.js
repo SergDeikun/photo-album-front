@@ -21,15 +21,12 @@ export const InputName = styled.input`
   line-height: 1.88;
   letter-spacing: 0.1rem;
   color: ${p => p.theme.colors.grey};
-  /* color: ${p => p.theme.colors.yellow}; */
-
   padding: 0 20px 0 20px;
   border-bottom: 1px solid transparent;
   transition: border-bottom 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
   ::placeholder {
     text-align: center;
-    /* color: ${p => p.theme.colors.yellow}; */
     color: ${p => p.theme.colors.white};
   }
 

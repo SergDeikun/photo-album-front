@@ -5,9 +5,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 export const IconBtn = styled(AiOutlineInfoCircle)`
   width: 24px;
   height: 24px;
-  fill: #575150;
-
-  /* fill: ${p => p.theme.colors.white}; */
+  fill: ${p => p.theme.colors.darkGrey};
 `;
 
 export const Btn = styled.button`
@@ -24,7 +22,7 @@ export const Btn = styled.button`
     background-color: ${p => p.theme.colors.yellow};
 
     ${IconBtn} {
-      fill: ${p => p.theme.colors.black};
+      fill: black;
     }
   }
 `;

@@ -1,8 +1,8 @@
 export const theme = {
   fonts: {
     body: 'Montserrat, sans-serif',
-    main: 'Jost,sans-serif',
-    text: 'Roboto,sans-serif',
+    secondary: 'Jost,sans-serif',
+    button: 'Roboto,sans-serif',
   },
 
   fontSize: [16, 24, 34, 50, 100],
@@ -16,14 +16,11 @@ export const theme = {
   colors: {
     bodyBg: '#fbf9f6',
     red: '#ff0044',
-    black: '#000000',
-    yellow: 'rgb(255, 178, 0)',
+    yellow: '#FFB200',
+    black: 'rgba(34, 34, 34, 0.85)',
     white: '#fff',
     grey: '#ccc',
     darkGrey: '#575150',
-
-    // darkGrey: 'rgba(34, 34, 34, 0.85)',
-    // hover: '#e14641',
   },
 
   borderRadius: {

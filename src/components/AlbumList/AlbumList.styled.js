@@ -6,9 +6,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  /* margin-top: 40px; */
   margin-top: 150px;
-
   padding: 0 20px 0 20px;
 `;
 

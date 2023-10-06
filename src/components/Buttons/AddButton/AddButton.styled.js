@@ -3,30 +3,16 @@ import styled from 'styled-components';
 export const AddBtn = styled.button`
   position: relative;
   margin-left: auto;
-  /* font-family: ${p => p.theme.fonts.body}; */
-  font-family: ${p => p.theme.fonts.main};
-
-  font-size: ${p => p.theme.fontSize[0]}px;
-  font-weight: ${p => p.theme.fontWeights.regular};
+  font-family: ${p => p.theme.fonts.secondary};
+  font-size: ${p => p.theme.fontSize[1]}px;
+  font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.88;
   color: ${p => p.theme.colors.black};
   border: none;
   background-color: transparent;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: ${p => p.theme.colors.red};
-    transform: rotateY(90deg);
-    transition: transform 0.25s linear;
-  }
-
-  &:hover:after {
-    transform: rotate(0deg);
+  &:hover {
+    color: ${p => p.theme.colors.red};
   }
 `;

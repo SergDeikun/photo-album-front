@@ -57,8 +57,6 @@ export const LabelUpload = styled.label`
 export const Icon = styled(BsUpload)`
   width: 70px;
   height: 70px;
-  color: rgb(255, 178, 0);
-  /* color: blue; */
-
+  color: ${p => p.theme.colors.yellow};
   margin-right: 50px;
 `;

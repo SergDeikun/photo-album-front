@@ -12,8 +12,6 @@ export const Btn = styled.button`
   border: none;
 
   &:hover {
-    /* border: 1px solid teal; */
-    border-radius: 30%;
     background-color: ${p => p.theme.colors.red};
   }
 `;

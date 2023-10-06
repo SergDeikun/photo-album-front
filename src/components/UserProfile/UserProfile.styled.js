@@ -98,7 +98,7 @@ export const SubmitButton = styled.button`
   justify-content: center;
   padding: 3px;
   background-color: transparent;
-  border-radius: 50%;
+  border-radius: ${p => p.theme.borderRadius.round};
   border: none;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 

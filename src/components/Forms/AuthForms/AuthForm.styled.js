@@ -39,15 +39,12 @@ export const Input = styled(TextField)`
     padding-left: 2px;
   }
 
-  transition: border-color 0.2s ease-in-out;
-
   label {
     left: -12px;
     font-family: ${p => p.theme.fonts.body};
     font-weight: ${p => p.theme.fontWeights.regular};
     font-size: ${p => p.theme.fontSize[0]}px;
     color: ${p => p.theme.colors.black};
-
     letter-spacing: 0.1rem;
 
     &.Mui-focused {

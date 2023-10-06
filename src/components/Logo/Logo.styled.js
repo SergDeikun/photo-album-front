@@ -7,5 +7,5 @@ export const LogoLink = styled(Link)`
 `;
 
 export const LogoImg = styled.img`
-  width: 150px;
+  width: 200px;
 `;

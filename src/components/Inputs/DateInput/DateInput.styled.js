@@ -3,6 +3,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 export const DateField = styled(DesktopDatePicker)`
   width: 100%;
+
   input {
     font-family: ${p => p.theme.fonts.body};
     font-weight: ${p => p.theme.fontWeights.regular};
