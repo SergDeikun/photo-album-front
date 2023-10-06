@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 export const ButtonMenu = styled.button`
   position: relative;
   margin-left: 50px;
-  font-family: ${p => p.theme.fonts.body};
+  /* font-family: ${p => p.theme.fonts.body}; */
+  font-family: ${p => p.theme.fonts.main};
+
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
   line-height: 1.88;
@@ -41,14 +43,15 @@ export const MenuItem = styled.li`
 
 export const MenuLink = styled(Link)`
   font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSize[1]}px;
+  font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
-  color: ${p => p.theme.colors.white};
+  /* color: ${p => p.theme.colors.white}; */
+  color: ${p => p.theme.colors.yellow};
   line-height: 1.66;
   text-align: start;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    color: ${p => p.theme.colors.red};
+    /* color: ${p => p.theme.colors.red}; */
   }
 `;

@@ -4,12 +4,21 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 
 export const AlbumTitle = styled.h1`
-  font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSize[2]}px;
-  font-weight: ${p => p.theme.fontWeights.medium};
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 10;
+  opacity: 0.1;
+  font-family: ${p => p.theme.fonts.main};
+  /* font-size: ${p => p.theme.fontSize[2]}px; */
+  font-size: ${p => p.theme.fontSize[3]}px;
+
+  /* font-weight: 400; */
+  /* font-weight: ${p => p.theme.fontWeights.medium}; */
   color: ${p => p.theme.colors.black};
   text-align: center;
-  margin-top: 80px;
+  /* margin-top: 80px; */
 
   margin-bottom: 20px;
 `;
@@ -20,6 +29,7 @@ export const Box = styled.div`
   text-align: center;
   justify-content: space-between;
   padding-bottom: 20px;
+  margin-top: 80px;
 `;
 
 export const Thumb = styled.div`

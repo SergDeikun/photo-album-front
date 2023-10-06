@@ -11,8 +11,6 @@ import { WelcomeText, PageTitle } from './AlbumsPage.styled';
 import LoadingBar from 'react-top-loading-bar';
 
 const AlbumsPage = () => {
-  // const token = Cookies.get('token');
-
   const { data, isLoading } = useGetCurrentUser();
   const [progress, setProgress] = useState(0);
 

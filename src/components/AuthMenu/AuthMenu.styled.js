@@ -14,7 +14,9 @@ export const ListItem = styled.li`
 
 export const AuthLink = styled(NavLink)`
   position: relative;
-  font-family: ${p => p.theme.fonts.body};
+  /* font-family: ${p => p.theme.fonts.body}; */
+  font-family: ${p => p.theme.fonts.main};
+
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
   line-height: 1.88;

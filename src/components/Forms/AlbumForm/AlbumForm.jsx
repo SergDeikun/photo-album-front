@@ -1,14 +1,20 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
 // import AvatarEditor from 'react-avatar-editor';
 
 import useAddAlbum from 'react-query/useAddAlbum';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-import Button from 'components/Buttons/Button';
 import FileInput from 'components/Inputs/FileInput/FileImput';
-// import TextInput from 'components/Inputs/TextInput/TextInput';
 
-import { Form, NameWrapper, InputName } from './AlbumForm.styled';
+import {
+  Form,
+  NameWrapper,
+  InputName,
+  // FileWrapper,
+  SubmitBtn,
+} from './AlbumForm.styled';
 
 const AlbumForm = ({ updateName, onClose }) => {
   const [name, setName] = useState(updateName);
@@ -58,6 +64,7 @@ const AlbumForm = ({ updateName, onClose }) => {
           <label>
             <InputName
               required
+              autoFocus
               type="text"
               name="name"
               value={name}
@@ -65,14 +72,6 @@ const AlbumForm = ({ updateName, onClose }) => {
               onChange={e => setName(e.target.value)}
             />
           </label>
-          {/* <TextInput
-            required={true}
-            // label="Album name"
-            name="name"
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          /> */}
         </NameWrapper>
 
         {/* <AvatarEditor
@@ -86,15 +85,58 @@ const AlbumForm = ({ updateName, onClose }) => {
           rotate={0}
         /> */}
 
-        <FileInput
-          title="Upload cover to your album"
-          uploadFile={previewBackground}
-          clearInput={handleClearInput}
-          src={previewBackground}
-          onChange={uploadImage}
-          alt="cover"
-        />
-        <Button type="submit" disabled={isLoading} title={'add'} />
+        {/* <FileWrapper> */}
+        {/* <FileInput
+              title="Upload cover to your album"
+              uploadFile={previewBackground}
+              clearInput={handleClearInput}
+              src={previewBackground}
+              onChange={uploadImage}
+              alt="cover"
+            /> */}
+        {/* </FileWrapper> */}
+
+        {name && (
+          <>
+            {/* <FileInput
+              title="Upload cover to your album"
+              uploadFile={previewBackground}
+              clearInput={handleClearInput}
+              src={previewBackground}
+              onChange={uploadImage}
+              alt="cover"
+            /> */}
+            <SubmitBtn type="submit" disabled={isLoading} title={'add'} />
+          </>
+        )}
+
+        {/* ANIMATION */}
+        {/* <AnimatePresence>
+          {name && (
+            <motion.div
+              key={name}
+              style={
+                {
+                  // position: 'absolute',
+                  // zindex: '10',
+                  // width: '320px',
+                  // left: '1050px',
+                  // top: '0',
+                  // backgroundColor: 'black',
+                  // padding: '115px 20px',
+                }
+              }
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+            >
+              <SubmitBtn type="submit" disabled={isLoading} title={'add'} />
+            </motion.div>
+          )}
+        </AnimatePresence> */}
       </Form>
     </>
   );

@@ -2,6 +2,13 @@ import styled from 'styled-components';
 
 import { VscChromeClose } from 'react-icons/vsc';
 
+export const CloseIcon = styled(VscChromeClose)`
+  width: 24px;
+  height: 24px;
+  fill: #575150;
+  /* fill: ${p => p.theme.colors.white}; */
+`;
+
 export const CloseBtn = styled.button`
   position: absolute;
   z-index: 10;
@@ -15,16 +22,12 @@ export const CloseBtn = styled.button`
   background-color: transparent;
   border-radius: 50%;
   border: none;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: ${p => p.theme.colors.grey};
-    /* border-radius: 50%; */
+    background-color: ${p => p.theme.colors.yellow};
+    ${CloseIcon} {
+      fill: ${p => p.theme.colors.black};
+    }
   }
-`;
-
-export const CloseIcon = styled(VscChromeClose)`
-  width: 24px;
-  height: 24px;
-  fill: ${p => p.theme.colors.white};
 `;

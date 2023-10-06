@@ -26,17 +26,17 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const DeleteBtn = styled(DeleteButton)`
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   svg {
     fill: ${p => p.theme.colors.white};
-  }
+  } */
 
-  &:hover {
+  /* &:hover {
     background-color: ${p => p.theme.colors.grey};
     border-radius: 50%;
-    /* fill: ${p => p.theme.colors.white}; */
-  }
+    fill: ${p => p.theme.colors.white};
+  } */
 `;
 
 export const CloseBtn = styled(CloseButton)`

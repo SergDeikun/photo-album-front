@@ -2,6 +2,14 @@ import styled from 'styled-components';
 
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 
+export const IconBtn = styled(AiOutlineInfoCircle)`
+  width: 24px;
+  height: 24px;
+  fill: #575150;
+
+  /* fill: ${p => p.theme.colors.white}; */
+`;
+
 export const Btn = styled.button`
   padding: 12px;
   display: flex;
@@ -10,17 +18,13 @@ export const Btn = styled.button`
   background-color: transparent;
   border-radius: 50%;
   border: none;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: ${p => p.theme.colors.grey};
-    /* border-radius: 50%; */
-  }
-`;
+    background-color: ${p => p.theme.colors.yellow};
 
-export const IconBtn = styled(AiOutlineInfoCircle)`
-  width: 24px;
-  height: 24px;
-  fill: ${p => p.theme.colors.white};
-  /* transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+    ${IconBtn} {
+      fill: ${p => p.theme.colors.black};
+    }
+  }
 `;
