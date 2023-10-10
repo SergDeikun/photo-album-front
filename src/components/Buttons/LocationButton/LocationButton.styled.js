@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 import { MdLocationPin } from 'react-icons/md';
 
-export const Btn = styled.button`
-  background-color: transparent;
-  border: none;
-`;
-
 export const LocationIcon = styled(MdLocationPin)`
   width: 24px;
   height: 24px;
-  fill: ${p => p.theme.colors.grey};
+`;
+
+export const Btn = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+
+  ${LocationIcon} {
+    fill: ${p => (p.isInputFocused ? p.theme.colors.red : p.theme.colors.grey)};
+  }
 `;

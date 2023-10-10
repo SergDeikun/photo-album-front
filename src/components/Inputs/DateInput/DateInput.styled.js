@@ -13,6 +13,27 @@ export const DateField = styled(DesktopDatePicker)`
     outline: none;
   }
 
+  button {
+    input:active & {
+      background-color: blue;
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    svg {
+      fill: ${p =>
+        p.isDateFocused ? p.theme.colors.red : p.theme.colors.grey};
+    }
+  }
+
+  /* &:active {
+      svg {
+        fill: ${p => p.theme.colors.red};
+      }
+    } */
+
   label {
     font-family: ${p => p.theme.fonts.body};
     font-weight: ${p => p.theme.fontWeights.regular};
@@ -70,9 +91,5 @@ export const DateField = styled(DesktopDatePicker)`
     /* border-color: transparent; */
     border: none;
     /* border-bottom: 2px solid white; */
-  }
-
-  .css-i4bv87-MuiSvgIcon-root {
-    fill: ${p => p.theme.colors.grey};
   }
 `;

@@ -6,6 +6,7 @@ export const CloseIcon = styled(VscChromeClose)`
   width: 24px;
   height: 24px;
   fill: ${p => p.theme.colors.darkGrey};
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const CloseBtn = styled.button`
@@ -20,11 +21,12 @@ export const CloseBtn = styled.button`
   background-color: transparent;
   border-radius: ${p => p.theme.borderRadius.round};
   border: none;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     background-color: ${p => p.theme.colors.yellow};
-    ${CloseIcon} {
+
+    svg {
       fill: black;
     }
   }

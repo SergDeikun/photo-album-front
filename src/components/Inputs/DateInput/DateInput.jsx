@@ -5,7 +5,14 @@ import dayjs from 'dayjs';
 
 import { DateField } from './DateInput.styled';
 
-const DateInput = ({ value, onChange, className }) => {
+const DateInput = ({
+  value,
+  onChange,
+  onFocus,
+  isDateFocused,
+  onBlur,
+  className,
+}) => {
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -17,7 +24,15 @@ const DateInput = ({ value, onChange, className }) => {
           maxDate={new Date()}
           value={dayjs(value, 'DD.MM.YYYY')}
           onChange={newValue => onChange(dayjs(newValue).format('DD.MM.YYYY'))}
-          renderInput={params => <TextField {...params} />}
+          isDateFocused={isDateFocused}
+          renderInput={params => (
+            <TextField
+              {...params}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              // isDateFocused={isDateFocused}
+            />
+          )}
         />
       </LocalizationProvider>
     </>

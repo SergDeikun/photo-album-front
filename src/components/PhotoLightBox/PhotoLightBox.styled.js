@@ -135,43 +135,30 @@ export const InfoWrapper = styled.div`
   height: 100%;
   width: 360px;
   background-color: ${p => p.theme.colors.bodyBg};
-  padding: 10px;
-`;
-
-export const InfoBlock = styled.div`
-  /* outline: 1px solid tomato; */
-  display: flex;
-  align-items: center;
+  padding: 75px 10px;
 `;
 
 export const CloseInfoBtn = styled(CloseButton)`
-  /* right: 330px; */
-  position: static;
+  top: 5px;
+  right: 5px;
 
-  svg {
-    fill: ${p => p.theme.colors.black};
+  &:hover {
+    background-color: transparent;
+
+    svg {
+      fill: ${p => p.theme.colors.red};
+    }
   }
 `;
 
-export const InfoTitle = styled.p`
-  font-family: ${p => p.theme.fonts.text};
-  font-weight: ${p => p.theme.fontWeights.regular};
-  font-size: ${p => p.theme.fontSize[1]}px;
-  line-height: 1.88;
-  letter-spacing: 0.1rem;
-  /* margin-left: 10px; */
-`;
-
 export const Form = styled.form`
-  margin-top: 20px;
+  /* margin-top: 20px; */
 `;
 
 export const FieldWrapper = styled.div`
-  overflow: hidden;
-  /* outline: 1px solid teal; */
-  /* display: flex; */
-  /* align-items: center; */
-  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  margin-bottom: 25px;
 `;
 
 export const Comments = styled(CommentsInput)`
@@ -198,20 +185,17 @@ export const DateField = styled(DateInput)`
   }
 `;
 
-export const PlaceWrapper = styled.div`
-  position: relative;
-`;
-
 export const Place = styled(Autocomplite)`
   label {
     width: 100%;
   }
+
   input {
+    box-sizing: border-box;
     width: 100%;
     border: none;
     outline: none;
     font-family: ${p => p.theme.fonts.body};
-    font-weight: ${p => p.theme.fontWeights.regular};
     font-size: ${p => p.theme.fontSize[0]}px;
     line-height: 1.88;
     letter-spacing: 0.1rem;
@@ -224,17 +208,21 @@ export const Place = styled(Autocomplite)`
   ul {
     position: absolute;
     top: 35px;
+    /* bottom: 35px; */
+    left: 0;
     width: 100%;
-    background-color: ${p => p.theme.colors.bodyBg};
+    background-color: ${p => p.theme.colors.grey};
     z-index: 5;
   }
+
   li {
     color: ${p => p.theme.colors.black};
     padding: 6px 15px;
     cursor: pointer;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
     &:hover {
-      background-color: ${p => p.theme.colors.grey};
+      color: ${p => p.theme.colors.red};
     }
   }
 `;

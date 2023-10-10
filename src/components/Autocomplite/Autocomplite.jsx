@@ -8,7 +8,7 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 // import { Root, Label, Input, List, Item } from './Autocomplite.styled';
 import { Root } from './Autocomplite.styled';
 
-const Autocomplite = ({ onSelect, place, className }) => {
+const Autocomplite = ({ onSelect, place, onFocus, onBlur, className }) => {
   const {
     // ready,
     value,
@@ -80,6 +80,8 @@ const Autocomplite = ({ onSelect, place, className }) => {
           // defaultValue="london"
           value={value}
           onChange={handleInput}
+          onFocus={onFocus}
+          onBlur={onBlur}
           //   disabled={!ready}
           placeholder="Location"
         />

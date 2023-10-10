@@ -1,9 +1,13 @@
 import { Btn, LocationIcon } from './LocationButton.styled';
 
-const LocationButton = () => {
+const LocationButton = ({ isInputFocused, className }) => {
   return (
     <>
-      <Btn type="button">
+      <Btn
+        className={className || ''}
+        type="button"
+        isInputFocused={isInputFocused}
+      >
         <LocationIcon />
       </Btn>
     </>

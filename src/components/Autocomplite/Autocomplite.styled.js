@@ -4,6 +4,7 @@ export const Root = styled.div`
   display: flex;
   width: 100%;
   overflow: hidden;
+  font-family: ${p => p.theme.fonts.body};
 `;
 
 export const Label = styled.label`

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import useGetPhotoById from 'react-query/useGetPhotoById';
 import useGetAlbumById from 'react-query/useGetAlbumById';
@@ -25,13 +26,14 @@ import {
   NextButton,
   NextButtonIcon,
   InfoWrapper,
-  InfoBlock,
+  // InfoBlock,
   Form,
   FieldWrapper,
   CloseInfoBtn,
   DateField,
   Place,
   Comments,
+  MapBtn,
   SubmitButton,
 } from '../PhotoLightBox/PhotoLightBox.styled';
 
@@ -52,6 +54,9 @@ const PhotoLightBox = () => {
   const [place, setPlace] = useState('');
   const [progress, setProgress] = useState(0);
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [isDateFocused, setIsDateocused] = useState(false);
+  const [isDateBtnClick, setIsDateBtnClick] = useState(false);
 
   useEffect(() => {
     if (isLoading) {
@@ -223,53 +228,94 @@ const PhotoLightBox = () => {
               </NextButton>
             </NextBtnWrap>
           )}
-
-          {isOpenInfo && (
-            <InfoWrapper>
-              <InfoBlock>
-                <CloseInfoBtn onClose={handleToggleInfo} />
-                {/* <InfoTitle>Information</InfoTitle> */}
-              </InfoBlock>
-
-              <Form
-                encType="multipart/form-data"
-                onSubmit={handleSubmit}
-                action=""
+          <AnimatePresence>
+            {isOpenInfo && (
+              <motion.div
+                key={isOpenInfo}
+                style={
+                  {
+                    // position: 'absolute',
+                    // zindex: '10',
+                    // width: '320px',
+                    // left: '1050px',
+                    // top: '0',
+                    // backgroundColor: 'black',
+                    // padding: '115px 20px',
+                  }
+                }
+                initial={{
+                  opacity: 0,
+                  // x: -25,
+                  x: 25,
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  // x: -25,
+                  x: 25,
+                }}
+                transition={{ duration: 0.2 }}
               >
-                {/* Comments */}
+                <InfoWrapper>
+                  <CloseInfoBtn onClose={handleToggleInfo} />
 
-                <FieldWrapper>
-                  <Comments
-                    placeholder="Add comments"
-                    value={comments}
-                    // initialComments={comments}
-                    onCommentsChange={handleCommentsChange}
-                  />
-                </FieldWrapper>
+                  <Form
+                    encType="multipart/form-data"
+                    onSubmit={handleSubmit}
+                    action=""
+                  >
+                    {/* Comments */}
 
-                {/* Date */}
+                    <FieldWrapper>
+                      <Comments
+                        placeholder="Add comments"
+                        value={comments}
+                        onChange={handleCommentsChange}
+                      />
+                    </FieldWrapper>
 
-                <FieldWrapper>
-                  <DateField value={date} onDateChange={handleDateChange} />
-                </FieldWrapper>
+                    {/* Place */}
 
-                {/* Place */}
+                    <FieldWrapper>
+                      <Place
+                        place={place}
+                        onSelect={handleSelectUpdatePlace}
+                        onFocus={() => setIsInputFocused(true)}
+                        onBlur={() => setIsInputFocused(false)}
+                      />
+                      <LocationButton isInputFocused={isInputFocused} />
+                    </FieldWrapper>
 
-                <FieldWrapper>
-                  <LocationButton />
-                  <Place place={place} onSelect={handleSelectUpdatePlace} />
-                </FieldWrapper>
+                    {/* Date */}
 
-                {/* Save button */}
+                    <FieldWrapper>
+                      <DateField
+                        value={date}
+                        onChange={handleDateChange}
+                        onFocus={() => setIsDateocused(true)}
+                        onBlur={() => setIsDateocused(false)}
+                        isDateFocused={isDateFocused}
+                      />
+                    </FieldWrapper>
 
-                {saveBtnVisible && (
-                  <SubmitButton type="submit" onClick={() => setProgress(100)}>
-                    Save
-                  </SubmitButton>
-                )}
-              </Form>
-            </InfoWrapper>
-          )}
+                    {/* Save button */}
+
+                    {saveBtnVisible && (
+                      <SubmitButton
+                        type="submit"
+                        onClick={() => setProgress(100)}
+                      >
+                        Save
+                      </SubmitButton>
+                    )}
+                  </Form>
+                </InfoWrapper>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </>
       )}
     </WrapperBox>
