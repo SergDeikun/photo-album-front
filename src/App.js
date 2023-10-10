@@ -1,8 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
-import axios from 'axios';
-import Cookies from 'js-cookie';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

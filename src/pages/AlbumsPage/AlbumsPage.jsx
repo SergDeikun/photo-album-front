@@ -1,27 +1,29 @@
 import { useEffect } from 'react';
-// import Cookies from 'js-cookie';
+import { useState } from 'react';
+import LoadingBar from 'react-top-loading-bar';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 
 import Container from 'components/Container/Container';
 import AlbumList from 'components/AlbumList/AlbumList';
 
-import { useState } from 'react';
 import { WelcomeText, PageTitle } from './AlbumsPage.styled';
-import LoadingBar from 'react-top-loading-bar';
 
 const AlbumsPage = () => {
-  const { data, isLoading } = useGetCurrentUser();
+  const { data: currentUser, isLoading } = useGetCurrentUser();
   const [progress, setProgress] = useState(0);
 
   const showWelcomeText =
-    !isLoading && data && data.myAlbums && data.myAlbums.length === 0;
+    !isLoading &&
+    currentUser &&
+    currentUser.myAlbums &&
+    currentUser.myAlbums.length === 0;
 
   useEffect(() => {
     if (isLoading) {
       setProgress(100);
     }
-  }, [data, isLoading]);
+  }, [isLoading]);
 
   return (
     <Container>
@@ -38,7 +40,7 @@ const AlbumsPage = () => {
       ) : (
         <>
           <PageTitle>My albums</PageTitle>
-          <AlbumList myAlbums={data ? data.myAlbums : []} />
+          <AlbumList myAlbums={currentUser ? currentUser.myAlbums : []} />
         </>
       )}
     </Container>

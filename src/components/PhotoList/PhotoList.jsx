@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar';
 
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
@@ -22,15 +23,27 @@ const styles = [
 
 const PhotoList = () => {
   const { albumId } = useParams();
-  const { data: currentAlbumData } = useGetAlbumById(albumId);
+  const { data: currentAlbumData, isLoading } = useGetAlbumById(albumId);
   const [isLoadedPhoto, setIsLoadedPhoto] = useState([]);
+  const [progress, setProgress] = useState(0);
 
   const handleImageLoad = index => {
     setIsLoadedPhoto(prevLoadedPhotos => [...prevLoadedPhotos, index]);
   };
 
+  useEffect(() => {
+    if (isLoading) {
+      setProgress(100);
+    }
+  }, [isLoading]);
+
   return (
     <>
+      <LoadingBar
+        color="#f11946"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       {currentAlbumData && <AlbumTitle>{currentAlbumData.name}</AlbumTitle>}
 
       <Box>

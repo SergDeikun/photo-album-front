@@ -11,7 +11,7 @@ const useChangeAlbum = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries('user');
-      notifySuccess('album update');
+      notifySuccess('Album update');
     },
 
     onError: error => {

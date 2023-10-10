@@ -38,7 +38,7 @@ import {
 const PhotoLightBox = () => {
   const { albumId, photoId } = useParams();
   const { data: currentAlbumData } = useGetAlbumById(albumId);
-  const { data: currentPhotoData } = useGetPhotoById(photoId);
+  const { data: currentPhotoData, isLoading } = useGetPhotoById(photoId);
   const { mutateAsync: updatePhoto } = useUpdatePhoto();
   const { mutateAsync: deletePhoto } = useDeletePhoto();
   const [isOpenInfo, setIsOpenInfo] = useState(false);
@@ -54,12 +54,16 @@ const PhotoLightBox = () => {
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
 
   useEffect(() => {
+    if (isLoading) {
+      setProgress(100);
+    }
+
     if (currentPhotoData) {
       setComments(currentPhotoData.comments);
       setDate(currentPhotoData.date);
       setPlace(currentPhotoData.place);
     }
-  }, [currentPhotoData]);
+  }, [currentPhotoData, isLoading]);
 
   const handleClose = () => {
     navigate(`/album/${albumId}`);
@@ -73,7 +77,6 @@ const PhotoLightBox = () => {
       const newPhotoId = currentAlbumData.photo[newIndex]._id;
 
       setCurrentPhotoIndex(newIndex);
-      setProgress(100);
       navigate(`/album/${albumId}/photo/${newPhotoId}?index=${newIndex}`);
     }
   }, [albumId, currentAlbumData, currentPhotoIndex, navigate]);
@@ -84,9 +87,7 @@ const PhotoLightBox = () => {
 
       const newPhotoId = currentAlbumData.photo[newIndex]._id;
 
-      setProgress(100);
       setCurrentPhotoIndex(newIndex);
-
       navigate(`/album/${albumId}/photo/${newPhotoId}?index=${newIndex}`);
     }
   }, [albumId, currentAlbumData, currentPhotoIndex, navigate]);

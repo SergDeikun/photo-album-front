@@ -14,7 +14,7 @@ const useUpdateUser = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries('user');
-      notifySuccess(`user update`);
+      notifySuccess(`User update`);
     },
 
     onError: error => {

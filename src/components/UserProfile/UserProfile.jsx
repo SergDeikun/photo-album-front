@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 import Cookies from 'js-cookie';
 
@@ -41,31 +42,33 @@ import {
 } from './UserProfile.styled';
 
 const UserProfile = () => {
-  // const token = Cookies.get('token');
-
-  const { data } = useGetCurrentUser();
+  const { data: currentUser, isLoading } = useGetCurrentUser();
   const { mutateAsync: updateUser } = useUpdateUser();
   const { mutateAsync: logout } = useLogout();
   const { mutateAsync: deleteAlbum } = useDeleteAlbum();
-
   const [isFocusedName, setIsFocusedName] = useState(false);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (data) {
-      setName(data.name);
-      setEmail(data.email);
+    if (isLoading) {
+      setProgress(100);
     }
-  }, [data]);
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name);
+      setEmail(currentUser.email);
+    }
+  }, [currentUser]);
 
   const handleFocusedName = () => {
     setIsFocusedName(true);
   };
-
-  // setIsFocusedEmail(false);
 
   const handleFocusedEmail = () => {
     setIsFocusedEmail(true);
@@ -127,7 +130,12 @@ const UserProfile = () => {
 
   return (
     <>
-      {data && (
+      <LoadingBar
+        color="#f11946"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
+      {currentUser && (
         <Box>
           <UserWrapper>
             {/* <AvatarWrapper> */}
@@ -205,8 +213,8 @@ const UserProfile = () => {
 
           <Title>My Albums</Title>
           <ul>
-            {data &&
-              data.myAlbums.map(({ _id: id, name, backgroundURL }) => {
+            {currentUser &&
+              currentUser.myAlbums.map(({ _id: id, name, backgroundURL }) => {
                 return (
                   <Item key={id}>
                     <LinkAlbum to={`/album/${id}`}>
