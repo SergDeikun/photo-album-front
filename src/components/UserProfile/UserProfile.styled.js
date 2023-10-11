@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
-import { AiOutlineCheck } from 'react-icons/ai';
 
 import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
@@ -23,16 +22,6 @@ export const UserWrapper = styled.div`
   background-position: center;
 `;
 
-// export const AvatarWrapper = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   border-radius: 50%;
-//   border: 2px solid ${p => p.theme.colors.black};
-//   width: 200px;
-//   height: 200px;
-// `;
-
 export const Avatar = styled(FaUser)`
   width: 100px;
   height: 100px;
@@ -41,7 +30,7 @@ export const Avatar = styled(FaUser)`
 
 // Form
 
-export const UserInfo = styled.div`
+export const UserForm = styled.form`
   margin-left: 50px;
 `;
 
@@ -74,20 +63,13 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const Label = styled.label`
-  font-family: ${p => p.theme.fonts.body};
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSize[1]}px;
-  color: ${p => p.theme.colors.black};
-`;
-
 export const Field = styled.input`
   border: none;
   outline: none;
   background-color: transparent;
   padding: 5px;
   font-weight: ${p => p.theme.fontWeights.regular};
-  font-family: ${p => p.theme.fonts.body};
+  font-family: ${p => p.theme.fonts.second};
   font-size: ${p => p.theme.fontSize[1]}px;
   color: ${p => p.theme.colors.black};
 `;
@@ -101,37 +83,18 @@ export const SubmitButton = styled.button`
   border-radius: ${p => p.theme.borderRadius.round};
   border: none;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    background-color: grey;
-    border-radius: 50%;
-  }
-`;
-
-export const EditIconWrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3px;
-  background-color: transparent;
-  border: none;
-`;
-
-export const CheckIcon = styled(AiOutlineCheck)`
-  width: 24px;
-  height: 24px;
-  fill: ${p => p.theme.colors.black};
 `;
 
 //Albums
 
 export const Title = styled.h1`
-  font-family: ${p => p.theme.fonts.body};
+  font-family: ${p => p.theme.fonts.second};
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
   padding-top: 20px;
   padding-bottom: 20px;
+  /* opacity: 0.5; */
 `;
 
 export const Item = styled.li`
@@ -172,7 +135,9 @@ export const DefaultCover = styled(DefaultAlbumCover)`
 
 export const AlbumName = styled.p`
   /* TODO: розрахувати ширину, щоб вставити друзів */
-  width: 100px;
+  font-family: ${p => p.theme.fonts.body};
+
+  /* width: 100px; */
   margin-left: 30px;
 `;
 
@@ -182,6 +147,14 @@ export const DeleteBtn = styled(DeleteButton)`
 
   ${Item}:hover & {
     opacity: 1;
+  }
+
+  &:hover {
+    background-color: transparent;
+
+    svg {
+      fill: ${p => p.theme.colors.red};
+    }
   }
 `;
 

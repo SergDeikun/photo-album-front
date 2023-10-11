@@ -21,7 +21,7 @@ export const Btn = styled.button`
 
   &:hover {
     background-color: ${p => p.theme.colors.yellow};
-    ${DeleteIcon} {
+    svg {
       fill: black;
     }
   }

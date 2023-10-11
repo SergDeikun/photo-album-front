@@ -10,7 +10,6 @@ import useUpdateUser from 'react-query/useUpdateUser';
 import useLogout from 'react-query/useLogout';
 
 import Button from 'components/Buttons/Button';
-// import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 
 import { showAlert } from 'helpers/showAlert';
 
@@ -19,17 +18,10 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import {
   Box,
   UserWrapper,
-  // AvatarWrapper,
-  // Avatar,
-  UserInfo,
+  UserForm,
   InputWrapper,
-  Label,
   Field,
   SubmitButton,
-  EditIconWrap,
-  CheckIcon,
-  // Name,
-  // Email,
   Title,
   Item,
   LinkAlbum,
@@ -46,11 +38,10 @@ const UserProfile = () => {
   const { mutateAsync: updateUser } = useUpdateUser();
   const { mutateAsync: logout } = useLogout();
   const { mutateAsync: deleteAlbum } = useDeleteAlbum();
-  const [isFocusedName, setIsFocusedName] = useState(false);
-  const [isFocusedEmail, setIsFocusedEmail] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
+  const [saveBtnVisible, setSaveBtnVisible] = useState(false);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -66,12 +57,14 @@ const UserProfile = () => {
     }
   }, [currentUser]);
 
-  const handleFocusedName = () => {
-    setIsFocusedName(true);
+  const handleNameChange = e => {
+    setName(e.target.value);
+    setSaveBtnVisible(true);
   };
 
-  const handleFocusedEmail = () => {
-    setIsFocusedEmail(true);
+  const handleEmailChange = e => {
+    setEmail(e.target.value);
+    setSaveBtnVisible(true);
   };
 
   const handleSubmit = async e => {
@@ -82,8 +75,7 @@ const UserProfile = () => {
         { name, email },
         {
           onSuccess: () => {
-            setIsFocusedName(false);
-            setIsFocusedEmail(false);
+            setSaveBtnVisible(false);
           },
           onError: error => {
             notifyError(error.response.data.message);
@@ -138,8 +130,6 @@ const UserProfile = () => {
       {currentUser && (
         <Box>
           <UserWrapper>
-            {/* <AvatarWrapper> */}
-            {/* <Avatar name={name} color={'#165954'} round="100px" size="200px" /> */}
             <Avatar
               name={name}
               color={Avatar.getRandomColor('sitebase', [
@@ -150,62 +140,42 @@ const UserProfile = () => {
               round="100px"
               size="200px"
             />
-            {/* <Avatar /> */}
-            {/* </AvatarWrapper> */}
-            {/* Form */}
-            <UserInfo>
-              <form
-                encType="multipart/form-data"
-                onSubmit={handleSubmit}
-                action=""
-              >
-                <InputWrapper>
-                  <Label>
-                    Name:
-                    <Field
-                      type="text"
-                      value={name}
-                      onChange={e => setName(e.target.value)}
-                      onFocus={handleFocusedName}
-                    />
-                  </Label>
+            {/* <UserInfo> */}
+            <UserForm
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
+              action=""
+            >
+              <InputWrapper>
+                <label>
+                  <Field
+                    type="text"
+                    value={name}
+                    onChange={handleNameChange}
+                    // onFocus={handleFocusedName}
+                    // onBlur={handleOnBlurName}
+                  />
+                </label>
+              </InputWrapper>
 
-                  {isFocusedName ? (
-                    <SubmitButton type="submit" onClick={handleSubmit}>
-                      <CheckIcon />
-                    </SubmitButton>
-                  ) : (
-                    <EditIconWrap>
-                      <EditIcon />
-                    </EditIconWrap>
-                  )}
-                </InputWrapper>
+              <InputWrapper>
+                <label>
+                  <Field
+                    type="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    // onFocus={handleFocusedEmail}
+                    // onBlur={handleOnBlurEmail}
+                  />
+                </label>
+              </InputWrapper>
 
-                <InputWrapper>
-                  <Label>
-                    Email:
-                    <Field
-                      type="email"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      onFocus={handleFocusedEmail}
-                    />
-                  </Label>
+              {saveBtnVisible && (
+                <SubmitButton type="submit">Save</SubmitButton>
+              )}
+            </UserForm>
+            {/* </UserInfo> */}
 
-                  {isFocusedEmail ? (
-                    <SubmitButton type="submit" onClick={handleSubmit}>
-                      <CheckIcon />
-                    </SubmitButton>
-                  ) : (
-                    <EditIconWrap>
-                      <EditIcon />
-                    </EditIconWrap>
-                  )}
-                </InputWrapper>
-              </form>
-              {/* <Name> {data.name}</Name>
-              <Email> {data.email}</Email> */}
-            </UserInfo>
             <Button type="button" title="Log out" onClick={handleLogout} />
           </UserWrapper>
 

@@ -20,7 +20,7 @@ export const PageTitle = styled.h1`
   transform: translate(-50%);
   z-index: 10;
   opacity: 0.1;
-  font-family: ${p => p.theme.fonts.secondary};
+  font-family: ${p => p.theme.fonts.second};
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSize[4]}px;
   color: ${p => p.theme.colors.black};

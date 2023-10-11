@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const ButtonMenu = styled.button`
   position: relative;
   margin-left: 50px;
-  font-family: ${p => p.theme.fonts.secondary};
+  font-family: ${p => p.theme.fonts.second};
   font-size: ${p => p.theme.fontSize[1]}px;
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.88;

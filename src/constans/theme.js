@@ -1,7 +1,7 @@
 export const theme = {
   fonts: {
     body: 'Montserrat, sans-serif',
-    secondary: 'Jost,sans-serif',
+    second: 'Jost,sans-serif',
     button: 'Roboto,sans-serif',
   },
 

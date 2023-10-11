@@ -56,7 +56,7 @@ const PhotoLightBox = () => {
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isDateFocused, setIsDateocused] = useState(false);
-  const [isDateBtnClick, setIsDateBtnClick] = useState(false);
+  // const [isDateBtnClick, setIsDateBtnClick] = useState(false);
 
   useEffect(() => {
     if (isLoading) {
