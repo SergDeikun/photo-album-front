@@ -15,7 +15,6 @@ export const Box = styled.div`
 export const UserWrapper = styled.div`
   display: flex;
   align-items: end;
-
   padding: 20px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -32,7 +31,11 @@ export const Avatar = styled(FaUser)`
 
 export const UserForm = styled.form`
   margin-left: 50px;
+  display: flex;
+  align-items: end;
 `;
+
+export const FieldWrapper = styled.div``;
 
 export const InputWrapper = styled.div`
   width: 100%;
@@ -94,7 +97,6 @@ export const Title = styled.h1`
   color: ${p => p.theme.colors.black};
   padding-top: 20px;
   padding-bottom: 20px;
-  /* opacity: 0.5; */
 `;
 
 export const Item = styled.li`

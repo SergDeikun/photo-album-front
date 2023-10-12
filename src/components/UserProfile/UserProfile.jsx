@@ -10,6 +10,7 @@ import useUpdateUser from 'react-query/useUpdateUser';
 import useLogout from 'react-query/useLogout';
 
 import Button from 'components/Buttons/Button';
+import SaveButton from 'components/Buttons/SaveButton/SaveButton';
 
 import { showAlert } from 'helpers/showAlert';
 
@@ -21,7 +22,6 @@ import {
   UserForm,
   InputWrapper,
   Field,
-  SubmitButton,
   Title,
   Item,
   LinkAlbum,
@@ -48,14 +48,12 @@ const UserProfile = () => {
     if (isLoading) {
       setProgress(100);
     }
-  }, [isLoading]);
 
-  useEffect(() => {
     if (currentUser) {
       setName(currentUser.name);
       setEmail(currentUser.email);
     }
-  }, [currentUser]);
+  }, [currentUser, isLoading]);
 
   const handleNameChange = e => {
     setName(e.target.value);
@@ -67,8 +65,18 @@ const UserProfile = () => {
     setSaveBtnVisible(true);
   };
 
+  const handleOnBlur = () => {
+    if (currentUser) {
+      const isChagedNameOrEmail =
+        currentUser.name !== name || currentUser.email !== email;
+
+      setSaveBtnVisible(isChagedNameOrEmail);
+    }
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
+    setProgress(100);
 
     try {
       await updateUser(
@@ -140,41 +148,40 @@ const UserProfile = () => {
               round="100px"
               size="200px"
             />
-            {/* <UserInfo> */}
+
             <UserForm
               encType="multipart/form-data"
               onSubmit={handleSubmit}
               action=""
             >
-              <InputWrapper>
-                <label>
-                  <Field
-                    type="text"
-                    value={name}
-                    onChange={handleNameChange}
-                    // onFocus={handleFocusedName}
-                    // onBlur={handleOnBlurName}
-                  />
-                </label>
-              </InputWrapper>
+              <div>
+                <InputWrapper>
+                  <label>
+                    <Field
+                      type="text"
+                      value={name}
+                      onChange={handleNameChange}
+                      onBlur={handleOnBlur}
+                    />
+                  </label>
+                </InputWrapper>
 
-              <InputWrapper>
-                <label>
-                  <Field
-                    type="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    // onFocus={handleFocusedEmail}
-                    // onBlur={handleOnBlurEmail}
-                  />
-                </label>
-              </InputWrapper>
+                <InputWrapper>
+                  <label>
+                    <Field
+                      type="email"
+                      value={email}
+                      onChange={handleEmailChange}
+                      onBlur={handleOnBlur}
+                    />
+                  </label>
+                </InputWrapper>
+              </div>
 
-              {saveBtnVisible && (
-                <SubmitButton type="submit">Save</SubmitButton>
-              )}
+              <SaveButton type="submit" isVisible={saveBtnVisible}>
+                Save
+              </SaveButton>
             </UserForm>
-            {/* </UserInfo> */}
 
             <Button type="button" title="Log out" onClick={handleLogout} />
           </UserWrapper>
