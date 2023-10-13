@@ -17,7 +17,7 @@ import {
 } from './AlbumForm.styled';
 
 const AlbumForm = ({ updateName, onClose }) => {
-  const [name, setName] = useState(updateName);
+  const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
@@ -98,14 +98,14 @@ const AlbumForm = ({ updateName, onClose }) => {
 
         {name && (
           <>
-            {/* <FileInput
+            <FileInput
               title="Upload cover to your album"
               uploadFile={previewBackground}
               clearInput={handleClearInput}
               src={previewBackground}
               onChange={uploadImage}
               alt="cover"
-            /> */}
+            />
             <SubmitBtn type="submit" disabled={isLoading} title={'add'} />
           </>
         )}

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
-import { MdOutlineEdit } from 'react-icons/md';
 
 import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
@@ -99,16 +98,29 @@ export const Title = styled.h1`
   padding-bottom: 20px;
 `;
 
-export const Item = styled.li`
+export const List = styled.ul`
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+export const Item = styled.li`
+  position: relative;
+  flex-basis: calc((100% - 30px) / 4);
+  border-radius: 3px;
+  /* outline: 1px solid tomato; */
+
+  /* display: flex; */
   align-items: center;
   width: 100%;
-  padding: 5px;
+  height: 400px;
+  /* padding: 5px; */
   border-radius: ${p => p.theme.borderRadius.small};
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     background-color: ${p => p.theme.colors.grey};
+    transform: scale(1.02);
   }
 `;
 
@@ -118,74 +130,86 @@ export const LinkAlbum = styled(Link)`
   width: 100%;
 `;
 
+export const Thumb = styled.div`
+  outline: 1px solid teal;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
 export const IconAlbum = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 30%;
+  /* width: 315px; */
+  /* height: 70px; */
+  /* width: 40px;
+  
+  height: 40px; */
+  /* border-radius: 30%; */
+  height: 100%;
 `;
 
 export const DefaultCover = styled(DefaultAlbumCover)`
-  width: 40px;
-  height: 40px;
-  border-radius: 30%;
+  /* width: 40px;
+  height: 40px; */
+  width: 100%;
+  height: 400px;
+  /* border-radius: 30%; */
+`;
 
-  span {
-    font-family: ${p => p.theme.fonts.body};
-    font-size: 8px;
+// EditBox
+
+export const EditBox = styled.div`
+  /* outline: 1px solid tomato; */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 10px);
+  height: 30%;
+  padding: 10px 5px;
+  text-align: center;
+  /* background-image: linear-gradient(
+    #242b33 11.98%,
+    rgba(45, 52, 60, 0.38) 51.04%,
+    #242b33 92.19%
+  ); */
+  background-image: linear-gradient(
+    ${p => p.theme.colors.black} 11.98%,
+    rgba(45, 52, 60, 0.38) 51.04%,
+    ${p => p.theme.colors.black} 92.19%
+  );
+  /* background-image: linear-gradient(transparent 0 25%, black);
+  background-image: linear-gradient(transparent 25% 0, black); */
+
+  /* background-color: ${p => p.theme.colors.black}; */
+  opacity: 0;
+  transition: opacity 0.5s linear;
+
+  ${Item}:hover & {
+    opacity: 1;
   }
 `;
 
 export const AlbumName = styled.p`
-  /* TODO: розрахувати ширину, щоб вставити друзів */
+  width: 100%;
   font-family: ${p => p.theme.fonts.body};
+  color: ${p => p.theme.colors.white};
+`;
 
-  /* width: 100px; */
-  margin-left: 30px;
+export const ButtonWrapper = styled.div`
+  /* outline: 1px solid blue; */
+  display: flex;
+  align-items: center;
+  /* margin-top: 115px; */
+  margin-top: auto;
+  justify-content: space-around;
+  /* background-color: ${p => p.theme.colors.black}; */
 `;
 
 export const DeleteBtn = styled(DeleteButton)`
-  opacity: 0;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  ${Item}:hover & {
-    opacity: 1;
-  }
-
-  &:hover {
-    background-color: transparent;
-
-    svg {
-      fill: ${p => p.theme.colors.red};
-    }
-  }
-`;
-
-export const EditLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 8px;
-  padding: 5px;
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-`;
-
-export const EditIcon = styled(MdOutlineEdit)`
-  width: 24px;
-  height: 24px;
-  opacity: 0;
-  fill: ${p => p.theme.colors.black};
-
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  ${Item}:hover & {
-    opacity: 1;
-  }
-
-  ${InputWrapper}:hover & {
-    opacity: 1;
-  }
-
-  ${EditLink}:hover & {
+  /* margin-left: 80px; */
+  /* border: 1px solid ${p => p.theme.colors.yellow}; */
+  svg {
     fill: ${p => p.theme.colors.red};
   }
 `;

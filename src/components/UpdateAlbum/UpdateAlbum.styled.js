@@ -14,8 +14,10 @@ export const Box = styled.div`
 // File
 export const FileWrapper = styled.div`
   position: relative;
-  width: 1280px;
-  height: 200px;
+  /* width: 1280px;
+  height: 200px; */
+  width: 300px;
+  height: 300px;
   margin-bottom: 30px;
   overflow: hidden;
   border-radius: ${p => p.theme.borderRadius.small};

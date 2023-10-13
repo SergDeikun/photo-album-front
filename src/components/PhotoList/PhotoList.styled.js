@@ -10,7 +10,7 @@ export const AlbumTitle = styled.h1`
   transform: translate(-50%);
   z-index: 10;
   opacity: 0.1;
-  font-family: ${p => p.theme.fonts.secondary};
+  font-family: ${p => p.theme.fonts.second};
   font-size: ${p => p.theme.fontSize[3]}px;
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.black};

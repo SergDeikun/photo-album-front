@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 import Cookies from 'js-cookie';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
 import useUpdateUser from 'react-query/useUpdateUser';
 import useLogout from 'react-query/useLogout';
 
+import EditLinkBtn from 'components/Buttons/EditLinkBtn/EditLinkBtn';
 import Button from 'components/Buttons/Button';
 import SaveButton from 'components/Buttons/SaveButton/SaveButton';
 
@@ -17,6 +19,7 @@ import { showAlert } from 'helpers/showAlert';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
+  List,
   Box,
   UserWrapper,
   UserForm,
@@ -25,12 +28,13 @@ import {
   Title,
   Item,
   LinkAlbum,
+  Thumb,
   IconAlbum,
   DefaultCover,
   AlbumName,
+  EditBox,
+  ButtonWrapper,
   DeleteBtn,
-  EditLink,
-  EditIcon,
 } from './UserProfile.styled';
 
 const UserProfile = () => {
@@ -189,29 +193,32 @@ const UserProfile = () => {
           {/* Album list */}
 
           <Title>My Albums</Title>
-          <ul>
+          <List>
             {currentUser &&
               currentUser.myAlbums.map(({ _id: id, name, backgroundURL }) => {
                 return (
                   <Item key={id}>
                     <LinkAlbum to={`/album/${id}`}>
+                      {/* <Thumb> */}
                       {backgroundURL ? (
                         <IconAlbum src={backgroundURL} alt="cover" />
                       ) : (
                         <DefaultCover />
                       )}
-
-                      <AlbumName>{name}</AlbumName>
+                      {/* </Thumb> */}
                     </LinkAlbum>
-                    <DeleteBtn onDelete={() => handleShowAlert(id)} />
 
-                    <EditLink to={`/${id}/${name}/update`}>
-                      <EditIcon />
-                    </EditLink>
+                    <EditBox>
+                      <AlbumName>{name}</AlbumName>
+                      <ButtonWrapper>
+                        <DeleteBtn onDelete={() => handleShowAlert(id)} />
+                        <EditLinkBtn to={`/${id}/${name}/update`} />
+                      </ButtonWrapper>
+                    </EditBox>
                   </Item>
                 );
               })}
-          </ul>
+          </List>
         </Box>
       )}
     </>

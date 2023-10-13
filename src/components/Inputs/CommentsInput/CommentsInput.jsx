@@ -2,9 +2,9 @@ import { Comments } from './CommentsInput.styled';
 
 const CommentsInput = ({
   placeholder,
-  // initialComments,
   value,
   onChange,
+  onBlur,
   className,
   style,
 }) => {
@@ -17,6 +17,7 @@ const CommentsInput = ({
         name="comments"
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         style={style}
       />
     </>

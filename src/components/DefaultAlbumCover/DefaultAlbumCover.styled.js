@@ -14,9 +14,9 @@ export const BoxCover = styled.div`
 `;
 
 export const Text = styled.span`
-  font-family: ${p => p.theme.fonts.body};
+  /* font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[4]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.grey};
-  text-shadow: #111 1px 1px 0;
+  text-shadow: #111 1px 1px 0; */
 `;
