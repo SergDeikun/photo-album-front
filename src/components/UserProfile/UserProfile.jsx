@@ -28,7 +28,6 @@ import {
   Title,
   Item,
   LinkAlbum,
-  Thumb,
   IconAlbum,
   DefaultCover,
   AlbumName,
@@ -199,18 +198,18 @@ const UserProfile = () => {
                 return (
                   <Item key={id}>
                     <LinkAlbum to={`/album/${id}`}>
-                      {/* <Thumb> */}
                       {backgroundURL ? (
                         <IconAlbum src={backgroundURL} alt="cover" />
                       ) : (
                         <DefaultCover />
                       )}
-                      {/* </Thumb> */}
                     </LinkAlbum>
 
                     <EditBox>
-                      <AlbumName>{name}</AlbumName>
+                      {/* <AlbumName>{name}</AlbumName> */}
                       <ButtonWrapper>
+                        <AlbumName>{name}</AlbumName>
+
                         <DeleteBtn onDelete={() => handleShowAlert(id)} />
                         <EditLinkBtn to={`/${id}/${name}/update`} />
                       </ButtonWrapper>

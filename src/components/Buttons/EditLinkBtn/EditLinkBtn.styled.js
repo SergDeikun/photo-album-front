@@ -9,14 +9,12 @@ export const EditLink = styled(Link)`
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  /* margin-right: 80px; */
   border-radius: 50%;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: ${p => p.theme.colors.yellow};
     svg {
-      fill: black;
+      fill: ${p => p.theme.colors.white};
     }
   }
 `;
