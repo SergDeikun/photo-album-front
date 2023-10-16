@@ -16,7 +16,8 @@ export const FileWrapper = styled.div`
   position: relative;
   /* width: 1280px;
   height: 200px; */
-  width: 300px;
+  /* width: 300px; */
+  width: 100%;
   height: 300px;
   margin-bottom: 30px;
   overflow: hidden;
@@ -24,8 +25,11 @@ export const FileWrapper = styled.div`
 `;
 
 export const DefaultCover = styled(DefaultAlbumCover)`
-  max-width: 100%;
+  /* max-width: 100%; */
+  width: 100%;
+
   max-height: 100%;
+
   span {
     /* width: 225px; */
     display: none;
@@ -36,7 +40,9 @@ export const DefaultCover = styled(DefaultAlbumCover)`
 
 export const Cover = styled.img`
   width: 100%;
-  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
 `;
 
 export const BlackBox = styled.div`

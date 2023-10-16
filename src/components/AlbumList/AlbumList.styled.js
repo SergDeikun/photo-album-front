@@ -11,6 +11,8 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
+  position: relative;
+
   margin-bottom: 20px;
   flex-basis: calc((100% - 20px) / 2);
 
@@ -31,11 +33,22 @@ export const Image = styled(LazyLoadImage)`
 `;
 
 export const AlbumName = styled.h2`
-  padding-top: 10px;
-  width: 600px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 20px);
+  padding: 10px 10px;
+  background-image: linear-gradient(
+    transparent 0 25%,
+    ${p => p.theme.colors.black}
+  );
+  color: ${p => p.theme.colors.white};
+
+  /* padding-top: 10px; */
+  /* width: 600px; */
   word-break: break-word;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
-  color: ${p => p.theme.colors.black};
+  /* color: ${p => p.theme.colors.black}; */
 `;
