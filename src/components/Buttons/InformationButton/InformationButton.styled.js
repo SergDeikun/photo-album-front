@@ -5,7 +5,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 export const IconBtn = styled(AiOutlineInfoCircle)`
   width: 24px;
   height: 24px;
-  fill: ${p => p.theme.colors.darkGrey};
+  fill: ${p => p.theme.colors.grey};
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
@@ -20,10 +20,8 @@ export const Btn = styled.button`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: ${p => p.theme.colors.yellow};
-
     ${IconBtn} {
-      fill: black;
+      fill: ${p => p.theme.colors.red};
     }
   }
 `;

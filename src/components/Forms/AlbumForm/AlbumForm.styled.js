@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
+import FileInput from 'components/Inputs/FileInput/FileImput';
 import Button from 'components/Buttons/Button';
 
-export const Form = styled.form`
-  /* display: flex; */
-  /* width: 100%;
-  height: 100%; */
+export const Box = styled.div`
+  /* outline: 1px solid white; */
 `;
+
 export const NameWrapper = styled.div`
   margin-bottom: 50px;
 `;
@@ -39,11 +39,47 @@ export const InputName = styled.input`
   }
 `;
 
-export const FileWrapper = styled.div`
-  width: 300px;
-  height: 300px;
+export const ButttonWraper = styled.div`
+  /* outline: 1px solid tomato; */
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
 `;
 
-export const SubmitBtn = styled(Button)`
-  margin-top: 0;
+export const UploadCover = styled(FileInput)`
+  /* outline: 1px solid wheat; */
+  border: 1px solid ${p => p.theme.colors.red};
+  border-radius: ${p => p.theme.borderRadius.small};
+
+  width: 165px;
+  height: 50px;
+  label {
+    font-family: ${p => p.theme.fonts.button};
+    font-weight: ${p => p.theme.fontWeights.regular};
+    font-size: ${p => p.theme.fontSize[0]}px;
+    line-height: 1.88;
+    letter-spacing: 0.1rem;
+    color: ${p => p.theme.colors.red};
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    background-color: ${p => p.theme.colors.red};
+    label {
+      color: ${p => p.theme.colors.white};
+    }
+
+    svg {
+      fill: ${p => p.theme.colors.white};
+    }
+  }
+`;
+
+export const SubmitButton = styled(Button)`
+  margin: 0;
 `;

@@ -5,7 +5,7 @@ import { VscChromeClose } from 'react-icons/vsc';
 export const CloseIcon = styled(VscChromeClose)`
   width: 24px;
   height: 24px;
-  fill: ${p => p.theme.colors.darkGrey};
+  fill: ${p => p.theme.colors.grey};
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
@@ -24,10 +24,8 @@ export const CloseBtn = styled.button`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: ${p => p.theme.colors.yellow};
-
     svg {
-      fill: black;
+      fill: ${p => p.theme.colors.red};
     }
   }
 `;

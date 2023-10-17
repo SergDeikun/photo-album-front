@@ -122,7 +122,7 @@ const PhotoForm = ({ onClose }) => {
         </Box>
 
         {previewPhoto && (
-          <Button type="submit" disabled={isLoading} title="save" />
+          <Button type="submit" disabled={isLoading} title="Add" />
         )}
       </form>
     </>

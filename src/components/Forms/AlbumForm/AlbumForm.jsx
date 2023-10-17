@@ -1,25 +1,25 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-
-// import AvatarEditor from 'react-avatar-editor';
 
 import useAddAlbum from 'react-query/useAddAlbum';
+
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import FileInput from 'components/Inputs/FileInput/FileImput';
+import Button from 'components/Buttons/Button';
 
 import {
-  Form,
+  Box,
   NameWrapper,
   InputName,
-  // FileWrapper,
-  SubmitBtn,
+  ButttonWraper,
+  UploadCover,
 } from './AlbumForm.styled';
 
-const AlbumForm = ({ updateName, onClose }) => {
+const AlbumForm = ({ onClose }) => {
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
+  console.log(previewBackground);
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
 
   const uploadImage = e => {
@@ -59,85 +59,39 @@ const AlbumForm = ({ updateName, onClose }) => {
 
   return (
     <>
-      <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-        <NameWrapper>
-          <label>
-            <InputName
-              required
-              autoFocus
-              type="text"
-              name="name"
-              value={name}
-              placeholder="Enter album name"
-              onChange={e => setName(e.target.value)}
-            />
-          </label>
-        </NameWrapper>
-
-        {/* <AvatarEditor
-          // image={previewBackground}
-          image="http://example.com/initialimage.jpg"
-          width={510}
-          height={458}
-          border={50}
-          color={[255, 255, 255, 0.6]} // RGBA
-          scale={1.2}
-          rotate={0}
-        /> */}
-
-        {/* <FileWrapper> */}
-        {/* <FileInput
-              title="Upload cover to your album"
-              uploadFile={previewBackground}
-              clearInput={handleClearInput}
-              src={previewBackground}
-              onChange={uploadImage}
-              alt="cover"
-            /> */}
-        {/* </FileWrapper> */}
+      <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+        <div
+          style={{
+            // border: '1px solid tomato',
+            backgroundImage: `url(${previewBackground})`,
+          }}
+        >
+          <NameWrapper>
+            <label>
+              <InputName
+                required
+                autoFocus
+                type="text"
+                name="name"
+                value={name}
+                placeholder="Enter album name"
+                onChange={e => setName(e.target.value)}
+              />
+            </label>
+          </NameWrapper>
+        </div>
 
         {name && (
-          <>
-            <FileInput
-              title="Upload cover to your album"
+          <ButttonWraper>
+            <UploadCover
               uploadFile={previewBackground}
-              clearInput={handleClearInput}
-              src={previewBackground}
               onChange={uploadImage}
-              alt="cover"
+              title="Cover"
             />
-            <SubmitBtn type="submit" disabled={isLoading} title={'add'} />
-          </>
+            <Button type="submit" disabled={isLoading} title={'Add'} />
+          </ButttonWraper>
         )}
-
-        {/* ANIMATION */}
-        {/* <AnimatePresence>
-          {name && (
-            <motion.div
-              key={name}
-              style={
-                {
-                  // position: 'absolute',
-                  // zindex: '10',
-                  // width: '320px',
-                  // left: '1050px',
-                  // top: '0',
-                  // backgroundColor: 'black',
-                  // padding: '115px 20px',
-                }
-              }
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-            >
-              <SubmitBtn type="submit" disabled={isLoading} title={'add'} />
-            </motion.div>
-          )}
-        </AnimatePresence> */}
-      </Form>
+      </form>
     </>
   );
 };

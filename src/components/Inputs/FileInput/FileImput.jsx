@@ -15,10 +15,11 @@ const FileInput = ({
   name,
   onChange,
   onClick,
+  className,
 }) => {
   return (
     <>
-      <UploadBox>
+      <UploadBox className={className || ''}>
         <LabelUpload onClick={onClick}>
           {!uploadFile && (
             <>

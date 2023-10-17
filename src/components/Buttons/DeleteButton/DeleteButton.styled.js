@@ -5,7 +5,7 @@ import { MdOutlineDelete } from 'react-icons/md';
 export const DeleteIcon = styled(MdOutlineDelete)`
   width: 24px;
   height: 24px;
-  fill: ${p => p.theme.colors.darkGrey};
+  fill: ${p => p.theme.colors.grey};
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
@@ -20,9 +20,8 @@ export const Btn = styled.button`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: ${p => p.theme.colors.yellow};
     svg {
-      fill: black;
+      fill: ${p => p.theme.colors.red};
     }
   }
 `;

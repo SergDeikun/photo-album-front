@@ -7,22 +7,22 @@ export const UploadBox = styled.div`
   position: relative;
   /* position: absolute; */
 
-  min-width: 320px;
-  height: 100%;
+  /* min-width: 320px; */
+  /* height: 100%; */
   /* height: 300px; */
-  height: 480px;
+  /* height: 480px; */
   /* border: 2px dashed ${p => p.theme.colors.grey}; */
-  border-radius: ${p => p.theme.borderRadius.small};
   /* margin-bottom: 35px; */
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const ClearButton = styled.button`
-  position: absolute;
+  /* position: absolute;
   top: 10px;
   right: 5px;
   background-color: transparent;
   border: none;
-  color: ${p => p.theme.colors.red};
+  color: ${p => p.theme.colors.red}; */
 `;
 
 export const Image = styled.img`
@@ -52,11 +52,14 @@ export const LabelUpload = styled.label`
   letter-spacing: 0.1rem;
   color: ${p => p.theme.colors.grey};
   cursor: pointer;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const Icon = styled(BsUpload)`
   width: 70px;
   height: 70px;
-  color: ${p => p.theme.colors.yellow};
-  margin-right: 50px;
+  color: ${p => p.theme.colors.red};
+  /* transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+
+  /* margin-right: 50px; */
 `;
