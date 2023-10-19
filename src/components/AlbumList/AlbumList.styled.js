@@ -26,6 +26,10 @@ export const LinkItem = styled(Link)`
   width: 100%;
 `;
 
+export const ImgWrapper = styled.div`
+  height: 510px;
+`;
+
 export const Image = styled(LazyLoadImage)`
   width: 100%;
   height: 100%;

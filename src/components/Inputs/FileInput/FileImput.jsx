@@ -1,14 +1,13 @@
 import {
   UploadBox,
-  // ClearButton,
   Image,
   LabelUpload,
+  IconWrapper,
   Icon,
 } from './FileInput.styled';
 
 const FileInput = ({
   uploadFile,
-  clearInput,
   src,
   alt,
   title,
@@ -16,16 +15,16 @@ const FileInput = ({
   onChange,
   onClick,
   className,
+  isVisible,
 }) => {
   return (
     <>
       <UploadBox className={className || ''}>
         <LabelUpload onClick={onClick}>
-          {!uploadFile && (
-            <>
-              <Icon /> {title}
-            </>
-          )}
+          <IconWrapper isVisible={isVisible}>
+            <Icon /> {title}
+          </IconWrapper>
+
           <input
             name={name}
             accept=".jpg, .jpeg, .png"
@@ -36,10 +35,7 @@ const FileInput = ({
         </LabelUpload>
         {uploadFile && (
           <>
-            {/* <ClearButton type="button" onClick={clearInput}>
-              X
-            </ClearButton> */}
-            <Image src={src} alt={alt} />
+            <Image src={uploadFile ? src : ''} alt={alt} />
           </>
         )}
       </UploadBox>

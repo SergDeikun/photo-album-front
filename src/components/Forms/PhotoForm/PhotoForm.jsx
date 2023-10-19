@@ -93,6 +93,7 @@ const PhotoForm = ({ onClose }) => {
             src={previewPhoto}
             onChange={uploadImage}
             alt="photo"
+            isVisible={!previewPhoto}
           />
           {previewPhoto && (
             <AddInfoBtn type="button" onClick={handleOpenFieldForm}>

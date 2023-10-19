@@ -3,32 +3,13 @@ import styled from 'styled-components';
 import { BsUpload } from 'react-icons/bs';
 
 export const UploadBox = styled.div`
-  /* display: flex; */
   position: relative;
-  /* position: absolute; */
-
-  /* min-width: 320px; */
-  /* height: 100%; */
-  /* height: 300px; */
-  /* height: 480px; */
-  /* border: 2px dashed ${p => p.theme.colors.grey}; */
-  /* margin-bottom: 35px; */
+  min-width: 320px;
+  height: 100%;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
-export const ClearButton = styled.button`
-  /* position: absolute;
-  top: 10px;
-  right: 5px;
-  background-color: transparent;
-  border: none;
-  color: ${p => p.theme.colors.red}; */
-`;
-
 export const Image = styled.img`
-  /* max-width: 100%;
-  max-height: 100%; */
-
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -55,11 +36,15 @@ export const LabelUpload = styled.label`
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
+export const IconWrapper = styled.div`
+  display: ${p => (p.isVisible ? 'flex' : 'none')};
+  align-items: center;
+`;
+
 export const Icon = styled(BsUpload)`
   width: 70px;
   height: 70px;
-  color: ${p => p.theme.colors.red};
-  /* transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); */
-
-  /* margin-right: 50px; */
+  fill: ${p => p.theme.colors.red};
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-right: 50px;
 `;

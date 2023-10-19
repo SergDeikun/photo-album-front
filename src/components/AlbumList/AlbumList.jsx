@@ -1,7 +1,13 @@
 import { List } from './AlbumList.styled';
 
 import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
-import { Item, LinkItem, Image, AlbumName } from './AlbumList.styled';
+import {
+  Item,
+  LinkItem,
+  ImgWrapper,
+  Image,
+  AlbumName,
+} from './AlbumList.styled';
 
 const AlbumList = ({ myAlbums }) => {
   return (
@@ -14,9 +20,9 @@ const AlbumList = ({ myAlbums }) => {
               <Item key={id}>
                 <LinkItem to={`/album/${id}`}>
                   {backgroundURL ? (
-                    <div style={{ height: '509px' }}>
+                    <ImgWrapper>
                       <Image src={backgroundURL} alt="cover" />
-                    </div>
+                    </ImgWrapper>
                   ) : (
                     <DefaultAlbumCover />
                   )}

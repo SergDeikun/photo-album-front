@@ -4,32 +4,24 @@ import useAddAlbum from 'react-query/useAddAlbum';
 
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-import FileInput from 'components/Inputs/FileInput/FileImput';
-import Button from 'components/Buttons/Button';
-
 import {
   Box,
   NameWrapper,
   InputName,
   ButttonWraper,
   UploadCover,
+  SubmitButton,
 } from './AlbumForm.styled';
 
 const AlbumForm = ({ onClose }) => {
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
-  console.log(previewBackground);
   const { mutateAsync: addAlbum, isLoading } = useAddAlbum();
 
   const uploadImage = e => {
     setPreviewBackground(URL.createObjectURL(e.target.files[0]));
     setBackgroundURL(e.target.files[0]);
-  };
-
-  const handleClearInput = () => {
-    setPreviewBackground('');
-    setBackgroundURL('');
   };
 
   const handleSubmit = async e => {
@@ -60,13 +52,8 @@ const AlbumForm = ({ onClose }) => {
   return (
     <>
       <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-        <div
-          style={{
-            // border: '1px solid tomato',
-            backgroundImage: `url(${previewBackground})`,
-          }}
-        >
-          <NameWrapper>
+        <Box backgroundImage={previewBackground}>
+          <NameWrapper background={previewBackground}>
             <label>
               <InputName
                 required
@@ -75,22 +62,25 @@ const AlbumForm = ({ onClose }) => {
                 name="name"
                 value={name}
                 placeholder="Enter album name"
-                onChange={e => setName(e.target.value)}
+                onChange={e => setName(e.target.value.trim())}
               />
             </label>
           </NameWrapper>
-        </div>
+        </Box>
 
-        {name && (
-          <ButttonWraper>
-            <UploadCover
-              uploadFile={previewBackground}
-              onChange={uploadImage}
-              title="Cover"
-            />
-            <Button type="submit" disabled={isLoading} title={'Add'} />
-          </ButttonWraper>
-        )}
+        <ButttonWraper name={name}>
+          {name && (
+            <>
+              <UploadCover
+                uploadFile={previewBackground}
+                onChange={uploadImage}
+                title="Cover"
+                isVisible={true}
+              />
+              <SubmitButton type="submit" disabled={isLoading} title={'Add'} />
+            </>
+          )}
+        </ButttonWraper>
       </form>
     </>
   );
