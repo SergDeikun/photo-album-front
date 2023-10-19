@@ -10,20 +10,24 @@ import { showAlert } from 'helpers/showAlert';
 // import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
-  Box,
+  InfoWrapper,
+  Form,
+  NameWrapper,
+  NameLabel,
+  NameField,
+  SaveBtn,
+  FriendsBox,
+  FriendsPreTitle,
+  FriendsItem,
   FileWrapper,
   DefaultCover,
   Cover,
   BlackBox,
   PhotocameraIcon,
   FileLabel,
-  NameWrapper,
-  NameLabel,
-  NameField,
   PhotoList,
   PhotoItem,
   DeleteBtn,
-  DeleteIcon,
 } from './UpdateAlbum.styled';
 
 const UpdateAlbum = () => {
@@ -76,11 +80,27 @@ const UpdateAlbum = () => {
   return (
     <>
       {data && (
-        <Box>
-          <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+        <InfoWrapper>
+          <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+            {/* Name */}
+
+            <NameWrapper>
+              <NameLabel>
+                <NameField
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={e => setName(e.target.value.trim())}
+                />
+              </NameLabel>
+            </NameWrapper>
+
             <FileWrapper>
               {previewBackground || backgroundURL ? (
-                <Cover src={previewBackground || backgroundURL} alt="cover" />
+                <Cover
+                  src={previewBackground || backgroundURL || ''}
+                  alt="cover"
+                />
               ) : (
                 <DefaultCover />
               )}
@@ -99,19 +119,20 @@ const UpdateAlbum = () => {
                 </FileLabel>
               </BlackBox>
             </FileWrapper>
-            <NameWrapper>
-              <NameLabel>
-                <NameField
-                  type="text"
-                  name="name"
-                  value={name}
-                  onChange={e => setName(e.target.value)}
-                />
-                <button type="submit">go</button>
-              </NameLabel>
-            </NameWrapper>
-          </form>
-        </Box>
+
+            <SaveBtn type="submit">go</SaveBtn>
+          </Form>
+          <FriendsBox>
+            <ul>
+              <FriendsPreTitle>Friends :</FriendsPreTitle>
+              <FriendsItem>Name:12334</FriendsItem>
+              <FriendsItem>Name:89645</FriendsItem>
+              <FriendsItem>Name:gfndj</FriendsItem>
+              <FriendsItem>Name:nvbg5</FriendsItem>
+              <FriendsItem>Name:bcvdh</FriendsItem>
+            </ul>
+          </FriendsBox>
+        </InfoWrapper>
       )}
 
       {data && (
@@ -120,15 +141,12 @@ const UpdateAlbum = () => {
             return (
               <PhotoItem key={id}>
                 <img src={photoURL} alt="" />
-                <DeleteBtn type="button" onClick={() => handleShowAlert(id)}>
-                  <DeleteIcon />
-                </DeleteBtn>
+                <DeleteBtn type="button" onDelete={() => handleShowAlert(id)} />
               </PhotoItem>
             );
           })}
         </PhotoList>
       )}
-      {/* </Box> */}
     </>
   );
 };

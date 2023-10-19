@@ -14,6 +14,11 @@ export const AddInfoBtn = styled.button`
   z-index: 100;
   width: 100%;
   padding: 6px;
+  font-family: ${p => p.theme.fonts.button};
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSize[0]}px;
+  line-height: 1.88;
+  letter-spacing: 0.1rem;
   background-color: rgba(0, 0, 0, 0.5);
   outline: none;
   border: none;

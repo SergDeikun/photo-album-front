@@ -7,5 +7,5 @@ export const SaveBtn = styled.button`
   font-family: ${p => p.theme.fonts.button};
   color: ${p => p.theme.colors.red};
   padding: 10px;
-  opacity: ${p => (p.isVisible ? 1 : 0)};
+  /* opacity: ${p => (p.isVisible ? 1 : 0)}; */
 `;

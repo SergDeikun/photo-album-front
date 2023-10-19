@@ -1,11 +1,12 @@
-import Container from 'components/Container/Container';
 import UpdateAlbum from 'components/UpdateAlbum/UpdateAlbum';
 
-const UpdateAlbumPage = ({ onClose }) => {
+import { Box } from './UpdateAlbumPage.styled';
+
+const UpdateAlbumPage = () => {
   return (
-    <Container>
+    <Box>
       <UpdateAlbum />
-    </Container>
+    </Box>
   );
 };
 

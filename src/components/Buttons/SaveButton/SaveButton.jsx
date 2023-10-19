@@ -1,9 +1,9 @@
 import { SaveBtn } from './SaveButton.styled';
 
-const SaveButton = ({ isVisible }) => {
+const SaveButton = ({ isVisible, className }) => {
   return (
     <>
-      <SaveBtn isVisible={isVisible} type="submit">
+      <SaveBtn type="submit" isVisible={isVisible} className={className || ''}>
         Save
       </SaveBtn>
     </>

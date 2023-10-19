@@ -5,7 +5,8 @@ import { BsUpload } from 'react-icons/bs';
 export const UploadBox = styled.div`
   position: relative;
   min-width: 320px;
-  height: 100%;
+  /* height: 100%; */
+  height: 480px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
