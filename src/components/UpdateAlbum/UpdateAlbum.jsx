@@ -13,7 +13,6 @@ import {
   InfoWrapper,
   Form,
   NameWrapper,
-  NameLabel,
   NameField,
   SaveBtn,
   FriendsBox,
@@ -27,6 +26,7 @@ import {
   FileLabel,
   PhotoList,
   PhotoItem,
+  Image,
   DeleteBtn,
 } from './UpdateAlbum.styled';
 
@@ -36,8 +36,9 @@ const UpdateAlbum = () => {
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
+  const [saveBtnVisible, setSaveBtnVisible] = useState(false);
   const { mutateAsync: deletePhoto } = useDeletePhoto();
-  const { mutateAsync: changeAlbum } = useChangeAlbum();
+  const { mutateAsync: changeAlbum, isLoading } = useChangeAlbum();
 
   useEffect(() => {
     if (data) {
@@ -46,9 +47,23 @@ const UpdateAlbum = () => {
     }
   }, [data]);
 
+  const handleChangeName = e => {
+    setName(e.target.value.trim());
+    setSaveBtnVisible(true);
+  };
+
   const uploadImage = e => {
     setPreviewBackground(URL.createObjectURL(e.target.files[0]));
     setBackgroundURL(e.target.files[0]);
+    setSaveBtnVisible(true);
+  };
+
+  const handleOnBlur = () => {
+    if (data) {
+      const isChagedNameOrEmail = data.name !== name;
+
+      setSaveBtnVisible(isChagedNameOrEmail);
+    }
   };
 
   const handleSubmit = async e => {
@@ -60,6 +75,8 @@ const UpdateAlbum = () => {
 
     try {
       await changeAlbum({ updateAlbum, id });
+
+      setSaveBtnVisible(false);
     } catch (error) {
       console.log(error);
     }
@@ -85,15 +102,18 @@ const UpdateAlbum = () => {
             {/* Name */}
 
             <NameWrapper>
-              <NameLabel>
+              <label>
                 <NameField
                   type="text"
                   name="name"
                   value={name}
-                  onChange={e => setName(e.target.value.trim())}
+                  onChange={handleChangeName}
+                  onBlur={handleOnBlur}
                 />
-              </NameLabel>
+              </label>
             </NameWrapper>
+
+            {/* Cover */}
 
             <FileWrapper>
               {previewBackground || backgroundURL ? (
@@ -120,8 +140,16 @@ const UpdateAlbum = () => {
               </BlackBox>
             </FileWrapper>
 
-            <SaveBtn type="submit">go</SaveBtn>
+            <SaveBtn
+              type="submit"
+              title="Save changes"
+              disabled={isLoading}
+              isVisible={saveBtnVisible}
+            />
           </Form>
+
+          {/* Friends */}
+
           <FriendsBox>
             <ul>
               <FriendsPreTitle>Friends :</FriendsPreTitle>
@@ -135,12 +163,14 @@ const UpdateAlbum = () => {
         </InfoWrapper>
       )}
 
+      {/* PhotoList */}
+
       {data && (
         <PhotoList>
           {data.photo.map(({ _id: id, photoURL }) => {
             return (
               <PhotoItem key={id}>
-                <img src={photoURL} alt="" />
+                <Image src={photoURL} alt="" />
                 <DeleteBtn type="button" onDelete={() => handleShowAlert(id)} />
               </PhotoItem>
             );

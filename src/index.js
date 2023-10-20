@@ -4,7 +4,7 @@ import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './constans/theme';
+import { theme } from './components/styles/theme';
 
 import './index.css';
 import App from './App';

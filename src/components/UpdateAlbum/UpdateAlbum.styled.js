@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import { MdPhotoCamera } from 'react-icons/md';
 
 import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
-import SaveButton from 'components/Buttons/SaveButton/SaveButton';
+import Button from 'components/Buttons/Button';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
 export const InfoWrapper = styled.div`
-  /* outline: 1px solid tomato; */
   position: relative;
   margin-bottom: 50px;
 `;
@@ -25,7 +24,7 @@ export const NameWrapper = styled.div`
     content: '';
     position: absolute;
     top: 155px;
-    left: 0px;
+    left: 0;
     display: flex;
     width: 600px;
     height: 1px;
@@ -33,16 +32,7 @@ export const NameWrapper = styled.div`
   }
 `;
 
-export const NameLabel = styled.label`
-  /* position: absolute;
-  left: 15px;
-  bottom: -25px;
-  z-index: 1; */
-`;
-
 export const NameField = styled.input`
-  /* outline: 1px solid teal; */
-
   padding: 0 5px;
   background-color: transparent;
   font-family: ${p => p.theme.fonts.second};
@@ -54,18 +44,20 @@ export const NameField = styled.input`
   outline: none;
 `;
 
-export const SaveBtn = styled(SaveButton)`
+export const SaveBtn = styled(Button)`
   position: absolute;
-  top: 110px;
-  left: 200px;
+  bottom: -45px;
+  left: 50%;
+  height: 30px;
+  transform: translate(-50%);
+  display: ${p => (p.isVisible ? 'block' : 'none')};
 `;
 
 // Friends
 
 export const FriendsBox = styled.div`
-  /* outline: 1px solid tomato; */
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   width: 542px;
   height: 300px;
 `;
@@ -79,12 +71,12 @@ export const FriendsPreTitle = styled.p`
 `;
 
 export const FriendsItem = styled.li`
-  /* outline: 1px solid tomato; */
   padding: 10px 0;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
   line-height: 1.88;
+  border-radius: ${p => p.theme.borderRadius.small};
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
   &:hover {
@@ -99,16 +91,13 @@ export const FileWrapper = styled.div`
   width: 600px;
   height: 510px;
   margin-left: auto;
-  /* overflow: hidden; */
 
   &::before {
     content: '';
     position: absolute;
     top: 25px;
-    /* transform: translate(-50%); */
     left: -20px;
     display: flex;
-    /* align-items: center; */
     width: 1px;
     height: 90%;
     background-color: ${p => p.theme.colors.darkGrey};
@@ -130,6 +119,7 @@ export const Cover = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: ${p => p.theme.borderRadius.small};
 `;
 
 export const BlackBox = styled.div`
@@ -158,18 +148,25 @@ export const FileLabel = styled.label`
 // PhotoList
 
 export const PhotoList = styled.ul`
-  /* border-top: 1px solid ${p => p.theme.colors.darkGrey}; */
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  /* padding: 20px 0; */
+  padding: 20px 0;
 `;
 
 export const PhotoItem = styled.li`
   position: relative;
+  border-radius: ${p => p.theme.borderRadius.small};
+  overflow: hidden;
+  height: 200px;
+  overflow: hidden;
+  flex-basis: calc((100% - 30px) / 4);
+`;
+
+export const Image = styled.img`
   width: 100%;
   height: 100%;
-  flex-basis: calc((100% - 30px) / 4);
+  object-fit: cover;
 `;
 
 export const DeleteBtn = styled(DeleteButton)`
