@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 import Cookies from 'js-cookie';
-import { motion, AnimatePresence } from 'framer-motion';
+// import { motion, AnimatePresence } from 'framer-motion';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
@@ -12,7 +12,6 @@ import useLogout from 'react-query/useLogout';
 
 import EditLinkBtn from 'components/Buttons/EditLinkBtn/EditLinkBtn';
 import Button from 'components/Buttons/Button';
-import SaveButton from 'components/Buttons/SaveButton/SaveButton';
 
 import { showAlert } from 'helpers/showAlert';
 
@@ -25,6 +24,7 @@ import {
   UserForm,
   InputWrapper,
   Field,
+  SaveBtn,
   Title,
   Item,
   LinkAlbum,
@@ -38,7 +38,8 @@ import {
 
 const UserProfile = () => {
   const { data: currentUser, isLoading } = useGetCurrentUser();
-  const { mutateAsync: updateUser } = useUpdateUser();
+  const { mutateAsync: updateUser, isLoading: updateUserLoading } =
+    useUpdateUser();
   const { mutateAsync: logout } = useLogout();
   const { mutateAsync: deleteAlbum } = useDeleteAlbum();
   const [name, setName] = useState('');
@@ -181,9 +182,14 @@ const UserProfile = () => {
                 </InputWrapper>
               </div>
 
-              <SaveButton type="submit" isVisible={saveBtnVisible}>
+              <SaveBtn
+                type="submit"
+                title="Save changes"
+                disabled={updateUserLoading}
+                isVisible={saveBtnVisible}
+              >
                 Save
-              </SaveButton>
+              </SaveBtn>
             </UserForm>
 
             <Button type="button" title="Log out" onClick={handleLogout} />

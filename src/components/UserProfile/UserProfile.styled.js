@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
 import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
+import Button from 'components/Buttons/Button';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
 export const Box = styled.div`
@@ -29,6 +30,8 @@ export const Avatar = styled(FaUser)`
 // Form
 
 export const UserForm = styled.form`
+  position: relative;
+  width: 500px;
   margin-left: 50px;
   display: flex;
   align-items: end;
@@ -74,6 +77,13 @@ export const Field = styled.input`
   font-family: ${p => p.theme.fonts.second};
   font-size: ${p => p.theme.fontSize[1]}px;
   color: ${p => p.theme.colors.black};
+`;
+
+export const SaveBtn = styled(Button)`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: ${p => (p.isVisible ? 'block' : 'none')};
 `;
 
 export const SubmitButton = styled.button`
