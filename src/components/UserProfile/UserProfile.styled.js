@@ -6,11 +6,6 @@ import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import Button from 'components/Buttons/Button';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
-export const Box = styled.div`
-  margin-top: 80px;
-  padding-bottom: 20px;
-`;
-
 // User
 export const UserWrapper = styled.div`
   display: flex;

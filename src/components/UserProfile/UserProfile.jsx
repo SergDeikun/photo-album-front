@@ -19,7 +19,6 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
   List,
-  Box,
   UserWrapper,
   UserForm,
   InputWrapper,
@@ -140,7 +139,7 @@ const UserProfile = () => {
         onLoaderFinished={() => setProgress(0)}
       />
       {currentUser && (
-        <Box>
+        <>
           <UserWrapper>
             <Avatar
               name={name}
@@ -224,7 +223,7 @@ const UserProfile = () => {
                 );
               })}
           </List>
-        </Box>
+        </>
       )}
     </>
   );

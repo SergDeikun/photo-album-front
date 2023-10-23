@@ -1,11 +1,12 @@
 import UserProfile from 'components/UserProfile/UserProfile';
-import Container from 'components/Container/Container';
+
+import { BoxContainer } from './UserPage.styled';
 
 const UserPage = () => {
   return (
-    <Container>
+    <BoxContainer>
       <UserProfile />
-    </Container>
+    </BoxContainer>
   );
 };
 

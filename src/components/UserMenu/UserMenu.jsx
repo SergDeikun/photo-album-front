@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import useOnclickOutside from 'react-cool-onclickoutside';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
@@ -27,6 +27,10 @@ const UserMenu = () => {
     setIsOpenMenu(!isOpenMenu);
   };
 
+  const ref = useOnclickOutside(() => {
+    setIsOpenMenu(false);
+  });
+
   return (
     <>
       <ButtonMenu type="button" onClick={handleToggleMenu}>
@@ -35,6 +39,7 @@ const UserMenu = () => {
       <AnimatePresence>
         {isOpenMenu && (
           <motion.div
+            ref={ref}
             key={isOpenMenu}
             style={{
               position: 'absolute',
