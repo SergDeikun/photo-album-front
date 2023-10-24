@@ -4,20 +4,23 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 150px;
-  padding: 0 20px 0 20px;
+  @media ${p => p.theme.devaice.tablet} {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 150px;
+    padding: 0 20px 0 20px;
+  }
 `;
 
 export const Item = styled.li`
   position: relative;
-
   margin-bottom: 20px;
-  flex-basis: calc((100% - 20px) / 2);
 
-  &:nth-child(2n + 1) {
-    margin-right: 20px;
+  @media ${p => p.theme.devaice.tablet} {
+    &:nth-child(2n + 1) {
+      margin-right: 20px;
+    }
+    flex-basis: calc((100% - 20px) / 2);
   }
 `;
 

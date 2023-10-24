@@ -27,5 +27,20 @@ export const theme = {
     round: '50px',
   },
 
+  devaice: {
+    mobile: `(min-width:320px)`,
+    tablet: `(min-width:768px)`,
+    desktop: `(min-width:1280px)`,
+  },
+
   // transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+
+  //  @media ${p => p.theme.devaice.mobile} {
+  // }
+
+  // @media ${p => p.theme.devaice.tablet} {
+  // }
+
+  //  @media ${p => p.theme.devaice.desktop} {
+  // }
 };

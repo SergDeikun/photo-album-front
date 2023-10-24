@@ -39,7 +39,7 @@ const AlbumsPage = () => {
         </WelcomeText>
       ) : (
         <>
-          <PageTitle>My albums</PageTitle>
+          {/* <PageTitle>My albums</PageTitle> */}
           <AlbumList myAlbums={currentUser ? currentUser.myAlbums : []} />
         </>
       )}

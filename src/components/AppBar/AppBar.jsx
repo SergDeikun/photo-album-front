@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+
 import Cookies from 'js-cookie';
 
 import Logo from 'components/Logo/Logo';
@@ -14,6 +16,8 @@ import { Wrapper, ButtonWrap } from './AppBar.styled';
 
 const AppBar = () => {
   const token = Cookies.get('token');
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTabletOrDesktop = useMediaQuery({ minWidth: 768 });
   const [isOpenAlbumForm, setIsOpenAlbumForm] = useState(false);
   const [isOpenPhotoForm, setIsOpenPhotoForm] = useState(false);
   const location = useLocation();
@@ -53,7 +57,7 @@ const AppBar = () => {
   return (
     <Wrapper>
       <Logo />
-      {token ? (
+      {token && isTabletOrDesktop ? (
         <ButtonWrap>
           {location.pathname === '/album-list' && (
             <AddButton title="Add album" onClick={handleToggleAlbumForm} />
@@ -64,8 +68,10 @@ const AppBar = () => {
           <UserMenu />
         </ButtonWrap>
       ) : (
-        <AuthMenu />
+        isTabletOrDesktop && <AuthMenu />
       )}
+      {isMobile && <UserMenu />}
+
       {isOpenAlbumForm && (
         <Modal onClose={handleToggleAlbumForm}>
           <AlbumForm onClose={handleToggleAlbumForm} />

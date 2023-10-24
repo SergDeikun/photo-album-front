@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const WelcomeText = styled.p`
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -10,11 +10,11 @@ export const WelcomeText = styled.p`
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
-  text-align: center;
+  text-align: center; */
 `;
 
 export const PageTitle = styled.h1`
-  position: absolute;
+  /* position: absolute;
   top: 10px;
   left: 50%;
   transform: translate(-50%);
@@ -24,5 +24,5 @@ export const PageTitle = styled.h1`
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSize[4]}px;
   color: ${p => p.theme.colors.black};
-  text-align: center;
+  text-align: center; */
 `;

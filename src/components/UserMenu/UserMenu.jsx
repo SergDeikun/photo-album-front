@@ -1,12 +1,23 @@
 import { useState, useEffect } from 'react';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
+import { AnimatePresence } from 'framer-motion';
+import Cookies from 'js-cookie';
 
-import CloseButton from 'components/Buttons/CloseButton/CloseButton';
+import Modal from 'components/Modal/Modal';
 
-import { ButtonMenu, MenuList, MenuItem, MenuLink } from './UserMenu.styled';
+import {
+  ButtonMenu,
+  Box,
+  MenuList,
+  MenuItem,
+  MenuLink,
+  Auth,
+} from './UserMenu.styled';
 
 const UserMenu = () => {
+  const token = Cookies.get('token');
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   useEffect(() => {
@@ -38,51 +49,47 @@ const UserMenu = () => {
       </ButtonMenu>
       <AnimatePresence>
         {isOpenMenu && (
-          <motion.div
-            ref={ref}
-            key={isOpenMenu}
-            style={{
-              position: 'absolute',
-              zindex: '10',
-              width: '320px',
-              left: '1050px',
-              top: '0',
-              backgroundColor: 'black',
-              padding: '115px 20px',
-            }}
-            initial={{
-              opacity: 0,
-              y: -25,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              y: -25,
-            }}
-            transition={{ duration: 0.2 }}
-          >
-            <CloseButton onClose={handleToggleMenu} />
-            <MenuList>
-              <MenuItem>
-                <MenuLink to={'/'} onClick={handleToggleMenu}>
-                  Home
-                </MenuLink>
-              </MenuItem>
-              <MenuItem>
-                <MenuLink to={'/profile'} onClick={handleToggleMenu}>
-                  Profile
-                </MenuLink>
-              </MenuItem>
-              <MenuItem>
-                <MenuLink to={'/album-list'} onClick={handleToggleMenu}>
-                  Albums
-                </MenuLink>
-              </MenuItem>
-            </MenuList>
-          </motion.div>
+          <Modal onClose={handleToggleMenu}>
+            <Box
+              ref={ref}
+              key={isOpenMenu}
+              initial={{
+                opacity: 0,
+                y: -25,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                y: -25,
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              {isMobile && !token && <Auth onClick={handleToggleMenu} />}
+
+              {token && (
+                <MenuList>
+                  <MenuItem>
+                    <MenuLink to={'/'} onClick={handleToggleMenu}>
+                      Home
+                    </MenuLink>
+                  </MenuItem>
+                  <MenuItem>
+                    <MenuLink to={'/profile'} onClick={handleToggleMenu}>
+                      Profile
+                    </MenuLink>
+                  </MenuItem>
+                  <MenuItem>
+                    <MenuLink to={'/album-list'} onClick={handleToggleMenu}>
+                      Albums
+                    </MenuLink>
+                  </MenuItem>
+                </MenuList>
+              )}
+            </Box>
+          </Modal>
         )}
       </AnimatePresence>
     </>

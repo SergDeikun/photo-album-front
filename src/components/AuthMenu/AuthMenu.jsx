@@ -1,8 +1,8 @@
 import { ListLink, ListItem, AuthLink } from './AuthMenu.styled';
 
-const AuthMenu = () => {
+const AuthMenu = ({ onClick }) => {
   return (
-    <ListLink>
+    <ListLink onClick={onClick}>
       <ListItem>
         <AuthLink to={'/login'}>Login</AuthLink>
       </ListItem>

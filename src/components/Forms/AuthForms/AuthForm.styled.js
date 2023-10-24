@@ -8,7 +8,12 @@ export const Form = styled.form`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 445px;
+  width: 300px;
+  /* width: 100%; */
+
+  @media ${p => p.theme.devaice.tablet} {
+    width: 445px;
+  }
 `;
 
 export const InputrWrapper = styled.div`

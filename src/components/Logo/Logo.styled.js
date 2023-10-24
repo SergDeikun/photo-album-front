@@ -7,5 +7,9 @@ export const LogoLink = styled(Link)`
 `;
 
 export const LogoImg = styled.img`
-  width: 200px;
+  width: 130px;
+
+  @media ${p => p.theme.devaice.tablet} {
+    width: 200px;
+  }
 `;
