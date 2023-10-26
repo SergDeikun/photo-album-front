@@ -7,19 +7,22 @@ export const List = styled.ul`
   @media ${p => p.theme.devaice.tablet} {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 150px;
-    padding: 0 20px 0 20px;
+
+    @media ${p => p.theme.devaice.tablet} {
+      gap: 20px;
+    }
   }
 `;
 
 export const Item = styled.li`
   position: relative;
-  margin-bottom: 20px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
 
   @media ${p => p.theme.devaice.tablet} {
-    &:nth-child(2n + 1) {
-      margin-right: 20px;
-    }
+    /* margin-bottom: 0; */
     flex-basis: calc((100% - 20px) / 2);
   }
 `;
@@ -31,6 +34,8 @@ export const LinkItem = styled(Link)`
 
 export const ImgWrapper = styled.div`
   height: 510px;
+  border-radius: ${p => p.theme.borderRadius.small};
+  overflow: hidden;
 `;
 
 export const Image = styled(LazyLoadImage)`

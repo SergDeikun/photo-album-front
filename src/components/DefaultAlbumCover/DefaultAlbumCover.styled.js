@@ -5,18 +5,24 @@ export const BoxCover = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 610px;
-  height: 509px;
+  width: 100%;
+  height: 510px;
+  /* height: 100%; */
+  border-radius: ${p => p.theme.borderRadius.small};
+  overflow: hidden;
   background-image: url(${BgCover});
   background-position: center;
   background-repeat: no-repeat;
   object-fit: cover;
-`;
 
-export const Text = styled.span`
-  /* font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSize[4]}px;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  color: ${p => p.theme.colors.grey};
-  text-shadow: #111 1px 1px 0; */
+  @media ${p => p.theme.devaice.tablet} {
+    /* width: 354px; */
+    /* width: 100%; */
+    /* height: 510px; */
+  }
+
+  @media ${p => p.theme.devaice.desktop} {
+    /* width: 610px;
+    height: 510px; */
+  }
 `;

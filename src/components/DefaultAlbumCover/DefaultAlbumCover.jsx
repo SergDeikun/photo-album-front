@@ -1,11 +1,7 @@
-import { BoxCover, Text } from './DefaultAlbumCover.styled';
+import { BoxCover } from './DefaultAlbumCover.styled';
 
 const DefaultAlbumCover = ({ className }) => {
-  return (
-    <BoxCover className={className || ''}>
-      {/* <Text>Memories Book</Text> */}
-    </BoxCover>
-  );
+  return <BoxCover className={className || ''} />;
 };
 
 export default DefaultAlbumCover;

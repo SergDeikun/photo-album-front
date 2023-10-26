@@ -13,7 +13,6 @@ export const ContainerBox = styled.div`
 
   @media ${p => p.theme.devaice.tablet} {
     max-width: 768px;
-    /* padding: 0 30px; */
   }
 
   @media ${p => p.theme.devaice.desktop} {

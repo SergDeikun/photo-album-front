@@ -211,10 +211,8 @@ const UserProfile = () => {
                     </LinkAlbum>
 
                     <EditBox>
-                      {/* <AlbumName>{name}</AlbumName> */}
                       <ButtonWrapper>
                         <AlbumName>{name}</AlbumName>
-
                         <DeleteBtn onDelete={() => handleShowAlert(id)} />
                         <EditLinkBtn to={`/${id}/${name}/update`} />
                       </ButtonWrapper>

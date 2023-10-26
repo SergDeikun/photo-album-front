@@ -4,10 +4,10 @@ import LoadingBar from 'react-top-loading-bar';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 
-import Container from 'components/Container/Container';
+// import Container from 'components/Container/Container';
 import AlbumList from 'components/AlbumList/AlbumList';
 
-import { WelcomeText, PageTitle } from './AlbumsPage.styled';
+import { BoxContainer, WelcomeText, PageTitle } from './AlbumsPage.styled';
 
 const AlbumsPage = () => {
   const { data: currentUser, isLoading } = useGetCurrentUser();
@@ -26,7 +26,7 @@ const AlbumsPage = () => {
   }, [isLoading]);
 
   return (
-    <Container>
+    <BoxContainer>
       <LoadingBar
         color="#f11946"
         progress={progress}
@@ -39,11 +39,11 @@ const AlbumsPage = () => {
         </WelcomeText>
       ) : (
         <>
-          {/* <PageTitle>My albums</PageTitle> */}
+          <PageTitle>My albums</PageTitle>
           <AlbumList myAlbums={currentUser ? currentUser.myAlbums : []} />
         </>
       )}
-    </Container>
+    </BoxContainer>
   );
 };
 

@@ -8,12 +8,10 @@ import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
 // User
 export const UserWrapper = styled.div`
-  display: flex;
-  align-items: end;
-  padding: 20px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  text-align: center;
+  /* display: flex; */
+  /* align-items: end; */
+  /* padding: 20px; */
 `;
 
 export const Avatar = styled(FaUser)`
@@ -25,9 +23,11 @@ export const Avatar = styled(FaUser)`
 // Form
 
 export const UserForm = styled.form`
+  width: 100%;
+
   position: relative;
-  width: 500px;
-  margin-left: 50px;
+  /* width: 500px; */
+  /* margin-left: 50px; */
   display: flex;
   align-items: end;
 `;
@@ -99,20 +99,24 @@ export const Title = styled.h1`
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0;
 `;
 
 export const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  @media ${p => p.theme.devaice.tablet} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 `;
 
 export const Item = styled.li`
   position: relative;
-  flex-basis: calc((100% - 30px) / 4);
-  border-radius: 3px;
+
+  &:not(:last-child) {
+    /* margin-bottom: 20px; */
+  }
+
   width: 100%;
   height: 400px;
   border-radius: ${p => p.theme.borderRadius.small};
@@ -121,6 +125,15 @@ export const Item = styled.li`
 
   &:hover {
     transform: scale(1.02);
+  }
+
+  @media ${p => p.theme.devaice.tablet} {
+    flex-basis: calc((100% - 10px) / 2);
+    /* margin-bottom: 0; */
+  }
+
+  @media ${p => p.theme.devaice.desktop} {
+    flex-basis: calc((100% - 30px) / 4);
   }
 `;
 
@@ -140,8 +153,8 @@ export const IconAlbum = styled.img`
 `;
 
 export const DefaultCover = styled(DefaultAlbumCover)`
-  width: 100%;
-  height: 400px;
+  /* width: 100%;
+  height: 400px; */
 `;
 
 // EditBox
@@ -152,20 +165,36 @@ export const EditBox = styled.div`
   left: 0;
   display: flex;
   flex-direction: column;
-  width: calc(100% - 20px);
+  width: 100%;
   height: 30%;
-  padding: 10px 10px;
+  /* padding: 10px 10px; */
+
   background-image: linear-gradient(
       transparent 0 25%,
       ${p => p.theme.colors.black}
     ),
     linear-gradient(transparent, transparent, ${p => p.theme.colors.black});
-  opacity: 0;
+  opacity: 1;
+
   transition: opacity 0.5s linear;
 
-  ${Item}:hover & {
-    opacity: 1;
+  @media ${p => p.theme.devaice.desktop} {
+    /* width: calc(100% - 20px); */
+
+    opacity: 0;
+
+    ${Item}:hover & {
+      opacity: 1;
+    }
   }
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  padding: 10px;
+  justify-content: space-around;
 `;
 
 export const AlbumName = styled.p`
@@ -174,13 +203,6 @@ export const AlbumName = styled.p`
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
   color: ${p => p.theme.colors.white};
-`;
-
-export const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: auto;
-  justify-content: space-around;
 `;
 
 export const DeleteBtn = styled(DeleteButton)`
