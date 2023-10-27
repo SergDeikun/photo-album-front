@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const List = styled.ul`
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
+  }
 
-    @media ${p => p.theme.devaice.tablet} {
-      gap: 20px;
-    }
+  @media ${p => p.theme.device.desktop} {
+    gap: 20px;
   }
 `;
 
@@ -18,11 +19,18 @@ export const Item = styled.li`
   position: relative;
 
   &:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
-  @media ${p => p.theme.devaice.tablet} {
-    /* margin-bottom: 0; */
+  @media ${p => p.theme.device.tablet} {
+    flex-basis: calc((100% - 10px) / 2);
+
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+  }
+
+  @media ${p => p.theme.device.desktop} {
     flex-basis: calc((100% - 20px) / 2);
   }
 `;
@@ -33,9 +41,14 @@ export const LinkItem = styled(Link)`
 `;
 
 export const ImgWrapper = styled.div`
-  height: 510px;
+  height: 400px;
+
   border-radius: ${p => p.theme.borderRadius.small};
   overflow: hidden;
+
+  @media ${p => p.theme.device.desktop} {
+    height: 510px;
+  }
 `;
 
 export const Image = styled(LazyLoadImage)`

@@ -4,14 +4,14 @@ import styled from 'styled-components';
 export const ListLink = styled.ul`
   /* width: 100%; */
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     display: flex;
     margin-left: auto;
   }
 `;
 
 export const ListItem = styled.li`
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     &:not(:last-child) {
       margin-right: 40px;
     }
@@ -32,7 +32,7 @@ export const AuthLink = styled(NavLink)`
     color: ${p => p.theme.colors.white};
   }
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     /* padding: 25px 6px; */
 
     color: ${p => p.theme.colors.black};

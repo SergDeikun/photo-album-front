@@ -9,9 +9,12 @@ import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 // User
 export const UserWrapper = styled.div`
   text-align: center;
-  /* display: flex; */
-  /* align-items: end; */
-  /* padding: 20px; */
+
+  @media ${p => p.theme.device.tablet} {
+    display: flex;
+    align-items: end;
+    padding: 0 20px;
+  }
 `;
 
 export const Avatar = styled(FaUser)`
@@ -24,12 +27,14 @@ export const Avatar = styled(FaUser)`
 
 export const UserForm = styled.form`
   width: 100%;
-
   position: relative;
-  /* width: 500px; */
-  /* margin-left: 50px; */
   display: flex;
   align-items: end;
+
+  @media ${p => p.theme.device.tablet} {
+    width: 500px;
+    margin-left: 50px;
+  }
 `;
 
 export const FieldWrapper = styled.div``;
@@ -103,7 +108,7 @@ export const Title = styled.h1`
 `;
 
 export const List = styled.ul`
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -114,7 +119,7 @@ export const Item = styled.li`
   position: relative;
 
   &:not(:last-child) {
-    /* margin-bottom: 20px; */
+    margin-bottom: 10px;
   }
 
   width: 100%;
@@ -127,12 +132,15 @@ export const Item = styled.li`
     transform: scale(1.02);
   }
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     flex-basis: calc((100% - 10px) / 2);
-    /* margin-bottom: 0; */
+
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
   }
 
-  @media ${p => p.theme.devaice.desktop} {
+  @media ${p => p.theme.device.desktop} {
     flex-basis: calc((100% - 30px) / 4);
   }
 `;
@@ -167,8 +175,6 @@ export const EditBox = styled.div`
   flex-direction: column;
   width: 100%;
   height: 30%;
-  /* padding: 10px 10px; */
-
   background-image: linear-gradient(
       transparent 0 25%,
       ${p => p.theme.colors.black}
@@ -178,9 +184,7 @@ export const EditBox = styled.div`
 
   transition: opacity 0.5s linear;
 
-  @media ${p => p.theme.devaice.desktop} {
-    /* width: calc(100% - 20px); */
-
+  @media ${p => p.theme.device.desktop} {
     opacity: 0;
 
     ${Item}:hover & {

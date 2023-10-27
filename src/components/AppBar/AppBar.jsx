@@ -57,20 +57,37 @@ const AppBar = () => {
   return (
     <Wrapper>
       <Logo />
-      {token && isTabletOrDesktop ? (
+
+      {!token ? (
+        <>
+          {isMobile && <UserMenu />}
+          {isTabletOrDesktop && <AuthMenu />}
+        </>
+      ) : (
         <ButtonWrap>
           {location.pathname === '/album-list' && (
-            <AddButton title="Add album" onClick={handleToggleAlbumForm} />
+            <>
+              {isMobile && (
+                <AddButton title="Add" onClick={handleToggleAlbumForm} />
+              )}
+              {isTabletOrDesktop && (
+                <AddButton title="Add album" onClick={handleToggleAlbumForm} />
+              )}
+            </>
           )}
           {location.pathname === `/album/${albumId}` && (
-            <AddButton title="Add photo" onClick={handleTogglePhotoForm} />
+            <>
+              {isMobile && (
+                <AddButton title="Add" onClick={handleTogglePhotoForm} />
+              )}
+              {isTabletOrDesktop && (
+                <AddButton title="Add photo" onClick={handleTogglePhotoForm} />
+              )}
+            </>
           )}
           <UserMenu />
         </ButtonWrap>
-      ) : (
-        isTabletOrDesktop && <AuthMenu />
       )}
-      {isMobile && <UserMenu />}
 
       {isOpenAlbumForm && (
         <Modal onClose={handleToggleAlbumForm}>

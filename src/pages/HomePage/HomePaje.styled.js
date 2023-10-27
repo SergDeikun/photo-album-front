@@ -13,7 +13,7 @@ export const Title = styled.h1`
   color: ${p => p.theme.colors.black};
   line-height: 1.2;
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     font-size: 70px;
   }
 `;

@@ -11,7 +11,7 @@ export const Form = styled.form`
   width: 300px;
   /* width: 100%; */
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     width: 445px;
   }
 `;

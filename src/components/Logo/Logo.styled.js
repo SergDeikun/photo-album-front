@@ -9,7 +9,7 @@ export const LogoLink = styled(Link)`
 export const LogoImg = styled.img`
   width: 130px;
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     width: 200px;
   }
 `;

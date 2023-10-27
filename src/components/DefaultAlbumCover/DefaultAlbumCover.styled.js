@@ -6,7 +6,7 @@ export const BoxCover = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 510px;
+  height: 400px;
   /* height: 100%; */
   border-radius: ${p => p.theme.borderRadius.small};
   overflow: hidden;
@@ -15,14 +15,13 @@ export const BoxCover = styled.div`
   background-repeat: no-repeat;
   object-fit: cover;
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     /* width: 354px; */
     /* width: 100%; */
     /* height: 510px; */
   }
 
-  @media ${p => p.theme.devaice.desktop} {
-    /* width: 610px;
-    height: 510px; */
+  @media ${p => p.theme.device.desktop} {
+    height: 510px;
   }
 `;

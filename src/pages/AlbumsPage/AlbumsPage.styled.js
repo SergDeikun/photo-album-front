@@ -5,7 +5,7 @@ import Container from 'components/Container/Container';
 export const BoxContainer = styled(Container)`
   padding: 100px 10px 20px 10px;
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     padding: 100px 20px 20px 20px;
   }
 `;
@@ -24,7 +24,7 @@ export const WelcomeText = styled.p`
   color: ${p => p.theme.colors.black};
   text-align: center;
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     width: 700px;
     font-size: ${p => p.theme.fontSize[2]}px;
   }
@@ -44,7 +44,7 @@ export const PageTitle = styled.h1`
   color: ${p => p.theme.colors.black};
   text-align: center;
 
-  @media ${p => p.theme.devaice.tablet} {
+  @media ${p => p.theme.device.tablet} {
     top: 35px;
     left: 205px;
     width: 300px;
@@ -52,7 +52,7 @@ export const PageTitle = styled.h1`
     font-size: ${p => p.theme.fontSize[3]}px;
   }
 
-  @media ${p => p.theme.devaice.desktop} {
+  @media ${p => p.theme.device.desktop} {
     top: -5px;
     left: 50%;
 
