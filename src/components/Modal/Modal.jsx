@@ -9,7 +9,7 @@ const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ onClose, children, className }) => {
   return createPortal(
-    <Backdrop>
+    <Backdrop className={className || ''}>
       <CloseButton onClose={onClose} />
       <ModalWindow className={className || ''}>{children}</ModalWindow>
     </Backdrop>,

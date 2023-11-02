@@ -10,11 +10,11 @@ import useUpdatePhoto from 'react-query/useUpdatePhoto';
 
 import { showAlert } from 'helpers/showAlert';
 
+import Backdrop from 'components/Backdrop/Backdrop';
 import InformationButton from 'components/Buttons/InformationButton/InformationButton';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 
 import {
-  WrapperBox,
   ButtonWrapper,
   DeleteBtn,
   CloseBtn,
@@ -33,7 +33,7 @@ import {
   DateField,
   Place,
   Comments,
-  MapBtn,
+  // MapBtn,
   SubmitButton,
 } from '../PhotoLightBox/PhotoLightBox.styled';
 
@@ -193,7 +193,7 @@ const PhotoLightBox = () => {
   };
 
   return (
-    <WrapperBox onClose={handleClose}>
+    <Backdrop onClose={handleClose}>
       <LoadingBar
         color="#f11946"
         progress={progress}
@@ -318,7 +318,7 @@ const PhotoLightBox = () => {
           </AnimatePresence>
         </>
       )}
-    </WrapperBox>
+    </Backdrop>
   );
 };
 

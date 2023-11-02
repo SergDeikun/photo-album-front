@@ -16,7 +16,7 @@ export const theme = {
   colors: {
     bodyBg: '#fbf9f6',
     red: '#ff0044',
-    black: 'rgba(34, 34, 34, 0.85)',
+    black: '#232425',
     white: '#fff',
     grey: '#ccc',
     darkGrey: '#575150',

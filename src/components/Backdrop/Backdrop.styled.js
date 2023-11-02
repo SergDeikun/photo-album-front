@@ -6,8 +6,9 @@ export const BackdropBox = styled.div`
   right: 0;
   bottom: 0;
   position: fixed;
-  z-index: 150;
-  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 15;
+  background-color: ${p => p.theme.colors.black};
+
   width: 100%;
   height: 100%;
 `;

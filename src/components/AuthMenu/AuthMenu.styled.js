@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const ListLink = styled.ul`
   /* width: 100%; */
+  text-align: center;
 
   @media ${p => p.theme.device.tablet} {
     display: flex;

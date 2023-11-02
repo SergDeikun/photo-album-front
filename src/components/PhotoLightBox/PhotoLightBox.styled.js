@@ -3,16 +3,11 @@ import styled from 'styled-components';
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
 
-import Backdrop from 'components/Backdrop/Backdrop';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
 import DateInput from 'components/Inputs/DateInput/DateInput';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
-
-export const WrapperBox = styled(Backdrop)`
-  background-color: rgb(0, 0, 0);
-`;
 
 export const ButtonWrapper = styled.div`
   position: absolute;
