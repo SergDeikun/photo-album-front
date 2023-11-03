@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import Container from 'components/Container/Container';
 import AppBar from 'components/AppBar/AppBar';
 
-import { Header } from './SharedLayout.styled';
+import { Header, BoxContainer } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -41,9 +41,9 @@ const SharedLayout = () => {
         }}
         shadow={shadow}
       >
-        <Container>
+        <BoxContainer>
           <AppBar />
-        </Container>
+        </BoxContainer>
       </Header>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />

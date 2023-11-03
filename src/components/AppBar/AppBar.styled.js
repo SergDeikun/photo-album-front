@@ -13,16 +13,16 @@ export const ButtonWrap = styled.div`
   padding-bottom: 25px;
 
   @media ${p => p.theme.device.tablet} {
-    /* display: flex;
+    display: flex;
     align-items: center;
-    justify-content: space-between; */
+    justify-content: space-between;
   }
 `;
 
-export const MenuBtn = styled(HeaderButton)`
-  margin-left: 30px;
+export const AddBtn = styled(HeaderButton)`
+  margin-right: 30px;
 
   @media ${p => p.theme.device.desktop} {
-    margin-left: 50px;
+    margin-right: 50px;
   }
 `;

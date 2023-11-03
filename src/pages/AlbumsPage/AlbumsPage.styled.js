@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Container from 'components/Container/Container';
 
 export const BoxContainer = styled(Container)`
-  padding: 100px 10px 20px 10px;
+  padding: 100px 1px 20px 1px;
+  /* padding: 100px 0 20px 0; */
 
   @media ${p => p.theme.device.tablet} {
     padding: 100px 20px 20px 20px;
@@ -46,9 +47,7 @@ export const PageTitle = styled.h1`
 
   @media ${p => p.theme.device.tablet} {
     top: 35px;
-    left: 205px;
     width: 300px;
-    transform: none;
     font-size: ${p => p.theme.fontSize[3]}px;
   }
 

@@ -5,14 +5,23 @@ import Button from 'components/Buttons/Button';
 
 export const Box = styled.div`
   position: relative;
-  width: 610px;
-  min-height: 510px;
+  width: 310px;
+  min-height: 400px;
   background-image: url(${p => p.backgroundImage});
   background-position: center;
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
   overflow: hidden;
+
+  @media ${p => p.theme.device.tablet} {
+    width: 360px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    width: 610px;
+    min-height: 510px;
+  }
 `;
 
 export const NameWrapper = styled.div`
@@ -27,13 +36,13 @@ export const NameWrapper = styled.div`
 `;
 
 export const InputName = styled.input`
-  width: 100%;
   background-color: transparent;
   border: none;
   outline: none;
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.regular};
-  font-size: ${p => p.theme.fontSize[2]}px;
+  /* font-size: ${p => p.theme.fontSize[2]}px; */
+  font-size: ${p => p.theme.fontSize[1]}px;
   line-height: 1.88;
   letter-spacing: 0.1rem;
   color: ${p => p.theme.colors.grey};
@@ -42,8 +51,11 @@ export const InputName = styled.input`
   transition: border-bottom 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
   ::placeholder {
-    text-align: center;
     color: ${p => p.theme.colors.white};
+
+    @media ${p => p.theme.device.desktop} {
+      text-align: center;
+    }
   }
 
   &:hover {
@@ -52,6 +64,14 @@ export const InputName = styled.input`
 
   &:focus {
     border-bottom: 1px solid #575150;
+  }
+
+  @media ${p => p.theme.device.tablet} {
+    font-size: ${p => p.theme.fontSize[2]}px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    width: 100%;
   }
 `;
 
@@ -63,12 +83,26 @@ export const ButttonWraper = styled.div`
   margin-top: 35px;
   opacity: ${p => (p.name ? 1 : 0)};
   transition: opacity 0.5s linear;
+
+  @media ${p => p.theme.device.tablet} {
+    padding: 0 30px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    padding: 0 50px;
+  }
 `;
 
 export const UploadCover = styled(FileInput)`
+  min-width: 120px;
+  border: 1px solid ${p => p.theme.colors.red};
   border-radius: ${p => p.theme.borderRadius.small};
-  min-width: 165px;
-  height: 50px;
+  height: 40px;
+
+  @media ${p => p.theme.device.desktop} {
+    width: 165px;
+    height: 50px;
+  }
 
   label {
     font-family: ${p => p.theme.fonts.button};
@@ -77,11 +111,6 @@ export const UploadCover = styled(FileInput)`
     line-height: 1.88;
     letter-spacing: 0.1rem;
     color: ${p => p.theme.colors.red};
-    border: 1px solid ${p => p.theme.colors.red};
-  }
-
-  img {
-    outline: 1px solid white;
   }
 
   svg {
@@ -104,5 +133,13 @@ export const UploadCover = styled(FileInput)`
 `;
 
 export const SubmitButton = styled(Button)`
+  padding: 0;
   margin: 0;
+  width: 120px;
+  height: 40px;
+
+  @media ${p => p.theme.device.desktop} {
+    width: 165px;
+    height: 50px;
+  }
 `;

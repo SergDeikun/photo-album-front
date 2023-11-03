@@ -12,7 +12,7 @@ import Modal from 'components/Modal/Modal';
 import AlbumForm from 'components/Forms/AlbumForm/AlbumForm';
 import PhotoForm from 'components/Forms/PhotoForm/PhotoForm';
 
-import { Wrapper, ButtonWrap, MenuBtn } from './AppBar.styled';
+import { Wrapper, ButtonWrap, AddBtn } from './AppBar.styled';
 
 const AppBar = () => {
   const token = Cookies.get('token');
@@ -68,9 +68,9 @@ const AppBar = () => {
       {!token ? (
         <>
           {isMobile && (
-            <MenuBtn title="Menu" onClick={handleToggleUserMenu}>
+            <HeaderButton title="Menu" onClick={handleToggleUserMenu}>
               Menu
-            </MenuBtn>
+            </HeaderButton>
           )}
 
           {isTabletOrDesktop && <AuthMenu />}
@@ -80,32 +80,26 @@ const AppBar = () => {
           {location.pathname === '/album-list' && (
             <>
               {isMobile && (
-                <HeaderButton title="Add" onClick={handleToggleAlbumForm} />
+                <AddBtn title="Add" onClick={handleToggleAlbumForm} />
               )}
               {isTabletOrDesktop && (
-                <HeaderButton
-                  title="Add album"
-                  onClick={handleToggleAlbumForm}
-                />
+                <AddBtn title="Add album" onClick={handleToggleAlbumForm} />
               )}
             </>
           )}
           {location.pathname === `/album/${albumId}` && (
             <>
               {isMobile && (
-                <HeaderButton title="Add" onClick={handleTogglePhotoForm} />
+                <AddBtn title="Add" onClick={handleTogglePhotoForm} />
               )}
               {isTabletOrDesktop && (
-                <HeaderButton
-                  title="Add photo"
-                  onClick={handleTogglePhotoForm}
-                />
+                <AddBtn title="Add photo" onClick={handleTogglePhotoForm} />
               )}
             </>
           )}
-          <MenuBtn title="Menu" onClick={handleToggleUserMenu}>
+          <HeaderButton title="Menu" onClick={handleToggleUserMenu}>
             Menu
-          </MenuBtn>
+          </HeaderButton>
         </ButtonWrap>
       )}
 
