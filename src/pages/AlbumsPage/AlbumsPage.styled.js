@@ -54,7 +54,6 @@ export const PageTitle = styled.h1`
   @media ${p => p.theme.device.desktop} {
     top: -5px;
     left: 50%;
-
     width: 500px;
     transform: translate(-50%);
     font-size: ${p => p.theme.fontSize[4]}px;

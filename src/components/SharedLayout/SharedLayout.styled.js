@@ -15,5 +15,7 @@ export const Header = styled.header`
 `;
 
 export const BoxContainer = styled(Container)`
-  max-width: 100%;
+  @media screen and (max-width: 1280px) {
+    max-width: 100%;
+  }
 `;

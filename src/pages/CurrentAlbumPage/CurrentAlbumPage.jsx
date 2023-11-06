@@ -1,12 +1,13 @@
-import Container from 'components/Container/Container';
 import PhotoList from 'components/PhotoList/PhotoList';
+
+import { BoxContainer } from './CurrentAlbumPage.styled';
 
 const CurrentAlbumPage = () => {
   return (
     <>
-      <Container>
+      <BoxContainer>
         <PhotoList />
-      </Container>
+      </BoxContainer>
     </>
   );
 };

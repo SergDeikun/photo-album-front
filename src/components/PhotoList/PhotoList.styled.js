@@ -5,29 +5,40 @@ import { Link } from 'react-router-dom';
 
 export const AlbumTitle = styled.h1`
   position: absolute;
-  top: 10px;
+  top: 45px;
   left: 50%;
   transform: translate(-50%);
   z-index: 10;
   opacity: 0.1;
   font-family: ${p => p.theme.fonts.second};
-  font-size: ${p => p.theme.fontSize[3]}px;
+  font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.black};
   text-align: center;
-  margin-bottom: 20px;
+
+  @media ${p => p.theme.device.tablet} {
+    top: 35px;
+    width: 300px;
+    font-size: ${p => p.theme.fontSize[3]}px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    top: -5px;
+    left: 50%;
+    width: 500px;
+    transform: translate(-50%);
+    font-size: ${p => p.theme.fontSize[4]}px;
+  }
 `;
 // PhotoList
-export const Box = styled.div`
+export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  text-align: center;
   justify-content: space-between;
-  padding-bottom: 20px;
-  margin-top: 80px;
 `;
 
-export const Thumb = styled.div`
+export const PhotoItem = styled.li`
+  border-radius: ${p => p.theme.borderRadius.small};
   position: relative;
   overflow: hidden;
   cursor: pointer;

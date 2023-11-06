@@ -4,11 +4,11 @@ export const ContainerBox = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  padding: 0 10px;
   box-sizing: border-box;
 
   @media ${p => p.theme.device.mobile} {
     max-width: 320px;
-    padding: 0 10px;
   }
 
   @media ${p => p.theme.device.tablet} {
