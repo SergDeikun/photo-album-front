@@ -9,14 +9,16 @@ import FileInput from 'components/Inputs/FileInput/FileImput';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import DateInput from 'components/Inputs/DateInput/DateInput';
 import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
-import Button from 'components/Buttons/Button';
+// import Button from 'components/Buttons/Button';
 
 import {
+  Form,
   AddInfoBtn,
   Box,
   FieldWrapper,
   InputWrapper,
   Place,
+  AddButton,
 } from './PhotoForm.styled';
 
 const PhotoForm = ({ onClose }) => {
@@ -84,7 +86,7 @@ const PhotoForm = ({ onClose }) => {
 
   return (
     <>
-      <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+      <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
         <Box>
           <FileInput
             title="Upload photo"
@@ -123,9 +125,9 @@ const PhotoForm = ({ onClose }) => {
         </Box>
 
         {previewPhoto && (
-          <Button type="submit" disabled={isLoading} title="Add" />
+          <AddButton type="submit" disabled={isLoading} title="Add" />
         )}
-      </form>
+      </Form>
     </>
   );
 };

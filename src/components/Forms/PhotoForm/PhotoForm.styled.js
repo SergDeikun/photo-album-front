@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 
 import Autocomplite from 'components/Autocomplite/Autocomplite';
+import Button from 'components/Buttons/Button';
+
+export const Form = styled.form`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  /* padding: 5px 0 10px 0; */
+  height: 100vh;
+`;
 
 export const Box = styled.div`
   position: relative;
@@ -78,4 +88,15 @@ export const InputWrapper = styled.div`
   display: flex;
   margin-bottom: 20px;
   position: relative;
+`;
+
+export const AddButton = styled(Button)`
+  position: absolute;
+  bottom: 10px;
+  padding: 0;
+  margin: 0;
+  /* margin-top: 20px; */
+  /* margin-top: auto; */
+  width: 120px;
+  height: 40px;
 `;

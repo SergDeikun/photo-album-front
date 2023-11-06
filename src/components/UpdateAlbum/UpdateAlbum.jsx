@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import useGetAlbumById from 'react-query/useGetAlbumById';
-import useDeletePhoto from 'react-query/useDeletePhotoById';
-import useChangeAlbum from 'react-query/useChangeAlbum';
+// import useGetAlbumById from 'react-query/useGetAlbumById';
+// import useDeletePhoto from 'react-query/useDeletePhotoById';
+// import useChangeAlbum from 'react-query/useChangeAlbum';
+import useGetAlbumById from '../../react-query/useGetAlbumById';
+import useDeletePhoto from '../../react-query/useDeletePhotoById';
+import useChangeAlbum from '../../react-query/useChangeAlbum';
 
 import { showAlert } from 'helpers/showAlert';
 

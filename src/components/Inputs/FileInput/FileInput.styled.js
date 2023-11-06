@@ -4,16 +4,19 @@ import { BsUpload } from 'react-icons/bs';
 
 export const UploadBox = styled.div`
   position: relative;
-  min-width: 320px;
-  /* height: 100%; */
-  height: 480px;
+  min-width: 310px;
+  /* height: 460px; */
+
+  /* min-width: 320px; */
+  /* height: 480px; */
+
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const Image = styled.img`
-  width: 100%;
+  /* width: 100%;
   height: 100%;
-  margin: 0 auto;
+  margin: 0 auto; */
 `;
 
 export const LabelUpload = styled.label`
@@ -43,9 +46,16 @@ export const IconWrapper = styled.div`
 `;
 
 export const Icon = styled(BsUpload)`
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
+
   fill: ${p => p.theme.colors.red};
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  margin-right: 50px;
+  margin-right: 30px;
+
+  @media ${p => p.theme.device.tablet} {
+    width: 70px;
+    height: 70px;
+    margin-right: 50px;
+  }
 `;
