@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export const Box = styled(motion.div)`
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -17,9 +17,6 @@ export const Box = styled(motion.div)`
   @media ${p => p.theme.device.desktop} {
     width: 320px;
     height: 400px;
-    left: unset;
-    right: 100px;
-    border-radius: ${p => p.theme.borderRadius.small};
     padding: 0 10px;
   }
 `;

@@ -63,6 +63,8 @@ export const AlbumName = styled.h2`
   left: 0;
   width: calc(100% - 20px);
   padding: 10px 10px;
+  border-radius: ${p => p.theme.borderRadius.small};
+
   background-image: linear-gradient(
     transparent 0 25%,
     ${p => p.theme.colors.black}

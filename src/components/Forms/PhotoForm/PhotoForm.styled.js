@@ -60,6 +60,12 @@ export const FieldWrapper = styled.div`
   border-radius: ${p => p.theme.borderRadius.small};
 `;
 
+export const InputWrapper = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  position: relative;
+`;
+
 export const Place = styled(Autocomplite)`
   label {
     display: block;
@@ -93,12 +99,6 @@ export const Place = styled(Autocomplite)`
       background-color: ${p => p.theme.colors.grey};
     }
   }
-`;
-
-export const InputWrapper = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-  position: relative;
 `;
 
 export const AddButton = styled(Button)`

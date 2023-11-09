@@ -26,7 +26,7 @@ const AppBar = () => {
   const { albumId } = useParams();
 
   useEffect(() => {
-    if (isOpenAlbumForm || isOpenPhotoForm || isOpenUserMenu) {
+    if (isOpenAlbumForm || isOpenPhotoForm) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflowY = 'scroll';
@@ -37,7 +37,6 @@ const AppBar = () => {
       if (e.keyCode === 27) {
         setIsOpenAlbumForm(false);
         setIsOpenPhotoForm(false);
-        setIsOpenUserMenu(false);
       }
     };
 
@@ -47,7 +46,7 @@ const AppBar = () => {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', handleEscClose);
     };
-  }, [isOpenAlbumForm, isOpenPhotoForm, isOpenUserMenu]);
+  }, [isOpenAlbumForm, isOpenPhotoForm]);
 
   const handleToggleAlbumForm = () => {
     setIsOpenAlbumForm(!isOpenAlbumForm);

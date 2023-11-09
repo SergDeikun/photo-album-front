@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import HeaderButton from 'components/Buttons/HeaderButton/HeaderButton';
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
 `;

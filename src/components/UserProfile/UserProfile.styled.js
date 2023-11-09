@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
-import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import Button from 'components/Buttons/Button';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
@@ -83,7 +82,21 @@ export const SaveBtn = styled(Button)`
   position: absolute;
   bottom: 0;
   right: 0;
+  margin: 0;
+  background-color: ${p => p.theme.colors.red};
+  color: ${p => p.theme.colors.white};
+  line-height: 1;
   display: ${p => (p.isVisible ? 'block' : 'none')};
+
+  @media ${p => p.theme.device.tablet} {
+    right: 10px;
+    width: 90px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    right: 0px;
+    width: 120px;
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -158,11 +171,6 @@ export const IconAlbum = styled.img`
   background-position: center;
   background-repeat: no-repeat;
   object-fit: cover;
-`;
-
-export const DefaultCover = styled(DefaultAlbumCover)`
-  /* width: 100%;
-  height: 400px; */
 `;
 
 // EditBox

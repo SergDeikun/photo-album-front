@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 import Cookies from 'js-cookie';
-// import { motion, AnimatePresence } from 'framer-motion';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
 import useUpdateUser from 'react-query/useUpdateUser';
 import useLogout from 'react-query/useLogout';
 
+import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import EditLinkBtn from 'components/Buttons/EditLinkBtn/EditLinkBtn';
 import Button from 'components/Buttons/Button';
 
@@ -28,7 +28,6 @@ import {
   Item,
   LinkAlbum,
   IconAlbum,
-  DefaultCover,
   AlbumName,
   EditBox,
   ButtonWrapper,
@@ -99,7 +98,6 @@ const UserProfile = () => {
   };
 
   const handleDelete = async id => {
-    // TODO:добавити tryCatch
     try {
       await deleteAlbum(id, {
         //  TODO:перенести в хук
@@ -206,7 +204,7 @@ const UserProfile = () => {
                       {backgroundURL ? (
                         <IconAlbum src={backgroundURL} alt="cover" />
                       ) : (
-                        <DefaultCover />
+                        <DefaultAlbumCover />
                       )}
                     </LinkAlbum>
 

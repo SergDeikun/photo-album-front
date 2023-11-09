@@ -1,7 +1,6 @@
 import { useState, useEffect, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Container from 'components/Container/Container';
 import AppBar from 'components/AppBar/AppBar';
 
 import { Header, BoxContainer } from './SharedLayout.styled';
@@ -12,7 +11,7 @@ const SharedLayout = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
+      const currentScrollPos = window.scrollY;
 
       if (scrollPosition > currentScrollPos) {
         setIsHeaderVisible(true);
