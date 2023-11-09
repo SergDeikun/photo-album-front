@@ -72,6 +72,11 @@ export const Input = styled(TextField)`
 
 export const SubmitBtn = styled(Button)`
   margin-top: 50px;
+
+  @media ${p => p.theme.device.tablet} {
+    width: 165px;
+    height: 50px;
+  }
 `;
 
 export const ButtonForgot = styled.button`

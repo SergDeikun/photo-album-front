@@ -15,7 +15,8 @@ export const Box = styled.div`
   overflow: hidden;
 
   @media ${p => p.theme.device.tablet} {
-    width: 360px;
+    /* width: 360px; */
+    width: 500px;
   }
 
   @media ${p => p.theme.device.desktop} {

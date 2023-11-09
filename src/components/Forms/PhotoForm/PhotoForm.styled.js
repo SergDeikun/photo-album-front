@@ -4,34 +4,49 @@ import Autocomplite from 'components/Autocomplite/Autocomplite';
 import Button from 'components/Buttons/Button';
 
 export const Form = styled.form`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
   justify-content: center;
-  /* padding: 5px 0 10px 0; */
-  height: 100vh;
 `;
 
 export const Box = styled.div`
   position: relative;
+  width: 310px;
+  min-height: 400px;
   display: flex;
   justify-content: center;
+  background-image: url(${p => p.backgroundImage});
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: cover;
+  @media ${p => p.theme.device.tablet} {
+    width: 500px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    width: 610px;
+    min-height: 510px;
+  }
 `;
 
 export const AddInfoBtn = styled.button`
   position: absolute;
   bottom: 0;
+  left: 0;
   z-index: 100;
-  width: 100%;
-  padding: 6px;
+  width: 80px;
+  height: 20px;
   font-family: ${p => p.theme.fonts.button};
   font-weight: ${p => p.theme.fontWeights.regular};
-  font-size: ${p => p.theme.fontSize[0]}px;
+  /* font-size: ${p => p.theme.fontSize[0]}px; */
   line-height: 1.88;
   letter-spacing: 0.1rem;
   background-color: rgba(0, 0, 0, 0.5);
   outline: none;
   border: none;
+  border-radius: 3px;
+  border-radius: 3px 3px 3px 0px;
   color: white;
 `;
 
@@ -41,12 +56,8 @@ export const FieldWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 10px;
-  background-image: linear-gradient(
-    #242b33 11.98%,
-    rgba(45, 52, 60, 0.38) 51.04%,
-    #242b33 92.19%
-  );
-  border-radius: 3px;
+  background-color: ${p => p.theme.colors.black};
+  border-radius: ${p => p.theme.borderRadius.small};
 `;
 
 export const Place = styled(Autocomplite)`
@@ -91,12 +102,8 @@ export const InputWrapper = styled.div`
 `;
 
 export const AddButton = styled(Button)`
-  position: absolute;
-  bottom: 10px;
-  padding: 0;
-  margin: 0;
-  /* margin-top: 20px; */
-  /* margin-top: auto; */
-  width: 120px;
-  height: 40px;
+  @media ${p => p.theme.device.desktop} {
+    width: 165px;
+    height: 50px;
+  }
 `;

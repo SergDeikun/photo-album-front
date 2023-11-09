@@ -77,7 +77,7 @@ const AlbumForm = ({ onClose }) => {
                 title="Cover"
                 isVisible={true}
               />
-              <SubmitButton type="submit" disabled={isLoading} title={'Add'} />
+              <SubmitButton type="submit" disabled={isLoading} title="Save" />
             </>
           )}
         </ButttonWraper>

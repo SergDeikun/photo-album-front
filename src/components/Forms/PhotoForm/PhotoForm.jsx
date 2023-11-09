@@ -27,14 +27,14 @@ const PhotoForm = ({ onClose }) => {
   const [previewPhoto, setPreviewPhoto] = useState('');
   const [photoURL, setPhoto] = useState('');
   const [isOpenFieldForm, setIsOpenFieldForm] = useState(false);
-  const [titleBtn, setTitleBtn] = useState('Add information');
+  const [titleBtn, setTitleBtn] = useState('Add info');
   const [place, setPlace] = useState('');
   const [date, setDate] = useState(null);
   const [comments, setComments] = useState('');
 
   const handleOpenFieldForm = () => {
     setIsOpenFieldForm(!isOpenFieldForm);
-    setTitleBtn(isOpenFieldForm ? 'Add information' : 'Close information');
+    setTitleBtn(isOpenFieldForm ? 'Add info' : 'Close info');
   };
 
   const uploadImage = e => {
@@ -87,14 +87,12 @@ const PhotoForm = ({ onClose }) => {
   return (
     <>
       <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-        <Box>
+        <Box backgroundImage={previewPhoto}>
           <FileInput
             title="Upload photo"
             name="photoURL"
             uploadFile={previewPhoto}
-            src={previewPhoto}
             onChange={uploadImage}
-            alt="photo"
             isVisible={!previewPhoto}
           />
           {previewPhoto && (
@@ -125,7 +123,7 @@ const PhotoForm = ({ onClose }) => {
         </Box>
 
         {previewPhoto && (
-          <AddButton type="submit" disabled={isLoading} title="Add" />
+          <AddButton type="submit" disabled={isLoading} title="Save" />
         )}
       </Form>
     </>

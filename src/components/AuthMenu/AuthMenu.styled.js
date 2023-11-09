@@ -26,11 +26,13 @@ export const AuthLink = styled(NavLink)`
   font-size: ${p => p.theme.fontSize[1]}px;
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.88;
-  color: ${p => p.theme.colors.red};
+  /* color: ${p => p.theme.colors.red}; */
+  color: ${p => p.theme.colors.white};
+
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
   &:hover {
-    color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.red};
   }
 
   @media ${p => p.theme.device.tablet} {

@@ -5,17 +5,21 @@ import { BsUpload } from 'react-icons/bs';
 export const UploadBox = styled.div`
   position: relative;
   min-width: 310px;
-  /* height: 460px; */
-
+  /* width: 500px; */
+  /* max-height: 400px; */
+  /* height: 260px; */
+  /* width: 430px; */
+  /* height: 500px; */
   /* min-width: 320px; */
-  /* height: 480px; */
+  /* height: 400px; */
+  /* overflow: hidden; */
 
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const Image = styled.img`
   /* width: 100%;
-  height: 100%;
+  max-height: 100%;
   margin: 0 auto; */
 `;
 
