@@ -15,6 +15,7 @@ export const Box = styled(motion.div)`
   background-color: ${p => p.theme.colors.black};
 
   @media ${p => p.theme.device.desktop} {
+    right: 10px;
     width: 320px;
     height: 400px;
     padding: 0 10px;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Container from 'components/Container/Container';
-
+import Logo from 'components/Logo/Logo';
 export const Header = styled.header`
   position: fixed;
   top: 0px;
@@ -15,10 +15,17 @@ export const Header = styled.header`
 `;
 
 export const BoxContainer = styled(Container)`
-  /* @media screen and (max-width: 1280px) {
-    max-width: 100%;
-  } */
+  text-align: center;
+  position: relative;
+
   @media screen and (max-width: 1280px) {
     max-width: 100%;
   }
+`;
+
+export const LogoHeader = styled(Logo)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0 10px 0;
 `;

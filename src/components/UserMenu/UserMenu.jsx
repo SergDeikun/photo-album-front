@@ -8,35 +8,50 @@ import AuthMenu from 'components/AuthMenu/AuthMenu';
 
 import { Box, MenuList, MenuItem, MenuLink } from './UserMenu.styled';
 
-const UserMenu = ({ onClose }) => {
+const UserMenu = ({ onClose, className }) => {
   const token = Cookies.get('token');
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTabletOrDesktop = useMediaQuery({ minWidth: 768 });
 
-  const ref = useOnclickOutside(() => {
-    onClose();
-  });
+  // const ref = useOnclickOutside(() => {
+  //   onClose();
+  // });
 
   return (
     <>
       <AnimatePresence>
         <Box
-          ref={ref}
+          className={className || ''}
+          // ref={ref}
           // key={isOpenMenu}
+          // initial={{
+          //   opacity: 0,
+          //   y: -25,
+          // }}
           initial={{
             opacity: 0,
-            y: -25,
+            y: 25,
           }}
+          // animate={{
+          //   opacity: 1,
+          //   y: 0,
+          // }}
           animate={{
             opacity: 1,
             y: 0,
           }}
+          // exit={{
+          //   opacity: 0,
+          //   y: -25,
+          // }}
           exit={{
             opacity: 0,
-            y: -25,
+            y: 25,
           }}
           transition={{ duration: 0.2 }}
         >
-          <CloseButton onClose={onClose} />
+          {isTabletOrDesktop && <CloseButton onClose={onClose} />}
+
           {isMobile && !token && <AuthMenu onClick={onClose} />}
 
           {token && (

@@ -2,10 +2,10 @@ import LogoIcon from '../../images/logo.png';
 
 import { LogoLink, LogoImg } from './Logo.styled';
 
-const Logo = () => {
+const Logo = ({ className }) => {
   return (
     <>
-      <LogoLink to={'/'}>
+      <LogoLink to={'/'} className={className || ''}>
         <LogoImg src={LogoIcon} alt="icon" />
       </LogoLink>
     </>

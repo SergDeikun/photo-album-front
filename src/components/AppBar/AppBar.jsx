@@ -16,17 +16,20 @@ import { Wrapper, ButtonWrap, AddBtn } from './AppBar.styled';
 
 const AppBar = () => {
   const token = Cookies.get('token');
-  const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTabletOrDesktop = useMediaQuery({ minWidth: 768 });
+  const isMobileOrTablet = useMediaQuery({ maxWidth: 1279 });
   const [isOpenAlbumForm, setIsOpenAlbumForm] = useState(false);
   const [isOpenPhotoForm, setIsOpenPhotoForm] = useState(false);
   const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
-
   const location = useLocation();
   const { albumId } = useParams();
 
   useEffect(() => {
-    if (isOpenAlbumForm || isOpenPhotoForm) {
+    if (
+      isOpenAlbumForm ||
+      isOpenPhotoForm ||
+      (isOpenUserMenu && isMobileOrTablet)
+    ) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflowY = 'scroll';
@@ -37,6 +40,7 @@ const AppBar = () => {
       if (e.keyCode === 27) {
         setIsOpenAlbumForm(false);
         setIsOpenPhotoForm(false);
+        setIsOpenUserMenu(false);
       }
     };
 
@@ -46,7 +50,7 @@ const AppBar = () => {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', handleEscClose);
     };
-  }, [isOpenAlbumForm, isOpenPhotoForm]);
+  }, [isMobileOrTablet, isOpenAlbumForm, isOpenPhotoForm, isOpenUserMenu]);
 
   const handleToggleAlbumForm = () => {
     setIsOpenAlbumForm(!isOpenAlbumForm);
@@ -65,36 +69,14 @@ const AppBar = () => {
       <Logo />
 
       {!token ? (
-        <>
-          {isMobile && (
-            <HeaderButton title="Menu" onClick={handleToggleUserMenu}>
-              Menu
-            </HeaderButton>
-          )}
-
-          {isTabletOrDesktop && <AuthMenu />}
-        </>
+        isTabletOrDesktop && <AuthMenu />
       ) : (
         <ButtonWrap>
           {location.pathname === '/album-list' && (
-            <>
-              {isMobile && (
-                <AddBtn title="Add" onClick={handleToggleAlbumForm} />
-              )}
-              {isTabletOrDesktop && (
-                <AddBtn title="Add album" onClick={handleToggleAlbumForm} />
-              )}
-            </>
+            <AddBtn title="Add album" onClick={handleToggleAlbumForm} />
           )}
           {location.pathname === `/album/${albumId}` && (
-            <>
-              {isMobile && (
-                <AddBtn title="Add" onClick={handleTogglePhotoForm} />
-              )}
-              {isTabletOrDesktop && (
-                <AddBtn title="Add photo" onClick={handleTogglePhotoForm} />
-              )}
-            </>
+            <AddBtn title="Add photo" onClick={handleTogglePhotoForm} />
           )}
           <HeaderButton title="Menu" onClick={handleToggleUserMenu}>
             Menu

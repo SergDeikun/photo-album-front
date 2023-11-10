@@ -1,13 +1,17 @@
 import { useState, useEffect, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
+import MobileBar from 'components/MobileBar/MobileBar';
 import AppBar from 'components/AppBar/AppBar';
 
-import { Header, BoxContainer } from './SharedLayout.styled';
+import { Header, BoxContainer, LogoHeader } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTabletOrDesktop = useMediaQuery({ minWidth: 768 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,12 +45,16 @@ const SharedLayout = () => {
         shadow={shadow}
       >
         <BoxContainer>
-          <AppBar />
+          {isMobile && <LogoHeader />}
+          {isTabletOrDesktop && <AppBar />}
         </BoxContainer>
       </Header>
+
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
+
+      {isMobile && <MobileBar />}
     </>
   );
 };
