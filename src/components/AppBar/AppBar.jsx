@@ -86,6 +86,7 @@ const AppBar = () => {
 
       {isOpenAlbumForm && (
         <Modal onClose={handleToggleAlbumForm}>
+          {/* <AlbumForm onClose={handleToggleAlbumForm} /> */}
           <AlbumForm onClose={handleToggleAlbumForm} />
         </Modal>
       )}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+import AuthMenu from 'components/AuthMenu/AuthMenu';
 import Modal from 'components/Modal/Modal';
 import AlbumForm from 'components/Forms/AlbumForm/AlbumForm';
 import PhotoForm from 'components/Forms/PhotoForm/PhotoForm';
@@ -10,7 +11,7 @@ import {
   Box,
   MenuBtn,
   MobileUserMenu,
-  CloseBtn,
+  // CloseBtn,
   AddBtn,
 } from './MobileBar.styled';
 
@@ -47,39 +48,34 @@ const MobileBar = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
     console.log(isOpenUserMenu);
   };
+
+  const renderMenu = () => {
+    if (token) {
+      return (
+        <>
+          {location.pathname === '/album-list' && (
+            <AddBtn title="Add" onClick={handleToggleAlbumForm} />
+          )}
+          {location.pathname === `/album/${albumId}` && (
+            <AddBtn title="Add" onClick={handleTogglePhotoForm} />
+          )}
+          <MenuBtn title="Menu" onClick={handleToggleUserMenu} />
+        </>
+      );
+    } else {
+      return <AuthMenu />;
+    }
+  };
+
   return (
     <>
-      <Box token={token}>
-        {!token ? (
-          <>
-            {!isOpenUserMenu ? (
-              <MenuBtn
-                title="Menu"
-                token={token}
-                onClick={handleToggleUserMenu}
-              />
-            ) : (
-              <CloseBtn onClose={handleToggleUserMenu} />
-            )}
-          </>
-        ) : (
-          <>
-            {location.pathname === '/album-list' && (
-              <AddBtn title="Add" onClick={handleToggleAlbumForm} />
-            )}
-            {location.pathname === `/album/${albumId}` && (
-              <AddBtn title="Add" onClick={handleTogglePhotoForm} />
-            )}
-            {!isOpenUserMenu ? (
-              <MenuBtn title="Menu" onClick={handleToggleUserMenu} />
-            ) : (
-              <CloseBtn onClose={handleToggleUserMenu} />
-            )}
-          </>
-        )}
-      </Box>
+      <Box token={token}>{renderMenu()}</Box>
 
-      {isOpenUserMenu && <MobileUserMenu onClose={handleToggleUserMenu} />}
+      {isOpenUserMenu && (
+        <Modal onClose={handleToggleUserMenu}>
+          <MobileUserMenu />
+        </Modal>
+      )}
 
       {isOpenAlbumForm && (
         <Modal onClose={handleToggleAlbumForm}>

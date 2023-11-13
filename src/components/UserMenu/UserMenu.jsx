@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
 
-import { Box, MenuList, MenuItem, MenuLink } from './UserMenu.styled';
+import { Box, CloseBtn, MenuList, MenuItem, MenuLink } from './UserMenu.styled';
 
 const UserMenu = ({ onClose, className }) => {
   const token = Cookies.get('token');
@@ -50,6 +50,7 @@ const UserMenu = ({ onClose, className }) => {
           }}
           transition={{ duration: 0.2 }}
         >
+          {/* <CloseBtn onClose={onClose} /> */}
           {isTabletOrDesktop && <CloseButton onClose={onClose} />}
 
           {isMobile && !token && <AuthMenu onClick={onClose} />}

@@ -2,28 +2,56 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const ListLink = styled.ul`
-  /* width: 100%; */
-  text-align: center;
+  height: 100%;
+  display: flex;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 
   @media ${p => p.theme.device.tablet} {
-    display: flex;
     margin-left: auto;
   }
 `;
 
 export const ListItem = styled.li`
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &:not(:last-child) {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      right: 0;
+      display: flex;
+      width: 1px;
+      height: 40px;
+      background-color: ${p => p.theme.colors.darkGrey};
+    }
+  }
+
   @media ${p => p.theme.device.tablet} {
     &:not(:last-child) {
       margin-right: 40px;
+      &:after {
+        display: none;
+      }
     }
   }
 `;
 
 export const AuthLink = styled(NavLink)`
   position: relative;
-  padding: 15px 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: ${p => p.theme.fonts.second};
-  font-size: ${p => p.theme.fontSize[1]}px;
+  font-size: ${p => p.theme.fontSize[0]}px;
+
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.88;
   /* color: ${p => p.theme.colors.red}; */
@@ -36,7 +64,10 @@ export const AuthLink = styled(NavLink)`
   }
 
   @media ${p => p.theme.device.tablet} {
+    padding: 15px 0;
+
     /* padding: 25px 6px; */
+    font-size: ${p => p.theme.fontSize[1]}px;
 
     color: ${p => p.theme.colors.black};
 

@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 import HeaderButton from 'components/Buttons/HeaderButton/HeaderButton';
 import UserMenu from 'components/UserMenu/UserMenu';
-import CloseButton from 'components/Buttons/CloseButton/CloseButton';
+// import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 
 export const Box = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 20;
+  /* z-index: 20; */
   width: 100%;
   height: 50px;
   display: flex;
@@ -29,14 +29,15 @@ export const MenuBtn = styled(HeaderButton)`
 `;
 
 export const MobileUserMenu = styled(UserMenu)`
-  position: fixed;
-  top: unset;
-  bottom: 0;
+  /* position: fixed; */
+  position: unset;
+  /* top: unset;
+  bottom: 0; */
 `;
 
-export const CloseBtn = styled(CloseButton)`
-  width: 50%;
-`;
+// export const CloseBtn = styled(CloseButton)`
+//   width: 50%;
+// `;
 
 export const AddBtn = styled(HeaderButton)`
   width: 50%;

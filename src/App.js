@@ -62,7 +62,7 @@ const App = () => {
       </Routes>
       {/* <ToastContainer {...toastOptions} /> */}
       <ToastContainer />
-      <ScrollToTop smooth component={<p style={{ color: '#ff0044' }}>UP</p>} />
+      {/* <ScrollToTop smooth component={<p style={{ color: '#ff0044' }}>UP</p>} /> */}
     </>
   );
 };

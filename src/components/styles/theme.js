@@ -33,6 +33,12 @@ export const theme = {
     desktop: `(min-width:1280px)`,
   },
 
+  // device: {
+  //   mobile: '320px',
+  //   tablet: '768px',
+  //   desktop: '1280px',
+  // },
+
   // transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
   //  @media ${p => p.theme.device.mobile} {
