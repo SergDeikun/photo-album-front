@@ -7,13 +7,7 @@ import Modal from 'components/Modal/Modal';
 import AlbumForm from 'components/Forms/AlbumForm/AlbumForm';
 import PhotoForm from 'components/Forms/PhotoForm/PhotoForm';
 
-import {
-  Box,
-  MenuBtn,
-  MobileUserMenu,
-  // CloseBtn,
-  AddBtn,
-} from './MobileBar.styled';
+import { Box, MenuBtn, MobileUserMenu, AddBtn } from './MobileBar.styled';
 
 const MobileBar = () => {
   const token = Cookies.get('token');
@@ -71,11 +65,7 @@ const MobileBar = () => {
     <>
       <Box token={token}>{renderMenu()}</Box>
 
-      {isOpenUserMenu && (
-        <Modal onClose={handleToggleUserMenu}>
-          <MobileUserMenu />
-        </Modal>
-      )}
+      {isOpenUserMenu && <MobileUserMenu onClose={handleToggleUserMenu} />}
 
       {isOpenAlbumForm && (
         <Modal onClose={handleToggleAlbumForm}>

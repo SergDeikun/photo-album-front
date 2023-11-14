@@ -1,60 +1,40 @@
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { useMediaQuery } from 'react-responsive';
 import { AnimatePresence } from 'framer-motion';
 import Cookies from 'js-cookie';
 
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
-import AuthMenu from 'components/AuthMenu/AuthMenu';
 
-import { Box, CloseBtn, MenuList, MenuItem, MenuLink } from './UserMenu.styled';
+import { Box, MenuList, MenuItem, MenuLink } from './UserMenu.styled';
 
 const UserMenu = ({ onClose, className }) => {
   const token = Cookies.get('token');
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const isTabletOrDesktop = useMediaQuery({ minWidth: 768 });
 
-  // const ref = useOnclickOutside(() => {
-  //   onClose();
-  // });
+  const ref = useOnclickOutside(() => {
+    onClose();
+  });
 
   return (
     <>
       <AnimatePresence>
         <Box
           className={className || ''}
-          // ref={ref}
+          ref={ref}
           // key={isOpenMenu}
-          // initial={{
-          //   opacity: 0,
-          //   y: -25,
-          // }}
           initial={{
             opacity: 0,
-            y: 25,
+            y: -25,
           }}
-          // animate={{
-          //   opacity: 1,
-          //   y: 0,
-          // }}
           animate={{
             opacity: 1,
             y: 0,
           }}
-          // exit={{
-          //   opacity: 0,
-          //   y: -25,
-          // }}
           exit={{
             opacity: 0,
-            y: 25,
+            y: -25,
           }}
           transition={{ duration: 0.2 }}
         >
-          {/* <CloseBtn onClose={onClose} /> */}
-          {isTabletOrDesktop && <CloseButton onClose={onClose} />}
-
-          {isMobile && !token && <AuthMenu onClick={onClose} />}
-
+          <CloseButton onClose={onClose} />
           {token && (
             <MenuList>
               <MenuItem>

@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import CloseButton from 'components/Buttons/CloseButton/CloseButton';
-
 export const Box = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -23,10 +21,6 @@ export const Box = styled(motion.div)`
     height: 400px;
     padding: 0 10px;
   }
-`;
-
-export const CloseBtn = styled(CloseButton)`
-  top: 20px;
 `;
 
 export const MenuList = styled.ul`
