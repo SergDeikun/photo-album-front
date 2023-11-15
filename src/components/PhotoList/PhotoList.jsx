@@ -17,87 +17,89 @@ import {
 const individualStylesMobile = [
   // 1
   {
-    width: '100px',
-    height: '120px',
+    height: '200px',
     marginTop: '10px',
   },
   // 2
   {
-    width: '100px',
-    height: '120px',
+    height: '200px',
     marginTop: '30px',
-    marginBottom: '10px',
   },
   // 3
-  { width: '100px', height: '120px' },
+  {
+    height: '200px',
+  },
   // 4
   {
-    width: '120px',
-    height: '100px',
+    flexBasis: '30%',
+    height: '180px',
+    marginTop: '10px',
   },
   // 5
   {
-    width: '180px',
-    height: '130px',
-    marginBottom: '10px',
+    flexBasis: '60%',
+    height: '200px',
     marginLeft: 'auto',
   },
 ];
 const individualStylesTablet = [
   // 1
   {
-    width: '240px',
     height: '310px',
     marginTop: '30px',
   },
   // 2
   {
-    width: '240px',
     height: '310px',
     marginTop: '70px',
-    marginBottom: '40px',
+    marginBottom: '10px',
   },
   // 3
-  { width: '240px', height: '310px' },
+  {
+    height: '310px',
+  },
   // 4
   {
-    width: '270px',
+    flexBasis: '40%',
     height: '200px',
   },
   // 5
   {
-    width: '430px',
+    flexBasis: '50%',
     height: '245px',
-    marginBottom: '40px',
+    marginBottom: '10px',
     marginLeft: 'auto',
   },
 ];
 const individualStylesDesktop = [
   // 1
   {
-    width: '400px',
     height: '530px',
     marginTop: '30px',
   },
   // 2
   {
-    width: '400px',
     height: '530px',
     marginTop: '110px',
-    marginBottom: '60px',
+    marginBottom: '10px',
   },
   // 3
-  { width: '400px', height: '530px' },
+  {
+    height: '530px',
+  },
   // 4
   {
+    flexBasis: '40%',
     width: '525px',
     height: '390px',
   },
   // 5
   {
+    flexBasis: '50%',
     width: '635px',
     height: '475px',
-    marginBottom: '60px',
+    marginBottom: '10px',
+    marginLeft: 'auto',
   },
 ];
 

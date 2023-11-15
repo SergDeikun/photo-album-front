@@ -5,13 +5,21 @@ import { Link } from 'react-router-dom';
 
 export const AlbumTitle = styled.h1`
   position: absolute;
-  top: 45px;
-  left: 50%;
-  transform: translate(-50%);
+  /* top: 45px; */
+  /* left: 50%; */
+  top: 10px;
+
+  left: 0;
+
+  /* transform: translate(-50%); */
   z-index: 10;
-  opacity: 0.1;
+  /* opacity: 0.1; */
+  opacity: 0.3;
+
   font-family: ${p => p.theme.fonts.second};
-  font-size: ${p => p.theme.fontSize[2]}px;
+  /* font-size: ${p => p.theme.fontSize[2]}px; */
+  font-size: ${p => p.theme.fontSize[3]}px;
+
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.black};
   text-align: center;
@@ -34,7 +42,17 @@ export const AlbumTitle = styled.h1`
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 15px;
+
+  @media ${p => p.theme.device.tablet} {
+    padding: 0 40px 0 40px;
+    gap: 30px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    padding: 0;
+    gap: 50px;
+  }
 `;
 
 export const PhotoItem = styled.li`
@@ -42,6 +60,15 @@ export const PhotoItem = styled.li`
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  flex-basis: calc((100% - 30px) / 3);
+
+  @media ${p => p.theme.device.tablet} {
+    flex-basis: calc((100% - 60px) / 3);
+  }
+
+  @media ${p => p.theme.device.tablet} {
+    flex-basis: calc((100% - 100px) / 3);
+  }
 
   &:after {
     content: '';
