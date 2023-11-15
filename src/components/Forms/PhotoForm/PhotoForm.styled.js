@@ -6,13 +6,17 @@ import Button from 'components/Buttons/Button';
 export const Form = styled.form`
   /* display: flex; */
   /* flex-wrap: wrap; */
-  justify-content: center;
+  /* justify-content: center; */
+  position: relative;
+  /* height: 100vh; */
 `;
 
 export const Box = styled.div`
   position: relative;
   width: 310px;
-  min-height: 400px;
+  /* min-height: 400px; */
+  min-height: 385px;
+
   display: flex;
   justify-content: center;
   background-image: url(${p => p.backgroundImage});
@@ -20,6 +24,7 @@ export const Box = styled.div`
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
+
   @media ${p => p.theme.device.tablet} {
     width: 500px;
   }
@@ -101,7 +106,10 @@ export const Place = styled(Autocomplite)`
   }
 `;
 
-export const AddButton = styled(Button)`
+export const SaveButton = styled(Button)`
+  /* position: absolute;
+  bottom: 0; */
+  /* margin-top: 50px; */
   @media ${p => p.theme.device.desktop} {
     width: 165px;
     height: 50px;

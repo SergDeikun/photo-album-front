@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const List = styled.ul`
+  width: 100%;
+
   @media ${p => p.theme.device.tablet} {
     display: flex;
     flex-wrap: wrap;
@@ -17,7 +19,7 @@ export const List = styled.ul`
 
 export const Item = styled.li`
   position: relative;
-
+  width: 100%;
   &:not(:last-child) {
     margin-bottom: 10px;
   }
@@ -42,8 +44,15 @@ export const LinkItem = styled(Link)`
 
 export const ImgWrapper = styled.div`
   height: 400px;
-
+  overflow: hidden;
   border-radius: ${p => p.theme.borderRadius.small};
+  /* background-image: url(${p => p.backgroundImage}); */
+  background-image: ${({ backgroundImg }) =>
+    backgroundImg ? `url(${backgroundImg})` : 'none'};
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: cover;
   overflow: hidden;
 
   @media ${p => p.theme.device.desktop} {
@@ -51,11 +60,11 @@ export const ImgWrapper = styled.div`
   }
 `;
 
-export const Image = styled(LazyLoadImage)`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
+// export const Image = styled(LazyLoadImage)`
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+// `;
 
 export const AlbumName = styled.h2`
   position: absolute;

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import Container from 'components/Container/Container';
 import Logo from 'components/Logo/Logo';
+
 export const Header = styled.header`
   position: fixed;
   top: 0px;
@@ -17,6 +18,7 @@ export const Header = styled.header`
 export const BoxContainer = styled(Container)`
   text-align: center;
   position: relative;
+  padding: 0 10px;
 
   @media screen and (max-width: 1280px) {
     max-width: 100%;

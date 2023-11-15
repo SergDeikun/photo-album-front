@@ -5,7 +5,7 @@ import {
   Item,
   LinkItem,
   ImgWrapper,
-  Image,
+  // Image,
   AlbumName,
 } from './AlbumList.styled';
 
@@ -20,9 +20,11 @@ const AlbumList = ({ myAlbums }) => {
               <Item key={id}>
                 <LinkItem to={`/album/${id}`}>
                   {backgroundURL ? (
-                    <ImgWrapper>
-                      <Image src={backgroundURL} alt="cover" />
-                    </ImgWrapper>
+                    // <ImgWrapper backgroundImg={backgroundURL}>
+                    //   {/* // <ImgWrapper> */}
+                    //   {/* <Image src={backgroundURL} alt="cover" /> */}
+                    // </ImgWrapper>
+                    <ImgWrapper backgroundImg={backgroundURL} />
                   ) : (
                     <DefaultAlbumCover />
                   )}

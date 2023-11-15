@@ -32,22 +32,21 @@ export const WelcomeText = styled.p`
 
 export const PageTitle = styled.h1`
   position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translate(-50%);
+  top: 40px;
+  left: 0;
   z-index: 10;
   opacity: 0.1;
   font-family: ${p => p.theme.fonts.second};
   font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSize[2]}px;
-  width: 200px;
+  font-size: ${p => p.theme.fontSize[3]}px;
+  width: 300px;
   color: ${p => p.theme.colors.black};
-  text-align: center;
 
   @media ${p => p.theme.device.tablet} {
     top: 35px;
-    width: 300px;
-    font-size: ${p => p.theme.fontSize[3]}px;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
   }
 
   @media ${p => p.theme.device.desktop} {

@@ -18,7 +18,7 @@ import {
   FieldWrapper,
   InputWrapper,
   Place,
-  AddButton,
+  SaveButton,
 } from './PhotoForm.styled';
 
 const PhotoForm = ({ onClose }) => {
@@ -123,7 +123,7 @@ const PhotoForm = ({ onClose }) => {
         </Box>
 
         {previewPhoto && (
-          <AddButton type="submit" disabled={isLoading} title="Save" />
+          <SaveButton type="submit" disabled={isLoading} title="Save" />
         )}
       </Form>
     </>
