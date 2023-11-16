@@ -8,13 +8,14 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import { Form, InputrWrapper, Input, SubmitBtn } from './AuthForm.styled';
 
 const validationSchema = yup.object({
-  name: yup.string().required('Name is required'),
+  name: yup.string().trim().required('Name is required'),
   email: yup
     .string('Enter your email')
     .email('Enter a valid email')
     .required('Email is required'),
   password: yup
     .string('Enter your password')
+    .trim()
     .required('Password is required')
     .min(8, 'Password should be of minimum 8 characters length'),
 });

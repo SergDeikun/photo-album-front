@@ -7,6 +7,6 @@ export const BoxContainer = styled(Container)`
   padding: 80px 1px 60px 1px;
 
   @media ${p => p.theme.device.tablet} {
-    padding: 100px 10px 20px 10px;
+    padding: 80px 10px 20px 10px;
   }
 `;

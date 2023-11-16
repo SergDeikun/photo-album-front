@@ -58,12 +58,12 @@ const UserProfile = () => {
   }, [currentUser, isLoading]);
 
   const handleNameChange = e => {
-    setName(e.target.value);
+    setName(e.target.value.trimStart().trimEnd());
     setSaveBtnVisible(true);
   };
 
   const handleEmailChange = e => {
-    setEmail(e.target.value);
+    setEmail(e.target.value.trim());
     setSaveBtnVisible(true);
   };
 

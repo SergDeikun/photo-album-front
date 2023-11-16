@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Container from 'components/Container/Container';
 
 export const BoxContainer = styled(Container)`
-  padding: 100px 1px 60px 1px;
+  /* padding: 100px 1px 60px 1px; */
+  padding: 80px 1px 60px 1px;
 
   @media ${p => p.theme.device.tablet} {
     padding: 100px 20px 20px 20px;
@@ -16,10 +17,8 @@ export const WelcomeText = styled.p`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
-
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[0]}px;
-
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
   text-align: center;
@@ -32,10 +31,10 @@ export const WelcomeText = styled.p`
 
 export const PageTitle = styled.h1`
   position: absolute;
-  top: 40px;
+  top: 10px;
   left: 0;
   z-index: 10;
-  opacity: 0.1;
+  opacity: 0.2;
   font-family: ${p => p.theme.fonts.second};
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSize[3]}px;
@@ -43,17 +42,16 @@ export const PageTitle = styled.h1`
   color: ${p => p.theme.colors.black};
 
   @media ${p => p.theme.device.tablet} {
-    top: 35px;
+    top: 30px;
     left: 50%;
     transform: translate(-50%);
     text-align: center;
   }
 
   @media ${p => p.theme.device.desktop} {
-    top: -5px;
+    top: 25px;
     left: 50%;
     width: 500px;
     transform: translate(-50%);
-    font-size: ${p => p.theme.fontSize[4]}px;
   }
 `;

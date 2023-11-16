@@ -51,7 +51,7 @@ const UpdateAlbum = () => {
   }, [data]);
 
   const handleChangeName = e => {
-    setName(e.target.value.trim());
+    setName(e.target.value);
     setSaveBtnVisible(true);
   };
 

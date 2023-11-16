@@ -4,7 +4,6 @@ import LoadingBar from 'react-top-loading-bar';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 
-// import Container from 'components/Container/Container';
 import AlbumList from 'components/AlbumList/AlbumList';
 
 import { BoxContainer, WelcomeText, PageTitle } from './AlbumsPage.styled';

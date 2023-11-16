@@ -75,7 +75,8 @@ const individualStylesDesktop = [
   // 1
   {
     height: '530px',
-    marginTop: '30px',
+    // marginTop: '30px',
+    marginTop: '35px',
   },
   // 2
   {

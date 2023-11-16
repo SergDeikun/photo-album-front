@@ -5,7 +5,7 @@ export const theme = {
     button: 'Roboto,sans-serif',
   },
 
-  fontSize: [16, 24, 34, 50, 90],
+  fontSize: [16, 24, 34, 50, 75],
 
   fontWeights: {
     regular: 400,

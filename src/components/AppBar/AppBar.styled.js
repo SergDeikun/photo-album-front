@@ -9,13 +9,13 @@ export const Wrapper = styled.div`
 
 export const ButtonWrap = styled.div`
   margin-left: auto;
-  padding-top: 25px;
-  padding-bottom: 25px;
 
   @media ${p => p.theme.device.tablet} {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 `;
 
