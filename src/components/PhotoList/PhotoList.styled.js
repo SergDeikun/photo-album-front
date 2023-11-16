@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export const AlbumTitle = styled.h1`
   position: absolute;
-  top: 10px;
+  top: 35px;
   left: 0;
   z-index: 10;
   opacity: 0.2;
@@ -21,6 +21,8 @@ export const AlbumTitle = styled.h1`
   }
 
   @media ${p => p.theme.device.desktop} {
+    left: 50%;
+    transform: translate(-50%);
     font-size: ${p => p.theme.fontSize[3]}px;
   }
 `;

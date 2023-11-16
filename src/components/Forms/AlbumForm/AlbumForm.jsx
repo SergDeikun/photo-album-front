@@ -63,6 +63,7 @@ const AlbumForm = ({ onClose }) => {
                 value={name}
                 placeholder="Enter album name"
                 onChange={e => setName(e.target.value)}
+                maxLength="20"
               />
             </label>
           </NameWrapper>

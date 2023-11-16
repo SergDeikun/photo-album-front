@@ -45,7 +45,7 @@ const SharedLayout = () => {
         shadow={shadow}
       >
         <BoxContainer>
-          {/* {isMobile && <LogoHeader />} */}
+          {isMobile && <LogoHeader />}
           {isTabletOrDesktop && <AppBar />}
         </BoxContainer>
       </Header>
