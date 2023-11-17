@@ -53,7 +53,7 @@ const AlbumForm = ({ onClose }) => {
     <>
       <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
         <Box backgroundImage={previewBackground}>
-          <NameWrapper background={previewBackground}>
+          <NameWrapper>
             <label>
               <InputName
                 required

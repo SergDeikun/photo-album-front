@@ -20,6 +20,7 @@ import {
   SaveBtn,
   FriendsBox,
   FriendsPreTitle,
+  FriendsList,
   FriendsItem,
   FileWrapper,
   DefaultCover,
@@ -102,32 +103,22 @@ const UpdateAlbum = () => {
       {data && (
         <InfoWrapper>
           <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-            {/* Name */}
-
             <NameWrapper>
-              <label>
+              <label style={{ width: '100%' }}>
                 <NameField
                   type="text"
                   name="name"
                   value={name}
                   onChange={handleChangeName}
                   onBlur={handleOnBlur}
+                  maxLength="20"
                 />
               </label>
             </NameWrapper>
 
-            {/* Cover */}
-
-            <FileWrapper>
-              {previewBackground || backgroundURL ? (
-                <Cover
-                  src={previewBackground || backgroundURL || ''}
-                  alt="cover"
-                />
-              ) : (
-                <DefaultCover />
-              )}
-
+            <FileWrapper
+              backgroundImage={previewBackground || backgroundURL || ''}
+            >
               <BlackBox>
                 <PhotocameraIcon />
                 <FileLabel>
@@ -151,21 +142,26 @@ const UpdateAlbum = () => {
             />
           </Form>
 
-          {/* Friends */}
+          {/* if I have friends => render FriendsBox */}
 
           <FriendsBox>
-            <ul>
-              <FriendsPreTitle>Friends :</FriendsPreTitle>
+            <FriendsPreTitle>Friends :</FriendsPreTitle>
+
+            <FriendsList>
               <FriendsItem>Name:12334</FriendsItem>
               <FriendsItem>Name:89645</FriendsItem>
               <FriendsItem>Name:gfndj</FriendsItem>
               <FriendsItem>Name:nvbg5</FriendsItem>
               <FriendsItem>Name:bcvdh</FriendsItem>
-            </ul>
+              <FriendsItem>Name:12334</FriendsItem>
+              <FriendsItem>Name:89645</FriendsItem>
+              <FriendsItem>Name:gfndj</FriendsItem>
+              <FriendsItem>Name:nvbg5</FriendsItem>
+              <FriendsItem>Name:bcvdh</FriendsItem>
+            </FriendsList>
           </FriendsBox>
         </InfoWrapper>
       )}
-
       {/* PhotoList */}
 
       {data && (

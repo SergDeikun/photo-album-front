@@ -12,54 +12,87 @@ export const InfoWrapper = styled.div`
 `;
 
 export const Form = styled.form`
-  display: flex;
+  @media ${p => p.theme.device.tablet} {
+    display: flex;
+  }
 `;
 
-// Name
+//* Name
 
 export const NameWrapper = styled.div`
-  height: 75px;
+  padding-left: 10px;
+  @media ${p => p.theme.device.tablet} {
+    position: relative;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 155px;
-    left: 0;
-    display: flex;
-    width: 600px;
-    height: 1px;
-    background-color: ${p => p.theme.colors.darkGrey};
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100px;
+
+      left: 0;
+      display: flex;
+      width: 380px;
+      height: 1px;
+      background-color: ${p => p.theme.colors.darkGrey};
+    }
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    &::after {
+      width: 600px;
+      top: 140px;
+    }
   }
 `;
 
 export const NameField = styled.input`
-  padding: 0 5px;
+  width: 100%;
+  padding: 10px 0;
+  align-items: center;
   background-color: transparent;
   font-family: ${p => p.theme.fonts.second};
-  font-size: ${p => p.theme.fontSize[3]}px;
+  font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.black};
   opacity: 0.5;
   border: none;
   outline: none;
+
+  @media ${p => p.theme.device.tablet} {
+    width: 98%;
+    font-size: ${p => p.theme.fontSize[3]}px;
+  }
 `;
 
 export const SaveBtn = styled(Button)`
   position: absolute;
-  bottom: -45px;
+  bottom: -40px;
   left: 50%;
+  width: 160px;
   height: 30px;
   transform: translate(-50%);
   display: ${p => (p.isVisible ? 'block' : 'none')};
 `;
 
-// Friends
+//* Friends
 
 export const FriendsBox = styled.div`
-  position: absolute;
-  bottom: 0px;
-  width: 542px;
-  height: 300px;
+  margin-top: 10px;
+  overflow: hidden;
+  height: 315px;
+
+  @media ${p => p.theme.device.tablet} {
+    position: absolute;
+    bottom: 0;
+    width: 405px;
+    height: 230px;
+    margin-top: 0;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    /* width: 542px; */
+    height: 315px;
+  }
 `;
 
 export const FriendsPreTitle = styled.p`
@@ -70,8 +103,13 @@ export const FriendsPreTitle = styled.p`
   color: ${p => p.theme.colors.black};
 `;
 
+export const FriendsList = styled.ul`
+  overflow-y: auto;
+  height: 100%;
+`;
+
 export const FriendsItem = styled.li`
-  padding: 10px 0;
+  padding: 10px 5px;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
@@ -84,23 +122,43 @@ export const FriendsItem = styled.li`
   }
 `;
 
-// File
+//* File
 
 export const FileWrapper = styled.div`
   position: relative;
-  width: 600px;
-  height: 510px;
-  margin-left: auto;
+  width: 100%;
+  height: 255px;
+  border-radius: ${p => p.theme.borderRadius.small};
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 25px;
-    left: -20px;
-    display: flex;
-    width: 1px;
-    height: 90%;
-    background-color: ${p => p.theme.colors.darkGrey};
+  background-image: url(${p => p.backgroundImage});
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: cover;
+
+  @media ${p => p.theme.device.tablet} {
+    position: relative;
+    width: 400px;
+    height: 360px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 25px;
+      /* left: -20px; */
+      left: -10px;
+
+      display: flex;
+      width: 1px;
+      height: 90%;
+      background-color: ${p => p.theme.colors.darkGrey};
+    }
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    width: 600px;
+    height: 510px;
+    margin-left: auto;
   }
 `;
 
@@ -116,10 +174,10 @@ export const DefaultCover = styled(DefaultAlbumCover)`
 `;
 
 export const Cover = styled.img`
-  width: 100%;
+  /* width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: ${p => p.theme.borderRadius.small};
+  border-radius: ${p => p.theme.borderRadius.small}; */
 `;
 
 export const BlackBox = styled.div`
@@ -129,7 +187,10 @@ export const BlackBox = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  width: 100px;
+  /* width: 100px; */
+  padding: 5px;
+  font-family: ${p => p.theme.fonts.second};
+
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
@@ -145,13 +206,12 @@ export const FileLabel = styled.label`
   cursor: pointer;
 `;
 
-// PhotoList
+//* PhotoList
 
 export const PhotoList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 20px 0;
 `;
 
 export const PhotoItem = styled.li`
@@ -159,8 +219,11 @@ export const PhotoItem = styled.li`
   border-radius: ${p => p.theme.borderRadius.small};
   overflow: hidden;
   height: 200px;
-  overflow: hidden;
-  flex-basis: calc((100% - 30px) / 4);
+  flex-basis: calc((100% - 10px) / 2);
+
+  @media ${p => p.theme.device.tablet} {
+    flex-basis: calc((100% - 30px) / 4);
+  }
 `;
 
 export const Image = styled.img`

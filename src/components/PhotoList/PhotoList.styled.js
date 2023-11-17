@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export const AlbumTitle = styled.h1`
   position: absolute;
   top: 35px;
-  left: 0;
+  left: 10px;
   z-index: 10;
   opacity: 0.2;
   font-family: ${p => p.theme.fonts.second};
