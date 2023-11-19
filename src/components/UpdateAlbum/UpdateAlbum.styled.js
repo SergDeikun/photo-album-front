@@ -21,6 +21,7 @@ export const Form = styled.form`
 
 export const NameWrapper = styled.div`
   padding-left: 10px;
+
   @media ${p => p.theme.device.tablet} {
     position: relative;
 
@@ -72,6 +73,8 @@ export const SaveBtn = styled(Button)`
   height: 30px;
   transform: translate(-50%);
   display: ${p => (p.isVisible ? 'block' : 'none')};
+  background-color: ${p => p.theme.colors.red};
+  color: ${p => p.theme.colors.white};
 `;
 
 //* Friends

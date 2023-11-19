@@ -11,7 +11,6 @@ import useLogout from 'react-query/useLogout';
 
 import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import EditLinkBtn from 'components/Buttons/EditLinkBtn/EditLinkBtn';
-import Button from 'components/Buttons/Button';
 
 import { showAlert } from 'helpers/showAlert';
 
@@ -21,9 +20,11 @@ import {
   List,
   UserWrapper,
   UserForm,
+  FieldWrapper,
   InputWrapper,
   Field,
   SaveBtn,
+  LogOutBtn,
   Title,
   Item,
   LinkAlbum,
@@ -43,7 +44,9 @@ const UserProfile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
-  const [saveBtnVisible, setSaveBtnVisible] = useState(false);
+  const [saveNameBtnVisible, setSaveNameBtnVisible] = useState(false);
+  const [saveEmailBtnVisible, setSaveEmailBtnVisible] = useState(false);
+
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -58,22 +61,13 @@ const UserProfile = () => {
   }, [currentUser, isLoading]);
 
   const handleNameChange = e => {
-    setName(e.target.value.trimStart().trimEnd());
-    setSaveBtnVisible(true);
+    setName(e.target.value.trimStart());
+    setSaveNameBtnVisible(currentUser.name !== e.target.value);
   };
 
   const handleEmailChange = e => {
     setEmail(e.target.value.trim());
-    setSaveBtnVisible(true);
-  };
-
-  const handleOnBlur = () => {
-    if (currentUser) {
-      const isChagedNameOrEmail =
-        currentUser.name !== name || currentUser.email !== email;
-
-      setSaveBtnVisible(isChagedNameOrEmail);
-    }
+    setSaveEmailBtnVisible(currentUser.email !== e.target.value);
   };
 
   const handleSubmit = async e => {
@@ -85,10 +79,11 @@ const UserProfile = () => {
         { name, email },
         {
           onSuccess: () => {
-            setSaveBtnVisible(false);
+            setSaveNameBtnVisible(false);
+            setSaveEmailBtnVisible(false);
           },
           onError: error => {
-            notifyError(error.response.data.message);
+            // notifyError(error.response.data.message);
           },
         }
       );
@@ -155,41 +150,40 @@ const UserProfile = () => {
               onSubmit={handleSubmit}
               action=""
             >
-              <div>
+              <FieldWrapper>
                 <InputWrapper>
                   <label>
                     <Field
                       type="text"
                       value={name}
                       onChange={handleNameChange}
-                      onBlur={handleOnBlur}
                     />
                   </label>
                 </InputWrapper>
+                <SaveBtn
+                  disabled={updateUserLoading}
+                  isVisible={saveNameBtnVisible}
+                />
+              </FieldWrapper>
 
+              <FieldWrapper>
                 <InputWrapper>
                   <label>
                     <Field
                       type="email"
                       value={email}
                       onChange={handleEmailChange}
-                      onBlur={handleOnBlur}
                     />
                   </label>
                 </InputWrapper>
-              </div>
-
-              <SaveBtn
-                type="submit"
-                title="Save changes"
-                disabled={updateUserLoading}
-                isVisible={saveBtnVisible}
-              >
-                Save
-              </SaveBtn>
+                <SaveBtn
+                  disabled={updateUserLoading}
+                  isVisible={saveEmailBtnVisible}
+                />
+              </FieldWrapper>
             </UserForm>
 
-            <Button type="button" title="Log out" onClick={handleLogout} />
+            <LogOutBtn type="button" title="Log out" onClick={handleLogout} />
           </UserWrapper>
 
           {/* Album list */}

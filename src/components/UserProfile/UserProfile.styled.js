@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
 import Button from 'components/Buttons/Button';
+import SaveButton from 'components/Buttons/SaveButton/SaveButton';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
 // User
@@ -13,6 +14,10 @@ export const UserWrapper = styled.div`
     display: flex;
     align-items: end;
     padding: 0 20px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    align-items: end;
   }
 `;
 
@@ -25,29 +30,28 @@ export const Avatar = styled(FaUser)`
 // Form
 
 export const UserForm = styled.form`
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: end;
-
   @media ${p => p.theme.device.tablet} {
-    width: 500px;
+    margin-left: 20px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
     margin-left: 50px;
   }
 `;
 
-export const FieldWrapper = styled.div``;
-
-export const InputWrapper = styled.div`
-  width: 100%;
-  position: relative;
+export const FieldWrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   &:not(:last-child) {
     margin-bottom: 20px;
   }
+`;
+
+export const InputWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   &:after {
     content: ' ';
@@ -60,10 +64,18 @@ export const InputWrapper = styled.div`
     transform: rotateY(90deg);
     transition: transform 0.25s linear;
   }
-
   &:hover:after,
   &:focus-within:after {
     transform: rotate(0deg);
+  }
+`;
+
+export const SaveBtn = styled(SaveButton)`
+  margin-left: 10px;
+  display: ${p => (p.isVisible ? 'block' : 'none')};
+
+  @media ${p => p.theme.device.tablet} {
+    margin-left: 30px;
   }
 `;
 
@@ -78,36 +90,13 @@ export const Field = styled.input`
   color: ${p => p.theme.colors.black};
 `;
 
-export const SaveBtn = styled(Button)`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 0;
-  background-color: ${p => p.theme.colors.red};
-  color: ${p => p.theme.colors.white};
-  line-height: 1;
-  display: ${p => (p.isVisible ? 'block' : 'none')};
+export const LogOutBtn = styled(Button)`
+  margin-top: 15px;
 
   @media ${p => p.theme.device.tablet} {
-    right: 10px;
-    width: 90px;
+    margin-top: auto;
+    margin-right: 0;
   }
-
-  @media ${p => p.theme.device.desktop} {
-    right: 0px;
-    width: 120px;
-  }
-`;
-
-export const SubmitButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3px;
-  background-color: transparent;
-  border-radius: ${p => p.theme.borderRadius.round};
-  border: none;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 //Albums
