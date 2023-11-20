@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export const AlbumTitle = styled.h1`
   position: absolute;
-  top: 35px;
+  top: 45px;
   left: 10px;
   z-index: 10;
   opacity: 0.2;
@@ -16,11 +16,12 @@ export const AlbumTitle = styled.h1`
   text-align: center;
 
   @media ${p => p.theme.device.tablet} {
-    top: 45px;
+    top: 55px;
     font-size: ${p => p.theme.fontSize[3]}px;
   }
 
   @media ${p => p.theme.device.desktop} {
+    top: 35px;
     left: 50%;
     transform: translate(-50%);
     font-size: ${p => p.theme.fontSize[3]}px;

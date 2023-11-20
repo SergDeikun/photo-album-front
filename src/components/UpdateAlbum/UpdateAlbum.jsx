@@ -4,9 +4,6 @@ import { useParams } from 'react-router-dom';
 import useGetAlbumById from 'react-query/useGetAlbumById';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useChangeAlbum from 'react-query/useChangeAlbum';
-// import useGetAlbumById from '../../react-query/useGetAlbumById';
-// import useDeletePhoto from '../../react-query/useDeletePhotoById';
-// import useChangeAlbum from '../../react-query/useChangeAlbum';
 
 import { showAlert } from 'helpers/showAlert';
 
@@ -22,9 +19,9 @@ import {
   FriendsPreTitle,
   FriendsList,
   FriendsItem,
+  FriendsDataWrap,
+  DeleteFriend,
   FileWrapper,
-  DefaultCover,
-  Cover,
   BlackBox,
   PhotocameraIcon,
   FileLabel,
@@ -53,21 +50,13 @@ const UpdateAlbum = () => {
 
   const handleChangeName = e => {
     setName(e.target.value);
-    setSaveBtnVisible(true);
+    setSaveBtnVisible(data.name !== e.target.value);
   };
 
   const uploadImage = e => {
     setPreviewBackground(URL.createObjectURL(e.target.files[0]));
     setBackgroundURL(e.target.files[0]);
     setSaveBtnVisible(true);
-  };
-
-  const handleOnBlur = () => {
-    if (data) {
-      const isChagedNameOrEmail = data.name !== name;
-
-      setSaveBtnVisible(isChagedNameOrEmail);
-    }
   };
 
   const handleSubmit = async e => {
@@ -102,62 +91,127 @@ const UpdateAlbum = () => {
     <>
       {data && (
         <InfoWrapper>
-          <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
-            <NameWrapper>
-              <label style={{ width: '100%' }}>
-                <NameField
-                  type="text"
-                  name="name"
-                  value={name}
-                  onChange={handleChangeName}
-                  onBlur={handleOnBlur}
-                  maxLength="20"
-                />
-              </label>
-            </NameWrapper>
-
-            <FileWrapper
-              backgroundImage={previewBackground || backgroundURL || ''}
+          <div>
+            <Form
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
+              action=""
             >
-              <BlackBox>
-                <PhotocameraIcon />
-                <FileLabel>
-                  Edit cover
-                  <input
-                    type="file"
-                    name={backgroundURL}
-                    onChange={uploadImage}
-                    accept=".jpg, .jpeg, .png"
-                    hidden
+              <NameWrapper>
+                <label>
+                  <NameField
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={handleChangeName}
+                    maxLength="20"
                   />
-                </FileLabel>
-              </BlackBox>
-            </FileWrapper>
+                </label>
+              </NameWrapper>
 
-            <SaveBtn
-              type="submit"
-              title="Save changes"
-              disabled={isLoading}
-              isVisible={saveBtnVisible}
-            />
-          </Form>
+              <FileWrapper
+                backgroundImage={previewBackground || backgroundURL || ''}
+              >
+                <BlackBox>
+                  <PhotocameraIcon />
+                  <FileLabel>
+                    Edit cover
+                    <input
+                      type="file"
+                      name={backgroundURL}
+                      onChange={uploadImage}
+                      accept=".jpg, .jpeg, .png"
+                      hidden
+                    />
+                  </FileLabel>
+                </BlackBox>
+              </FileWrapper>
+
+              <SaveBtn
+                type="submit"
+                title="Save changes"
+                disabled={isLoading}
+                isVisible={saveBtnVisible}
+              />
+            </Form>
+          </div>
 
           {/* if I have friends => render FriendsBox */}
 
           <FriendsBox>
             <FriendsPreTitle>Friends :</FriendsPreTitle>
+            {/* <span>You haven't shared this album with anyone</span> */}
 
             <FriendsList>
-              <FriendsItem>Name:12334</FriendsItem>
-              <FriendsItem>Name:89645</FriendsItem>
-              <FriendsItem>Name:gfndj</FriendsItem>
-              <FriendsItem>Name:nvbg5</FriendsItem>
-              <FriendsItem>Name:bcvdh</FriendsItem>
-              <FriendsItem>Name:12334</FriendsItem>
-              <FriendsItem>Name:89645</FriendsItem>
-              <FriendsItem>Name:gfndj</FriendsItem>
-              <FriendsItem>Name:nvbg5</FriendsItem>
-              <FriendsItem>Name:bcvdh</FriendsItem>
+              <FriendsItem>
+                <div>
+                  <FriendsDataWrap>
+                    <span>Name:</span>
+                    <span>12334gfgfgfgfgfgfggfgfg</span>
+                  </FriendsDataWrap>
+                  <FriendsDataWrap>
+                    <span>Email:</span>
+                    <span>qwerty@mail.com</span>
+                  </FriendsDataWrap>
+                </div>
+                {/* <DeleteFriend></DeleteFriend> */}
+                <DeleteFriend />
+              </FriendsItem>
+              {/* <FriendsItem>
+                <FriendsDataWrap>
+                  <span>Name:</span>
+                  <span>12334gfgfgfgfgfgfggfgfg</span>
+                </FriendsDataWrap>
+                <FriendsDataWrap>
+                  <span>Email:</span>
+                  <span>qwerty@mail.com</span>
+                </FriendsDataWrap>
+                <button>D</button>
+              </FriendsItem>
+              <FriendsItem>
+                <FriendsDataWrap>
+                  <span>Name:</span>
+                  <span>12334gfgfgfgfgfgfggfgfg</span>
+                </FriendsDataWrap>
+                <FriendsDataWrap>
+                  <span>Email:</span>
+                  <span>qwerty@mail.com</span>
+                </FriendsDataWrap>
+                <button>D</button>
+              </FriendsItem>
+              <FriendsItem>
+                <FriendsDataWrap>
+                  <span>Name:</span>
+                  <span>12334gfgfgfgfgfgfggfgfg</span>
+                </FriendsDataWrap>
+                <FriendsDataWrap>
+                  <span>Email:</span>
+                  <span>qwerty@mail.com</span>
+                </FriendsDataWrap>
+                <button>D</button>
+              </FriendsItem>
+              <FriendsItem>
+                <FriendsDataWrap>
+                  <span>Name:</span>
+                  <span>12334gfgfgfgfgfgfggfgfg</span>
+                </FriendsDataWrap>
+                <FriendsDataWrap>
+                  <span>Email:</span>
+                  <span>qwerty@mail.com</span>
+                </FriendsDataWrap>
+                <button>D</button>
+              </FriendsItem>
+              <FriendsItem>
+                <FriendsDataWrap>
+                  <span>Name:</span>
+                  <span>12334gfgfgfgfgfgfggfgfg</span>
+                </FriendsDataWrap>
+                <FriendsDataWrap>
+                  <span>Email:</span>
+                  <span>qwerty@mail.com</span>
+                </FriendsDataWrap>
+                <button>D</button>
+              </FriendsItem> */}
             </FriendsList>
           </FriendsBox>
         </InfoWrapper>

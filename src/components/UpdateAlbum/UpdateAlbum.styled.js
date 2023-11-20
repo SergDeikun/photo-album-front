@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import { MdPhotoCamera } from 'react-icons/md';
 
-import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import Button from 'components/Buttons/Button';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
@@ -12,89 +11,98 @@ export const InfoWrapper = styled.div`
 `;
 
 export const Form = styled.form`
+  height: 345px;
+
   @media ${p => p.theme.device.tablet} {
-    display: flex;
+    height: 100%;
   }
 `;
 
 //* Name
 
 export const NameWrapper = styled.div`
-  padding-left: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 
   @media ${p => p.theme.device.tablet} {
     position: relative;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
 
-    &::after {
-      content: '';
+    &:after {
+      content: ' ';
       position: absolute;
-      top: 100px;
-
+      width: 100%;
+      bottom: 0;
       left: 0;
-      display: flex;
-      width: 380px;
       height: 1px;
-      background-color: ${p => p.theme.colors.darkGrey};
+      box-shadow: 0px -1px 0px ${p => p.theme.colors.red};
+      transform: rotateY(90deg);
+      transition: transform 0.25s linear;
     }
-  }
-
-  @media ${p => p.theme.device.desktop} {
-    &::after {
-      width: 600px;
-      top: 140px;
+    &:hover:after,
+    &:focus-within:after {
+      transform: rotate(0deg);
     }
   }
 `;
 
 export const NameField = styled.input`
   width: 100%;
-  padding: 10px 0;
+  padding: 0;
   align-items: center;
   background-color: transparent;
   font-family: ${p => p.theme.fonts.second};
-  font-size: ${p => p.theme.fontSize[2]}px;
+  font-size: ${p => p.theme.fontSize[1]}px;
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.black};
   opacity: 0.5;
   border: none;
   outline: none;
+  text-align: center;
 
   @media ${p => p.theme.device.tablet} {
-    width: 98%;
     font-size: ${p => p.theme.fontSize[3]}px;
   }
 `;
 
 export const SaveBtn = styled(Button)`
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
+  margin-top: 10px;
   width: 160px;
   height: 30px;
-  transform: translate(-50%);
   display: ${p => (p.isVisible ? 'block' : 'none')};
   background-color: ${p => p.theme.colors.red};
   color: ${p => p.theme.colors.white};
+
+  @media ${p => p.theme.device.tablet} {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translate(-50%);
+  }
 `;
 
 //* Friends
 
 export const FriendsBox = styled.div`
-  margin-top: 10px;
   overflow: hidden;
   height: 315px;
+  padding: 5px 5px 10px 5px;
 
   @media ${p => p.theme.device.tablet} {
     position: absolute;
     bottom: 0;
-    width: 405px;
-    height: 230px;
+    right: 0;
+    width: 390px;
+    height: 360px;
     margin-top: 0;
   }
 
   @media ${p => p.theme.device.desktop} {
-    /* width: 542px; */
-    height: 315px;
+    width: 600px;
+    height: 510px;
   }
 `;
 
@@ -112,7 +120,13 @@ export const FriendsList = styled.ul`
 `;
 
 export const FriendsItem = styled.li`
-  padding: 10px 5px;
+  padding: 5px 5px;
+  background-color: ${p => p.theme.colors.grey};
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
@@ -121,7 +135,21 @@ export const FriendsItem = styled.li`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
   &:hover {
-    background-color: ${p => p.theme.colors.grey};
+    background-color: ${p => p.theme.colors.red};
+  }
+
+  @media ${p => p.theme.device.tablet} {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const FriendsDataWrap = styled.div``;
+
+export const DeleteFriend = styled(DeleteButton)`
+  margin-left: auto;
+  svg {
+    fill: black;
   }
 `;
 
@@ -132,7 +160,6 @@ export const FileWrapper = styled.div`
   width: 100%;
   height: 255px;
   border-radius: ${p => p.theme.borderRadius.small};
-
   background-image: url(${p => p.backgroundImage});
   background-position: center;
   background-repeat: no-repeat;
@@ -141,46 +168,14 @@ export const FileWrapper = styled.div`
 
   @media ${p => p.theme.device.tablet} {
     position: relative;
-    width: 400px;
+    width: 350px;
     height: 360px;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 25px;
-      /* left: -20px; */
-      left: -10px;
-
-      display: flex;
-      width: 1px;
-      height: 90%;
-      background-color: ${p => p.theme.colors.darkGrey};
-    }
   }
 
   @media ${p => p.theme.device.desktop} {
     width: 600px;
     height: 510px;
-    margin-left: auto;
   }
-`;
-
-export const DefaultCover = styled(DefaultAlbumCover)`
-  width: 100%;
-  max-height: 100%;
-
-  span {
-    display: none;
-    font-size: ${p => p.theme.fontSize[3]}px;
-    word-break: break-all;
-  }
-`;
-
-export const Cover = styled.img`
-  /* width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: ${p => p.theme.borderRadius.small}; */
 `;
 
 export const BlackBox = styled.div`
@@ -190,7 +185,6 @@ export const BlackBox = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  /* width: 100px; */
   padding: 5px;
   font-family: ${p => p.theme.fonts.second};
 
