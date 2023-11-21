@@ -20,7 +20,10 @@ import {
   FriendsList,
   FriendsItem,
   FriendsDataWrap,
-  DeleteFriend,
+  PersonIcon,
+  EmailnIcon,
+  FriendNext,
+  DeleteFriendBtn,
   FileWrapper,
   BlackBox,
   PhotocameraIcon,
@@ -136,7 +139,7 @@ const UpdateAlbum = () => {
             </Form>
           </div>
 
-          {/* if I have friends => render FriendsBox */}
+          {/* if I have friends => render FriendsList */}
 
           <FriendsBox>
             <FriendsPreTitle>Friends :</FriendsPreTitle>
@@ -146,72 +149,43 @@ const UpdateAlbum = () => {
               <FriendsItem>
                 <div>
                   <FriendsDataWrap>
-                    <span>Name:</span>
-                    <span>12334gfgfgfgfgfgfggfgfg</span>
+                    <PersonIcon />
+                    <FriendNext>Kiwi ahgfdhgafhsdhahs</FriendNext>
                   </FriendsDataWrap>
                   <FriendsDataWrap>
-                    <span>Email:</span>
-                    <span>qwerty@mail.com</span>
+                    <EmailnIcon />
+                    <FriendNext>kiwi@mail.com</FriendNext>
+                  </FriendsDataWrap>
+                </div>
+                <DeleteFriendBtn />
+              </FriendsItem>
+              <FriendsItem>
+                <div>
+                  <FriendsDataWrap>
+                    <PersonIcon />
+                    <FriendNext>Kokos</FriendNext>
+                  </FriendsDataWrap>
+                  <FriendsDataWrap>
+                    <EmailnIcon />
+                    <FriendNext>kokos@mail.com</FriendNext>
                   </FriendsDataWrap>
                 </div>
                 {/* <DeleteFriend></DeleteFriend> */}
-                <DeleteFriend />
-              </FriendsItem>
-              {/* <FriendsItem>
-                <FriendsDataWrap>
-                  <span>Name:</span>
-                  <span>12334gfgfgfgfgfgfggfgfg</span>
-                </FriendsDataWrap>
-                <FriendsDataWrap>
-                  <span>Email:</span>
-                  <span>qwerty@mail.com</span>
-                </FriendsDataWrap>
-                <button>D</button>
+                <DeleteFriendBtn />
               </FriendsItem>
               <FriendsItem>
-                <FriendsDataWrap>
-                  <span>Name:</span>
-                  <span>12334gfgfgfgfgfgfggfgfg</span>
-                </FriendsDataWrap>
-                <FriendsDataWrap>
-                  <span>Email:</span>
-                  <span>qwerty@mail.com</span>
-                </FriendsDataWrap>
-                <button>D</button>
+                <div>
+                  <FriendsDataWrap>
+                    <PersonIcon />
+                    <FriendNext>Mango</FriendNext>
+                  </FriendsDataWrap>
+                  <FriendsDataWrap>
+                    <EmailnIcon />
+                    <FriendNext>mango@mail.com</FriendNext>
+                  </FriendsDataWrap>
+                </div>
+                <DeleteFriendBtn />
               </FriendsItem>
-              <FriendsItem>
-                <FriendsDataWrap>
-                  <span>Name:</span>
-                  <span>12334gfgfgfgfgfgfggfgfg</span>
-                </FriendsDataWrap>
-                <FriendsDataWrap>
-                  <span>Email:</span>
-                  <span>qwerty@mail.com</span>
-                </FriendsDataWrap>
-                <button>D</button>
-              </FriendsItem>
-              <FriendsItem>
-                <FriendsDataWrap>
-                  <span>Name:</span>
-                  <span>12334gfgfgfgfgfgfggfgfg</span>
-                </FriendsDataWrap>
-                <FriendsDataWrap>
-                  <span>Email:</span>
-                  <span>qwerty@mail.com</span>
-                </FriendsDataWrap>
-                <button>D</button>
-              </FriendsItem>
-              <FriendsItem>
-                <FriendsDataWrap>
-                  <span>Name:</span>
-                  <span>12334gfgfgfgfgfgfggfgfg</span>
-                </FriendsDataWrap>
-                <FriendsDataWrap>
-                  <span>Email:</span>
-                  <span>qwerty@mail.com</span>
-                </FriendsDataWrap>
-                <button>D</button>
-              </FriendsItem> */}
             </FriendsList>
           </FriendsBox>
         </InfoWrapper>

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 import { MdPhotoCamera } from 'react-icons/md';
+import { IoPerson } from 'react-icons/io5';
+import { MdOutlineEmail } from 'react-icons/md';
 
 import Button from 'components/Buttons/Button';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
@@ -11,7 +13,8 @@ export const InfoWrapper = styled.div`
 `;
 
 export const Form = styled.form`
-  height: 345px;
+  height: 390px;
+  /* height: 345px; */
 
   @media ${p => p.theme.device.tablet} {
     height: 100%;
@@ -21,31 +24,31 @@ export const Form = styled.form`
 //* Name
 
 export const NameWrapper = styled.div`
-  width: 100%;
-  margin-bottom: 10px;
+  position: relative;
+  /* width: 100%; */
+  /* width: 280px; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    box-shadow: 0px -1px 0px ${p => p.theme.colors.red};
+    transform: rotateY(90deg);
+    transition: transform 0.25s linear;
+  }
+  &:hover:after,
+  &:focus-within:after {
+    transform: rotate(0deg);
+  }
 
   @media ${p => p.theme.device.tablet} {
-    position: relative;
     width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-
-    &:after {
-      content: ' ';
-      position: absolute;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      height: 1px;
-      box-shadow: 0px -1px 0px ${p => p.theme.colors.red};
-      transform: rotateY(90deg);
-      transition: transform 0.25s linear;
-    }
-    &:hover:after,
-    &:focus-within:after {
-      transform: rotate(0deg);
-    }
   }
 `;
 
@@ -55,21 +58,24 @@ export const NameField = styled.input`
   align-items: center;
   background-color: transparent;
   font-family: ${p => p.theme.fonts.second};
-  font-size: ${p => p.theme.fontSize[1]}px;
+  /* font-size: ${p => p.theme.fontSize[2]}px; */
+  font-size: 30px;
+
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.black};
   opacity: 0.5;
   border: none;
   outline: none;
-  text-align: center;
 
   @media ${p => p.theme.device.tablet} {
+    text-align: center;
     font-size: ${p => p.theme.fontSize[3]}px;
   }
 `;
 
 export const SaveBtn = styled(Button)`
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  margin-top: 25px;
   width: 160px;
   height: 30px;
   display: ${p => (p.isVisible ? 'block' : 'none')};
@@ -88,14 +94,13 @@ export const SaveBtn = styled(Button)`
 
 export const FriendsBox = styled.div`
   overflow: hidden;
-  height: 315px;
-  padding: 5px 5px 10px 5px;
+  /* height: 315px; */
 
   @media ${p => p.theme.device.tablet} {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 390px;
+    width: 380px;
     height: 360px;
     margin-top: 0;
   }
@@ -120,6 +125,8 @@ export const FriendsList = styled.ul`
 `;
 
 export const FriendsItem = styled.li`
+  display: flex;
+
   padding: 5px 5px;
   background-color: ${p => p.theme.colors.grey};
 
@@ -133,10 +140,10 @@ export const FriendsItem = styled.li`
   line-height: 1.88;
   border-radius: ${p => p.theme.borderRadius.small};
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-
+  /* 
   &:hover {
     background-color: ${p => p.theme.colors.red};
-  }
+  } */
 
   @media ${p => p.theme.device.tablet} {
     display: flex;
@@ -144,9 +151,33 @@ export const FriendsItem = styled.li`
   }
 `;
 
-export const FriendsDataWrap = styled.div``;
+export const FriendsDataWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-export const DeleteFriend = styled(DeleteButton)`
+export const PersonIcon = styled(IoPerson)`
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  fill: ${p => p.theme.colors.red};
+`;
+
+export const EmailnIcon = styled(MdOutlineEmail)`
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  fill: ${p => p.theme.colors.red};
+`;
+
+export const FriendNext = styled.span`
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSize[0]}px;
+  font-weight: ${p => p.theme.fontWeights.regular};
+  line-height: 1.88;
+`;
+
+export const DeleteFriendBtn = styled(DeleteButton)`
   margin-left: auto;
   svg {
     fill: black;

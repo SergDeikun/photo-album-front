@@ -30,8 +30,11 @@ export const Avatar = styled(FaUser)`
 // Form
 
 export const UserForm = styled.form`
+  margin-top: 20px;
+
   @media ${p => p.theme.device.tablet} {
     margin-left: 20px;
+    margin-top: 0;
   }
 
   @media ${p => p.theme.device.desktop} {
@@ -106,7 +109,7 @@ export const Title = styled.h1`
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p => p.theme.colors.black};
-  padding: 20px 0;
+  padding: 30px 0;
 `;
 
 export const List = styled.ul`
