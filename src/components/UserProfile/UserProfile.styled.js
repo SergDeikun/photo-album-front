@@ -3,21 +3,20 @@ import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
 import Button from 'components/Buttons/Button';
-import SaveButton from 'components/Buttons/SaveButton/SaveButton';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
 // User
 export const UserWrapper = styled.div`
-  text-align: center;
+  display: flex;
 
-  @media ${p => p.theme.device.tablet} {
-    display: flex;
-    align-items: end;
-    padding: 0 20px;
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
   }
 
-  @media ${p => p.theme.device.desktop} {
-    align-items: end;
+  @media ${p => p.theme.device.tablet} {
+    align-items: center;
+    padding: 0 20px;
   }
 `;
 
@@ -30,9 +29,15 @@ export const Avatar = styled(FaUser)`
 // Form
 
 export const UserForm = styled.form`
-  margin-top: 20px;
+  height: 200px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-top: 20px;
+  }
 
   @media ${p => p.theme.device.tablet} {
+    position: relative;
     margin-left: 20px;
     margin-top: 0;
   }
@@ -73,12 +78,19 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const SaveBtn = styled(SaveButton)`
-  margin-left: 10px;
+export const SaveBtn = styled(Button)`
+  /* margin-left: 10px; */
+  width: 160px;
+  background-color: ${p => p.theme.colors.red};
+  color: ${p => p.theme.colors.white};
   display: ${p => (p.isVisible ? 'block' : 'none')};
 
   @media ${p => p.theme.device.tablet} {
-    margin-left: 30px;
+    position: absolute;
+    bottom: 0;
+    margin-top: auto;
+    margin-left: 0;
+    width: 160px;
   }
 `;
 
@@ -94,7 +106,8 @@ export const Field = styled.input`
 `;
 
 export const LogOutBtn = styled(Button)`
-  margin-top: 15px;
+  /* margin-top: 15px; */
+  margin-top: 20px;
 
   @media ${p => p.theme.device.tablet} {
     margin-top: auto;

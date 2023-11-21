@@ -22,8 +22,8 @@ import {
   UserForm,
   FieldWrapper,
   InputWrapper,
-  Field,
   SaveBtn,
+  Field,
   LogOutBtn,
   Title,
   Item,
@@ -44,9 +44,7 @@ const UserProfile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
-  const [saveNameBtnVisible, setSaveNameBtnVisible] = useState(false);
-  const [saveEmailBtnVisible, setSaveEmailBtnVisible] = useState(false);
-
+  const [saveBtnVisible, setSaveBtnVisible] = useState(false);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -62,12 +60,13 @@ const UserProfile = () => {
 
   const handleNameChange = e => {
     setName(e.target.value.trimStart());
-    setSaveNameBtnVisible(currentUser.name !== e.target.value);
+    setSaveBtnVisible(currentUser.name !== e.target.value);
+    // saveBtnVisible(currentUser.email !== e.target.value);
   };
 
   const handleEmailChange = e => {
     setEmail(e.target.value.trim());
-    setSaveEmailBtnVisible(currentUser.email !== e.target.value);
+    setSaveBtnVisible(currentUser.email !== e.target.value);
   };
 
   const handleSubmit = async e => {
@@ -79,8 +78,8 @@ const UserProfile = () => {
         { name, email },
         {
           onSuccess: () => {
-            setSaveNameBtnVisible(false);
-            setSaveEmailBtnVisible(false);
+            setSaveBtnVisible(false);
+            // setSaveEmailBtnVisible(false);
           },
           onError: error => {
             // notifyError(error.response.data.message);
@@ -160,10 +159,6 @@ const UserProfile = () => {
                     />
                   </label>
                 </InputWrapper>
-                <SaveBtn
-                  disabled={updateUserLoading}
-                  isVisible={saveNameBtnVisible}
-                />
               </FieldWrapper>
 
               <FieldWrapper>
@@ -176,11 +171,12 @@ const UserProfile = () => {
                     />
                   </label>
                 </InputWrapper>
-                <SaveBtn
-                  disabled={updateUserLoading}
-                  isVisible={saveEmailBtnVisible}
-                />
               </FieldWrapper>
+              <SaveBtn
+                title="Save Changes"
+                disabled={updateUserLoading}
+                isVisible={saveBtnVisible}
+              />
             </UserForm>
 
             <LogOutBtn type="button" title="Log out" onClick={handleLogout} />
