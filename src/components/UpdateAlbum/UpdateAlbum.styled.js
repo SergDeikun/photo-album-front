@@ -78,7 +78,9 @@ export const SaveBtn = styled(Button)`
   margin-top: 25px;
   width: 160px;
   height: 30px;
-  display: ${p => (p.isVisible ? 'block' : 'none')};
+  opacity: ${p => (p.isVisible ? 1 : 0)};
+  transition: opacity 0.5s linear;
+  visibility: ${p => (p.isVisible ? 'visible' : 'hidden')};
   background-color: ${p => p.theme.colors.red};
   color: ${p => p.theme.colors.white};
 

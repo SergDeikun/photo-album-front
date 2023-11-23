@@ -83,7 +83,10 @@ export const SaveBtn = styled(Button)`
   width: 160px;
   background-color: ${p => p.theme.colors.red};
   color: ${p => p.theme.colors.white};
-  display: ${p => (p.isVisible ? 'block' : 'none')};
+  opacity: ${p => (p.isVisible ? 1 : 0)};
+  transition: opacity 0.5s linear;
+
+  visibility: ${p => (p.isVisible ? 'visible' : 'hidden')};
 
   @media ${p => p.theme.device.tablet} {
     position: absolute;
