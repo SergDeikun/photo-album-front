@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const HeaderBtn = styled.button`
   position: relative;
   margin-left: auto;
-  /* margin-right: 10px; */
   font-family: ${p => p.theme.fonts.second};
-  font-size: ${p => p.theme.fontSize[0]}px;
+  font-size: ${p => p.theme.fontSize[1]}px;
+
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.88;
   color: ${p => p.theme.colors.black};
@@ -19,7 +19,6 @@ export const HeaderBtn = styled.button`
   }
 
   @media ${p => p.theme.device.tablet} {
-    font-size: ${p => p.theme.fontSize[1]}px;
     margin-right: 0;
   }
 `;
