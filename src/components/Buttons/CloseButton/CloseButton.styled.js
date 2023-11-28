@@ -3,10 +3,15 @@ import styled from 'styled-components';
 import { VscChromeClose } from 'react-icons/vsc';
 
 export const CloseIcon = styled(VscChromeClose)`
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   fill: ${p => p.theme.colors.grey};
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media ${p => p.theme.device.desktop} {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export const CloseBtn = styled.button`

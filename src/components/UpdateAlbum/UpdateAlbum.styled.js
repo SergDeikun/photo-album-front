@@ -181,8 +181,9 @@ export const FriendNext = styled.span`
 
 export const DeleteFriendBtn = styled(DeleteButton)`
   margin-left: auto;
+
   svg {
-    fill: black;
+    fill: ${p => p.theme.colors.black};
   }
 `;
 

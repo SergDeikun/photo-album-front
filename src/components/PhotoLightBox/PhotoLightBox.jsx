@@ -1,7 +1,15 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
+
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
+import 'swiper/css/zoom';
+
+import { EffectFade, Pagination, Zoom } from 'swiper/modules';
 
 import useGetPhotoById from 'react-query/useGetPhotoById';
 import useGetAlbumById from 'react-query/useGetAlbumById';
@@ -11,22 +19,23 @@ import useUpdatePhoto from 'react-query/useUpdatePhoto';
 import { showAlert } from 'helpers/showAlert';
 
 import Backdrop from 'components/Backdrop/Backdrop';
+import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 import InformationButton from 'components/Buttons/InformationButton/InformationButton';
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 
 import {
   ButtonWrapper,
-  DeleteBtn,
   CloseBtn,
   PrevBtnWrap,
   PrevButton,
   PrevButtonIcon,
+  SwiperContainer,
+  Slide,
   PhotoLightBoxImg,
   NextBtnWrap,
   NextButton,
   NextButtonIcon,
   InfoWrapper,
-  // InfoBlock,
   Form,
   FieldWrapper,
   CloseInfoBtn,
@@ -56,7 +65,8 @@ const PhotoLightBox = () => {
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isDateFocused, setIsDateocused] = useState(false);
-  // const [isDateBtnClick, setIsDateBtnClick] = useState(false);
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const swiperRef = useRef();
 
   useEffect(() => {
     if (isLoading) {
@@ -200,34 +210,64 @@ const PhotoLightBox = () => {
         onLoaderFinished={() => setProgress(0)}
       />
       <ButtonWrapper>
-        <DeleteBtn onDelete={() => handleShowAlert(photoId)} />
+        <DeleteButton onDelete={() => handleShowAlert(photoId)} />
         <InformationButton onClick={handleToggleInfo} />
         <CloseBtn onClose={() => navigate(`/album/${albumId}`)} />
       </ButtonWrapper>
 
-      {currentPhotoData && (
+      {currentAlbumData && (
         <>
-          {!isOpenInfo && (
-            <PrevBtnWrap>
-              <PrevButton type="button" onClick={handlePrevPhoto}>
-                <PrevButtonIcon />
-              </PrevButton>
-            </PrevBtnWrap>
-          )}
+          <SwiperContainer
+            onSwiper={swiper => {
+              swiperRef.current = swiper;
+            }}
+            zoom={true}
+            className="mySwiper"
+            initialSlide={currentPhotoIndex}
+            effect={'fade'}
+            pagination={{
+              dynamicBullets: true,
+              backgroundColor: 'red',
+            }}
+            modules={[EffectFade, Pagination, Zoom]}
+          >
+            {/* PrevButton */}
 
-          <PhotoLightBoxImg
-            src={currentPhotoData.photoURL}
-            height="100%"
-            alt=""
-          />
+            {!isOpenInfo && isDesktop && (
+              <PrevBtnWrap>
+                <PrevButton
+                  type="button"
+                  onClick={() => swiperRef.current.slidePrev()}
+                >
+                  <PrevButtonIcon />
+                </PrevButton>
+              </PrevBtnWrap>
+            )}
 
-          {!isOpenInfo && (
-            <NextBtnWrap>
-              <NextButton type="button" onClick={handleNextPhoto}>
-                <NextButtonIcon />
-              </NextButton>
-            </NextBtnWrap>
-          )}
+            {/* SwiperSlide */}
+
+            {currentAlbumData.photo.map((photo, index) => (
+              <Slide key={index}>
+                <PhotoLightBoxImg src={photo.photoURL} height="100%" alt="" />
+              </Slide>
+            ))}
+
+            {/* NextButton */}
+
+            {!isOpenInfo && isDesktop && (
+              <NextBtnWrap>
+                <NextButton
+                  type="button"
+                  onClick={() => swiperRef.current.slideNext()}
+                >
+                  <NextButtonIcon />
+                </NextButton>
+              </NextBtnWrap>
+            )}
+          </SwiperContainer>
+
+          {/* Info */}
+
           <AnimatePresence>
             {isOpenInfo && (
               <motion.div

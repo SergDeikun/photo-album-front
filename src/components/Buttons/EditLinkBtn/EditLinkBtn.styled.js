@@ -20,8 +20,13 @@ export const EditLink = styled(Link)`
 `;
 
 export const EditIcon = styled(MdOutlineEdit)`
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   fill: ${p => p.theme.colors.red};
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media ${p => p.theme.device.desktop} {
+    width: 24px;
+    height: 24px;
+  }
 `;

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
 
-import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
 import DateInput from 'components/Inputs/DateInput/DateInput';
@@ -20,29 +21,17 @@ export const ButtonWrapper = styled.div`
   /* justify-content: space-between; */
 `;
 
-export const DeleteBtn = styled(DeleteButton)`
-  /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  svg {
-    fill: ${p => p.theme.colors.white};
-  } */
-
-  /* &:hover {
-    background-color: ${p => p.theme.colors.grey};
-    border-radius: 50%;
-    fill: ${p => p.theme.colors.white};
-  } */
-`;
-
 export const CloseBtn = styled(CloseButton)`
   position: static;
 `;
+
+//* PrevButton
 
 export const PrevBtnWrap = styled.div`
   position: absolute;
   z-index: 5;
   top: 0;
-  left: 20px;
+  left: 0;
   width: 30%;
   height: 100%;
   cursor: initial;
@@ -58,13 +47,16 @@ export const PrevButton = styled.button`
   padding: 12px;
   border: none;
   border-radius: 50%;
-  opacity: 0;
-  background-color: ${p => p.theme.colors.yellow};
+  background-color: ${p => p.theme.colors.grey};
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   /* background-color: rgba(66, 66, 66, 0.54); */
 
-  ${PrevBtnWrap}:hover & {
-    opacity: 1;
+  @media ${p => p.theme.device.desktop} {
+    opacity: 0;
+
+    ${PrevBtnWrap}:hover & {
+      opacity: 1;
+    }
   }
 `;
 
@@ -73,11 +65,50 @@ export const PrevButtonIcon = styled(GrFormPrevious)`
   height: 36px;
 `;
 
+//* Image
+
+export const SwiperContainer = styled(Swiper)`
+  width: 100%;
+  height: 100%;
+
+  .swiper-pagination-bullet {
+    background-color: ${p => p.theme.colors.grey} !important;
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: ${p => p.theme.colors.red} !important;
+  }
+`;
+
+export const Slide = styled(SwiperSlide)`
+  background-color: ${p => p.theme.colors.black};
+`;
+
+export const PhotoLightBoxImg = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  cursor: initial;
+
+  @media ${p => p.theme.device.tablet} {
+    height: 100%;
+    object-fit: contain;
+  }
+  /* object-position: center; */
+`;
+
+//* NextButton
+
 export const NextBtnWrap = styled.div`
   position: absolute;
   z-index: 5;
   top: 0;
-  right: 20px;
+  right: 0;
   width: 30%;
   height: 100%;
   cursor: initial;
@@ -93,12 +124,15 @@ export const NextButton = styled.button`
   padding: 12px;
   border: none;
   border-radius: 50%;
-  opacity: 0;
-  background-color: ${p => p.theme.colors.yellow};
+  background-color: ${p => p.theme.colors.grey};
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  ${NextBtnWrap}:hover & {
-    opacity: 1;
+  @media ${p => p.theme.device.desktop} {
+    opacity: 0;
+
+    ${NextBtnWrap}:hover & {
+      opacity: 1;
+    }
   }
 `;
 
@@ -107,20 +141,7 @@ export const NextButtonIcon = styled(GrFormNext)`
   height: 36px;
 `;
 
-// Image
-
-export const PhotoLightBoxImg = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 100%;
-  cursor: initial;
-  /* object-fit: contain;
-  object-position: center; */
-`;
-
-// Info
+//* Info
 
 export const InfoWrapper = styled.div`
   position: absolute;
