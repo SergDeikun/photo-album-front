@@ -13,7 +13,9 @@ import Autocomplite from 'components/Autocomplite/Autocomplite';
 export const ButtonWrapper = styled.div`
   position: absolute;
   z-index: 10;
-  top: 10px;
+  /* top: 10px; */
+  top: 50px;
+
   /* right: 78px; */
   right: 20px;
 
@@ -68,8 +70,11 @@ export const PrevButtonIcon = styled(GrFormPrevious)`
 //* Image
 
 export const SwiperContainer = styled(Swiper)`
+  /* outline: 1px solid tomato; */
   width: 100%;
   height: 100%;
+  /* width: 300px;
+  height: 300px; */
 
   .swiper-pagination-bullet {
     background-color: ${p => p.theme.colors.grey} !important;
@@ -151,7 +156,8 @@ export const InfoWrapper = styled.div`
   height: 100%;
   width: 360px;
   background-color: ${p => p.theme.colors.bodyBg};
-  padding: 75px 10px;
+  box-sizing: border-box;
+  padding: 75px 10px 0 10px;
 `;
 
 export const CloseInfoBtn = styled(CloseButton)`

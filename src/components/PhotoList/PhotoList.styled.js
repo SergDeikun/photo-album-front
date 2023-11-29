@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 
+import Modal from 'components/Modal/Modal';
+
 export const AlbumTitle = styled.h1`
   position: absolute;
   top: 45px;
@@ -28,7 +30,7 @@ export const AlbumTitle = styled.h1`
   }
 `;
 
-// PhotoList
+//* PhotoList
 export const List = styled.ul`
   width: 100%;
   display: flex;
@@ -102,4 +104,9 @@ export const ImageLazyLoad = styled(LazyLoadImage)`
   &:hover {
     scale: 1.02;
   }
+`;
+
+export const ModalWindow = styled(Modal)`
+  width: 100%;
+  height: 100%;
 `;

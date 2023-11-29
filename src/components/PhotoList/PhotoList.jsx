@@ -5,6 +5,9 @@ import LoadingBar from 'react-top-loading-bar';
 
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
+import Modal from 'components/Modal/Modal';
+import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
+
 import {
   AlbumTitle,
   List,
@@ -12,6 +15,7 @@ import {
   LinkImg,
   PhotoItem,
   ImageLazyLoad,
+  ModalWindow,
 } from './PhotoList.styled';
 
 const individualStylesMobile = [
@@ -112,6 +116,13 @@ const PhotoList = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const [isOpenPhoto, setIsOpenPhoto] = useState(false);
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
+  const [currentPhoto, setCurrentPhoto] = useState('');
+
+  const handleOpenPhoto = () => {
+    setIsOpenPhoto(!isOpenPhoto);
+  };
 
   const handleImageLoad = index => {
     setIsLoadedPhoto(prevLoadedPhotos => [...prevLoadedPhotos, index]);
@@ -149,25 +160,41 @@ const PhotoList = () => {
             const individualStyle = getIndividualStyle(index);
             return (
               <PhotoItem
+                onClick={() => {
+                  handleOpenPhoto();
+                  setSelectedPhotoIndex(index);
+                  setCurrentPhoto(photo);
+                }}
                 key={photoId}
                 style={individualStyle}
                 isLoaded={isLoadedPhoto.includes(index)}
               >
                 <ImageWrapper isLoaded={isLoadedPhoto.includes(index)}>
-                  <LinkImg
+                  {/* <LinkImg
                     to={`/album/${albumId}/photo/${photoId}?index=${index}`}
-                  >
-                    <ImageLazyLoad
-                      onLoad={() => handleImageLoad(index)}
-                      src={photoURL}
-                      alt="photo"
-                    />
-                  </LinkImg>
+                  > */}
+                  <ImageLazyLoad
+                    onLoad={() => handleImageLoad(index)}
+                    src={photoURL}
+                    alt="photo"
+                  />
+                  {/* </LinkImg> */}
                 </ImageWrapper>
               </PhotoItem>
             );
           })}
       </List>
+
+      {isOpenPhoto && (
+        <ModalWindow onClose={handleOpenPhoto}>
+          <PhotoLightBox
+            currentAlbum={currentAlbumData}
+            selectedIndex={selectedPhotoIndex}
+            currentPhoto={currentPhoto}
+            onClose={handleOpenPhoto}
+          />
+        </ModalWindow>
+      )}
     </>
   );
 };
