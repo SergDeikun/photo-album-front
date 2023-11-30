@@ -13,18 +13,18 @@ import Autocomplite from 'components/Autocomplite/Autocomplite';
 export const ButtonWrapper = styled.div`
   position: absolute;
   z-index: 10;
-  /* top: 10px; */
-  top: 50px;
 
-  /* right: 78px; */
-  right: 20px;
-
+  top: 10px;
+  right: 64px;
   display: flex;
-  /* justify-content: space-between; */
-`;
 
-export const CloseBtn = styled(CloseButton)`
-  position: static;
+  @media ${p => p.theme.device.tablet} {
+    right: 74px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    right: 68px;
+  }
 `;
 
 //* PrevButton
@@ -70,11 +70,8 @@ export const PrevButtonIcon = styled(GrFormPrevious)`
 //* Image
 
 export const SwiperContainer = styled(Swiper)`
-  /* outline: 1px solid tomato; */
   width: 100%;
   height: 100%;
-  /* width: 300px;
-  height: 300px; */
 
   .swiper-pagination-bullet {
     background-color: ${p => p.theme.colors.grey} !important;
@@ -152,7 +149,10 @@ export const InfoWrapper = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 10;
+  /* z-index: 15; */
+  z-index: 34539999999;
+  /* z-index: 2147483658; */
+
   height: 100%;
   width: 360px;
   background-color: ${p => p.theme.colors.bodyBg};
@@ -162,7 +162,7 @@ export const InfoWrapper = styled.div`
 
 export const CloseInfoBtn = styled(CloseButton)`
   top: 5px;
-  right: 5px;
+  right: 310px;
 
   &:hover {
     background-color: transparent;

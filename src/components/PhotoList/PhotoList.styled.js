@@ -4,7 +4,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 
 import Modal from 'components/Modal/Modal';
-
 export const AlbumTitle = styled.h1`
   position: absolute;
   top: 45px;

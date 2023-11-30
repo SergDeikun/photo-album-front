@@ -15,16 +15,17 @@ export const CloseIcon = styled(VscChromeClose)`
 `;
 
 export const CloseBtn = styled.button`
+  outline: 1px solid tomato;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   z-index: 10;
+
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px;
   background-color: transparent;
-  border-radius: ${p => p.theme.borderRadius.round};
   border: none;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -35,9 +36,6 @@ export const CloseBtn = styled.button`
   }
 
   @media ${p => p.theme.device.tablet} {
-    position: absolute;
-    z-index: 10;
-    top: 10px;
     right: 20px;
   }
 `;

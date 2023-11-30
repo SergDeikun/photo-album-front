@@ -5,14 +5,14 @@ import LoadingBar from 'react-top-loading-bar';
 
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
-import Modal from 'components/Modal/Modal';
+// import Modal from 'components/Modal/Modal';
 import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
 
 import {
   AlbumTitle,
   List,
   ImageWrapper,
-  LinkImg,
+  // LinkImg,
   PhotoItem,
   ImageLazyLoad,
   ModalWindow,
