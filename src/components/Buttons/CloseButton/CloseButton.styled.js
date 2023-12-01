@@ -15,11 +15,10 @@ export const CloseIcon = styled(VscChromeClose)`
 `;
 
 export const CloseBtn = styled.button`
-  outline: 1px solid tomato;
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 10;
+  /* z-index: 10; */
 
   display: flex;
   align-items: center;

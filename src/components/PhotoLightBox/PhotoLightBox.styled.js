@@ -15,16 +15,21 @@ export const ButtonWrapper = styled.div`
   z-index: 10;
 
   top: 10px;
-  right: 64px;
+  /* right: 64px; */
+  right: 10px;
   display: flex;
 
   @media ${p => p.theme.device.tablet} {
-    right: 74px;
+    /* right: 74px; */
   }
 
   @media ${p => p.theme.device.desktop} {
-    right: 68px;
+    /* right: 68px; */
   }
+`;
+
+export const ClosePhotoBtn = styled(CloseButton)`
+  position: static;
 `;
 
 //* PrevButton
@@ -95,6 +100,7 @@ export const PhotoLightBoxImg = styled.img`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+
   cursor: initial;
 
   @media ${p => p.theme.device.tablet} {
@@ -149,20 +155,24 @@ export const InfoWrapper = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  /* z-index: 15; */
-  z-index: 34539999999;
+  z-index: 15;
+  /* z-index: 34539999999; */
   /* z-index: 2147483658; */
 
   height: 100%;
-  width: 360px;
+  width: 100%;
   background-color: ${p => p.theme.colors.bodyBg};
   box-sizing: border-box;
   padding: 75px 10px 0 10px;
+
+  @media ${p => p.theme.device.tablet} {
+    width: 360px;
+  }
 `;
 
 export const CloseInfoBtn = styled(CloseButton)`
   top: 5px;
-  right: 310px;
+  right: 265px;
 
   &:hover {
     background-color: transparent;
@@ -170,6 +180,14 @@ export const CloseInfoBtn = styled(CloseButton)`
     svg {
       fill: ${p => p.theme.colors.red};
     }
+  }
+
+  @media ${p => p.theme.device.tablet} {
+    right: 305px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    right: 310px;
   }
 `;
 
@@ -188,7 +206,7 @@ export const Comments = styled(CommentsInput)`
   color: ${p => p.theme.colors.black};
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  width: 360px;
+  width: 100%;
   height: 30px;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
@@ -209,7 +227,7 @@ export const DateField = styled(DateInput)`
 
 export const Place = styled(Autocomplite)`
   label {
-    width: 100%;
+    /* width: 100%; */
   }
 
   input {

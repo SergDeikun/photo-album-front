@@ -17,10 +17,12 @@ import { showAlert } from 'helpers/showAlert';
 
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 import InformationButton from 'components/Buttons/InformationButton/InformationButton';
+
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 
 import {
   ButtonWrapper,
+  ClosePhotoBtn,
   // CloseBtn,
   PrevBtnWrap,
   PrevButton,
@@ -82,7 +84,9 @@ const PhotoLightBox = ({
     document.addEventListener('keydown', handleEscClose);
 
     return () => {
-      document.body.style.overflowY = 'scroll';
+      // document.body.style.overflowY = 'scroll';
+      document.body.style.overflow = 'auto';
+
       document.removeEventListener('keydown', handleEscClose);
     };
   }, [onClose]);
@@ -160,6 +164,7 @@ const PhotoLightBox = ({
       <ButtonWrapper>
         <DeleteButton onDelete={() => handleShowAlert(photoId)} />
         <InformationButton onClick={handleToggleInfo} />
+        <ClosePhotoBtn onClose={onClose} />
       </ButtonWrapper>
       <>
         <SwiperContainer

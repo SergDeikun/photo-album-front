@@ -46,14 +46,14 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route exact path="/" element={<SharedLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<UserPage />} />
           <Route path="/album-list" element={<AlbumsPage />} />
           <Route path="/album/:albumId" element={<CurrentAlbumPage />} />
-          <Route path="album/:albumId/photo/:photoId" element={<PhotoPage />} />
+          {/* <Route path="album/:albumId/photo/:photoId" element={<PhotoPage />} /> */}
           <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
 
           {/* <Route path="/map" element={<Map />} /> */}
