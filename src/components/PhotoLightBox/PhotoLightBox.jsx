@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import LoadingBar from 'react-top-loading-bar';
-// import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 
 import 'swiper/css';
@@ -59,7 +59,7 @@ const PhotoLightBox = ({
   const [progress, setProgress] = useState(0);
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [isDateFocused, setIsDateocused] = useState(false);
+  const [isDateFocused, setIsDateFocused] = useState(false);
   const isDesktop = useMediaQuery({ minWidth: 1280 });
   const swiperRef = useRef();
   const { _id: photoId } = currentPhoto;
@@ -120,21 +120,19 @@ const PhotoLightBox = ({
   const handleToggleInfo = () => {
     setIsOpenInfo(!isOpenInfo);
   };
-
-  const handleDateChange = newDate => {
-    setDate(newDate);
-
-    setSaveBtnVisible(true);
+  const handleCommentsChange = e => {
+    setComments(e.target.value);
+    setSaveBtnVisible(currentPhoto.comments !== e.target.value);
   };
 
   const handleSelectUpdatePlace = newPlace => {
     setPlace(newPlace);
-    setSaveBtnVisible(true);
+    setSaveBtnVisible(currentPhoto.place !== newPlace);
   };
 
-  const handleCommentsChange = e => {
-    setComments(e.target.value);
-    setSaveBtnVisible(true);
+  const handleDateChange = newDate => {
+    setDate(newDate);
+    setSaveBtnVisible(currentPhoto.date !== newDate);
   };
 
   const handleSubmit = async e => {
@@ -263,8 +261,8 @@ const PhotoLightBox = ({
                 <DateField
                   value={date}
                   onChange={handleDateChange}
-                  onFocus={() => setIsDateocused(true)}
-                  onBlur={() => setIsDateocused(false)}
+                  onFocus={() => setIsDateFocused(true)}
+                  onBlur={() => setIsDateFocused(false)}
                   isDateFocused={isDateFocused}
                 />
               </FieldWrapper>

@@ -156,14 +156,13 @@ export const InfoWrapper = styled.div`
   top: 0;
   right: 0;
   z-index: 15;
-  /* z-index: 34539999999; */
-  /* z-index: 2147483658; */
 
   height: 100%;
   width: 100%;
   background-color: ${p => p.theme.colors.bodyBg};
   box-sizing: border-box;
-  padding: 75px 10px 0 10px;
+  /* padding: 75px 10px 0 10px; */
+  padding-top: 75px;
 
   @media ${p => p.theme.device.tablet} {
     width: 360px;
@@ -171,8 +170,11 @@ export const InfoWrapper = styled.div`
 `;
 
 export const CloseInfoBtn = styled(CloseButton)`
+  /* outline: 1px solid tomato; */
   top: 5px;
-  right: 265px;
+  /* right: 265px; */
+  /* right: unset; */
+  /* left: 5px; */
 
   &:hover {
     background-color: transparent;
@@ -183,36 +185,55 @@ export const CloseInfoBtn = styled(CloseButton)`
   }
 
   @media ${p => p.theme.device.tablet} {
-    right: 305px;
+    /* right: 305px; */
   }
 
   @media ${p => p.theme.device.desktop} {
-    right: 310px;
+    /* right: 310px; */
   }
 `;
 
 export const Form = styled.form`
   /* margin-top: 20px; */
+  height: 100%;
+  position: relative;
 `;
 
 export const FieldWrapper = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   margin-bottom: 25px;
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    width: 95%;
+    bottom: 0;
+    left: 5px;
+    height: 1px;
+    box-shadow: 0px -1px 0px ${p => p.theme.colors.red};
+    transform: rotateY(90deg);
+    transition: transform 0.25s linear;
+  }
+  &:hover:after,
+  &:focus-within:after {
+    transform: rotate(0deg);
+  }
 `;
 
 export const Comments = styled(CommentsInput)`
   line-height: 1.5;
   color: ${p => p.theme.colors.black};
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.12); */
   width: 100%;
   height: 30px;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
-  &:focus {
+  /* &:focus {
     border-bottom: 1px solid ${props => props.theme.colors.red};
-  }
+  } */
 `;
 
 export const DateField = styled(DateInput)`
@@ -268,15 +289,33 @@ export const Place = styled(Autocomplite)`
 `;
 
 export const SubmitButton = styled.button`
+  outline: 1px solid tomato;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  /* padding: 5px; */
   border: none;
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: ${props => props.theme.colors.red};
+
   font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSize[0]}px;
+  font-size: ${p => p.theme.fontSize[1]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
   line-height: 1.88;
-  color: ${props => props.theme.colors.red};
+  /* color: ${props => props.theme.colors.red}; */
+  color: ${props => props.theme.colors.white};
+
+  margin-top: auto;
+
+  @media ${p => p.theme.device.tablet} {
+    width: 165px;
+    height: 50px;
+    bottom: 10px;
+  }
 `;

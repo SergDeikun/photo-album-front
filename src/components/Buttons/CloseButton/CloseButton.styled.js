@@ -35,6 +35,6 @@ export const CloseBtn = styled.button`
   }
 
   @media ${p => p.theme.device.tablet} {
-    right: 20px;
+    /* right: 20px; */
   }
 `;
