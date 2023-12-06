@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import FileInput from 'components/Inputs/FileInput/FileImput';
 import Button from 'components/Buttons/Button';
 
+export const Form = styled.form`
+  /* height: 100vh; */
+  /* padding-top: 130px; */
+`;
+
 export const Box = styled.div`
   position: relative;
   width: 310px;
@@ -77,15 +82,23 @@ export const InputName = styled.input`
 `;
 
 export const ButttonWraper = styled.div`
-  display: flex;
-  text-align: center;
-  justify-content: space-between;
-  height: 55px;
-  margin-top: 35px;
-  opacity: ${p => (p.name ? 1 : 0)};
+  /* position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; */
+
+  /* height: 55px; */
+  /* margin-top: 35px; */
+  margin-top: 100px;
+
+  /* opacity: ${p => (p.name ? 1 : 0)}; */
+  visibility: ${p => (p.name ? 'visible' : 'hidden')};
   transition: opacity 0.5s linear;
 
   @media ${p => p.theme.device.tablet} {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
     padding: 0 30px;
   }
 
@@ -96,11 +109,13 @@ export const ButttonWraper = styled.div`
 
 export const UploadCover = styled(FileInput)`
   min-width: 120px;
+  /* height: 40px; */
+  height: 50px;
+
   border: 1px solid ${p => p.theme.colors.red};
   border-radius: ${p => p.theme.borderRadius.small};
-  height: 40px;
 
-  @media ${p => p.theme.device.desktop} {
+  @media ${p => p.theme.device.tablet} {
     width: 165px;
     height: 50px;
   }
@@ -135,12 +150,13 @@ export const UploadCover = styled(FileInput)`
 
 export const SubmitButton = styled(Button)`
   padding: 0;
-  margin: 0;
-  width: 120px;
-  height: 40px;
+  width: 100%;
+  height: 50px;
+  margin-top: 30px;
 
-  @media ${p => p.theme.device.desktop} {
+  @media ${p => p.theme.device.tablet} {
     width: 165px;
-    height: 50px;
+    /* height: 50px; */
+    margin-top: 0;
   }
 `;

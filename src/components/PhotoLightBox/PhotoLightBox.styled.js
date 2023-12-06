@@ -9,6 +9,7 @@ import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
 import DateInput from 'components/Inputs/DateInput/DateInput';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
+import Button from 'components/Buttons/Button';
 
 export const ButtonWrapper = styled.div`
   position: absolute;
@@ -288,34 +289,20 @@ export const Place = styled(Autocomplite)`
   }
 `;
 
-export const SubmitButton = styled.button`
-  outline: 1px solid tomato;
+export const SubmitButton = styled(Button)`
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
-  width: 100%;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* padding: 5px; */
-  border: none;
-  /* background-color: transparent; */
-  background-color: ${props => props.theme.colors.red};
+  background-color: ${p => p.theme.colors.red};
+  color: ${p => p.theme.colors.white};
 
-  font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSize[1]}px;
-  font-weight: ${p => p.theme.fontWeights.regular};
-  line-height: 1.88;
-  /* color: ${props => props.theme.colors.red}; */
-  color: ${props => props.theme.colors.white};
-
-  margin-top: auto;
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 70px;
+  }
 
   @media ${p => p.theme.device.tablet} {
-    width: 165px;
-    height: 50px;
     bottom: 10px;
   }
 `;

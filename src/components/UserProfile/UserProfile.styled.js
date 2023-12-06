@@ -5,7 +5,7 @@ import { FaUser } from 'react-icons/fa';
 import Button from 'components/Buttons/Button';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 
-// User
+//* User
 export const UserWrapper = styled.div`
   display: flex;
 
@@ -26,7 +26,7 @@ export const Avatar = styled(FaUser)`
   fill: ${p => p.theme.colors.black};
 `;
 
-// Form
+//* Form
 
 export const UserForm = styled.form`
   height: 200px;
@@ -79,8 +79,8 @@ export const InputWrapper = styled.div`
 `;
 
 export const SaveBtn = styled(Button)`
-  /* margin-left: 10px; */
-  width: 160px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: ${p => p.theme.colors.red};
   color: ${p => p.theme.colors.white};
   opacity: ${p => (p.isVisible ? 1 : 0)};
@@ -91,9 +91,8 @@ export const SaveBtn = styled(Button)`
   @media ${p => p.theme.device.tablet} {
     position: absolute;
     bottom: 0;
-    margin-top: auto;
-    margin-left: 0;
-    width: 160px;
+    /* margin-top: auto; */
+    /* margin-left: 0; */
   }
 `;
 
@@ -109,12 +108,11 @@ export const Field = styled.input`
 `;
 
 export const LogOutBtn = styled(Button)`
-  /* margin-top: 15px; */
   margin-top: 20px;
 
   @media ${p => p.theme.device.tablet} {
     margin-top: auto;
-    margin-right: 0;
+    margin-left: auto;
   }
 `;
 

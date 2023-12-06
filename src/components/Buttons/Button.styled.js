@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 export const Btn = styled.button`
-  width: 120px;
-  height: 40px;
+  /* width: 120px;
+  height: 40px; */
+  width: 165px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 35px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-top: 35px; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
   border-radius: ${p => p.theme.borderRadius.small};
   font-family: ${p => p.theme.fonts.button};
   font-weight: ${p => p.theme.fontWeights.regular};

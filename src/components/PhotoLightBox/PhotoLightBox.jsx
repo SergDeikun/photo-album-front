@@ -270,7 +270,11 @@ const PhotoLightBox = ({
               {/* Save button */}
 
               {saveBtnVisible && (
-                <SubmitButton type="submit" onClick={() => setProgress(100)}>
+                <SubmitButton
+                  title="Save"
+                  type="submit"
+                  onClick={() => setProgress(100)}
+                >
                   Save
                 </SubmitButton>
               )}

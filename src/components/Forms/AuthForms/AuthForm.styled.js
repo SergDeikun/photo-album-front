@@ -72,6 +72,8 @@ export const Input = styled(TextField)`
 
 export const SubmitBtn = styled(Button)`
   margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media ${p => p.theme.device.tablet} {
     width: 165px;

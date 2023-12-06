@@ -5,6 +5,7 @@ import useAddAlbum from 'react-query/useAddAlbum';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
+  Form,
   Box,
   NameWrapper,
   InputName,
@@ -51,7 +52,7 @@ const AlbumForm = ({ onClose }) => {
 
   return (
     <>
-      <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+      <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
         <Box backgroundImage={previewBackground}>
           <NameWrapper>
             <label>
@@ -82,7 +83,7 @@ const AlbumForm = ({ onClose }) => {
             </>
           )}
         </ButttonWraper>
-      </form>
+      </Form>
     </>
   );
 };
