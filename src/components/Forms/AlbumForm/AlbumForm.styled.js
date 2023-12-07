@@ -11,7 +11,7 @@ export const Form = styled.form`
 export const Box = styled.div`
   position: relative;
   width: 310px;
-  min-height: 400px;
+  min-height: 385px;
   background-image: url(${p => p.backgroundImage});
   background-position: center;
   background-repeat: no-repeat;
@@ -20,7 +20,6 @@ export const Box = styled.div`
   overflow: hidden;
 
   @media ${p => p.theme.device.tablet} {
-    /* width: 360px; */
     width: 500px;
   }
 
@@ -39,6 +38,22 @@ export const NameWrapper = styled.div`
     p.background
       ? 'linear-gradient(transparent 0 25%, rgba(34, 34, 34, 0.85))'
       : 'transparent'};
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    box-shadow: 0px -1px 0px ${p => p.theme.colors.grey};
+    transform: rotateY(90deg);
+    transition: transform 0.25s linear;
+  }
+  &:hover:after,
+  &:focus-within:after {
+    transform: rotate(0deg);
+  }
 `;
 
 export const InputName = styled.input`
@@ -53,8 +68,6 @@ export const InputName = styled.input`
   letter-spacing: 0.1rem;
   color: ${p => p.theme.colors.grey};
   padding: 0 10px 0 10px;
-  border-bottom: 1px solid transparent;
-  transition: border-bottom 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
   ::placeholder {
     color: ${p => p.theme.colors.white};
@@ -62,14 +75,6 @@ export const InputName = styled.input`
     @media ${p => p.theme.device.desktop} {
       text-align: center;
     }
-  }
-
-  &:hover {
-    border-bottom: 1px solid #575150;
-  }
-
-  &:focus {
-    border-bottom: 1px solid #575150;
   }
 
   @media ${p => p.theme.device.tablet} {
@@ -82,16 +87,9 @@ export const InputName = styled.input`
 `;
 
 export const ButttonWraper = styled.div`
-  /* position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%; */
-
-  /* height: 55px; */
-  /* margin-top: 35px; */
-  margin-top: 100px;
-
-  /* opacity: ${p => (p.name ? 1 : 0)}; */
+  margin-top: 30px;
+  height: 130px;
+  opacity: ${p => (p.name ? 1 : 0)};
   visibility: ${p => (p.name ? 'visible' : 'hidden')};
   transition: opacity 0.5s linear;
 
@@ -100,10 +98,7 @@ export const ButttonWraper = styled.div`
     text-align: center;
     justify-content: space-between;
     padding: 0 30px;
-  }
-
-  @media ${p => p.theme.device.desktop} {
-    padding: 0 50px;
+    height: 50px;
   }
 `;
 
@@ -152,11 +147,10 @@ export const SubmitButton = styled(Button)`
   padding: 0;
   width: 100%;
   height: 50px;
-  margin-top: 30px;
+  margin-top: 20px;
 
   @media ${p => p.theme.device.tablet} {
     width: 165px;
-    /* height: 50px; */
     margin-top: 0;
   }
 `;

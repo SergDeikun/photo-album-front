@@ -248,39 +248,17 @@ export const DateField = styled(DateInput)`
 `;
 
 export const Place = styled(Autocomplite)`
-  label {
-    /* width: 100%; */
-  }
-
   input {
-    box-sizing: border-box;
-    width: 100%;
-    border: none;
-    outline: none;
-    font-family: ${p => p.theme.fonts.body};
     font-size: ${p => p.theme.fontSize[0]}px;
-    line-height: 1.88;
-    letter-spacing: 0.1rem;
-    padding: 6px;
-    background-color: transparent;
     color: ${p => p.theme.colors.black};
     overflow-wrap: break-word;
   }
 
   ul {
-    position: absolute;
-    top: 35px;
-    /* bottom: 35px; */
-    left: 0;
-    width: 100%;
     background-color: ${p => p.theme.colors.grey};
-    z-index: 5;
   }
 
   li {
-    color: ${p => p.theme.colors.black};
-    padding: 6px 15px;
-    cursor: pointer;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
     &:hover {

@@ -6,18 +6,18 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 import useAddPhoto from 'react-query/useAddPhoto';
 
 import FileInput from 'components/Inputs/FileInput/FileImput';
+import Autocomplite from 'components/Autocomplite/Autocomplite';
+
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 import DateInput from 'components/Inputs/DateInput/DateInput';
 import CommentsInput from 'components/Inputs/CommentsInput/CommentsInput';
-// import Button from 'components/Buttons/Button';
 
 import {
-  Form,
-  AddInfoBtn,
   Box,
   FieldWrapper,
   InputWrapper,
-  Place,
+  ButtonWraper,
+  AddInfoBtn,
   SaveButton,
 } from './PhotoForm.styled';
 
@@ -86,7 +86,7 @@ const PhotoForm = ({ onClose }) => {
 
   return (
     <>
-      <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+      <form encType="multipart/form-data" onSubmit={handleSubmit} action="">
         <Box backgroundImage={previewPhoto}>
           <FileInput
             title="Upload photo"
@@ -95,16 +95,13 @@ const PhotoForm = ({ onClose }) => {
             onChange={uploadImage}
             isVisible={!previewPhoto}
           />
-          {previewPhoto && (
-            <AddInfoBtn type="button" onClick={handleOpenFieldForm}>
-              {titleBtn}
-            </AddInfoBtn>
-          )}
+
+          {/* Info */}
 
           {isOpenFieldForm && (
             <FieldWrapper>
               <InputWrapper>
-                <Place onSelect={handleSelectPlace} />
+                <Autocomplite onSelect={handleSelectPlace} />
                 <LocationButton />
               </InputWrapper>
 
@@ -122,10 +119,17 @@ const PhotoForm = ({ onClose }) => {
           )}
         </Box>
 
-        {previewPhoto && (
+        <ButtonWraper previewPhoto={previewPhoto}>
+          <AddInfoBtn
+            type="button"
+            title="Add info"
+            onClick={handleOpenFieldForm}
+          >
+            {titleBtn}
+          </AddInfoBtn>
           <SaveButton type="submit" disabled={isLoading} title="Save" />
-        )}
-      </Form>
+        </ButtonWraper>
+      </form>
     </>
   );
 };

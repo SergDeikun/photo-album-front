@@ -3,20 +3,9 @@ import styled from 'styled-components';
 import Autocomplite from 'components/Autocomplite/Autocomplite';
 import Button from 'components/Buttons/Button';
 
-export const Form = styled.form`
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
-  position: relative;
-  /* height: 100vh; */
-`;
-
 export const Box = styled.div`
-  position: relative;
-  width: 310px;
-  /* min-height: 400px; */
+  width: 100%;
   min-height: 385px;
-
   display: flex;
   justify-content: center;
   background-image: url(${p => p.backgroundImage});
@@ -35,83 +24,81 @@ export const Box = styled.div`
   }
 `;
 
-export const AddInfoBtn = styled.button`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  width: 80px;
-  height: 20px;
-  font-family: ${p => p.theme.fonts.button};
-  font-weight: ${p => p.theme.fontWeights.regular};
-  /* font-size: ${p => p.theme.fontSize[0]}px; */
-  line-height: 1.88;
-  letter-spacing: 0.1rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  outline: none;
-  border: none;
-  border-radius: 3px;
-  border-radius: 3px 3px 3px 0px;
-  color: white;
-`;
+//* Info
 
 export const FieldWrapper = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px;
+  top: -2px;
+  left: -1px;
+  width: 312px;
+  height: 388px;
   background-color: ${p => p.theme.colors.black};
-  border-radius: ${p => p.theme.borderRadius.small};
+
+  @media ${p => p.theme.device.tablet} {
+    width: 502px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    width: 613px;
+    height: 514px;
+  }
 `;
 
 export const InputWrapper = styled.div`
+  /* margin-top: 50px; */
   display: flex;
   margin-bottom: 20px;
   position: relative;
+  width: 100%;
 `;
 
-export const Place = styled(Autocomplite)`
-  label {
-    display: block;
-    width: 100%;
+export const ButtonWraper = styled.div`
+  margin-top: 30px;
+  height: 130px;
+  opacity: ${p => (p.previewPhoto ? 1 : 0)};
+  visibility: ${p => (p.previewPhoto ? 'visible' : 'hidden')};
+  transition: opacity 0.5s linear;
+
+  @media ${p => p.theme.device.tablet} {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 50px;
   }
+`;
 
-  input {
-    width: 100%;
-    border: none;
-    outline: none;
-    padding: 6px;
-    font-size: 18px;
-    background-color: transparent;
-    color: ${p => p.theme.colors.grey};
-  }
+export const AddInfoBtn = styled.button`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: ${p => p.theme.borderRadius.small};
+  font-family: ${p => p.theme.fonts.button};
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSize[0]}px;
+  line-height: 1.88;
+  letter-spacing: 0.1rem;
+  border: 1px solid ${p => p.theme.colors.red};
+  text-transform: uppercase;
+  background-color: transparent;
+  color: ${p => p.theme.colors.red};
 
-  ul {
-    position: absolute;
-    top: 35px;
-    width: 100%;
-    background-color: ${p => p.theme.colors.bodyBg};
-    z-index: 5;
-  }
-
-  li {
-    color: ${p => p.theme.colors.black};
-    padding: 6px 15px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: ${p => p.theme.colors.grey};
-    }
+  @media ${p => p.theme.device.tablet} {
+    width: 165px;
+    height: 50px;
   }
 `;
 
 export const SaveButton = styled(Button)`
-  /* position: absolute;
-  bottom: 0; */
-  /* margin-top: 50px; */
-  @media ${p => p.theme.device.desktop} {
+  padding: 0;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+
+  @media ${p => p.theme.device.tablet} {
     width: 165px;
-    height: 50px;
+    margin-top: 0;
   }
 `;

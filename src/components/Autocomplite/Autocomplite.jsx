@@ -5,8 +5,8 @@ import usePlacesAutocomplete, {
 
 import useOnclickOutside from 'react-cool-onclickoutside';
 
-// import { Root, Label, Input, List, Item } from './Autocomplite.styled';
-import { Root } from './Autocomplite.styled';
+import { Root, Label, Input, List, Item } from './Autocomplite.styled';
+// import { Root } from './Autocomplite.styled';
 
 const Autocomplite = ({ onSelect, place, onFocus, onBlur, className }) => {
   const {
@@ -62,19 +62,19 @@ const Autocomplite = ({ onSelect, place, onFocus, onBlur, className }) => {
       } = suggestion;
 
       return (
-        <li
+        <Item
           className={className || ''}
           key={place_id}
           onClick={handleSelect(suggestion)}
         >
           <strong>{main_text}</strong> <small>{secondary_text}</small>
-        </li>
+        </Item>
       );
     });
   return (
     <Root className={className || ''} ref={ref}>
-      <label>
-        <input
+      <Label>
+        <Input
           // className={className || ''}
           type="text"
           // defaultValue="london"
@@ -85,8 +85,8 @@ const Autocomplite = ({ onSelect, place, onFocus, onBlur, className }) => {
           //   disabled={!ready}
           placeholder="Location"
         />
-      </label>
-      {status === 'OK' && place !== value && <ul>{renderSuggestions()}</ul>}
+      </Label>
+      {status === 'OK' && place !== value && <List>{renderSuggestions()}</List>}
     </Root>
   );
 };

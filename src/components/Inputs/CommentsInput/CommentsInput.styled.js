@@ -13,6 +13,8 @@ export const Comments = styled(TextareaAutosize)`
   color: ${p => p.theme.colors.grey};
   resize: none;
   outline: none;
-  width: 435px;
+  /* width: 435px; */
+  width: 100%;
   height: 175px;
+  box-sizing: border-box;
 `;
