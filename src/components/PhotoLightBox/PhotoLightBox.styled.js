@@ -170,32 +170,7 @@ export const InfoWrapper = styled.div`
   }
 `;
 
-export const CloseInfoBtn = styled(CloseButton)`
-  /* outline: 1px solid tomato; */
-  top: 5px;
-  /* right: 265px; */
-  /* right: unset; */
-  /* left: 5px; */
-
-  &:hover {
-    background-color: transparent;
-
-    svg {
-      fill: ${p => p.theme.colors.red};
-    }
-  }
-
-  @media ${p => p.theme.device.tablet} {
-    /* right: 305px; */
-  }
-
-  @media ${p => p.theme.device.desktop} {
-    /* right: 310px; */
-  }
-`;
-
 export const Form = styled.form`
-  /* margin-top: 20px; */
   height: 100%;
   position: relative;
 `;

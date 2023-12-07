@@ -5,14 +5,12 @@ import LoadingBar from 'react-top-loading-bar';
 
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
-// import Modal from 'components/Modal/Modal';
 import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
 
 import {
   AlbumTitle,
   List,
   ImageWrapper,
-  // LinkImg,
   PhotoItem,
   ImageLazyLoad,
   ModalWindow,
@@ -170,9 +168,6 @@ const PhotoList = () => {
                 isLoaded={isLoadedPhoto.includes(index)}
               >
                 <ImageWrapper isLoaded={isLoadedPhoto.includes(index)}>
-                  {/* <LinkImg
-                    to={`/album/${albumId}/photo/${photoId}?index=${index}`}
-                  > */}
                   <ImageLazyLoad
                     onLoad={() => handleImageLoad(index)}
                     src={photoURL}

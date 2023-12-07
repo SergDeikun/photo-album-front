@@ -23,11 +23,11 @@ export const ListItem = styled.li`
     &:after {
       content: '';
       position: absolute;
-      top: 5px;
+      top: 10px;
       right: 0;
       display: flex;
       width: 1px;
-      height: 40px;
+      height: 50px;
       background-color: ${p => p.theme.colors.darkGrey};
     }
   }
@@ -51,31 +51,23 @@ export const AuthLink = styled(NavLink)`
   justify-content: center;
   font-family: ${p => p.theme.fonts.second};
   font-size: ${p => p.theme.fontSize[0]}px;
-
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.88;
-  /* color: ${p => p.theme.colors.red}; */
   color: ${p => p.theme.colors.white};
-
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
-  &:hover {
+  &.active {
     color: ${p => p.theme.colors.red};
   }
 
   @media ${p => p.theme.device.tablet} {
     padding: 15px 0;
-
-    /* padding: 25px 6px; */
     font-size: ${p => p.theme.fontSize[1]}px;
-
     color: ${p => p.theme.colors.black};
+  }
 
+  @media ${p => p.theme.device.desktop} {
     &:hover {
-      color: ${p => p.theme.colors.red};
-    }
-
-    &.active {
       color: ${p => p.theme.colors.red};
     }
   }

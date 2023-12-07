@@ -1,16 +1,11 @@
 import styled from 'styled-components';
 
 export const Btn = styled.button`
-  /* width: 120px;
-  height: 40px; */
   width: 165px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-top: 35px; */
-  /* margin-left: auto; */
-  /* margin-right: auto; */
   border-radius: ${p => p.theme.borderRadius.small};
   font-family: ${p => p.theme.fonts.button};
   font-weight: ${p => p.theme.fontWeights.regular};
@@ -23,8 +18,10 @@ export const Btn = styled.button`
   background-color: ${p => (p.disabled ? p.theme.colors.red : 'transparent')};
   color: ${p => (p.disabled ? p.theme.colors.white : p.theme.colors.red)};
 
-  &:hover {
-    background-color: ${p => p.theme.colors.red};
-    color: ${p => p.theme.colors.white};
+  @media ${p => p.theme.device.desktop} {
+    &:hover {
+      background-color: ${p => p.theme.colors.red};
+      color: ${p => p.theme.colors.white};
+    }
   }
 `;

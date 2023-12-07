@@ -16,7 +16,6 @@ export const Box = styled(motion.div)`
 
   @media ${p => p.theme.device.desktop} {
     right: 10px;
-
     width: 320px;
     height: 400px;
     padding: 0 10px;
@@ -48,7 +47,9 @@ export const MenuLink = styled(Link)`
   text-align: center;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
-    color: ${p => p.theme.colors.red};
+  @media ${p => p.theme.device.desktop} {
+    &:hover {
+      color: ${p => p.theme.colors.red};
+    }
   }
 `;

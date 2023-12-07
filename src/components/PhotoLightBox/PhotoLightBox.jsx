@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import LoadingBar from 'react-top-loading-bar';
-import { motion, AnimatePresence } from 'framer-motion';
+// import { motion, AnimatePresence } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 
 import 'swiper/css';
@@ -17,13 +17,13 @@ import { showAlert } from 'helpers/showAlert';
 
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
 import InformationButton from 'components/Buttons/InformationButton/InformationButton';
+import CloseButton from 'components/Buttons/CloseButton/CloseButton';
 
 import LocationButton from 'components/Buttons/LocationButton/LocationButton';
 
 import {
   ButtonWrapper,
   ClosePhotoBtn,
-  // CloseBtn,
   PrevBtnWrap,
   PrevButton,
   PrevButtonIcon,
@@ -36,7 +36,7 @@ import {
   InfoWrapper,
   Form,
   FieldWrapper,
-  CloseInfoBtn,
+  // CloseInfoBtn,
   DateField,
   Place,
   Comments,
@@ -226,7 +226,7 @@ const PhotoLightBox = ({
 
         {isOpenInfo && (
           <InfoWrapper>
-            <CloseInfoBtn onClose={handleToggleInfo} />
+            <CloseButton onClose={handleToggleInfo} />
 
             <Form
               encType="multipart/form-data"

@@ -147,10 +147,6 @@ export const Item = styled.li`
   overflow: hidden;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
-    transform: scale(1.02);
-  }
-
   @media ${p => p.theme.device.tablet} {
     flex-basis: calc((100% - 10px) / 2);
 
@@ -161,6 +157,9 @@ export const Item = styled.li`
 
   @media ${p => p.theme.device.desktop} {
     flex-basis: calc((100% - 30px) / 4);
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 `;
 
@@ -228,10 +227,12 @@ export const DeleteBtn = styled(DeleteButton)`
     fill: ${p => p.theme.colors.red};
   }
 
-  &:hover {
-    background-color: transparent;
-    svg {
-      fill: ${p => p.theme.colors.white};
+  @media ${p => p.theme.device.desktop} {
+    &:hover {
+      background-color: transparent;
+      svg {
+        fill: ${p => p.theme.colors.white};
+      }
     }
   }
 `;

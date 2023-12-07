@@ -14,11 +14,13 @@ export const HeaderBtn = styled.button`
   background-color: transparent;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
-  &:hover {
-    color: ${p => p.theme.colors.red};
-  }
-
   @media ${p => p.theme.device.tablet} {
     margin-right: 0;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    &:hover {
+      color: ${p => p.theme.colors.red};
+    }
   }
 `;

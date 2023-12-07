@@ -4,6 +4,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 
 import Modal from 'components/Modal/Modal';
+
 export const AlbumTitle = styled.h1`
   position: absolute;
   top: 45px;
@@ -100,8 +101,10 @@ export const ImageLazyLoad = styled(LazyLoadImage)`
   transition-delay: 0.4s;
   transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
-    scale: 1.02;
+  @media ${p => p.theme.device.desktop} {
+    &:hover {
+      scale: 1.02;
+    }
   }
 `;
 
