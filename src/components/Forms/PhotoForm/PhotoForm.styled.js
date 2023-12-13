@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import Autocomplite from 'components/Autocomplite/Autocomplite';
 import Button from 'components/Buttons/Button';
 
 export const Box = styled.div`
@@ -84,10 +83,18 @@ export const AddInfoBtn = styled.button`
   text-transform: uppercase;
   background-color: transparent;
   color: ${p => p.theme.colors.red};
+  transition: all 0.2s ease-in-out;
 
   @media ${p => p.theme.device.tablet} {
     width: 165px;
     height: 50px;
+  }
+
+  @media ${p => p.theme.device.descktop} {
+    &:hover {
+      background-color: ${p => p.theme.colors.red};
+      color: ${p => p.theme.colors.white};
+    }
   }
 `;
 

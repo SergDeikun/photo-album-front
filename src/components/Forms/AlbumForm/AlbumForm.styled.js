@@ -130,15 +130,17 @@ export const UploadCover = styled(FileInput)`
     margin-right: 10px;
   }
 
-  &:hover {
-    background-color: ${p => p.theme.colors.red};
+  @media ${p => p.theme.device.desktop} {
+    &:hover {
+      background-color: ${p => p.theme.colors.red};
 
-    label {
-      color: ${p => p.theme.colors.white};
-    }
+      label {
+        color: ${p => p.theme.colors.white};
+      }
 
-    svg {
-      fill: ${p => p.theme.colors.white};
+      svg {
+        fill: ${p => p.theme.colors.white};
+      }
     }
   }
 `;

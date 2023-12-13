@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 import Cookies from 'js-cookie';
+import useOnclickOutside from 'react-cool-onclickoutside';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
@@ -10,6 +11,8 @@ import useUpdateUser from 'react-query/useUpdateUser';
 import useLogout from 'react-query/useLogout';
 
 import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
+import ShareButton from 'components/Buttons/ShareButton/ShareButton';
+import ShareMenu from 'components/ShareMenu/ShareMenu';
 import EditLinkBtn from 'components/Buttons/EditLinkBtn/EditLinkBtn';
 
 import { showAlert } from 'helpers/showAlert';
@@ -46,6 +49,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isOpenShareMenu, setIsOpenShareMenu] = useState(false);
 
   useEffect(() => {
     if (isLoading) {
@@ -90,6 +94,21 @@ const UserProfile = () => {
       console.log(error);
     }
   };
+
+  const handleOpenShareMenu = id => {
+    setIsOpenShareMenu(prevIsOpenShareMenu => ({
+      ...prevIsOpenShareMenu,
+      itemId: id,
+    }));
+  };
+
+  const handleCloseShareMenu = () => {
+    setIsOpenShareMenu(false);
+  };
+
+  const ref = useOnclickOutside(() => {
+    setIsOpenShareMenu(false);
+  });
 
   const handleDelete = async id => {
     try {
@@ -187,27 +206,39 @@ const UserProfile = () => {
           <Title>My Albums</Title>
           <List>
             {currentUser &&
-              currentUser.myAlbums.map(({ _id: id, name, backgroundURL }) => {
-                return (
-                  <Item key={id}>
-                    <LinkAlbum to={`/album/${id}`}>
-                      {backgroundURL ? (
-                        <IconAlbum src={backgroundURL} alt="cover" />
-                      ) : (
-                        <DefaultAlbumCover />
-                      )}
-                    </LinkAlbum>
+              currentUser.myAlbums.map(
+                ({ _id: id, name, backgroundURL }, index) => {
+                  return (
+                    <Item key={id}>
+                      {/* <ShareButton onClick={() => handleOpenShareMenu(id)} /> */}
 
-                    <EditBox>
-                      <ButtonWrapper>
-                        <AlbumName>{name}</AlbumName>
-                        <DeleteBtn onDelete={() => handleShowAlert(id)} />
-                        <EditLinkBtn to={`/${id}/${name}/update`} />
-                      </ButtonWrapper>
-                    </EditBox>
-                  </Item>
-                );
-              })}
+                      <LinkAlbum to={`/album/${id}`}>
+                        {backgroundURL ? (
+                          <IconAlbum src={backgroundURL} alt="cover" />
+                        ) : (
+                          <DefaultAlbumCover />
+                        )}
+                      </LinkAlbum>
+
+                      <EditBox>
+                        <ButtonWrapper>
+                          <AlbumName>{name}</AlbumName>
+                          <ShareButton
+                            onClick={() => handleOpenShareMenu(id)}
+                          />
+
+                          <DeleteBtn onDelete={() => handleShowAlert(id)} />
+                          <EditLinkBtn to={`/${id}/${name}/update`} />
+                        </ButtonWrapper>
+                      </EditBox>
+
+                      {isOpenShareMenu && id === isOpenShareMenu.itemId && (
+                        <ShareMenu onClose={ref} id={id} />
+                      )}
+                    </Item>
+                  );
+                }
+              )}
           </List>
         </>
       )}

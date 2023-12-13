@@ -116,7 +116,7 @@ export const LogOutBtn = styled(Button)`
   }
 `;
 
-//Albums
+//*Albums
 
 export const Title = styled.h1`
   font-family: ${p => p.theme.fonts.second};
@@ -178,7 +178,7 @@ export const IconAlbum = styled.img`
   object-fit: cover;
 `;
 
-// EditBox
+//* EditBox
 
 export const EditBox = styled.div`
   position: absolute;

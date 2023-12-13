@@ -52,7 +52,6 @@ const PhotoForm = ({ onClose }) => {
     const newPhoto = new FormData();
     newPhoto.append('place', place);
     newPhoto.append('date', date);
-    console.log(('photoURL', photoURL));
     newPhoto.append('photoURL', photoURL);
     newPhoto.append('comments', comments);
 

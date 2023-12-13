@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const API_URL = 'https://photo-album-gggk.onrender.com';
+export const API_URL = 'https://photo-album-gggk.onrender.com';
 // const API_URL = 'https://photo-album.fly.dev';
 
 // const API_URL = 'http://localhost:3000';
