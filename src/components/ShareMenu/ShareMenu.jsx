@@ -1,29 +1,52 @@
 import {
   TelegramShareButton,
-  TelegramIcon,
   WhatsappShareButton,
-  WhatsappIcon,
   ViberShareButton,
-  ViberIcon,
 } from 'react-share';
 
-import { API_URL } from 'api/api-fetch';
+import {
+  Box,
+  ButtonList,
+  ButtonItem,
+  // TgBtn,
+  TelegranIc,
+  TooltipTelegram,
+  WhatsappIc,
+  TooltipWhatsapp,
+  ViberIc,
+  TooltipViber,
+  CloseBtn,
+} from './ShareMenu.styled';
 
-import { Box } from './ShareMenu.styled';
+const BASE_URL = 'https://b06v9stz-3000.euw.devtunnels.ms/';
 
-const ShareMenu = ({ onClose, id }) => {
+const ShareMenu = ({ onCloseOutside, id, onClose }) => {
   return (
     <>
-      <Box ref={onClose}>
-        <TelegramShareButton url={`${API_URL}/album/${id}`}>
-          <TelegramIcon size={30} round />
-        </TelegramShareButton>
-        <WhatsappShareButton url={`${API_URL}/album/${id}`}>
-          <WhatsappIcon size={30} round />
-        </WhatsappShareButton>
-        <ViberShareButton url={`${API_URL}/album/${id}`}>
-          <ViberIcon size={30} round />
-        </ViberShareButton>
+      <Box ref={onCloseOutside}>
+        <ButtonList>
+          <ButtonItem>
+            <TelegramShareButton url={`${BASE_URL}/album/${id}`}>
+              <TelegranIc bgStyle={{ fill: 'transparent' }} />
+            </TelegramShareButton>
+            <TooltipTelegram>Telegram</TooltipTelegram>
+          </ButtonItem>
+          <ButtonItem>
+            <WhatsappShareButton url={`${BASE_URL}/album/${id}`}>
+              <WhatsappIc bgStyle={{ fill: 'transparent' }} />
+            </WhatsappShareButton>
+            <TooltipWhatsapp>Whatsapp</TooltipWhatsapp>
+          </ButtonItem>
+          <ButtonItem>
+            <ViberShareButton url={`${BASE_URL}/album/${id}`}>
+              <ViberIc bgStyle={{ fill: 'transparent' }} />
+            </ViberShareButton>
+            <TooltipViber>Viber</TooltipViber>
+          </ButtonItem>
+          <ButtonItem>
+            <CloseBtn onClose={onClose} />
+          </ButtonItem>
+        </ButtonList>
       </Box>
     </>
   );

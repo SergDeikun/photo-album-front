@@ -233,7 +233,11 @@ const UserProfile = () => {
                       </EditBox>
 
                       {isOpenShareMenu && id === isOpenShareMenu.itemId && (
-                        <ShareMenu onClose={ref} id={id} />
+                        <ShareMenu
+                          onCloseOutside={ref}
+                          id={id}
+                          onClose={handleCloseShareMenu}
+                        />
                       )}
                     </Item>
                   );
