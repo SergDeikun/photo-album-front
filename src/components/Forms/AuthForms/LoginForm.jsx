@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import useLoginUser from 'react-query/useLoginUser';
+// import useLoginUser from 'react-query/useLoginUser';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import queryClient from '../../../react-query/queryClient';
@@ -28,9 +28,9 @@ const validationSchema = yup.object({
     .min(8, 'Password should be of minimum 8 characters length'),
 });
 
-const LoginForm = () => {
+const LoginForm = ({ loginUser, children }) => {
   const navigate = useNavigate();
-  const { mutateAsync: loginUser, isLoading } = useLoginUser();
+  // const { mutateAsync: loginUser, isLoading } = useLoginUser();
 
   const formik = useFormik({
     initialValues: {
@@ -103,10 +103,11 @@ const LoginForm = () => {
             helperText={formik.touched.password && formik.errors.password}
           />
         </InputrWrapper>
-        <SubmitBtn type="submit" title="Log In" disabled={isLoading} />
+        {/* <SubmitBtn type="submit" title="Log In" disabled={isLoading} /> */}
 
         {/* TODO кнопка чи посилання??? */}
-        <ButtonForgot type="button">Forgot password?</ButtonForgot>
+        {/* <ButtonForgot type="button">Forgot password?</ButtonForgot> */}
+        {children}
       </Form>
     </>
   );

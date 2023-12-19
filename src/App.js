@@ -5,7 +5,7 @@ import { useJsApiLoader } from '@react-google-maps/api';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import ScrollToTop from 'react-scroll-to-top';
+// import ScrollToTop from 'react-scroll-to-top';
 
 // import toastOptions from 'helpers/toastOptions';
 import { setAuthorizationHeader } from 'helpers/setAuthorizationHeader';
@@ -23,9 +23,12 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const UpdateAlbumPage = lazy(() =>
   import('./pages/UpdateAlbumPage/UpdateAlbumPage')
 );
+const ConfirmUserDataPage = lazy(() =>
+  import('./pages/ConfirmUserDataPage/ConfirmUserDataPage.jsx')
+);
 
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
-const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
+// const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
 
 // const Map = lazy(() => import('./components/Map/Map'));
 
@@ -55,6 +58,11 @@ const App = () => {
           <Route path="/album/:albumId" element={<CurrentAlbumPage />} />
           {/* <Route path="album/:albumId/photo/:photoId" element={<PhotoPage />} /> */}
           <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
+
+          <Route
+            path="/album/:albumId/access"
+            element={<ConfirmUserDataPage />}
+          />
 
           {/* <Route path="/map" element={<Map />} /> */}
         </Route>

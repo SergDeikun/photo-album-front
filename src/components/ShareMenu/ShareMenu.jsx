@@ -18,7 +18,7 @@ import {
   CloseBtn,
 } from './ShareMenu.styled';
 
-const BASE_URL = 'https://b06v9stz-3000.euw.devtunnels.ms/';
+const BASE_URL = 'https://b06v9stz-3000.euw.devtunnels.ms';
 
 const ShareMenu = ({ onCloseOutside, id, onClose }) => {
   return (
@@ -26,7 +26,7 @@ const ShareMenu = ({ onCloseOutside, id, onClose }) => {
       <Box ref={onCloseOutside}>
         <ButtonList>
           <ButtonItem>
-            <TelegramShareButton url={`${BASE_URL}/album/${id}`}>
+            <TelegramShareButton url={`${BASE_URL}/album/${id}/access`}>
               <TelegranIc bgStyle={{ fill: 'transparent' }} />
             </TelegramShareButton>
             <TooltipTelegram>Telegram</TooltipTelegram>
