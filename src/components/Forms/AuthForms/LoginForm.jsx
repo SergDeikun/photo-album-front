@@ -12,8 +12,8 @@ import {
   Form,
   InputrWrapper,
   Input,
-  SubmitBtn,
-  ButtonForgot,
+  // SubmitBtn,
+  // ButtonForgot,
 } from './AuthForm.styled';
 
 const validationSchema = yup.object({
@@ -34,10 +34,10 @@ const LoginForm = ({ loginUser, children }) => {
 
   const formik = useFormik({
     initialValues: {
-      email: 'qwerty@mail.com',
-      password: 'qwerty123',
-      // email: '',
-      // password: '',
+      // email: 'qwerty@mail.com',
+      // password: 'qwerty123',
+      email: '',
+      password: '',
     },
     validationSchema: validationSchema,
     onSubmit: async values => {

@@ -7,6 +7,8 @@ import useChangeAlbum from 'react-query/useChangeAlbum';
 
 import { showAlert } from 'helpers/showAlert';
 
+import defaulCover from '../../images/bg-cover1.jpg';
+
 // import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
@@ -17,12 +19,13 @@ import {
   SaveBtn,
   FriendsBox,
   FriendsPreTitle,
+  FriendsQ,
   FriendsList,
   FriendsItem,
   FriendsDataWrap,
   PersonIcon,
   EmailnIcon,
-  FriendNext,
+  FriendText,
   DeleteFriendBtn,
   FileWrapper,
   BlackBox,
@@ -37,6 +40,7 @@ import {
 const UpdateAlbum = () => {
   const { id } = useParams();
   const { data } = useGetAlbumById(id);
+  console.log(data);
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
@@ -47,7 +51,7 @@ const UpdateAlbum = () => {
   useEffect(() => {
     if (data) {
       setName(data.name);
-      setBackgroundURL(data.backgroundURL);
+      setBackgroundURL(data.backgroundURL || defaulCover);
     }
   }, [data]);
 
@@ -139,57 +143,36 @@ const UpdateAlbum = () => {
             </Form>
           </div>
 
-          {/* if I have friends => render FriendsList */}
-
           <FriendsBox>
             <FriendsPreTitle>Friends :</FriendsPreTitle>
-            {/* <span>You haven't shared this album with anyone</span> */}
+            {!data.viewers.length && (
+              <FriendsQ>You haven't shared this album with anyone</FriendsQ>
+            )}
 
             <FriendsList>
-              <FriendsItem>
-                <div>
-                  <FriendsDataWrap>
-                    <PersonIcon />
-                    <FriendNext>Kiwi ahgfdhgafhsdhahs</FriendNext>
-                  </FriendsDataWrap>
-                  <FriendsDataWrap>
-                    <EmailnIcon />
-                    <FriendNext>kiwi@mail.com</FriendNext>
-                  </FriendsDataWrap>
-                </div>
-                <DeleteFriendBtn />
-              </FriendsItem>
-              <FriendsItem>
-                <div>
-                  <FriendsDataWrap>
-                    <PersonIcon />
-                    <FriendNext>Kokos</FriendNext>
-                  </FriendsDataWrap>
-                  <FriendsDataWrap>
-                    <EmailnIcon />
-                    <FriendNext>kokos@mail.com</FriendNext>
-                  </FriendsDataWrap>
-                </div>
-                {/* <DeleteFriend></DeleteFriend> */}
-                <DeleteFriendBtn />
-              </FriendsItem>
-              <FriendsItem>
-                <div>
-                  <FriendsDataWrap>
-                    <PersonIcon />
-                    <FriendNext>Mango</FriendNext>
-                  </FriendsDataWrap>
-                  <FriendsDataWrap>
-                    <EmailnIcon />
-                    <FriendNext>mango@mail.com</FriendNext>
-                  </FriendsDataWrap>
-                </div>
-                <DeleteFriendBtn />
-              </FriendsItem>
+              {data &&
+                data.viewers.map(({ email, name }) => {
+                  return (
+                    <FriendsItem key={1}>
+                      <div>
+                        <FriendsDataWrap>
+                          <PersonIcon />
+                          <FriendText>{name}</FriendText>
+                        </FriendsDataWrap>
+                        <FriendsDataWrap>
+                          <EmailnIcon />
+                          <FriendText>{email}</FriendText>
+                        </FriendsDataWrap>
+                      </div>
+                      <DeleteFriendBtn />
+                    </FriendsItem>
+                  );
+                })}
             </FriendsList>
           </FriendsBox>
         </InfoWrapper>
       )}
+
       {/* PhotoList */}
 
       {data && (

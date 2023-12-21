@@ -14,7 +14,6 @@ export const InfoWrapper = styled.div`
 
 export const Form = styled.form`
   height: 390px;
-  /* height: 345px; */
 
   @media ${p => p.theme.device.tablet} {
     height: 100%;
@@ -25,8 +24,6 @@ export const Form = styled.form`
 
 export const NameWrapper = styled.div`
   position: relative;
-  /* width: 100%; */
-  /* width: 280px; */
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
@@ -58,7 +55,6 @@ export const NameField = styled.input`
   align-items: center;
   background-color: transparent;
   font-family: ${p => p.theme.fonts.second};
-  /* font-size: ${p => p.theme.fontSize[2]}px; */
   font-size: 30px;
 
   font-weight: ${p => p.theme.fontWeights.bold};
@@ -74,7 +70,6 @@ export const NameField = styled.input`
 `;
 
 export const SaveBtn = styled(Button)`
-  /* margin-top: 10px; */
   margin-top: 25px;
   width: 160px;
   height: 30px;
@@ -96,7 +91,6 @@ export const SaveBtn = styled(Button)`
 
 export const FriendsBox = styled.div`
   overflow: hidden;
-  /* height: 315px; */
 
   @media ${p => p.theme.device.tablet} {
     position: absolute;
@@ -121,6 +115,14 @@ export const FriendsPreTitle = styled.p`
   color: ${p => p.theme.colors.black};
 `;
 
+export const FriendsQ = styled.span`
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSize[0]}px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  color: ${p => p.theme.colors.black};
+  text-align: center;
+`;
+
 export const FriendsList = styled.ul`
   overflow-y: auto;
   height: 100%;
@@ -142,10 +144,6 @@ export const FriendsItem = styled.li`
   line-height: 1.88;
   border-radius: ${p => p.theme.borderRadius.small};
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  /* 
-  &:hover {
-    background-color: ${p => p.theme.colors.red};
-  } */
 
   @media ${p => p.theme.device.tablet} {
     display: flex;
@@ -172,7 +170,7 @@ export const EmailnIcon = styled(MdOutlineEmail)`
   fill: ${p => p.theme.colors.red};
 `;
 
-export const FriendNext = styled.span`
+export const FriendText = styled.span`
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
@@ -220,6 +218,7 @@ export const BlackBox = styled.div`
   align-items: flex-end;
   justify-content: center;
   padding: 5px;
+  border-radius: ${p => p.theme.borderRadius.small};
   font-family: ${p => p.theme.fonts.second};
 
   background-color: rgba(0, 0, 0, 0.5);

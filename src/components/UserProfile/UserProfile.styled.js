@@ -91,8 +91,6 @@ export const SaveBtn = styled(Button)`
   @media ${p => p.theme.device.tablet} {
     position: absolute;
     bottom: 0;
-    /* margin-top: auto; */
-    /* margin-left: 0; */
   }
 `;
 
@@ -170,12 +168,16 @@ export const LinkAlbum = styled(Link)`
   height: 100%;
 `;
 
-export const IconAlbum = styled.img`
+export const AlbumCover = styled.div`
   width: 100%;
   height: 100%;
+  background-image: ${({ backgroundImg }) =>
+    backgroundImg ? `url(${backgroundImg})` : 'none'};
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
   object-fit: cover;
+  overflow: hidden;
 `;
 
 //* EditBox

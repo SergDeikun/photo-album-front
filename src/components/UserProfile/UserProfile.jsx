@@ -10,10 +10,10 @@ import useDeleteAlbum from 'react-query/useDeleteAlbum';
 import useUpdateUser from 'react-query/useUpdateUser';
 import useLogout from 'react-query/useLogout';
 
-import DefaultAlbumCover from 'components/DefaultAlbumCover/DefaultAlbumCover';
 import ShareButton from 'components/Buttons/ShareButton/ShareButton';
 import ShareMenu from 'components/ShareMenu/ShareMenu';
 import EditLinkBtn from 'components/Buttons/EditLinkBtn/EditLinkBtn';
+import defaultCover from '../../images/bg-cover1.jpg';
 
 import { showAlert } from 'helpers/showAlert';
 
@@ -31,7 +31,7 @@ import {
   Title,
   Item,
   LinkAlbum,
-  IconAlbum,
+  AlbumCover,
   AlbumName,
   EditBox,
   ButtonWrapper,
@@ -65,7 +65,6 @@ const UserProfile = () => {
   const handleNameChange = e => {
     setName(e.target.value.trimStart());
     setSaveBtnVisible(currentUser.name !== e.target.value);
-    // saveBtnVisible(currentUser.email !== e.target.value);
   };
 
   const handleEmailChange = e => {
@@ -83,7 +82,6 @@ const UserProfile = () => {
         {
           onSuccess: () => {
             setSaveBtnVisible(false);
-            // setSaveEmailBtnVisible(false);
           },
           onError: error => {
             // notifyError(error.response.data.message);
@@ -210,14 +208,10 @@ const UserProfile = () => {
                 ({ _id: id, name, backgroundURL }, index) => {
                   return (
                     <Item key={id}>
-                      {/* <ShareButton onClick={() => handleOpenShareMenu(id)} /> */}
-
                       <LinkAlbum to={`/album/${id}`}>
-                        {backgroundURL ? (
-                          <IconAlbum src={backgroundURL} alt="cover" />
-                        ) : (
-                          <DefaultAlbumCover />
-                        )}
+                        <AlbumCover
+                          backgroundImg={backgroundURL || defaultCover}
+                        />
                       </LinkAlbum>
 
                       <EditBox>
