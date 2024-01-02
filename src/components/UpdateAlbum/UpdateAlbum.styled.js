@@ -107,7 +107,7 @@ export const FriendsBox = styled.div`
   }
 `;
 
-export const FriendsPreTitle = styled.p`
+export const FriendsTitle = styled.p`
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[1]}px;
   font-weight: ${p => p.theme.fontWeights.bold};
@@ -115,7 +115,7 @@ export const FriendsPreTitle = styled.p`
   color: ${p => p.theme.colors.black};
 `;
 
-export const FriendsQ = styled.span`
+export const FriendsPreTitle = styled.span`
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.medium};

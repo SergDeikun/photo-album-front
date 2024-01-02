@@ -18,8 +18,8 @@ import {
   NameField,
   SaveBtn,
   FriendsBox,
+  FriendsTitle,
   FriendsPreTitle,
-  FriendsQ,
   FriendsList,
   FriendsItem,
   FriendsDataWrap,
@@ -40,7 +40,6 @@ import {
 const UpdateAlbum = () => {
   const { id } = useParams();
   const { data } = useGetAlbumById(id);
-  console.log(data);
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
@@ -144,9 +143,11 @@ const UpdateAlbum = () => {
           </div>
 
           <FriendsBox>
-            <FriendsPreTitle>Friends :</FriendsPreTitle>
+            <FriendsTitle>Friends :</FriendsTitle>
             {!data.viewers.length && (
-              <FriendsQ>You haven't shared this album with anyone</FriendsQ>
+              <FriendsPreTitle>
+                You haven't shared this album with anyone
+              </FriendsPreTitle>
             )}
 
             <FriendsList>

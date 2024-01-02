@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import LoadingBar from 'react-top-loading-bar';
 
-import useGetAlbumById from 'react-query/useGetAlbumById';
+// import useGetAlbumById from 'react-query/useGetAlbumById';
 
 import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
 
@@ -106,9 +106,10 @@ const individualStylesDesktop = [
   },
 ];
 
-const PhotoList = () => {
-  const { albumId } = useParams();
-  const { data: currentAlbumData, isLoading } = useGetAlbumById(albumId);
+const PhotoList = ({ currentAlbumData, isLoading }) => {
+  console.log(currentAlbumData);
+  // const { albumId } = useParams();
+  // const { data: currentAlbumData, isLoading } = useGetAlbumById(albumId);
   const [isLoadedPhoto, setIsLoadedPhoto] = useState([]);
   const [progress, setProgress] = useState(0);
   const isMobile = useMediaQuery({ maxWidth: 767 });

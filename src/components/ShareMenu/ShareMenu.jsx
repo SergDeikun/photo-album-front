@@ -18,7 +18,8 @@ import {
   CloseBtn,
 } from './ShareMenu.styled';
 
-const BASE_URL = 'https://b06v9stz-3001.euw.devtunnels.ms';
+// const BASE_URL = 'https://b06v9stz-3001.euw.devtunnels.ms';
+const BASE_URL = 'http://localhost:3001';
 
 const ShareMenu = ({ onCloseOutside, id, onClose }) => {
   return (

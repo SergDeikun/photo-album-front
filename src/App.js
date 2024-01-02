@@ -23,8 +23,11 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const UpdateAlbumPage = lazy(() =>
   import('./pages/UpdateAlbumPage/UpdateAlbumPage')
 );
-const ConfirmUserDataPage = lazy(() =>
-  import('./pages/ConfirmUserDataPage/ConfirmUserDataPage.jsx')
+const ConfirmAccessPage = lazy(() =>
+  import('./pages/ConfirmAccessPage/ConfirmAccessPage.jsx')
+);
+const SharedAlbumPage = lazy(() =>
+  import('./pages/SharedAlbumPage/SharedAlbumPage.jsx')
 );
 
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
@@ -61,8 +64,9 @@ const App = () => {
 
           <Route
             path="/album/:albumId/access"
-            element={<ConfirmUserDataPage />}
+            element={<ConfirmAccessPage />}
           />
+          <Route path="/shared-album/:albumId" element={<SharedAlbumPage />} />
 
           {/* <Route path="/map" element={<Map />} /> */}
         </Route>

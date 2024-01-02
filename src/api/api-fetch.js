@@ -1,12 +1,12 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-// export const API_URL = 'https://photo-album-gggk.onrender.com';
+export const API_URL = 'https://photo-album-gggk.onrender.com';
 // const API_URL = 'https://photo-album.fly.dev';
 
-const API_URL = 'http://localhost:3000';
+// const API_URL = 'http://localhost:3000';
 
-// Auth
+//* Auth
 export const createNewUser = async ({ name, email, password }) => {
   const response = await axios.post(`${API_URL}/api/auth/register`, {
     name,
@@ -26,7 +26,7 @@ export const loginUser = async ({ email, password }) => {
   return response.data;
 };
 
-// User
+//* User
 export const getCurrentUser = async () => {
   const token = Cookies.get('token');
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -50,14 +50,25 @@ export const logout = async () => {
   return response.data;
 };
 
-// Album
+//* Album
 export const addAlbum = async newAlbum => {
   const response = await axios.post(`${API_URL}/api/album`, newAlbum, {});
 
   return response.data;
 };
 
+export const confirmAccess = async ({ email, password, albumId }) => {
+  const response = await axios.post(`${API_URL}/api/album/${albumId}/access`, {
+    email,
+    password,
+  });
+
+  return response.data;
+};
+
 export const getAlbumById = async id => {
+  const token = Cookies.get('token');
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   const response = await axios.get(`${API_URL}/api/album/${id}`, {});
 
   return response.data;
@@ -77,7 +88,7 @@ export const changeAlbum = async ({ updateAlbum, id }) => {
   return response.data;
 };
 
-// Photo
+//* Photo
 export const addPhoto = async ({ newPhoto, albumId }) => {
   const response = await axios.post(
     `${API_URL}/api/photo/${albumId}`,

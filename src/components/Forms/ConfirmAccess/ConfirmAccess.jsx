@@ -1,59 +1,64 @@
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import useLoginUser from 'react-query/useLoginUser';
+import useConfirmAccess from 'react-query/useConfirmAccess';
+
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import queryClient from '../../../react-query/queryClient';
+
+import { Box } from './ConfirmAccess.styled';
 
 import {
   Form,
   InputrWrapper,
   Input,
   SubmitBtn,
-  ButtonForgot,
-} from './AuthForm.styled';
+} from '../AuthForms/AuthForm.styled';
 
-const validationSchema = yup.object({
-  email: yup
-    .string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: yup
-    .string('Enter your password')
-    .trim()
-    .required('Password is required')
-    .min(8, 'Password should be of minimum 8 characters length'),
-});
-
-const LoginForm = () => {
+const ConfirmAccess = () => {
+  const { albumId } = useParams();
   const navigate = useNavigate();
-  const { mutateAsync: loginUser, isLoading } = useLoginUser();
+  const { mutateAsync: confirmAccess, isLoading } = useConfirmAccess();
+
+  const validationSchema = yup.object({
+    email: yup
+      .string('Enter your email')
+      .email('Enter a valid email')
+      .required('Email is required'),
+    password: yup
+      .string('Enter your password')
+      .trim()
+      .required('Password is required')
+      .min(8, 'Password should be of minimum 8 characters length'),
+  });
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: 'serhii@mail.com',
+      password: 'serhii123',
     },
     validationSchema: validationSchema,
     onSubmit: async values => {
       const { email, password } = values;
 
       try {
-        await loginUser(
-          { email, password },
+        await confirmAccess(
+          { email, password, albumId },
           {
             onSuccess: response => {
+              console.log(response);
               Cookies.set('token', response.token, {
                 expires: 7,
                 secure: true,
                 sameSite: 'strict',
                 // httpOnly: true,
               });
-              notifySuccess('Successful login');
-              navigate('/album-list');
+              notifySuccess('Successful');
+              navigate(`/album/${albumId}`);
+
               queryClient.invalidateQueries();
 
               return response;
@@ -70,7 +75,7 @@ const LoginForm = () => {
   });
 
   return (
-    <>
+    <Box>
       <Form onSubmit={formik.handleSubmit}>
         <InputrWrapper>
           <Input
@@ -101,13 +106,10 @@ const LoginForm = () => {
             helperText={formik.touched.password && formik.errors.password}
           />
         </InputrWrapper>
-        <SubmitBtn type="submit" title="Log In" disabled={isLoading} />
-
-        {/* TODO кнопка чи посилання??? */}
-        <ButtonForgot type="button">Forgot password?</ButtonForgot>
+        <SubmitBtn type="submit" title="Confirm" disabled={isLoading} />
       </Form>
-    </>
+    </Box>
   );
 };
 
-export default LoginForm;
+export default ConfirmAccess;

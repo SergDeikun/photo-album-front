@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 import Cookies from 'js-cookie';
@@ -198,6 +198,19 @@ const UserProfile = () => {
 
             <LogOutBtn type="button" title="Log out" onClick={handleLogout} />
           </UserWrapper>
+
+          <ul>
+            {currentUser.albumsShared &&
+              currentUser.albumsShared.map(({ _id: id, name }) => {
+                return (
+                  <li key={id}>
+                    <Link to={`/shared-album/${id}`}>
+                      <p>{name}</p>
+                    </Link>
+                  </li>
+                );
+              })}
+          </ul>
 
           {/* Album list */}
 
