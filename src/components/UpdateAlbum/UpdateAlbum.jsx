@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import useGetAlbumById from 'react-query/useGetAlbumById';
+// import useGetAlbumById from 'react-query/useGetAlbumById';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useChangeAlbum from 'react-query/useChangeAlbum';
 
@@ -39,7 +39,7 @@ import {
 
 const UpdateAlbum = () => {
   const { id } = useParams();
-  const { data } = useGetAlbumById(id);
+  // const { data } = useGetAlbumById(id);
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
@@ -47,16 +47,16 @@ const UpdateAlbum = () => {
   const { mutateAsync: deletePhoto } = useDeletePhoto();
   const { mutateAsync: changeAlbum, isLoading } = useChangeAlbum();
 
-  useEffect(() => {
-    if (data) {
-      setName(data.name);
-      setBackgroundURL(data.backgroundURL || defaulCover);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setName(data.name);
+  //     setBackgroundURL(data.backgroundURL || defaulCover);
+  //   }
+  // }, [data]);
 
   const handleChangeName = e => {
     setName(e.target.value);
-    setSaveBtnVisible(data.name !== e.target.value);
+    // setSaveBtnVisible(data.name !== e.target.value);
   };
 
   const uploadImage = e => {
@@ -95,7 +95,7 @@ const UpdateAlbum = () => {
 
   return (
     <>
-      {data && (
+      {/* {data && (
         <InfoWrapper>
           <div>
             <Form
@@ -172,11 +172,11 @@ const UpdateAlbum = () => {
             </FriendsList>
           </FriendsBox>
         </InfoWrapper>
-      )}
+      )} */}
 
       {/* PhotoList */}
 
-      {data && (
+      {/* {data && (
         <PhotoList>
           {data.photo.map(({ _id: id, photoURL }) => {
             return (
@@ -187,7 +187,7 @@ const UpdateAlbum = () => {
             );
           })}
         </PhotoList>
-      )}
+      )} */}
     </>
   );
 };
