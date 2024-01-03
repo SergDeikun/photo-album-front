@@ -98,8 +98,8 @@ export const addPhoto = async ({ newPhoto, albumId }) => {
   return response.data;
 };
 
-export const getPhotoById = async id => {
-  const response = await axios.get(`${API_URL}/api/photo/${id}`, {});
+export const getPhotoById = async albumId => {
+  const response = await axios.get(`${API_URL}/api/photo/${albumId}`, {});
 
   return response.data;
 };
