@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-// import useGetAlbumById from '../../../react-query/useGetAlbumById';
-import { useGetAlbumById } from 'react-query/useGetAlbumById';
+import useGetAlbumById from 'react-query/useGetAlbumById';
 
 import PhotoList from 'components/PhotoList/PhotoList';
 

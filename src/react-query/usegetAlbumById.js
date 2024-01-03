@@ -2,10 +2,10 @@ import { useQuery } from 'react-query';
 
 import { getAlbumById } from 'api/api-fetch';
 
-export const useGetAlbumById = albumId => {
-  const album = useQuery(['album', albumId], () => getAlbumById(albumId));
+const useGetAlbumById = albumId => {
+  return useQuery(['album', albumId], () => getAlbumById(albumId));
 
-  return album;
+  // return album;
 };
 
-// export default useGetAlbumById;
+export default useGetAlbumById;
