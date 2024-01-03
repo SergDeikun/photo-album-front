@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 
-import { getAlbumById } from '../api/api-fetch';
+import { getAlbumById } from 'api/api-fetch';
 
 const useGetAlbumById = albumId => {
   const album = useQuery(['album', albumId], () => getAlbumById(albumId));
