@@ -1,7 +1,7 @@
 import Container from 'components/Container/Container';
 // import MainImg from '../../images/homeP-removebg-preview.png';
 
-import { Image, Title } from './HomePaje.styled';
+import { Title } from './HomePaje.styled';
 
 const HomePage = () => {
   return (

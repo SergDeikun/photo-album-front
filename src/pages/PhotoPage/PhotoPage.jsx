@@ -1,4 +1,4 @@
-import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
+// import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
 
 const PhotoPage = () => {
   return <>{/* <PhotoLightBox /> */}</>;
