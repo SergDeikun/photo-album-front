@@ -5,6 +5,7 @@ import defaultCover from '../../images/bg-cover1.jpg';
 import { Item, LinkItem, ImgWrapper, AlbumName } from './AlbumList.styled';
 
 const AlbumList = ({ myAlbums }) => {
+  console.log(myAlbums);
   return (
     <>
       <List>
