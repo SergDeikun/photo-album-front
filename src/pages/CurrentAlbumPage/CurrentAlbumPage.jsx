@@ -8,17 +8,12 @@ import { BoxContainer } from './CurrentAlbumPage.styled';
 
 const CurrentAlbumPage = () => {
   const { albumId } = useParams();
-  const { data: currentAlbumData, isLoading } = useGetAlbumById(albumId);
+  const { data, isLoading } = useGetAlbumById(albumId);
 
   return (
     <>
       <BoxContainer>
-        {currentAlbumData && (
-          <PhotoList
-            currentAlbumData={currentAlbumData}
-            isLoading={isLoading}
-          />
-        )}
+        {data && <PhotoList currentAlbumData={data} isLoading={isLoading} />}
         {/* <PhotoList currentAlbumData={currentAlbumData} isLoading={isLoading} /> */}
       </BoxContainer>
     </>
