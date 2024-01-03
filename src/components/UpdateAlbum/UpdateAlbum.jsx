@@ -1,195 +1,195 @@
-// import { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-// import useGetAlbumById from 'react-query/useGetAlbumById';
-// import useDeletePhoto from 'react-query/useDeletePhotoById';
-// import useChangeAlbum from 'react-query/useChangeAlbum';
+import useGetAlbumById from 'react-query/useGetAlbumById';
+import useDeletePhoto from 'react-query/useDeletePhotoById';
+import useChangeAlbum from 'react-query/useChangeAlbum';
 
-// import { showAlert } from 'helpers/showAlert';
+import { showAlert } from 'helpers/showAlert';
 
-// import defaulCover from '../../images/bg-cover1.jpg';
+import defaulCover from '../../images/bg-cover1.jpg';
 
-// // import { notifySuccess, notifyError } from 'helpers/toastNotify';
+// import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
-// import {
-//   InfoWrapper,
-//   Form,
-//   NameWrapper,
-//   NameField,
-//   SaveBtn,
-//   FriendsBox,
-//   FriendsTitle,
-//   FriendsPreTitle,
-//   FriendsList,
-//   FriendsItem,
-//   FriendsDataWrap,
-//   PersonIcon,
-//   EmailnIcon,
-//   FriendText,
-//   DeleteFriendBtn,
-//   FileWrapper,
-//   BlackBox,
-//   PhotocameraIcon,
-//   FileLabel,
-//   PhotoList,
-//   PhotoItem,
-//   Image,
-//   DeleteBtn,
-// } from './UpdateAlbum.styled';
+import {
+  InfoWrapper,
+  Form,
+  NameWrapper,
+  NameField,
+  SaveBtn,
+  FriendsBox,
+  FriendsTitle,
+  FriendsPreTitle,
+  FriendsList,
+  FriendsItem,
+  FriendsDataWrap,
+  PersonIcon,
+  EmailnIcon,
+  FriendText,
+  DeleteFriendBtn,
+  FileWrapper,
+  BlackBox,
+  PhotocameraIcon,
+  FileLabel,
+  PhotoList,
+  PhotoItem,
+  Image,
+  DeleteBtn,
+} from './UpdateAlbum.styled';
 
-// const UpdateAlbum = () => {
-//   const { id } = useParams();
-//   const { data } = useGetAlbumById(id);
-//   const [name, setName] = useState('');
-//   const [backgroundURL, setBackgroundURL] = useState('');
-//   const [previewBackground, setPreviewBackground] = useState('');
-//   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
-//   const { mutateAsync: deletePhoto } = useDeletePhoto();
-//   const { mutateAsync: changeAlbum, isLoading } = useChangeAlbum();
+const UpdateAlbum = () => {
+  const { id } = useParams();
+  const { data } = useGetAlbumById(id);
+  const [name, setName] = useState('');
+  const [backgroundURL, setBackgroundURL] = useState('');
+  const [previewBackground, setPreviewBackground] = useState('');
+  const [saveBtnVisible, setSaveBtnVisible] = useState(false);
+  const { mutateAsync: deletePhoto } = useDeletePhoto();
+  const { mutateAsync: changeAlbum, isLoading } = useChangeAlbum();
 
-//   useEffect(() => {
-//     if (data) {
-//       setName(data.name);
-//       setBackgroundURL(data.backgroundURL || defaulCover);
-//     }
-//   }, [data]);
+  useEffect(() => {
+    if (data) {
+      setName(data.name);
+      setBackgroundURL(data.backgroundURL || defaulCover);
+    }
+  }, [data]);
 
-//   const handleChangeName = e => {
-//     setName(e.target.value);
-//     // setSaveBtnVisible(data.name !== e.target.value);
-//   };
+  const handleChangeName = e => {
+    setName(e.target.value);
+    // setSaveBtnVisible(data.name !== e.target.value);
+  };
 
-//   const uploadImage = e => {
-//     setPreviewBackground(URL.createObjectURL(e.target.files[0]));
-//     setBackgroundURL(e.target.files[0]);
-//     setSaveBtnVisible(true);
-//   };
+  const uploadImage = e => {
+    setPreviewBackground(URL.createObjectURL(e.target.files[0]));
+    setBackgroundURL(e.target.files[0]);
+    setSaveBtnVisible(true);
+  };
 
-//   const handleSubmit = async e => {
-//     e.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault();
 
-//     const updateAlbum = new FormData();
-//     updateAlbum.append('name', name);
-//     updateAlbum.append('backgroundURL', backgroundURL);
+    const updateAlbum = new FormData();
+    updateAlbum.append('name', name);
+    updateAlbum.append('backgroundURL', backgroundURL);
 
-//     try {
-//       await changeAlbum({ updateAlbum, id });
+    try {
+      await changeAlbum({ updateAlbum, id });
 
-//       setSaveBtnVisible(false);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+      setSaveBtnVisible(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-//   const handleDelete = async id => {
-//     try {
-//       await deletePhoto(id);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+  const handleDelete = async id => {
+    try {
+      await deletePhoto(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-//   const handleShowAlert = id => {
-//     showAlert(id, handleDelete);
-//   };
+  const handleShowAlert = id => {
+    showAlert(id, handleDelete);
+  };
 
-//   return (
-//     <>
-//       {data && (
-//         <InfoWrapper>
-//           <div>
-//             <Form
-//               encType="multipart/form-data"
-//               onSubmit={handleSubmit}
-//               action=""
-//             >
-//               <NameWrapper>
-//                 <label>
-//                   <NameField
-//                     type="text"
-//                     name="name"
-//                     value={name}
-//                     onChange={handleChangeName}
-//                     maxLength="20"
-//                   />
-//                 </label>
-//               </NameWrapper>
+  return (
+    <>
+      {data && (
+        <InfoWrapper>
+          <div>
+            <Form
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
+              action=""
+            >
+              <NameWrapper>
+                <label>
+                  <NameField
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={handleChangeName}
+                    maxLength="20"
+                  />
+                </label>
+              </NameWrapper>
 
-//               <FileWrapper
-//                 backgroundImage={previewBackground || backgroundURL || ''}
-//               >
-//                 <BlackBox>
-//                   <PhotocameraIcon />
-//                   <FileLabel>
-//                     Edit cover
-//                     <input
-//                       type="file"
-//                       name={backgroundURL}
-//                       onChange={uploadImage}
-//                       accept=".jpg, .jpeg, .png"
-//                       hidden
-//                     />
-//                   </FileLabel>
-//                 </BlackBox>
-//               </FileWrapper>
+              <FileWrapper
+                backgroundImage={previewBackground || backgroundURL || ''}
+              >
+                <BlackBox>
+                  <PhotocameraIcon />
+                  <FileLabel>
+                    Edit cover
+                    <input
+                      type="file"
+                      name={backgroundURL}
+                      onChange={uploadImage}
+                      accept=".jpg, .jpeg, .png"
+                      hidden
+                    />
+                  </FileLabel>
+                </BlackBox>
+              </FileWrapper>
 
-//               <SaveBtn
-//                 type="submit"
-//                 title="Save changes"
-//                 disabled={isLoading}
-//                 isVisible={saveBtnVisible}
-//               />
-//             </Form>
-//           </div>
+              <SaveBtn
+                type="submit"
+                title="Save changes"
+                disabled={isLoading}
+                isVisible={saveBtnVisible}
+              />
+            </Form>
+          </div>
 
-//           <FriendsBox>
-//             <FriendsTitle>Friends :</FriendsTitle>
-//             {!data.viewers.length && (
-//               <FriendsPreTitle>
-//                 You haven't shared this album with anyone
-//               </FriendsPreTitle>
-//             )}
+          <FriendsBox>
+            <FriendsTitle>Friends :</FriendsTitle>
+            {!data.viewers.length && (
+              <FriendsPreTitle>
+                You haven't shared this album with anyone
+              </FriendsPreTitle>
+            )}
 
-//             <FriendsList>
-//               {data &&
-//                 data.viewers.map(({ email, name }) => {
-//                   return (
-//                     <FriendsItem key={1}>
-//                       <div>
-//                         <FriendsDataWrap>
-//                           <PersonIcon />
-//                           <FriendText>{name}</FriendText>
-//                         </FriendsDataWrap>
-//                         <FriendsDataWrap>
-//                           <EmailnIcon />
-//                           <FriendText>{email}</FriendText>
-//                         </FriendsDataWrap>
-//                       </div>
-//                       <DeleteFriendBtn />
-//                     </FriendsItem>
-//                   );
-//                 })}
-//             </FriendsList>
-//           </FriendsBox>
-//         </InfoWrapper>
-//       )}
+            <FriendsList>
+              {data &&
+                data.viewers.map(({ email, name }) => {
+                  return (
+                    <FriendsItem key={1}>
+                      <div>
+                        <FriendsDataWrap>
+                          <PersonIcon />
+                          <FriendText>{name}</FriendText>
+                        </FriendsDataWrap>
+                        <FriendsDataWrap>
+                          <EmailnIcon />
+                          <FriendText>{email}</FriendText>
+                        </FriendsDataWrap>
+                      </div>
+                      <DeleteFriendBtn />
+                    </FriendsItem>
+                  );
+                })}
+            </FriendsList>
+          </FriendsBox>
+        </InfoWrapper>
+      )}
 
-//       {/* PhotoList */}
+      {/* PhotoList */}
 
-//       {data && (
-//         <PhotoList>
-//           {data.photo.map(({ _id: id, photoURL }) => {
-//             return (
-//               <PhotoItem key={id}>
-//                 <Image src={photoURL} alt="" />
-//                 <DeleteBtn type="button" onDelete={() => handleShowAlert(id)} />
-//               </PhotoItem>
-//             );
-//           })}
-//         </PhotoList>
-//       )}
-//     </>
-//   );
-// };
+      {data && (
+        <PhotoList>
+          {data.photo.map(({ _id: id, photoURL }) => {
+            return (
+              <PhotoItem key={id}>
+                <Image src={photoURL} alt="" />
+                <DeleteBtn type="button" onDelete={() => handleShowAlert(id)} />
+              </PhotoItem>
+            );
+          })}
+        </PhotoList>
+      )}
+    </>
+  );
+};
 
-// export default UpdateAlbum;
+export default UpdateAlbum;
