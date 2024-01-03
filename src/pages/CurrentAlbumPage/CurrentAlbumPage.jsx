@@ -9,6 +9,7 @@ import { BoxContainer } from './CurrentAlbumPage.styled';
 const CurrentAlbumPage = () => {
   const { albumId } = useParams();
   const { data: currentAlbumData, isLoading } = useGetAlbumById(albumId);
+  console.log(currentAlbumData);
 
   return (
     <>
