@@ -49,7 +49,6 @@ const ConfirmAccess = () => {
           { email, password, albumId },
           {
             onSuccess: response => {
-              console.log(response);
               Cookies.set('token', response.token, {
                 expires: 7,
                 secure: true,
@@ -57,7 +56,7 @@ const ConfirmAccess = () => {
                 // httpOnly: true,
               });
               notifySuccess('Successful');
-              navigate(`/album/${albumId}`);
+              navigate(`/shared-album/${albumId}`);
 
               queryClient.invalidateQueries();
 
