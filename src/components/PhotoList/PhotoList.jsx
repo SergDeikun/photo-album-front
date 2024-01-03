@@ -107,7 +107,6 @@ const individualStylesDesktop = [
 ];
 
 const PhotoList = ({ currentAlbumData, isLoading }) => {
-  console.log(currentAlbumData);
   // const { albumId } = useParams();
   // const { data: currentAlbumData, isLoading } = useGetAlbumById(albumId);
   const [isLoadedPhoto, setIsLoadedPhoto] = useState([]);

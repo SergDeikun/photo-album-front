@@ -59,7 +59,6 @@ const App = () => {
           <Route path="/profile" element={<UserPage />} />
           <Route path="/album-list" element={<AlbumsPage />} />
           <Route path="/album/:albumId" element={<CurrentAlbumPage />} />
-          {/* <Route path="album/:albumId/photo/:photoId" element={<PhotoPage />} /> */}
           <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
 
           <Route
