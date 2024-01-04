@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import MobileBar from 'components/MobileBar/MobileBar';
 import AppBar from 'components/AppBar/AppBar';
 
-import { Header, BoxContainer, LogoHeader } from './SharedLayout.styled';
+import { Header, BoxContainer } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
