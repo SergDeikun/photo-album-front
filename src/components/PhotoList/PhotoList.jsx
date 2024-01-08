@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import LoadingBar from 'react-top-loading-bar';
-
-// import useGetAlbumById from 'react-query/useGetAlbumById';
 
 import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
 

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { FaUser } from 'react-icons/fa';
 
 import Button from 'components/Buttons/Button';
@@ -114,9 +116,102 @@ export const LogOutBtn = styled(Button)`
   }
 `;
 
+//*Friends albums
+
+export const SwiperWrapper = styled.div`
+  width: 100%;
+  /* background-color: ${p => p.theme.colors.black}; */
+  border-radius: 3px;
+`;
+
+export const SwiperContainer = styled(Swiper)`
+  /* outline: 1px solid tomato; */
+  /* max-width: 800px; */
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media ${p => p.theme.device.tablet} {
+    height: 300px;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: ${p => p.theme.colors.grey};
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: ${p => p.theme.colors.red};
+    border-radius: 10px;
+    width: 15px;
+
+    transition: width 0.3s ease;
+  }
+
+  .swiper-button-prev.swiper-button-disabled,
+  .swiper-button-next.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: auto;
+    pointer-events: auto;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    --swiper-navigation-size: 30px;
+    z-index: 15px;
+    color: ${p => p.theme.colors.black};
+    padding: 10px;
+    border-radius: 10px;
+    background-color: ${p => p.theme.colors.grey};
+  }
+
+  .swiper-button-next {
+    right: 50px;
+  }
+
+  .swiper-button-prev {
+    left: 50px;
+  }
+`;
+export const NextButton = styled.button`
+  width: 30px;
+  height: 30px;
+  background-color: teal;
+`;
+
+export const Slide = styled(SwiperSlide)`
+  /* .swiper-slide {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+`;
+
+export const SlideLink = styled(Link)`
+  width: 100%;
+  height: 100%;
+`;
+
+export const Cover = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: ${({ backgroundImg }) =>
+    backgroundImg ? `url(${backgroundImg})` : 'none'};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  overflow: hidden;
+`;
+
 //*Albums
 
-export const Title = styled.h1`
+export const Title = styled.p`
   font-family: ${p => p.theme.fonts.second};
   font-size: ${p => p.theme.fontSize[2]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
@@ -124,7 +219,7 @@ export const Title = styled.h1`
   padding: 30px 0;
 `;
 
-export const List = styled.ul`
+export const AlmumsList = styled.ul`
   @media ${p => p.theme.device.tablet} {
     display: flex;
     flex-wrap: wrap;
@@ -132,7 +227,7 @@ export const List = styled.ul`
   }
 `;
 
-export const Item = styled.li`
+export const AlbumItem = styled.li`
   position: relative;
 
   &:not(:last-child) {
@@ -202,7 +297,7 @@ export const EditBox = styled.div`
   @media ${p => p.theme.device.desktop} {
     opacity: 0;
 
-    ${Item}:hover & {
+    ${AlbumItem}:hover & {
       opacity: 1;
     }
   }

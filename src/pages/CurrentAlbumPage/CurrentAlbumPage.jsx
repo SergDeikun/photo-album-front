@@ -19,7 +19,6 @@ const CurrentAlbumPage = () => {
             isLoading={isLoading}
           />
         )}
-        {/* <PhotoList currentAlbumData={currentAlbumData} isLoading={isLoading} /> */}
       </BoxContainer>
     </>
   );

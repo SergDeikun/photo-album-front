@@ -1,9 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 import Cookies from 'js-cookie';
 import useOnclickOutside from 'react-cool-onclickoutside';
+import { useMediaQuery } from 'react-responsive';
+
+import 'swiper/css';
+// import 'swiper/css/effect-fade';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
 
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
@@ -20,7 +29,6 @@ import { showAlert } from 'helpers/showAlert';
 import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
-  List,
   UserWrapper,
   UserForm,
   FieldWrapper,
@@ -28,10 +36,17 @@ import {
   SaveBtn,
   Field,
   LogOutBtn,
+  SwiperWrapper,
+  SwiperContainer,
+  NextButton,
+  Slide,
+  SlideLink,
+  Cover,
   Title,
-  Item,
-  LinkAlbum,
+  AlmumsList,
+  AlbumItem,
   AlbumCover,
+  LinkAlbum,
   AlbumName,
   EditBox,
   ButtonWrapper,
@@ -50,6 +65,7 @@ const UserProfile = () => {
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isOpenShareMenu, setIsOpenShareMenu] = useState(false);
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
 
   useEffect(() => {
     if (isLoading) {
@@ -199,28 +215,63 @@ const UserProfile = () => {
             <LogOutBtn type="button" title="Log out" onClick={handleLogout} />
           </UserWrapper>
 
-          <ul>
-            {currentUser.albumsShared &&
-              currentUser.albumsShared.map(({ _id: id, name }) => {
-                return (
-                  <li key={id}>
-                    <Link to={`/shared-album/${id}`}>
-                      <p>{name}</p>
-                    </Link>
-                  </li>
-                );
-              })}
-          </ul>
+          {/* FriendsAlbums */}
+
+          <Title>Friends albums</Title>
+          <SwiperWrapper>
+            <SwiperContainer
+              slidesPerView={3}
+              navigation={{
+                prevEl: '.swiper-button-prev',
+                nextEl: '.swiper-button-next',
+              }}
+              effect={'coverflow'}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={{
+                dynamicBullets: true,
+                clickable: true,
+              }}
+              modules={[EffectCoverflow, Navigation, Pagination]}
+            >
+              {currentUser.friendsAlbums &&
+                currentUser.friendsAlbums.map(
+                  ({ _id: id, name, backgroundURL }) => {
+                    console.log(currentUser.friendsAlbums);
+                    return (
+                      <Slide key={id}>
+                        <SlideLink to={`/shared-album/${id}`}>
+                          <Cover backgroundImg={backgroundURL || defaultCover}>
+                            <p>{name}</p>
+                          </Cover>
+                        </SlideLink>
+                      </Slide>
+                    );
+                  }
+                )}
+              {isDesktop && (
+                <>
+                  <div className="swiper-button-prev" />
+                  <div className="swiper-button-next" />
+                </>
+              )}
+            </SwiperContainer>
+          </SwiperWrapper>
 
           {/* Album list */}
 
           <Title>My Albums</Title>
-          <List>
+          <AlmumsList>
             {currentUser &&
               currentUser.myAlbums.map(
                 ({ _id: id, name, backgroundURL }, index) => {
                   return (
-                    <Item key={id}>
+                    <AlbumItem key={id}>
                       <LinkAlbum to={`/album/${id}`}>
                         <AlbumCover
                           backgroundImg={backgroundURL || defaultCover}
@@ -246,11 +297,11 @@ const UserProfile = () => {
                           onClose={handleCloseShareMenu}
                         />
                       )}
-                    </Item>
+                    </AlbumItem>
                   );
                 }
               )}
-          </List>
+          </AlmumsList>
         </>
       )}
     </>

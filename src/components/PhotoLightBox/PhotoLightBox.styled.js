@@ -80,14 +80,15 @@ export const SwiperContainer = styled(Swiper)`
   height: 100%;
 
   .swiper-pagination-bullet {
-    background-color: ${p => p.theme.colors.grey} !important;
+    background-color: ${p => p.theme.colors.grey};
+
     opacity: 1;
     width: 10px;
     height: 10px;
   }
 
   .swiper-pagination-bullet-active {
-    background-color: ${p => p.theme.colors.red} !important;
+    background-color: ${p => p.theme.colors.red};
   }
 `;
 
