@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper } from 'swiper/react';
 
 import { FaUser } from 'react-icons/fa';
 
@@ -118,23 +118,11 @@ export const LogOutBtn = styled(Button)`
 
 //*Friends albums
 
-export const SwiperWrapper = styled.div`
-  width: 100%;
-  /* background-color: ${p => p.theme.colors.black}; */
-  border-radius: 3px;
-`;
-
 export const SwiperContainer = styled(Swiper)`
-  /* outline: 1px solid tomato; */
-  /* max-width: 800px; */
-  height: 200px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  @media ${p => p.theme.device.tablet} {
-    height: 300px;
-  }
 
   .swiper-pagination-bullet {
     background-color: ${p => p.theme.colors.grey};
@@ -182,31 +170,18 @@ export const NextButton = styled.button`
   background-color: teal;
 `;
 
-export const Slide = styled(SwiperSlide)`
-  /* .swiper-slide {
-    width: 300px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
-`;
-
 export const SlideLink = styled(Link)`
   width: 100%;
   height: 100%;
 `;
 
-export const Cover = styled.div`
+export const Name = styled.p`
   width: 100%;
-  height: 100%;
-  background-image: ${({ backgroundImg }) =>
-    backgroundImg ? `url(${backgroundImg})` : 'none'};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  object-fit: cover;
-  overflow: hidden;
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSize[1]}px;
+  font-weight: ${p => p.theme.fontWeights.regular};
+  color: ${p => p.theme.colors.white};
+  padding: 0 10px 15px 10px;
 `;
 
 //*Albums
@@ -273,6 +248,8 @@ export const AlbumCover = styled.div`
   background-size: cover;
   object-fit: cover;
   overflow: hidden;
+  display: flex;
+  align-items: end;
 `;
 
 //* EditBox
