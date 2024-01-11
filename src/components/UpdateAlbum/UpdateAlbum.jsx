@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useGetAlbumById from 'react-query/useGetAlbumById';
+import useDeleteViwer from 'react-query/useDeleteViwer';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useChangeAlbum from 'react-query/useChangeAlbum';
 
 import { showAlert } from 'helpers/showAlert';
 
 import defaulCover from '../../images/bg-cover1.jpg';
-
-// import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import {
   InfoWrapper,
@@ -38,12 +37,13 @@ import {
 } from './UpdateAlbum.styled';
 
 const UpdateAlbum = () => {
-  const { id } = useParams();
-  const { data } = useGetAlbumById(id);
+  const { id: albumId } = useParams();
+  const { data } = useGetAlbumById(albumId);
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
+  const { mutateAsync: deleteViwer } = useDeleteViwer();
   const { mutateAsync: deletePhoto } = useDeletePhoto();
   const { mutateAsync: changeAlbum, isLoading } = useChangeAlbum();
 
@@ -73,7 +73,7 @@ const UpdateAlbum = () => {
     updateAlbum.append('backgroundURL', backgroundURL);
 
     try {
-      await changeAlbum({ updateAlbum, id });
+      await changeAlbum({ updateAlbum, albumId });
 
       setSaveBtnVisible(false);
     } catch (error) {
@@ -81,7 +81,7 @@ const UpdateAlbum = () => {
     }
   };
 
-  const handleDelete = async id => {
+  const handleDeletePhoto = async id => {
     try {
       await deletePhoto(id);
     } catch (error) {
@@ -89,8 +89,20 @@ const UpdateAlbum = () => {
     }
   };
 
-  const handleShowAlert = id => {
-    showAlert(id, handleDelete);
+  const handleShowAlertDeletePhoto = id => {
+    showAlert(id, handleDeletePhoto);
+  };
+
+  const handleDeleteViwer = async ({ albumId, viwerId }) => {
+    try {
+      deleteViwer({ albumId, viwerId });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleShowAlertDeleteViwer = ({ albumId, viwerId }) => {
+    showAlert(viwerId, () => handleDeleteViwer({ albumId, viwerId }));
   };
 
   return (
@@ -152,9 +164,9 @@ const UpdateAlbum = () => {
 
             <FriendsList>
               {data &&
-                data.viewers.map(({ email, name }) => {
+                data.viewers.map(({ viwerId, email, name }) => {
                   return (
-                    <FriendsItem key={1}>
+                    <FriendsItem key={viwerId}>
                       <div>
                         <FriendsDataWrap>
                           <PersonIcon />
@@ -165,7 +177,12 @@ const UpdateAlbum = () => {
                           <FriendText>{email}</FriendText>
                         </FriendsDataWrap>
                       </div>
-                      <DeleteFriendBtn />
+                      <DeleteFriendBtn
+                        type="button"
+                        onDelete={() =>
+                          handleShowAlertDeleteViwer({ albumId, viwerId })
+                        }
+                      />
                     </FriendsItem>
                   );
                 })}
@@ -182,7 +199,10 @@ const UpdateAlbum = () => {
             return (
               <PhotoItem key={id}>
                 <Image src={photoURL} alt="" />
-                <DeleteBtn type="button" onDelete={() => handleShowAlert(id)} />
+                <DeleteBtn
+                  type="button"
+                  onDelete={() => handleShowAlertDeletePhoto(id)}
+                />
               </PhotoItem>
             );
           })}

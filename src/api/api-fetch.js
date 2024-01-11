@@ -90,6 +90,15 @@ export const changeAlbum = async ({ updateAlbum, id }) => {
   return response.data;
 };
 
+export const deleteViwer = async ({ albumId, viwerId }) => {
+  const response = await axios.delete(
+    `${API_URL}/api/album/${albumId}/remove/${viwerId}`,
+    {}
+  );
+
+  return response.data;
+};
+
 //* Photo
 export const addPhoto = async ({ newPhoto, albumId }) => {
   const response = await axios.post(

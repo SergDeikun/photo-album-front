@@ -222,60 +222,66 @@ const UserProfile = () => {
 
           {/* FriendsAlbums */}
 
-          <Title>Friends albums</Title>
-          <SwiperContainer
-            slidesPerView={isMobile ? 1 : 3}
-            navigation={{
-              prevEl: '.swiper-button-prev',
-              nextEl: '.swiper-button-next',
-            }}
-            effect={'coverflow'}
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            keyboard={{
-              enabled: true,
-            }}
-            pagination={{
-              dynamicBullets: true,
-              clickable: true,
-            }}
-            modules={[
-              EffectCards,
-              EffectCoverflow,
-              Navigation,
-              Pagination,
-              Keyboard,
-            ]}
-          >
-            {currentUser.friendsAlbums &&
-              currentUser.friendsAlbums.map(
-                ({ _id: id, name, backgroundURL }) => {
-                  console.log(currentUser.friendsAlbums);
-                  return (
-                    <SwiperSlide key={id}>
-                      <SlideLink to={`/shared-album/${id}`}>
-                        <AlbumCover
-                          backgroundImg={backgroundURL || defaultCover}
-                        >
-                          <Name>{name}</Name>
-                        </AlbumCover>
-                      </SlideLink>
-                    </SwiperSlide>
-                  );
+          {currentUser.friendsAlbums.length > 0 && (
+            <>
+              <Title>Friends albums</Title>
+              <SwiperContainer
+                slidesPerView={
+                  !isMobile && currentUser.friendsAlbums.length > 2 ? 3 : 1
                 }
-              )}
-            {isDesktop && (
-              <>
-                <div className="swiper-button-prev" />
-                <div className="swiper-button-next" />
-              </>
-            )}
-          </SwiperContainer>
+                // slidesPerView={2}
+                navigation={{
+                  prevEl: '.swiper-button-prev',
+                  nextEl: '.swiper-button-next',
+                }}
+                effect={'coverflow'}
+                coverflowEffect={{
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: true,
+                }}
+                keyboard={{
+                  enabled: true,
+                }}
+                pagination={{
+                  dynamicBullets: true,
+                  clickable: true,
+                }}
+                modules={[
+                  EffectCards,
+                  EffectCoverflow,
+                  Navigation,
+                  Pagination,
+                  Keyboard,
+                ]}
+              >
+                {currentUser.friendsAlbums &&
+                  currentUser.friendsAlbums.map(
+                    ({ _id: id, name, backgroundURL }) => {
+                      return (
+                        <SwiperSlide key={id}>
+                          <SlideLink to={`/shared-album/${id}`}>
+                            <AlbumCover
+                              backgroundImg={backgroundURL || defaultCover}
+                            >
+                              <Name>{name}</Name>
+                            </AlbumCover>
+                          </SlideLink>
+                        </SwiperSlide>
+                      );
+                    }
+                  )}
+                {isDesktop && currentUser.friendsAlbums.length > 2 && (
+                  <>
+                    <div className="swiper-button-prev" />
+                    <div className="swiper-button-next" />
+                  </>
+                )}
+              </SwiperContainer>
+            </>
+          )}
 
           {/* Album list */}
 
