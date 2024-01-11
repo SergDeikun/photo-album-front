@@ -12,6 +12,7 @@ const DateInput = ({
   isDateFocused,
   onBlur,
   className,
+  readOnly,
 }) => {
   return (
     <>
@@ -25,6 +26,7 @@ const DateInput = ({
           value={dayjs(value, 'DD.MM.YYYY')}
           onChange={newValue => onChange(dayjs(newValue).format('DD.MM.YYYY'))}
           isDateFocused={isDateFocused}
+          readOnly={readOnly}
           renderInput={params => (
             <TextField
               {...params}

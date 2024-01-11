@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import LoadingBar from 'react-top-loading-bar';
 
 import PhotoLightBox from 'components/PhotoLightBox/PhotoLightBox';
 
@@ -103,11 +102,8 @@ const individualStylesDesktop = [
   },
 ];
 
-const PhotoList = ({ currentAlbumData, isLoading }) => {
-  // const { albumId } = useParams();
-  // const { data: currentAlbumData, isLoading } = useGetAlbumById(albumId);
+const PhotoList = ({ currentAlbumData, isLoading, readOnly }) => {
   const [isLoadedPhoto, setIsLoadedPhoto] = useState([]);
-  const [progress, setProgress] = useState(0);
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ minWidth: 1280 });
@@ -133,19 +129,8 @@ const PhotoList = ({ currentAlbumData, isLoading }) => {
     }
   };
 
-  useEffect(() => {
-    if (isLoading) {
-      setProgress(100);
-    }
-  }, [isLoading]);
-
   return (
     <>
-      <LoadingBar
-        color="#f11946"
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
       {currentAlbumData && <AlbumTitle>{currentAlbumData.name}</AlbumTitle>}
 
       <List>
@@ -184,6 +169,7 @@ const PhotoList = ({ currentAlbumData, isLoading }) => {
             selectedIndex={selectedPhotoIndex}
             currentPhoto={currentPhoto}
             onClose={handleOpenPhoto}
+            readOnly={readOnly}
           />
         </ModalWindow>
       )}

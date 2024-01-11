@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import LoadingBar from 'react-top-loading-bar';
 // import { motion, AnimatePresence } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 
@@ -49,6 +48,7 @@ const PhotoLightBox = ({
   selectedIndex,
   currentPhoto,
   onClose,
+  readOnly,
 }) => {
   const { mutateAsync: updatePhoto } = useUpdatePhoto();
   const { mutateAsync: deletePhoto } = useDeletePhoto();
@@ -56,7 +56,6 @@ const PhotoLightBox = ({
   const [comments, setComments] = useState('');
   const [date, setDate] = useState('');
   const [place, setPlace] = useState('');
-  const [progress, setProgress] = useState(0);
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isDateFocused, setIsDateFocused] = useState(false);
@@ -154,13 +153,10 @@ const PhotoLightBox = ({
 
   return (
     <>
-      <LoadingBar
-        color="#f11946"
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
       <ButtonWrapper>
-        <DeleteButton onDelete={() => handleShowAlert(photoId)} />
+        {readOnly === false && (
+          <DeleteButton onDelete={() => handleShowAlert(photoId)} />
+        )}
         <InformationButton onClick={handleToggleInfo} />
         <ClosePhotoBtn onClose={onClose} />
       </ButtonWrapper>
@@ -240,6 +236,7 @@ const PhotoLightBox = ({
                   placeholder="Add comments"
                   value={comments}
                   onChange={handleCommentsChange}
+                  readOnly={readOnly}
                 />
               </FieldWrapper>
 
@@ -251,6 +248,7 @@ const PhotoLightBox = ({
                   onSelect={handleSelectUpdatePlace}
                   onFocus={() => setIsInputFocused(true)}
                   onBlur={() => setIsInputFocused(false)}
+                  readOnly={readOnly}
                 />
                 <LocationButton isInputFocused={isInputFocused} />
               </FieldWrapper>
@@ -264,17 +262,14 @@ const PhotoLightBox = ({
                   onFocus={() => setIsDateFocused(true)}
                   onBlur={() => setIsDateFocused(false)}
                   isDateFocused={isDateFocused}
+                  readOnly={readOnly}
                 />
               </FieldWrapper>
 
               {/* Save button */}
 
               {saveBtnVisible && (
-                <SubmitButton
-                  title="Save"
-                  type="submit"
-                  onClick={() => setProgress(100)}
-                >
+                <SubmitButton title="Save" type="submit">
                   Save
                 </SubmitButton>
               )}
