@@ -1,12 +1,9 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-// export const API_URL = 'https://photo-album-gggk.onrender.com';
-// export const API_URL = 'https://photo-album-back.fly.dev';
+export const API_URL = 'https://photo-album-back.fly.dev';
 
-// const API_URL = 'https://photo-album.fly.dev';
-
-const API_URL = 'http://localhost:3000';
+// const API_URL = 'http://localhost:3000';
 
 //* Auth
 export const createNewUser = async ({ name, email, password }) => {

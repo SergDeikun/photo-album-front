@@ -4,6 +4,8 @@ import {
   ViberShareButton,
 } from 'react-share';
 
+import { API_URL } from 'api/api-fetch';
+
 import {
   Box,
   ButtonList,
@@ -19,7 +21,7 @@ import {
 } from './ShareMenu.styled';
 
 // const BASE_URL = 'https://b06v9stz-3001.euw.devtunnels.ms';
-const BASE_URL = 'http://localhost:3001';
+// const BASE_URL = 'http://localhost:3001';
 
 const ShareMenu = ({ onCloseOutside, id, onClose }) => {
   return (
@@ -27,19 +29,19 @@ const ShareMenu = ({ onCloseOutside, id, onClose }) => {
       <Box ref={onCloseOutside}>
         <ButtonList>
           <ButtonItem>
-            <TelegramShareButton url={`${BASE_URL}/album/${id}/access`}>
+            <TelegramShareButton url={`${API_URL}/album/${id}/access`}>
               <TelegranIc bgStyle={{ fill: 'transparent' }} />
             </TelegramShareButton>
             <TooltipTelegram>Telegram</TooltipTelegram>
           </ButtonItem>
           <ButtonItem>
-            <WhatsappShareButton url={`${BASE_URL}/album/${id}`}>
+            <WhatsappShareButton url={`${API_URL}/album/${id}`}>
               <WhatsappIc bgStyle={{ fill: 'transparent' }} />
             </WhatsappShareButton>
             <TooltipWhatsapp>Whatsapp</TooltipWhatsapp>
           </ButtonItem>
           <ButtonItem>
-            <ViberShareButton url={`${BASE_URL}/album/${id}`}>
+            <ViberShareButton url={`${API_URL}/album/${id}`}>
               <ViberIc bgStyle={{ fill: 'transparent' }} />
             </ViberShareButton>
             <TooltipViber>Viber</TooltipViber>
