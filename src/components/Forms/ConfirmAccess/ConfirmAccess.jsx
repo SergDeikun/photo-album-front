@@ -9,7 +9,7 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import queryClient from '../../../react-query/queryClient';
 
-import { Box } from './ConfirmAccess.styled';
+import { Title } from './ConfirmAccess.styled';
 
 import {
   Form,
@@ -74,40 +74,39 @@ const ConfirmAccess = () => {
   });
 
   return (
-    <Box>
-      <Form onSubmit={formik.handleSubmit}>
-        <InputrWrapper>
-          <Input
-            variant="filled"
-            fullWidth
-            id="email"
-            name="email"
-            label="Email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
-          />
-        </InputrWrapper>
+    <Form onSubmit={formik.handleSubmit}>
+      <Title>Confirm access</Title>
+      <InputrWrapper>
+        <Input
+          variant="filled"
+          fullWidth
+          id="email"
+          name="email"
+          label="Email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+        />
+      </InputrWrapper>
 
-        <InputrWrapper>
-          <Input
-            variant="filled"
-            fullWidth
-            id="password"
-            name="password"
-            label="Password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
-          />
-        </InputrWrapper>
-        <SubmitBtn type="submit" title="Confirm" disabled={isLoading} />
-      </Form>
-    </Box>
+      <InputrWrapper>
+        <Input
+          variant="filled"
+          fullWidth
+          id="password"
+          name="password"
+          label="Password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+        />
+      </InputrWrapper>
+      <SubmitBtn type="submit" title="Confirm" disabled={isLoading} />
+    </Form>
   );
 };
 

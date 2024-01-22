@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LoadingBar from 'react-top-loading-bar';
 
-import useGetCurrentUser from 'react-query/useGetCurrentUser';
-
 import AlbumList from 'components/AlbumList/AlbumList';
+
+import useGetCurrentUser from 'react-query/useGetCurrentUser';
 
 import { BoxContainer, WelcomeText, PageTitle } from './AlbumsPage.styled';
 

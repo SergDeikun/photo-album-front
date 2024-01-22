@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 import Cookies from 'js-cookie';
 import useOnclickOutside from 'react-cool-onclickoutside';
@@ -21,7 +20,6 @@ import {
   Keyboard,
 } from 'swiper/modules';
 
-import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import useDeleteAlbum from 'react-query/useDeleteAlbum';
 import useUpdateUser from 'react-query/useUpdateUser';
 import useLogout from 'react-query/useLogout';
@@ -57,8 +55,7 @@ import {
   DeleteBtn,
 } from './UserProfile.styled';
 
-const UserProfile = () => {
-  const { data: currentUser, isLoading } = useGetCurrentUser();
+const UserProfile = ({ currentUser }) => {
   const { mutateAsync: updateUser, isLoading: updateUserLoading } =
     useUpdateUser();
   const { mutateAsync: logout } = useLogout();
@@ -67,21 +64,16 @@ const UserProfile = () => {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [isOpenShareMenu, setIsOpenShareMenu] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isDesktop = useMediaQuery({ minWidth: 1280 });
 
   useEffect(() => {
-    if (isLoading) {
-      setProgress(100);
-    }
-
     if (currentUser) {
       setName(currentUser.name);
       setEmail(currentUser.email);
     }
-  }, [currentUser, isLoading]);
+  }, [currentUser]);
 
   const handleNameChange = e => {
     setName(e.target.value.trimStart());
@@ -95,7 +87,6 @@ const UserProfile = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setProgress(100);
 
     try {
       await updateUser(
@@ -163,11 +154,6 @@ const UserProfile = () => {
 
   return (
     <>
-      <LoadingBar
-        color="#f11946"
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
       {currentUser && (
         <>
           <UserWrapper>

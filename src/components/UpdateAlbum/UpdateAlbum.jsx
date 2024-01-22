@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
-import useGetAlbumById from 'react-query/useGetAlbumById';
+// import useGetAlbumById from 'react-query/useGetAlbumById';
 import useDeleteViwer from 'react-query/useDeleteViwer';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useChangeAlbum from 'react-query/useChangeAlbum';
@@ -36,9 +36,9 @@ import {
   DeleteBtn,
 } from './UpdateAlbum.styled';
 
-const UpdateAlbum = () => {
-  const { id: albumId } = useParams();
-  const { data } = useGetAlbumById(albumId);
+const UpdateAlbum = ({ album }) => {
+  // const { id: albumId } = useParams();
+  // const { data } = useGetAlbumById(albumId);
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
@@ -46,13 +46,14 @@ const UpdateAlbum = () => {
   const { mutateAsync: deleteViwer } = useDeleteViwer();
   const { mutateAsync: deletePhoto } = useDeletePhoto();
   const { mutateAsync: changeAlbum, isLoading } = useChangeAlbum();
+  const { albumId } = album;
 
   useEffect(() => {
-    if (data) {
-      setName(data.name);
-      setBackgroundURL(data.backgroundURL || defaulCover);
-    }
-  }, [data]);
+    // if (data) {
+    setName(album.name);
+    setBackgroundURL(album.backgroundURL || defaulCover);
+    // }
+  }, [album]);
 
   const handleChangeName = e => {
     setName(e.target.value);
@@ -107,95 +108,89 @@ const UpdateAlbum = () => {
 
   return (
     <>
-      {data && (
-        <InfoWrapper>
-          <div>
-            <Form
-              encType="multipart/form-data"
-              onSubmit={handleSubmit}
-              action=""
+      <InfoWrapper>
+        <div>
+          <Form encType="multipart/form-data" onSubmit={handleSubmit} action="">
+            <NameWrapper>
+              <label>
+                <NameField
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={handleChangeName}
+                  maxLength="20"
+                />
+              </label>
+            </NameWrapper>
+
+            <FileWrapper
+              backgroundImage={previewBackground || backgroundURL || ''}
             >
-              <NameWrapper>
-                <label>
-                  <NameField
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={handleChangeName}
-                    maxLength="20"
+              <BlackBox>
+                <PhotocameraIcon />
+                <FileLabel>
+                  Edit cover
+                  <input
+                    type="file"
+                    name={backgroundURL}
+                    onChange={uploadImage}
+                    accept=".jpg, .jpeg, .png"
+                    hidden
                   />
-                </label>
-              </NameWrapper>
+                </FileLabel>
+              </BlackBox>
+            </FileWrapper>
 
-              <FileWrapper
-                backgroundImage={previewBackground || backgroundURL || ''}
-              >
-                <BlackBox>
-                  <PhotocameraIcon />
-                  <FileLabel>
-                    Edit cover
-                    <input
-                      type="file"
-                      name={backgroundURL}
-                      onChange={uploadImage}
-                      accept=".jpg, .jpeg, .png"
-                      hidden
+            <SaveBtn
+              type="submit"
+              title="Save changes"
+              disabled={isLoading}
+              isVisible={saveBtnVisible}
+            />
+          </Form>
+        </div>
+
+        <FriendsBox>
+          <FriendsTitle>Friends :</FriendsTitle>
+          {!album.viewers.length && (
+            <FriendsPreTitle>
+              You haven't shared this album with anyone
+            </FriendsPreTitle>
+          )}
+
+          <FriendsList>
+            {album &&
+              album.viewers.map(({ viwerId, email, name }) => {
+                return (
+                  <FriendsItem key={viwerId}>
+                    <div>
+                      <FriendsDataWrap>
+                        <PersonIcon />
+                        <FriendText>{name}</FriendText>
+                      </FriendsDataWrap>
+                      <FriendsDataWrap>
+                        <EmailnIcon />
+                        <FriendText>{email}</FriendText>
+                      </FriendsDataWrap>
+                    </div>
+                    <DeleteFriendBtn
+                      type="button"
+                      onDelete={() =>
+                        handleShowAlertDeleteViwer({ albumId, viwerId })
+                      }
                     />
-                  </FileLabel>
-                </BlackBox>
-              </FileWrapper>
-
-              <SaveBtn
-                type="submit"
-                title="Save changes"
-                disabled={isLoading}
-                isVisible={saveBtnVisible}
-              />
-            </Form>
-          </div>
-
-          <FriendsBox>
-            <FriendsTitle>Friends :</FriendsTitle>
-            {!data.viewers.length && (
-              <FriendsPreTitle>
-                You haven't shared this album with anyone
-              </FriendsPreTitle>
-            )}
-
-            <FriendsList>
-              {data &&
-                data.viewers.map(({ viwerId, email, name }) => {
-                  return (
-                    <FriendsItem key={viwerId}>
-                      <div>
-                        <FriendsDataWrap>
-                          <PersonIcon />
-                          <FriendText>{name}</FriendText>
-                        </FriendsDataWrap>
-                        <FriendsDataWrap>
-                          <EmailnIcon />
-                          <FriendText>{email}</FriendText>
-                        </FriendsDataWrap>
-                      </div>
-                      <DeleteFriendBtn
-                        type="button"
-                        onDelete={() =>
-                          handleShowAlertDeleteViwer({ albumId, viwerId })
-                        }
-                      />
-                    </FriendsItem>
-                  );
-                })}
-            </FriendsList>
-          </FriendsBox>
-        </InfoWrapper>
-      )}
+                  </FriendsItem>
+                );
+              })}
+          </FriendsList>
+        </FriendsBox>
+      </InfoWrapper>
 
       {/* PhotoList */}
 
-      {data && (
+      {album && (
         <PhotoList>
-          {data.photo.map(({ _id: id, photoURL }) => {
+          {album.photo.map(({ _id: id, photoURL }) => {
             return (
               <PhotoItem key={id}>
                 <Image src={photoURL} alt="" />
