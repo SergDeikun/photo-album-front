@@ -31,7 +31,6 @@ const SharedAlbumPage = lazy(() =>
 );
 
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
-// const PhotoPage = lazy(() => import('pages/PhotoPage/PhotoPage'));
 
 // const Map = lazy(() => import('./components/Map/Map'));
 
@@ -40,14 +39,14 @@ const libraries = ['places'];
 
 const App = () => {
   setAuthorizationHeader();
-  // const { isLoaded, loadError } = useJsApiLoader({
-  //   googleMapsApiKey: API_KEY,
-  //   libraries,
-  // });
   useJsApiLoader({
     googleMapsApiKey: API_KEY,
     libraries,
   });
+  // useJsApiLoader({
+  //   googleMapsApiKey: API_KEY,
+  //   libraries,
+  // });
 
   return (
     <>
