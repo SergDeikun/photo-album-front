@@ -30,7 +30,7 @@ export const ButtonItem = styled.li`
 
 //* Telegram
 
-export const TelegranIc = styled(TelegramIcon)`
+export const TelegramIc = styled(TelegramIcon)`
   width: 50px;
   height: 50px;
   /* border: 1px solid ${p => p.theme.colors.white}; */

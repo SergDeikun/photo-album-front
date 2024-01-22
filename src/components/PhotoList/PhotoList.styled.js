@@ -7,7 +7,9 @@ import Modal from 'components/Modal/Modal';
 
 export const AlbumTitle = styled.h1`
   position: absolute;
-  top: 45px;
+  /* top: 45px; */
+  top: 10px;
+
   left: 10px;
   z-index: 10;
   opacity: 0.2;

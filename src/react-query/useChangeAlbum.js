@@ -7,7 +7,8 @@ import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 const useChangeAlbum = () => {
   const mutation = useMutation({
-    mutationFn: ({ updateAlbum, id }) => changeAlbum({ updateAlbum, id }),
+    mutationFn: ({ updateAlbum, albumId }) =>
+      changeAlbum({ updateAlbum, albumId }),
 
     onSuccess: () => {
       queryClient.invalidateQueries('user');

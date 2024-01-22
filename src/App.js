@@ -43,10 +43,6 @@ const App = () => {
     googleMapsApiKey: API_KEY,
     libraries,
   });
-  // useJsApiLoader({
-  //   googleMapsApiKey: API_KEY,
-  //   libraries,
-  // });
 
   return (
     <>

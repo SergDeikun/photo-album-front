@@ -40,7 +40,6 @@ const MobileBar = () => {
 
   const handleToggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
-    console.log(isOpenUserMenu);
   };
 
   const renderMenu = () => {
@@ -53,6 +52,7 @@ const MobileBar = () => {
           {location.pathname === `/album/${albumId}` && (
             <AddBtn title="Add" onClick={handleTogglePhotoForm} />
           )}
+
           <MenuBtn title="Menu" onClick={handleToggleUserMenu} />
         </>
       );

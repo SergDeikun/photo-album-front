@@ -70,7 +70,7 @@ export const NameField = styled.input`
 `;
 
 export const SaveBtn = styled(Button)`
-  margin-top: 25px;
+  margin: 25px auto 0;
   width: 160px;
   height: 30px;
   opacity: ${p => (p.isVisible ? 1 : 0)};

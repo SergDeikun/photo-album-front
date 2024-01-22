@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// import Logo from 'components/Logo/Logo';
 import HeaderButton from 'components/Buttons/HeaderButton/HeaderButton';
 import UserMenu from 'components/UserMenu/UserMenu';
 
@@ -10,7 +11,6 @@ export const Box = styled.div`
   z-index: 10;
   width: 100%;
   height: 70px;
-
   display: flex;
   align-items: center;
   justify-content: ${p => (p.token ? 'space-around' : 'center')};

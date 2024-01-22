@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
 
-// import useGetAlbumById from 'react-query/useGetAlbumById';
 import useDeleteViwer from 'react-query/useDeleteViwer';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useChangeAlbum from 'react-query/useChangeAlbum';
@@ -37,8 +35,6 @@ import {
 } from './UpdateAlbum.styled';
 
 const UpdateAlbum = ({ album }) => {
-  // const { id: albumId } = useParams();
-  // const { data } = useGetAlbumById(albumId);
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
@@ -46,18 +42,20 @@ const UpdateAlbum = ({ album }) => {
   const { mutateAsync: deleteViwer } = useDeleteViwer();
   const { mutateAsync: deletePhoto } = useDeletePhoto();
   const { mutateAsync: changeAlbum, isLoading } = useChangeAlbum();
-  const { albumId } = album;
+  const {
+    name: initialName,
+    backgroundURL: initialBackgroundURL,
+    _id: albumId,
+  } = album;
 
   useEffect(() => {
-    // if (data) {
-    setName(album.name);
-    setBackgroundURL(album.backgroundURL || defaulCover);
-    // }
-  }, [album]);
+    setName(initialName);
+    setBackgroundURL(initialBackgroundURL || defaulCover);
+  }, [initialBackgroundURL, initialName]);
 
   const handleChangeName = e => {
     setName(e.target.value);
-    // setSaveBtnVisible(data.name !== e.target.value);
+    setSaveBtnVisible(initialName !== e.target.value);
   };
 
   const uploadImage = e => {
@@ -102,7 +100,7 @@ const UpdateAlbum = ({ album }) => {
     }
   };
 
-  const handleShowAlertDeleteViwer = ({ albumId, viwerId }) => {
+  const handleShowAlertDeleteViwer = ({ id, viwerId }) => {
     showAlert(viwerId, () => handleDeleteViwer({ albumId, viwerId }));
   };
 

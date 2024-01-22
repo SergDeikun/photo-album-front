@@ -37,8 +37,8 @@ const ConfirmAccess = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: 'serhii@mail.com',
-      password: 'serhii123',
+      email: '',
+      password: '',
     },
     validationSchema: validationSchema,
     onSubmit: async values => {

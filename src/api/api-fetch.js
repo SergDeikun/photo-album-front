@@ -79,9 +79,9 @@ export const deleteAlbum = async id => {
   return response.data;
 };
 
-export const changeAlbum = async ({ updateAlbum, id }) => {
+export const changeAlbum = async ({ updateAlbum, albumId }) => {
   const response = await axios.patch(
-    `${API_URL}/api/album/${id}/update`,
+    `${API_URL}/api/album/${albumId}/update`,
     updateAlbum
   );
   return response.data;
