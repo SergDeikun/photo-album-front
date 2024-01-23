@@ -259,16 +259,20 @@ export const EditBox = styled.div`
   bottom: 0;
   left: 0;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   width: 100%;
-  height: 30%;
   background-image: linear-gradient(
       transparent 0 25%,
       ${p => p.theme.colors.black}
     ),
     linear-gradient(transparent, transparent, ${p => p.theme.colors.black});
-  opacity: 1;
+`;
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-around;
   transition: opacity 0.5s linear;
 
   @media ${p => p.theme.device.desktop} {
@@ -280,20 +284,13 @@ export const EditBox = styled.div`
   }
 `;
 
-export const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: auto;
-  padding: 10px;
-  justify-content: space-around;
-`;
-
 export const AlbumName = styled.p`
   width: 100%;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[1]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
   color: ${p => p.theme.colors.white};
+  padding-left: 10px;
 `;
 
 export const DeleteBtn = styled(DeleteButton)`

@@ -1,10 +1,12 @@
 import { List } from './AlbumList.styled';
 
-import defaultCover from '../../images/bg-cover1.jpg';
+// import defaultCover from '../../images/cover2.png';
+import DefaultCover from 'components/DefaultCover/DefaultCover';
 
 import { Item, LinkItem, ImgWrapper, AlbumName } from './AlbumList.styled';
 
 const AlbumList = ({ myAlbums }) => {
+  console.log(myAlbums);
   return (
     <>
       <List>
@@ -13,9 +15,14 @@ const AlbumList = ({ myAlbums }) => {
             return (
               <Item key={id}>
                 <LinkItem to={`/album/${id}`}>
-                  <ImgWrapper backgroundImg={backgroundURL || defaultCover} />
+                  {backgroundURL ? (
+                    <ImgWrapper backgroundImg={backgroundURL} />
+                  ) : (
+                    <DefaultCover />
+                  )}
+                  {/* <ImgWrapper backgroundImg={backgroundURL || defaultCover} /> */}
+                  <AlbumName>{name}</AlbumName>
                 </LinkItem>
-                <AlbumName>{name}</AlbumName>
               </Item>
             );
           })}

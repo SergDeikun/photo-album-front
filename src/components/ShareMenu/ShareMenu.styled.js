@@ -8,8 +8,8 @@ export const Box = styled.div`
   right: 109px;
   background-color: ${p => p.theme.colors.black};
   border-radius: ${p => p.theme.borderRadius.small};
-  /* border-width: 20px 10px 0; */
   padding: 12px;
+  border: 1px solid white;
 
   @media ${p => p.theme.device.desktop} {
     right: 104px;
@@ -33,7 +33,6 @@ export const ButtonItem = styled.li`
 export const TelegramIc = styled(TelegramIcon)`
   width: 50px;
   height: 50px;
-  /* border: 1px solid ${p => p.theme.colors.white}; */
   border-radius: 7px;
 
   @media ${p => p.theme.device.desktop} {
@@ -56,9 +55,11 @@ export const TooltipTelegram = styled.span`
   opacity: 0;
   transition: opacity 0.5s linear;
 
-  ${ButtonItem}:hover & {
-    visibility: visible;
-    opacity: 1;
+  @media ${p => p.theme.device.desktop} {
+    ${ButtonItem}:hover & {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 `;
 
@@ -67,7 +68,6 @@ export const TooltipTelegram = styled.span`
 export const WhatsappIc = styled(WhatsappIcon)`
   width: 50px;
   height: 50px;
-  /* border: 1px solid ${p => p.theme.colors.white}; */
   border-radius: 7px;
 
   @media ${p => p.theme.device.desktop} {
@@ -90,9 +90,11 @@ export const TooltipWhatsapp = styled.span`
   opacity: 0;
   transition: opacity 0.5s linear;
 
-  ${ButtonItem}:hover & {
-    visibility: visible;
-    opacity: 1;
+  @media ${p => p.theme.device.desktop} {
+    ${ButtonItem}:hover & {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 `;
 
@@ -124,9 +126,11 @@ export const TooltipViber = styled.span`
   opacity: 0;
   transition: opacity 0.5s linear;
 
-  ${ButtonItem}:hover & {
-    visibility: visible;
-    opacity: 1;
+  @media ${p => p.theme.device.desktop} {
+    ${ButtonItem}:hover & {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 `;
 

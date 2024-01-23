@@ -6,6 +6,7 @@ import { MdOutlineEmail } from 'react-icons/md';
 
 import Button from 'components/Buttons/Button';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
+import DefaultCover from 'components/DefaultCover/DefaultCover';
 
 export const InfoWrapper = styled.div`
   position: relative;
@@ -197,6 +198,22 @@ export const FileWrapper = styled.div`
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
+
+  @media ${p => p.theme.device.tablet} {
+    position: relative;
+    width: 350px;
+    height: 360px;
+  }
+
+  @media ${p => p.theme.device.desktop} {
+    width: 600px;
+    height: 510px;
+  }
+`;
+
+export const CoverDefault = styled(DefaultCover)`
+  position: relative;
+  height: 255px;
 
   @media ${p => p.theme.device.tablet} {
     position: relative;

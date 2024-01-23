@@ -12,7 +12,6 @@ const UpdateAlbumPage = () => {
   const { id: albumId } = useParams();
   const { data: album, isLoading } = useGetAlbumById(albumId);
   const [progress, setProgress] = useState(0);
-  console.log(album);
 
   useEffect(() => {
     if (isLoading) {

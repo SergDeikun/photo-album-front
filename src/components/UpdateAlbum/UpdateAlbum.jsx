@@ -4,6 +4,8 @@ import useDeleteViwer from 'react-query/useDeleteViwer';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useChangeAlbum from 'react-query/useChangeAlbum';
 
+import DefaultCover from 'components/DefaultCover/DefaultCover';
+
 import { showAlert } from 'helpers/showAlert';
 
 import defaulCover from '../../images/bg-cover1.jpg';
@@ -25,6 +27,7 @@ import {
   FriendText,
   DeleteFriendBtn,
   FileWrapper,
+  CoverDefault,
   BlackBox,
   PhotocameraIcon,
   FileLabel,
@@ -35,6 +38,7 @@ import {
 } from './UpdateAlbum.styled';
 
 const UpdateAlbum = ({ album }) => {
+  console.log(album);
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
@@ -50,7 +54,8 @@ const UpdateAlbum = ({ album }) => {
 
   useEffect(() => {
     setName(initialName);
-    setBackgroundURL(initialBackgroundURL || defaulCover);
+    // setBackgroundURL(initialBackgroundURL || defaulCover);
+    setBackgroundURL(initialBackgroundURL);
   }, [initialBackgroundURL, initialName]);
 
   const handleChangeName = e => {
@@ -100,7 +105,7 @@ const UpdateAlbum = ({ album }) => {
     }
   };
 
-  const handleShowAlertDeleteViwer = ({ id, viwerId }) => {
+  const handleShowAlertDeleteViwer = ({ albumId, viwerId }) => {
     showAlert(viwerId, () => handleDeleteViwer({ albumId, viwerId }));
   };
 
@@ -121,9 +126,46 @@ const UpdateAlbum = ({ album }) => {
               </label>
             </NameWrapper>
 
-            <FileWrapper
+            {initialBackgroundURL || previewBackground ? (
+              <FileWrapper
+                backgroundImage={previewBackground || backgroundURL || ''}
+              >
+                <BlackBox>
+                  <PhotocameraIcon />
+                  <FileLabel>
+                    Edit cover
+                    <input
+                      type="file"
+                      name={backgroundURL}
+                      onChange={uploadImage}
+                      accept=".jpg, .jpeg, .png"
+                      hidden
+                    />
+                  </FileLabel>
+                </BlackBox>
+              </FileWrapper>
+            ) : (
+              <CoverDefault>
+                <BlackBox>
+                  <PhotocameraIcon />
+                  <FileLabel>
+                    Edit cover
+                    <input
+                      type="file"
+                      name={backgroundURL}
+                      onChange={uploadImage}
+                      accept=".jpg, .jpeg, .png"
+                      hidden
+                    />
+                  </FileLabel>
+                </BlackBox>
+              </CoverDefault>
+            )}
+
+            {/* <FileWrapper
               backgroundImage={previewBackground || backgroundURL || ''}
             >
+            
               <BlackBox>
                 <PhotocameraIcon />
                 <FileLabel>
@@ -137,7 +179,8 @@ const UpdateAlbum = ({ album }) => {
                   />
                 </FileLabel>
               </BlackBox>
-            </FileWrapper>
+            
+            </FileWrapper> */}
 
             <SaveBtn
               type="submit"

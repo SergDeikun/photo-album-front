@@ -27,6 +27,7 @@ import useLogout from 'react-query/useLogout';
 import ShareButton from 'components/Buttons/ShareButton/ShareButton';
 import ShareMenu from 'components/ShareMenu/ShareMenu';
 import EditLinkBtn from 'components/Buttons/EditLinkBtn/EditLinkBtn';
+import DefaultCover from 'components/DefaultCover/DefaultCover';
 import defaultCover from '../../images/cover.jpg';
 
 import { showAlert } from 'helpers/showAlert';
@@ -249,6 +250,7 @@ const UserProfile = ({ currentUser }) => {
                       return (
                         <SwiperSlide key={id}>
                           <SlideLink to={`/shared-album/${id}`}>
+                            {backgroundURL}
                             <AlbumCover
                               backgroundImg={backgroundURL || defaultCover}
                             >
@@ -279,14 +281,18 @@ const UserProfile = ({ currentUser }) => {
                   return (
                     <AlbumItem key={id}>
                       <LinkAlbum to={`/album/${id}`}>
-                        <AlbumCover
-                          backgroundImg={backgroundURL || defaultCover}
-                        />
+                        {backgroundURL ? (
+                          <AlbumCover
+                            backgroundImg={backgroundURL || defaultCover}
+                          />
+                        ) : (
+                          <DefaultCover />
+                        )}
                       </LinkAlbum>
 
                       <EditBox>
+                        <AlbumName>{name}</AlbumName>
                         <ButtonWrapper>
-                          <AlbumName>{name}</AlbumName>
                           <ShareButton
                             onClick={() => handleOpenShareMenu(id)}
                           />

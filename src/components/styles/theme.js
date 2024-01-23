@@ -3,6 +3,7 @@ export const theme = {
     body: 'Montserrat, sans-serif',
     second: 'Jost,sans-serif',
     button: 'Roboto,sans-serif',
+    signature: 'Mrs Saint Delafield, cursive',
   },
 
   fontSize: [16, 24, 34, 50, 75],
