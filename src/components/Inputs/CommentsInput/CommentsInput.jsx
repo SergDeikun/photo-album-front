@@ -8,6 +8,7 @@ const CommentsInput = ({
   className,
   style,
   readOnly,
+  disabled,
 }) => {
   return (
     <>
@@ -21,6 +22,7 @@ const CommentsInput = ({
         onBlur={onBlur}
         style={style}
         readOnly={readOnly}
+        disabled={disabled}
       />
     </>
   );

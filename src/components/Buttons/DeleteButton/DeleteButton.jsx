@@ -1,9 +1,14 @@
 import { Btn, DeleteIcon } from './DeleteButton.styled';
 
-const DeleteButton = ({ onDelete, className }) => {
+const DeleteButton = ({ onDelete, disabled, className }) => {
   return (
     <>
-      <Btn type="button" onClick={onDelete} className={className || ''}>
+      <Btn
+        type="button"
+        onClick={onDelete}
+        disabled={disabled}
+        className={className || ''}
+      >
         <DeleteIcon />
       </Btn>
     </>

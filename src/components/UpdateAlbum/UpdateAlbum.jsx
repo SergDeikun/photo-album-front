@@ -4,11 +4,11 @@ import useDeleteViwer from 'react-query/useDeleteViwer';
 import useDeletePhoto from 'react-query/useDeletePhotoById';
 import useChangeAlbum from 'react-query/useChangeAlbum';
 
-import DefaultCover from 'components/DefaultCover/DefaultCover';
+// import DefaultCover from 'components/DefaultCover/DefaultCover';
 
 import { showAlert } from 'helpers/showAlert';
 
-import defaulCover from '../../images/bg-cover1.jpg';
+// import defaulCover from '../../images/bg-cover1.jpg';
 
 import {
   InfoWrapper,
@@ -38,14 +38,16 @@ import {
 } from './UpdateAlbum.styled';
 
 const UpdateAlbum = ({ album }) => {
-  console.log(album);
   const [name, setName] = useState('');
   const [backgroundURL, setBackgroundURL] = useState('');
   const [previewBackground, setPreviewBackground] = useState('');
   const [saveBtnVisible, setSaveBtnVisible] = useState(false);
-  const { mutateAsync: deleteViwer } = useDeleteViwer();
-  const { mutateAsync: deletePhoto } = useDeletePhoto();
-  const { mutateAsync: changeAlbum, isLoading } = useChangeAlbum();
+  const { mutateAsync: deleteViwer, isLoading: deleteViwerIsLoading } =
+    useDeleteViwer();
+  const { mutateAsync: deletePhoto, isLoading: deletePhotoIsLoading } =
+    useDeletePhoto();
+  const { mutateAsync: changeAlbum, isLoading: changeAlbumIsLoading } =
+    useChangeAlbum();
   const {
     name: initialName,
     backgroundURL: initialBackgroundURL,
@@ -122,6 +124,7 @@ const UpdateAlbum = ({ album }) => {
                   value={name}
                   onChange={handleChangeName}
                   maxLength="20"
+                  disabled={changeAlbumIsLoading}
                 />
               </label>
             </NameWrapper>
@@ -139,6 +142,7 @@ const UpdateAlbum = ({ album }) => {
                       name={backgroundURL}
                       onChange={uploadImage}
                       accept=".jpg, .jpeg, .png"
+                      disabled={changeAlbumIsLoading}
                       hidden
                     />
                   </FileLabel>
@@ -156,6 +160,7 @@ const UpdateAlbum = ({ album }) => {
                       onChange={uploadImage}
                       accept=".jpg, .jpeg, .png"
                       hidden
+                      disabled={changeAlbumIsLoading}
                     />
                   </FileLabel>
                 </BlackBox>
@@ -185,7 +190,7 @@ const UpdateAlbum = ({ album }) => {
             <SaveBtn
               type="submit"
               title="Save changes"
-              disabled={isLoading}
+              disabled={changeAlbumIsLoading}
               isVisible={saveBtnVisible}
             />
           </Form>
@@ -219,6 +224,7 @@ const UpdateAlbum = ({ album }) => {
                       onDelete={() =>
                         handleShowAlertDeleteViwer({ albumId, viwerId })
                       }
+                      disabled={deleteViwerIsLoading}
                     />
                   </FriendsItem>
                 );
@@ -238,6 +244,7 @@ const UpdateAlbum = ({ album }) => {
                 <DeleteBtn
                   type="button"
                   onDelete={() => handleShowAlertDeletePhoto(id)}
+                  disabled={deletePhotoIsLoading}
                 />
               </PhotoItem>
             );

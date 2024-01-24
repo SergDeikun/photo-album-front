@@ -93,6 +93,7 @@ const PhotoForm = ({ onClose }) => {
             uploadFile={previewPhoto}
             onChange={uploadImage}
             isVisible={!previewPhoto}
+            isLoading={isLoading}
           />
 
           {/* Info */}
@@ -123,6 +124,7 @@ const PhotoForm = ({ onClose }) => {
             type="button"
             title="Add info"
             onClick={handleOpenFieldForm}
+            disabled={isLoading}
           >
             {titleBtn}
           </AddInfoBtn>

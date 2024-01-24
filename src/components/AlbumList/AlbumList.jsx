@@ -6,7 +6,6 @@ import DefaultCover from 'components/DefaultCover/DefaultCover';
 import { Item, LinkItem, ImgWrapper, AlbumName } from './AlbumList.styled';
 
 const AlbumList = ({ myAlbums }) => {
-  console.log(myAlbums);
   return (
     <>
       <List>

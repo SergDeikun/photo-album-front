@@ -16,6 +16,7 @@ const FileInput = ({
   onClick,
   className,
   isVisible,
+  isLoading,
 }) => {
   return (
     <>
@@ -31,6 +32,7 @@ const FileInput = ({
             onChange={onChange}
             type="file"
             hidden
+            disabled={isLoading}
           />
         </LabelUpload>
         {uploadFile && (

@@ -50,8 +50,10 @@ const PhotoLightBox = ({
   onClose,
   readOnly,
 }) => {
-  const { mutateAsync: updatePhoto } = useUpdatePhoto();
-  const { mutateAsync: deletePhoto } = useDeletePhoto();
+  const { mutateAsync: updatePhoto, isLoading: updatePhotoIsLoading } =
+    useUpdatePhoto();
+  const { mutateAsync: deletePhoto, isLoading: deletePhotoIsLoading } =
+    useDeletePhoto();
   const [isOpenInfo, setIsOpenInfo] = useState(false);
   const [comments, setComments] = useState('');
   const [date, setDate] = useState('');
@@ -155,7 +157,10 @@ const PhotoLightBox = ({
     <>
       <ButtonWrapper>
         {readOnly === false && (
-          <DeleteButton onDelete={() => handleShowAlert(photoId)} />
+          <DeleteButton
+            onDelete={() => handleShowAlert(photoId)}
+            disabled={deletePhotoIsLoading}
+          />
         )}
         <InformationButton onClick={handleToggleInfo} />
         <ClosePhotoBtn onClose={onClose} />
@@ -237,6 +242,7 @@ const PhotoLightBox = ({
                   value={comments}
                   onChange={handleCommentsChange}
                   readOnly={readOnly}
+                  disabled={updatePhotoIsLoading}
                 />
               </FieldWrapper>
 
@@ -249,6 +255,7 @@ const PhotoLightBox = ({
                   onFocus={() => setIsInputFocused(true)}
                   onBlur={() => setIsInputFocused(false)}
                   readOnly={readOnly}
+                  disabled={updatePhotoIsLoading}
                 />
                 <LocationButton isInputFocused={isInputFocused} />
               </FieldWrapper>
@@ -263,16 +270,13 @@ const PhotoLightBox = ({
                   onBlur={() => setIsDateFocused(false)}
                   isDateFocused={isDateFocused}
                   readOnly={readOnly}
+                  disabled={updatePhotoIsLoading}
                 />
               </FieldWrapper>
 
               {/* Save button */}
 
-              {saveBtnVisible && (
-                <SubmitButton title="Save" type="submit">
-                  Save
-                </SubmitButton>
-              )}
+              {saveBtnVisible && <SubmitButton title="Save" type="submit" />}
             </Form>
           </InfoWrapper>
         )}

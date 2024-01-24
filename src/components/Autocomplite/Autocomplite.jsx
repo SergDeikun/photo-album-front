@@ -15,6 +15,7 @@ const Autocomplite = ({
   onBlur,
   className,
   readOnly,
+  disabled,
 }) => {
   const {
     // ready,
@@ -92,6 +93,7 @@ const Autocomplite = ({
           //   disabled={!ready}
           placeholder="Location"
           readOnly={readOnly}
+          disabled={disabled}
         />
       </Label>
       {status === 'OK' && place !== value && <List>{renderSuggestions()}</List>}

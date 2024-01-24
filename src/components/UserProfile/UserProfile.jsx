@@ -181,6 +181,7 @@ const UserProfile = ({ currentUser }) => {
                       type="text"
                       value={name}
                       onChange={handleNameChange}
+                      disabled={updateUserLoading}
                     />
                   </label>
                 </InputWrapper>
@@ -193,6 +194,7 @@ const UserProfile = ({ currentUser }) => {
                       type="email"
                       value={email}
                       onChange={handleEmailChange}
+                      disabled={updateUserLoading}
                     />
                   </label>
                 </InputWrapper>

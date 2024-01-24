@@ -65,6 +65,7 @@ const AlbumForm = ({ onClose }) => {
                 placeholder="Enter album name"
                 onChange={e => setName(e.target.value)}
                 maxLength="20"
+                disabled={isLoading}
               />
             </label>
           </NameWrapper>
@@ -78,6 +79,7 @@ const AlbumForm = ({ onClose }) => {
                 onChange={uploadImage}
                 title="Cover"
                 isVisible={true}
+                isLoading={isLoading}
               />
               <SubmitButton type="submit" disabled={isLoading} title="Save" />
             </>
