@@ -28,7 +28,11 @@ export const loginUser = async ({ email, password }) => {
 //* User
 export const getCurrentUser = async () => {
   const token = Cookies.get('token');
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+
   const response = await axios.get(`${API_URL}/api/user/current`);
 
   return response.data;
@@ -67,7 +71,11 @@ export const confirmAccess = async ({ email, password, albumId }) => {
 
 export const getAlbumById = async id => {
   const token = Cookies.get('token');
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+
   const response = await axios.get(`${API_URL}/api/album/${id}`, {});
 
   return response.data;
