@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { setAuthorizationHeader } from 'helpers/setAuthorizationHeader';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
+import PrivateRoutes from 'components/Route/PrivateRoutes';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -47,21 +48,24 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<SharedLayout />}>
-          <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route exact path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/profile" element={<UserPage />} />
-          <Route path="/album-list" element={<AlbumsPage />} />
-          <Route path="/album/:albumId" element={<CurrentAlbumPage />} />
-          <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
-
-          <Route
-            path="/album/:albumId/access"
-            element={<ConfirmAccessPage />}
-          />
-          <Route path="/shared-album/:albumId" element={<SharedAlbumPage />} />
-
+          <Route element={<PrivateRoutes />}>
+            <Route path="/album-list" element={<AlbumsPage />} />
+            <Route path="/album/:albumId" element={<CurrentAlbumPage />} />
+            <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
+            <Route
+              path="/album/:albumId/access"
+              element={<ConfirmAccessPage />}
+            />
+            <Route
+              path="/shared-album/:albumId"
+              element={<SharedAlbumPage />}
+            />
+            <Route path="/profile" element={<UserPage />} />
+          </Route>
           {/* <Route path="/map" element={<Map />} /> */}
         </Route>
         <Route path="*" element={<NotFoundPage />} />
