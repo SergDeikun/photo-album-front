@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
+import Cookies from 'js-cookie';
 
 import AlbumList from 'components/AlbumList/AlbumList';
 
@@ -8,7 +10,10 @@ import useGetCurrentUser from 'react-query/useGetCurrentUser';
 import { BoxContainer, WelcomeText, PageTitle } from './AlbumsPage.styled';
 
 const AlbumsPage = () => {
-  const { data: currentUser, isLoading } = useGetCurrentUser();
+  const token = Cookies.get('token');
+  const navigate = useNavigate();
+
+  const { data: currentUser, isLoading } = useGetCurrentUser(token);
   const [progress, setProgress] = useState(0);
 
   const showWelcomeText =
@@ -18,10 +23,17 @@ const AlbumsPage = () => {
     currentUser.myAlbums.length === 0;
 
   useEffect(() => {
+    if (
+      !token ||
+      new Date().getTime() > new Date(Cookies.get('expires')).getTime()
+    ) {
+      navigate('/login');
+    }
+
     if (isLoading) {
       setProgress(100);
     }
-  }, [isLoading]);
+  }, [isLoading, navigate, token]);
 
   return (
     <BoxContainer>
@@ -37,8 +49,12 @@ const AlbumsPage = () => {
         </WelcomeText>
       ) : (
         <>
-          <PageTitle>My albums</PageTitle>
-          <AlbumList myAlbums={currentUser ? currentUser.myAlbums : []} />
+          {token && currentUser && (
+            <>
+              <PageTitle>My albums</PageTitle>
+              <AlbumList myAlbums={currentUser ? currentUser.myAlbums : []} />
+            </>
+          )}
         </>
       )}
     </BoxContainer>

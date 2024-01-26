@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 export const API_URL = 'https://photo-album-back.fly.dev';
 
@@ -26,8 +26,8 @@ export const loginUser = async ({ email, password }) => {
 };
 
 //* User
-export const getCurrentUser = async () => {
-  const token = Cookies.get('token');
+export const getCurrentUser = async token => {
+  // const token = Cookies.get('token');
 
   if (token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -69,12 +69,12 @@ export const confirmAccess = async ({ email, password, albumId }) => {
   return response.data;
 };
 
-export const getAlbumById = async id => {
-  const token = Cookies.get('token');
+export const getAlbumById = async (id, token) => {
+  // const token = Cookies.get('token');
 
-  if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  }
+  // if (token) {
+  //   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  // }
 
   const response = await axios.get(`${API_URL}/api/album/${id}`, {});
 

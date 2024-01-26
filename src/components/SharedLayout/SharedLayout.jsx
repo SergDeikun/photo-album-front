@@ -48,7 +48,14 @@ const SharedLayout = () => {
         shadow={shadow}
       >
         <BoxContainer>
-          {isMobile && location.pathname === '/' && <LogoHeader />}
+          {/* {(isMobile && location.pathname === '/') ||
+            location.pathname === '/login' ||
+            (location.pathname === '/register' && <LogoHeader />)} */}
+          {isMobile &&
+            (location.pathname === '/' ||
+              location.pathname === '/login' ||
+              location.pathname === '/register') && <LogoHeader />}
+
           {isTabletOrDesktop && <AppBar />}
         </BoxContainer>
       </Header>

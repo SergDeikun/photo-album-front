@@ -34,8 +34,8 @@ const LoginForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: 'qwerty@mail.com',
+      password: 'qwerty123',
     },
     validationSchema: validationSchema,
     onSubmit: async values => {
@@ -47,7 +47,9 @@ const LoginForm = () => {
           {
             onSuccess: response => {
               Cookies.set('token', response.token, {
-                expires: 7,
+                // expires: new Date(new Date().getTime() + 60 * 60 * 1000),
+                expires: new Date(new Date().getTime() + 5 * 1000),
+
                 secure: true,
                 sameSite: 'strict',
                 // httpOnly: true,
