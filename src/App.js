@@ -1,11 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import ScrollToTop from 'react-scroll-to-top';
+import { useMediaQuery } from 'react-responsive';
 
 // import toastOptions from 'helpers/toastOptions';
 // import { setAuthorizationHeader } from 'helpers/setAuthorizationHeader';
@@ -39,6 +38,8 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ['places'];
 
 const App = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+
   // setAuthorizationHeader();
   useJsApiLoader({
     googleMapsApiKey: API_KEY,
@@ -74,7 +75,10 @@ const App = () => {
       <ToastContainer />
       <ScrollToTop
         smooth
-        style={{ bottom: '90px', right: '20px' }}
+        style={{
+          bottom: isMobile ? '90px' : '40px',
+          right: isMobile ? '20px' : '40px',
+        }}
         component={<p style={{ color: '#ff0044' }}>UP</p>}
       />
     </>
