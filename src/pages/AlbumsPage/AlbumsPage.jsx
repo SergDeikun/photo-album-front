@@ -5,7 +5,11 @@ import Cookies from 'js-cookie';
 
 import AlbumList from 'components/AlbumList/AlbumList';
 
+import queryClient from 'react-query/queryClient';
 import useGetCurrentUser from 'react-query/useGetCurrentUser';
+
+import { isValidToken } from 'helpers/isValidToken';
+import { notifyError } from 'helpers/toastNotify';
 
 import { BoxContainer, WelcomeText, PageTitle } from './AlbumsPage.styled';
 
@@ -23,12 +27,16 @@ const AlbumsPage = () => {
     currentUser.myAlbums.length === 0;
 
   useEffect(() => {
-    // if (
-    //   !token ||
-    //   new Date().getTime() > new Date(Cookies.get('expires')).getTime()
-    // ) {
-    //   navigate('/login');
-    // }
+    try {
+      if (!isValidToken()) {
+        navigate('/login');
+        notifyError('Token expired or missing. Please login');
+        queryClient.clear();
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+    }
 
     if (isLoading) {
       setProgress(100);
