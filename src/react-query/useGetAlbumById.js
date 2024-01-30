@@ -6,6 +6,7 @@ const useGetAlbumById = (albumId, token) => {
   const album = useQuery(
     ['album', albumId],
     () => getAlbumById(albumId, token),
+
     {
       // staleTime: 5000,
       // refetchInterval: 10000,

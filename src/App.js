@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from 'react-scroll-to-top';
 
 // import toastOptions from 'helpers/toastOptions';
-import { setAuthorizationHeader } from 'helpers/setAuthorizationHeader';
+// import { setAuthorizationHeader } from 'helpers/setAuthorizationHeader';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
 import PrivateRoutes from 'components/Route/PrivateRoutes';
@@ -39,7 +39,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ['places'];
 
 const App = () => {
-  setAuthorizationHeader();
+  // setAuthorizationHeader();
   useJsApiLoader({
     googleMapsApiKey: API_KEY,
     libraries,

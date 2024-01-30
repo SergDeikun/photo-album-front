@@ -47,8 +47,8 @@ const LoginForm = () => {
           {
             onSuccess: response => {
               Cookies.set('token', response.token, {
-                // expires: new Date(new Date().getTime() + 60 * 60 * 1000),
-                expires: new Date(new Date().getTime() + 5 * 1000),
+                expires: new Date(new Date().getTime() + 60 * 60 * 1000),
+                // expires: new Date(new Date().getTime() + 5 * 1000),
 
                 secure: true,
                 sameSite: 'strict',

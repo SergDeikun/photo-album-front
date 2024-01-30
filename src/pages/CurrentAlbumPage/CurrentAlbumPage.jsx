@@ -6,6 +6,9 @@ import Cookies from 'js-cookie';
 import queryClient from 'react-query/queryClient';
 import useGetAlbumById from 'react-query/useGetAlbumById';
 
+import { isValidToken } from 'helpers/isValidToken';
+import { notifyError } from 'helpers/toastNotify';
+
 import PhotoList from 'components/PhotoList/PhotoList';
 
 import { BoxContainer } from './CurrentAlbumPage.styled';
@@ -20,12 +23,15 @@ const CurrentAlbumPage = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (
-      !token ||
-      new Date().getTime() > new Date(Cookies.get('expires')).getTime()
-    ) {
-      queryClient.clear();
-      navigate('/login');
+    try {
+      if (!isValidToken()) {
+        navigate('/login');
+        notifyError('Token expired or missing. Please login');
+        queryClient.clear();
+        return;
+      }
+    } catch (error) {
+      console.error(error);
     }
 
     if (isLoading) {

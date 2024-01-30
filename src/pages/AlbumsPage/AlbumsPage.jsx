@@ -23,12 +23,12 @@ const AlbumsPage = () => {
     currentUser.myAlbums.length === 0;
 
   useEffect(() => {
-    if (
-      !token ||
-      new Date().getTime() > new Date(Cookies.get('expires')).getTime()
-    ) {
-      navigate('/login');
-    }
+    // if (
+    //   !token ||
+    //   new Date().getTime() > new Date(Cookies.get('expires')).getTime()
+    // ) {
+    //   navigate('/login');
+    // }
 
     if (isLoading) {
       setProgress(100);

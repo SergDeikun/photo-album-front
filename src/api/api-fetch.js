@@ -1,9 +1,9 @@
 import axios from 'axios';
-// import Cookies from 'js-cookie';
 
-export const API_URL = 'https://photo-album-back.fly.dev';
+import { isValidToken } from 'helpers/isValidToken';
+// export const API_URL = 'https://photo-album-back.fly.dev';
 
-// const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3000';
 
 //* Auth
 export const createNewUser = async ({ name, email, password }) => {
@@ -26,76 +26,146 @@ export const loginUser = async ({ email, password }) => {
 };
 
 //* User
-export const getCurrentUser = async token => {
-  // const token = Cookies.get('token');
+export const getCurrentUser = async () => {
+  try {
+    if (!isValidToken()) {
+      return;
+    }
 
-  if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    const response = await axios.get(`${API_URL}/api/user/current`);
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
   }
-
-  const response = await axios.get(`${API_URL}/api/user/current`);
-
-  return response.data;
 };
 
 export const updateUser = async ({ name, email }) => {
-  const response = await axios.patch(`${API_URL}/api/user/update`, {
-    name,
-    email,
-  });
+  try {
+    if (!isValidToken()) {
+      return;
+    }
 
-  return response.data;
+    const response = await axios.patch(`${API_URL}/api/user/update`, {
+      name,
+      email,
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const logout = async () => {
-  const response = await axios.get(`${API_URL}/api/user/logout`, {});
+  try {
+    if (isValidToken()) {
+      return;
+    }
 
-  return response.data;
+    const response = await axios.post(`${API_URL}/api/user/logout`, {});
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 //* Album
 export const addAlbum = async newAlbum => {
-  const response = await axios.post(`${API_URL}/api/album`, newAlbum, {});
+  try {
+    if (!isValidToken()) {
+      return;
+    }
 
-  return response.data;
+    const response = await axios.post(`${API_URL}/api/album`, newAlbum, {});
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const confirmAccess = async ({ email, password, albumId }) => {
-  const response = await axios.post(`${API_URL}/api/album/${albumId}/access`, {
-    email,
-    password,
-  });
+  try {
+    if (!isValidToken()) {
+      return;
+    }
 
-  return response.data;
+    const response = await axios.post(
+      `${API_URL}/api/album/${albumId}/access`,
+      {
+        email,
+        password,
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const getAlbumById = async (id, token) => {
-  // const token = Cookies.get('token');
+export const getAlbumById = async id => {
+  try {
+    if (!isValidToken()) {
+      return;
+    }
 
-  // if (token) {
-  //   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  // }
+    const response = await axios.get(`${API_URL}/api/album/${id}`, {});
 
-  const response = await axios.get(`${API_URL}/api/album/${id}`, {});
-
-  return response.data;
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const deleteAlbum = async id => {
-  const response = await axios.delete(`${API_URL}/api/album/${id}`, {});
+  try {
+    if (!isValidToken()) {
+      return;
+    }
 
-  return response.data;
+    const response = await axios.delete(`${API_URL}/api/album/${id}`, {});
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const changeAlbum = async ({ updateAlbum, albumId }) => {
-  const response = await axios.patch(
-    `${API_URL}/api/album/${albumId}/update`,
-    updateAlbum
-  );
-  return response.data;
+  try {
+    if (!isValidToken()) {
+      return;
+    }
+
+    const response = await axios.patch(
+      `${API_URL}/api/album/${albumId}/update`,
+      updateAlbum
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const deleteViwer = async ({ albumId, viwerId }) => {
+  try {
+    if (!isValidToken()) {
+      return;
+    }
+
+    const response = await axios.delete(
+      `${API_URL}/api/album/${albumId}/remove/${viwerId}`,
+      {}
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
   const response = await axios.delete(
     `${API_URL}/api/album/${albumId}/remove/${viwerId}`,
     {}
@@ -106,6 +176,20 @@ export const deleteViwer = async ({ albumId, viwerId }) => {
 
 //* Photo
 export const addPhoto = async ({ newPhoto, albumId }) => {
+  try {
+    if (!isValidToken()) {
+      return;
+    }
+
+    const response = await axios.post(
+      `${API_URL}/api/photo/${albumId}`,
+      newPhoto
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
   const response = await axios.post(
     `${API_URL}/api/photo/${albumId}`,
     newPhoto
@@ -115,12 +199,38 @@ export const addPhoto = async ({ newPhoto, albumId }) => {
 };
 
 export const getPhotoById = async albumId => {
+  try {
+    if (!isValidToken()) {
+      return;
+    }
+
+    const response = await axios.get(`${API_URL}/api/photo/${albumId}`, {});
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
   const response = await axios.get(`${API_URL}/api/photo/${albumId}`, {});
 
   return response.data;
 };
 
 export const updatePhoto = async ({ date, comments, place, photoId }) => {
+  try {
+    if (!isValidToken()) {
+      return;
+    }
+
+    const response = await axios.patch(`${API_URL}/api/photo/${photoId}`, {
+      date,
+      comments,
+      place,
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
   const response = await axios.patch(`${API_URL}/api/photo/${photoId}`, {
     date,
     comments,
@@ -131,7 +241,15 @@ export const updatePhoto = async ({ date, comments, place, photoId }) => {
 };
 
 export const deletePhoto = async id => {
-  const response = await axios.delete(`${API_URL}/api/photo/${id}`, {});
+  try {
+    if (!isValidToken()) {
+      return;
+    }
 
-  return response.data;
+    const response = await axios.delete(`${API_URL}/api/photo/${id}`, {});
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
