@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 import { isValidToken } from 'helpers/isValidToken';
-// export const API_URL = 'https://photo-album-back.fly.dev';
+export const API_URL = 'https://photo-album-back.fly.dev';
 
-const API_URL = 'http://localhost:3000';
+// const API_URL = 'http://localhost:3000';
 
 //* Auth
 export const createNewUser = async ({ name, email, password }) => {
