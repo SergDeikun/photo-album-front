@@ -35,7 +35,18 @@ const RegisterForm = () => {
       const { name, email, password } = values;
 
       try {
-        await registerUser({ name, email, password });
+        await registerUser(
+          { name, email, password },
+          {
+            onSuccess: () => {
+              notifySuccess('User register');
+              navigate('/login');
+            },
+            onError: error => {
+              notifyError(error.response.data.message);
+            },
+          }
+        );
       } catch (error) {
         console.error(error);
       }

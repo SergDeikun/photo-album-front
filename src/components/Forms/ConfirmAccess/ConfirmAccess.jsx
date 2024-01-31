@@ -5,9 +5,7 @@ import * as yup from 'yup';
 
 import useConfirmAccess from 'react-query/useConfirmAccess';
 
-import { notifySuccess, notifyError } from 'helpers/toastNotify';
-
-import queryClient from '../../../react-query/queryClient';
+import { notifyError } from 'helpers/toastNotify';
 
 import { Title } from './ConfirmAccess.styled';
 
@@ -55,10 +53,7 @@ const ConfirmAccess = () => {
                 sameSite: 'strict',
                 // httpOnly: true,
               });
-              // notifySuccess('Successful');
               navigate(`/shared-album/${albumId}`);
-
-              // queryClient.invalidateQueries();
 
               return response;
             },

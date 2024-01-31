@@ -28,7 +28,6 @@ import ShareButton from 'components/Buttons/ShareButton/ShareButton';
 import ShareMenu from 'components/ShareMenu/ShareMenu';
 import EditLinkBtn from 'components/Buttons/EditLinkBtn/EditLinkBtn';
 import DefaultCover from 'components/DefaultCover/DefaultCover';
-import defaultCover from '../../images/cover.jpg';
 
 import { showAlert } from 'helpers/showAlert';
 
@@ -50,6 +49,8 @@ import {
   AlbumItem,
   AlbumCover,
   LinkAlbum,
+  CoverDefault,
+  NameWrapper,
   AlbumName,
   EditBox,
   ButtonWrapper,
@@ -252,12 +253,14 @@ const UserProfile = ({ currentUser }) => {
                       return (
                         <SwiperSlide key={id}>
                           <SlideLink to={`/shared-album/${id}`}>
-                            {backgroundURL}
-                            <AlbumCover
-                              backgroundImg={backgroundURL || defaultCover}
-                            >
+                            {backgroundURL ? (
+                              <AlbumCover backgroundImg={backgroundURL} />
+                            ) : (
+                              <CoverDefault />
+                            )}
+                            <NameWrapper>
                               <Name>{name}</Name>
-                            </AlbumCover>
+                            </NameWrapper>
                           </SlideLink>
                         </SwiperSlide>
                       );
@@ -284,9 +287,7 @@ const UserProfile = ({ currentUser }) => {
                     <AlbumItem key={id}>
                       <LinkAlbum to={`/album/${id}`}>
                         {backgroundURL ? (
-                          <AlbumCover
-                            backgroundImg={backgroundURL || defaultCover}
-                          />
+                          <AlbumCover backgroundImg={backgroundURL} />
                         ) : (
                           <DefaultCover />
                         )}

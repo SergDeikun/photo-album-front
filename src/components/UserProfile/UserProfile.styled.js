@@ -6,6 +6,7 @@ import { FaUser } from 'react-icons/fa';
 
 import Button from 'components/Buttons/Button';
 import DeleteButton from 'components/Buttons/DeleteButton/DeleteButton';
+import DefaultCover from 'components/DefaultCover/DefaultCover';
 
 //* User
 export const UserWrapper = styled.div`
@@ -175,13 +176,27 @@ export const SlideLink = styled(Link)`
   height: 100%;
 `;
 
-export const Name = styled.p`
+export const CoverDefault = styled(DefaultCover)`
+  height: 100%;
+`;
+
+export const NameWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
+`;
+
+export const Name = styled.p`
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSize[1]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
   color: ${p => p.theme.colors.white};
-  padding: 0 10px 15px 10px;
+  padding: 10px 10px 10px 10px;
+  background-image: linear-gradient(
+    transparent 0 10%,
+    ${p => p.theme.colors.black}
+  );
 `;
 
 //*Albums
