@@ -11,7 +11,7 @@ const useDeleteViwer = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries('album');
-      notifySuccess('viwer deleted');
+      notifySuccess('Viwer deleted');
     },
     onError: error => {
       notifyError(error.response.data.message);

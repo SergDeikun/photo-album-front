@@ -55,10 +55,10 @@ const ConfirmAccess = () => {
                 sameSite: 'strict',
                 // httpOnly: true,
               });
-              notifySuccess('Successful');
+              // notifySuccess('Successful');
               navigate(`/shared-album/${albumId}`);
 
-              queryClient.invalidateQueries();
+              // queryClient.invalidateQueries();
 
               return response;
             },

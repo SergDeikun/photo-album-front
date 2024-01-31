@@ -65,7 +65,7 @@ const PhotoForm = ({ onClose }) => {
         { newPhoto, albumId },
         {
           onSuccess: () => {
-            notifySuccess('photo added');
+            notifySuccess('Photo added');
             setPreviewPhoto('');
             setPhoto('');
             setPlace('');
@@ -79,7 +79,7 @@ const PhotoForm = ({ onClose }) => {
         }
       );
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

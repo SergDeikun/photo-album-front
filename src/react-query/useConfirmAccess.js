@@ -2,7 +2,7 @@ import { useMutation } from 'react-query';
 import queryClient from './queryClient';
 
 import { confirmAccess } from 'api/api-fetch';
-// import { notifySuccess, notifyError } from 'helpers/toastNotify';
+import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 const useConfirmAccess = () => {
   const mutation = useMutation({
@@ -11,10 +11,10 @@ const useConfirmAccess = () => {
 
     onSuccess: response => {
       queryClient.invalidateQueries('user');
-      // notifySuccess('Successful');
+      notifySuccess('Successful');
     },
     onError: error => {
-      //   notifyError(error.response.data.message);
+      notifyError(error.response.data.message);
     },
   });
 

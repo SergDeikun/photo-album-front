@@ -11,7 +11,7 @@ const useDeletePhoto = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries('album');
-      notifySuccess('photo deleted');
+      notifySuccess('Photo deleted');
     },
     onError: error => {
       notifyError(error.response.data.message);

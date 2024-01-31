@@ -34,8 +34,8 @@ const LoginForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: 'qwerty@mail.com',
-      password: 'qwerty123',
+      email: '',
+      password: '',
     },
     validationSchema: validationSchema,
     onSubmit: async values => {
@@ -49,7 +49,6 @@ const LoginForm = () => {
               Cookies.set('token', response.token, {
                 expires: new Date(new Date().getTime() + 60 * 60 * 1000),
                 // expires: new Date(new Date().getTime() + 5 * 1000),
-
                 secure: true,
                 sameSite: 'strict',
                 // httpOnly: true,
@@ -57,7 +56,6 @@ const LoginForm = () => {
               notifySuccess('Successful login');
               navigate('/album-list');
               queryClient.invalidateQueries();
-
               return response;
             },
             onError: error => {
@@ -66,7 +64,7 @@ const LoginForm = () => {
           }
         );
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     },
   });
