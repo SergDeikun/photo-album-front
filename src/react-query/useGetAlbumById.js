@@ -8,8 +8,7 @@ const useGetAlbumById = (albumId, token) => {
     () => getAlbumById(albumId, token),
 
     {
-      // staleTime: 5000,
-      // refetchInterval: 10000,
+      refetchInterval: 3600000,
     }
   );
 

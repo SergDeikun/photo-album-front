@@ -5,8 +5,7 @@ import { getCurrentUser } from 'api/api-fetch';
 const useGetCurrentUser = token => {
   const currentUser = useQuery('user', () => getCurrentUser(token), {
     retry: false,
-    // staleTime: 5000,
-    // refetchInterval: 10000,
+    refetchInterval: 3600000,
   });
 
   return currentUser;
