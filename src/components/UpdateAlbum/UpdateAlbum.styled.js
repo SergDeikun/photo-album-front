@@ -133,7 +133,8 @@ export const FriendsItem = styled.li`
   display: flex;
 
   padding: 5px 5px;
-  background-color: ${p => p.theme.colors.grey};
+  /* background-color: ${p => p.theme.colors.grey}; */
+  background-color: ${p => p.theme.colors.black};
 
   &:not(:last-child) {
     margin-bottom: 5px;
@@ -176,13 +177,15 @@ export const FriendText = styled.span`
   font-size: ${p => p.theme.fontSize[0]}px;
   font-weight: ${p => p.theme.fontWeights.regular};
   line-height: 1.88;
+  color: ${p => p.theme.colors.white};
 `;
 
 export const DeleteFriendBtn = styled(DeleteButton)`
   margin-left: auto;
 
   svg {
-    fill: ${p => p.theme.colors.black};
+    /* fill: ${p => p.theme.colors.black}; */
+    fill: ${p => p.theme.colors.white};
   }
 `;
 

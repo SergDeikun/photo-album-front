@@ -219,7 +219,7 @@ const UserProfile = ({ currentUser }) => {
                 slidesPerView={
                   !isMobile && currentUser.friendsAlbums.length > 2 ? 3 : 1
                 }
-                // slidesPerView={2}
+                // slidesPerView={3}
                 navigation={{
                   prevEl: '.swiper-button-prev',
                   nextEl: '.swiper-button-next',
@@ -266,7 +266,7 @@ const UserProfile = ({ currentUser }) => {
                       );
                     }
                   )}
-                {isDesktop && currentUser.friendsAlbums.length > 2 && (
+                {isDesktop && currentUser.friendsAlbums.length >= 1 && (
                   <>
                     <div className="swiper-button-prev" />
                     <div className="swiper-button-next" />

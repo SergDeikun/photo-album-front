@@ -87,23 +87,17 @@ export const addAlbum = async newAlbum => {
 };
 
 export const confirmAccess = async ({ email, password, albumId }) => {
-  try {
-    if (!isValidToken()) {
-      return;
-    }
+  // try {
+  const response = await axios.post(`${API_URL}/api/album/${albumId}/access`, {
+    email,
+    password,
+  });
 
-    const response = await axios.post(
-      `${API_URL}/api/album/${albumId}/access`,
-      {
-        email,
-        password,
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  return response.data;
+  // } catch (error) {
+  //   console.error(error);
+  //   throw error;
+  // }
 };
 
 export const getAlbumById = async id => {

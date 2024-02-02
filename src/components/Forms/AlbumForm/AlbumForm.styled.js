@@ -34,6 +34,7 @@ export const NameWrapper = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
+
   background: ${p =>
     p.background
       ? 'linear-gradient(transparent 0 25%, rgba(34, 34, 34, 0.85))'
@@ -47,6 +48,7 @@ export const NameWrapper = styled.div`
     left: 0;
     height: 1px;
     box-shadow: 0px -1px 0px ${p => p.theme.colors.grey};
+
     transform: rotateY(90deg);
     transition: transform 0.25s linear;
   }
@@ -67,6 +69,8 @@ export const InputName = styled.input`
   line-height: 1.88;
   letter-spacing: 0.1rem;
   color: ${p => p.theme.colors.grey};
+  box-sizing: border-box;
+
   padding: 0 10px 0 10px;
 
   ::placeholder {

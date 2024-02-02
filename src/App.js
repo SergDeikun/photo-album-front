@@ -7,7 +7,6 @@ import ScrollToTop from 'react-scroll-to-top';
 import { useMediaQuery } from 'react-responsive';
 
 // import toastOptions from 'helpers/toastOptions';
-// import { setAuthorizationHeader } from 'helpers/setAuthorizationHeader';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
 import PrivateRoutes from 'components/Route/PrivateRoutes';
@@ -40,7 +39,6 @@ const libraries = ['places'];
 const App = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
-  // setAuthorizationHeader();
   useJsApiLoader({
     googleMapsApiKey: API_KEY,
     libraries,
@@ -58,15 +56,15 @@ const App = () => {
             <Route path="/album/:albumId" element={<CurrentAlbumPage />} />
             <Route path="/:id/:name/update" element={<UpdateAlbumPage />} />
             <Route
-              path="/album/:albumId/access"
-              element={<ConfirmAccessPage />}
-            />
-            <Route
               path="/shared-album/:albumId"
               element={<SharedAlbumPage />}
             />
             <Route path="/profile" element={<UserPage />} />
           </Route>
+          <Route
+            path="/album/:albumId/access"
+            element={<ConfirmAccessPage />}
+          />
           {/* <Route path="/map" element={<Map />} /> */}
         </Route>
         <Route path="*" element={<NotFoundPage />} />

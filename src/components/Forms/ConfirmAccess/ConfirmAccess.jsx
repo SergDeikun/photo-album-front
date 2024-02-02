@@ -3,9 +3,10 @@ import Cookies from 'js-cookie';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
+import queryClient from 'react-query/queryClient';
 import useConfirmAccess from 'react-query/useConfirmAccess';
 
-import { notifyError } from 'helpers/toastNotify';
+import { notifySuccess, notifyError } from 'helpers/toastNotify';
 
 import { Title } from './ConfirmAccess.styled';
 
@@ -53,6 +54,9 @@ const ConfirmAccess = () => {
                 sameSite: 'strict',
                 // httpOnly: true,
               });
+
+              queryClient.invalidateQueries('user');
+              notifySuccess('Successful');
               navigate(`/shared-album/${albumId}`);
 
               return response;
@@ -63,7 +67,7 @@ const ConfirmAccess = () => {
           }
         );
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     },
   });
